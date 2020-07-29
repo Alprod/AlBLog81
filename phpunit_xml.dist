@@ -26,6 +26,6 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="buid/coverage" lowUpperBound="35" highLowerBound="70"/>
+        <log type="coverage-html" target="build/coverage" lowUpperBound="35" highLowerBound="70"/>
     </logging>
 </phpunit>
