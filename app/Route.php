@@ -95,7 +95,7 @@ class Route
                 $reflection = new ReflectionFunction($this->callback);
             }
 
-            $args = array_map(fn (ReflectionParameter $params)=>$params->getName(),$reflection->getParameters());
+            $args = array_map(fn ( ReflectionParameter $params ) => $params->getName(), $reflection->getParameters() );
 
             $argsValue = array_map(function (string $name) use ($parameters) {
 
