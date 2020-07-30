@@ -74,6 +74,9 @@ class Router
         throw new RouteNotFoundExecption();
     }
 
+    /**
+     * @param string $path
+     */
     public function call(string $path)
     {
         return $this->match($path)->call($path);
