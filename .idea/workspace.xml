@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Route.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/RouterTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RouterTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
   </component>
-  <component name="RunManager" selected="PHPUnit.RouterTest.testRouterByIdsWithSlug">
+  <component name="RunManager" selected="PHPUnit.RouterTest.testRouter">
     <configuration name="PostTest.test" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Router\Tests\Model\PostTest" configuration_file="$PROJECT_DIR$/phpunit_xml.dist" file="$PROJECT_DIR$/tests/Model/PostTest.php" method="test" scope="Method" />
       <method v="2" />
@@ -122,8 +119,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
         <item itemvalue="PHPUnit.RouterTest.testRouter" />
+        <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
         <item itemvalue="PHPUnit.tests" />
         <item itemvalue="PHPUnit.PostTest.test" />
         <item itemvalue="PHPUnit.RouterTest" />
@@ -142,7 +139,7 @@
       <workItem from="1596269550614" duration="20000" />
       <workItem from="1596269603936" duration="1325000" />
       <workItem from="1596411599661" duration="728000" />
-      <workItem from="1596412339378" duration="20815000" />
+      <workItem from="1596412339378" duration="22358000" />
     </task>
     <servers />
   </component>
@@ -161,10 +158,10 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1147" y="263" key="#com.intellij.ide.util.MemberChooser" timestamp="1596448462126">
+    <state x="-1147" y="263" key="#com.intellij.ide.util.MemberChooser" timestamp="1596482914263">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="-1147" y="263" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596448462126" />
+    <state x="-1147" y="263" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482914263" />
     <state x="-1222" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596450597766">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
@@ -173,31 +170,31 @@
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="100" y="123" width="1592" height="845" key="DiffContextDialog/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438019586" />
-    <state width="1878" height="265" key="GridCell.Tab.0.bottom" timestamp="1596482577155">
+    <state width="1878" height="265" key="GridCell.Tab.0.bottom" timestamp="1596483837958">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="265" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577155" />
+    <state width="1878" height="265" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596483837958" />
     <state width="1878" height="265" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541950" />
     <state width="1750" height="281" key="GridCell.Tab.0.bottom/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905609" />
     <state width="1750" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588978" />
-    <state width="1878" height="265" key="GridCell.Tab.0.center" timestamp="1596482577154">
+    <state width="1878" height="265" key="GridCell.Tab.0.center" timestamp="1596483837957">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="265" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577154" />
+    <state width="1878" height="265" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596483837957" />
     <state width="1878" height="265" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541948" />
     <state width="1750" height="281" key="GridCell.Tab.0.center/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905608" />
     <state width="1750" height="281" key="GridCell.Tab.0.center/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588977" />
-    <state width="1878" height="265" key="GridCell.Tab.0.left" timestamp="1596482577153">
+    <state width="1878" height="265" key="GridCell.Tab.0.left" timestamp="1596483837956">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="265" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577153" />
+    <state width="1878" height="265" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596483837956" />
     <state width="1878" height="265" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541947" />
     <state width="1750" height="281" key="GridCell.Tab.0.left/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905607" />
     <state width="1750" height="281" key="GridCell.Tab.0.left/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588977" />
-    <state width="1878" height="265" key="GridCell.Tab.0.right" timestamp="1596482577154">
+    <state width="1878" height="265" key="GridCell.Tab.0.right" timestamp="1596483837957">
       <screen x="-1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="265" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577154" />
+    <state width="1878" height="265" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596483837957" />
     <state width="1878" height="265" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541949" />
     <state width="1750" height="281" key="GridCell.Tab.0.right/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905609" />
     <state width="1750" height="281" key="GridCell.Tab.0.right/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588978" />

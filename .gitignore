@@ -4,8 +4,10 @@ composer.json
 composer.lock
 
 /vendor/
+/build/
 
 .htaccess
+.idea
 
 #phpUnit
 phpunit_xml.dist
