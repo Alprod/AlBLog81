@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/RouterTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/RouterTest.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="composer.json" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHPMamp">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/symfony/var-dumper" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1fUOXkJzEpiJOTHZSl41tYI2pAd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="php.test.frameworks.configurable" />
+  </component>
+  <component name="RunManager" selected="PHPUnit.RouterTest.testRouterByIdsWithSlug">
+    <configuration name="PostTest.test" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Router\Tests\Model\PostTest" configuration_file="$PROJECT_DIR$/phpunit_xml.dist" file="$PROJECT_DIR$/tests/Model/PostTest.php" method="test" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RouterTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Router\Tests\RouterTest" file="$PROJECT_DIR$/tests/RouterTest.php" scope="Class" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RouterTest.testRouter" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Router\Tests\RouterTest" configuration_file="$PROJECT_DIR$/phpunit_xml.dist" file="$PROJECT_DIR$/tests/RouterTest.php" method="testRouter" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RouterTest.testRouterByIdsWithSlug" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Router\Tests\RouterTest" configuration_file="$PROJECT_DIR$/phpunit_xml.dist" file="$PROJECT_DIR$/tests/RouterTest.php" method="testRouterByIdsWithSlug" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit_xml.dist" directory="$PROJECT_DIR$/tests" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
+        <item itemvalue="PHPUnit.RouterTest.testRouter" />
+        <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.PostTest.test" />
+        <item itemvalue="PHPUnit.RouterTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="" />
+      <created>1596269246520</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596269246520</updated>
+      <workItem from="1596269247778" duration="118000" />
+      <workItem from="1596269550614" duration="20000" />
+      <workItem from="1596269603936" duration="1325000" />
+      <workItem from="1596411599661" duration="728000" />
+      <workItem from="1596412339378" duration="20815000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1147" y="263" key="#com.intellij.ide.util.MemberChooser" timestamp="1596448462126">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1147" y="263" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596448462126" />
+    <state x="-1222" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1596450597766">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1222" y="302" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596450597766" />
+    <state x="100" y="123" width="1592" height="845" key="DiffContextDialog" timestamp="1596438019586">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="100" y="123" width="1592" height="845" key="DiffContextDialog/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438019586" />
+    <state width="1878" height="265" key="GridCell.Tab.0.bottom" timestamp="1596482577155">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="265" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577155" />
+    <state width="1878" height="265" key="GridCell.Tab.0.bottom/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541950" />
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905609" />
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588978" />
+    <state width="1878" height="265" key="GridCell.Tab.0.center" timestamp="1596482577154">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="265" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577154" />
+    <state width="1878" height="265" key="GridCell.Tab.0.center/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541948" />
+    <state width="1750" height="281" key="GridCell.Tab.0.center/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905608" />
+    <state width="1750" height="281" key="GridCell.Tab.0.center/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588977" />
+    <state width="1878" height="265" key="GridCell.Tab.0.left" timestamp="1596482577153">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="265" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577153" />
+    <state width="1878" height="265" key="GridCell.Tab.0.left/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541947" />
+    <state width="1750" height="281" key="GridCell.Tab.0.left/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905607" />
+    <state width="1750" height="281" key="GridCell.Tab.0.left/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588977" />
+    <state width="1878" height="265" key="GridCell.Tab.0.right" timestamp="1596482577154">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="265" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596482577154" />
+    <state width="1878" height="265" key="GridCell.Tab.0.right/-1920.0.1920.1080/0.23.1792.1097@-1920.0.1920.1080" timestamp="1596444541949" />
+    <state width="1750" height="281" key="GridCell.Tab.0.right/-1920.23.1920.1005/0.23.1792.1097@0.23.1792.1097" timestamp="1596438905609" />
+    <state width="1750" height="281" key="GridCell.Tab.0.right/0.23.1792.1045@0.23.1792.1045" timestamp="1596436588978" />
+    <state x="484" y="287" key="IDE.errors.dialog" timestamp="1596269339123">
+      <screen x="0" y="23" width="1792" height="1045" />
+    </state>
+    <state x="484" y="287" key="IDE.errors.dialog/0.23.1792.1045@0.23.1792.1045" timestamp="1596269339123" />
+    <state x="-1191" y="257" key="NewPhpClassDialog" timestamp="1596446434576">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1191" y="257" key="NewPhpClassDialog/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596446434576" />
+    <state x="-1495" y="166" key="SettingsEditor" timestamp="1596446058601">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1495" y="166" key="SettingsEditor/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596446058601" />
+    <state x="397" y="184" key="SettingsEditor/0.23.1792.1045@0.23.1792.1045" timestamp="1596412001427" />
+    <state x="-1235" y="328" key="refactoring.ChangeSignatureDialog" timestamp="1596447870546">
+      <screen x="-1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1235" y="328" key="refactoring.ChangeSignatureDialog/-1920.0.1920.1080/0.0.1792.1120@-1920.0.1920.1080" timestamp="1596447870546" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/myblog@tests.xml" NAME="tests Coverage Results" MODIFIED="1596444541939" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

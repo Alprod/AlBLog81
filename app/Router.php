@@ -20,10 +20,9 @@ class Router
     public function add(Route $route):self
     {
         if($this->has($route->getName())){
-            throw new RouteAlreadyExistExecption();
+            throw new RouteAlreadyExistExecption('This route Exist');
         }
         $this->routes[$route->getName()] = $route;
-
         return $this;
     }
 
@@ -45,7 +44,7 @@ class Router
     public function get(string $name): ?Route
     {
         if(!$this->has($name)){
-            throw new RouteNotFoundExecption();
+            throw new RouteNotFoundExecption('No Route found');
         }
         return $this->routes[$name];
     }
@@ -71,11 +70,13 @@ class Router
                 return $route;
             }
         }
-        throw new RouteNotFoundExecption();
+        throw new RouteNotFoundExecption('No route found');
     }
 
     /**
      * @param string $path
+     * @return mixed
+     * @throws RouteNotFoundExecption
      */
     public function call(string $path)
     {

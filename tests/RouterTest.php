@@ -13,12 +13,12 @@ use Router\Tests\Fixtures\HomeController;
 class RouterTest extends TestCase
 {
 
-    public function testRouter()
+    public function testRouter(): void
     {
         $router = new Router();
 
-        $route = new Route('home', '/', [HomeController::class, "index"]);
-        $routeBlog = new Route('blog', '/blog', [BlogController::class, "blog"]);
+        $route = new Route('GET','home', '/', [HomeController::class, "index"]);
+        $routeBlog = new Route('POST','contact', '/contact', [BlogController::class, "blog"]);
 
         $router->add($route);
         $router->add($routeBlog);
@@ -27,8 +27,8 @@ class RouterTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Route::class,$router->getRouterCollection());
 
-        $this->assertEquals($route, $router->get("home"));
-        $this->assertEquals($routeBlog, $router->get("blog"));
+        $this->assertEquals($route, $router->get("GET"));
+        $this->assertEquals($routeBlog, $router->get("POST"));
 
         $this->assertEquals($route, $router->match("/"));
         $this->assertEquals($routeBlog, $router->match("/blog"));
@@ -46,22 +46,22 @@ class RouterTest extends TestCase
     public function testRouterByIdsWithSlug()
     {
         $router = new Router();
-        $route = new Route('blog-post', '/{id}/{slug}', function (string $slug, string $id) { return printf("%s/%s", $slug, $id); });
-        $routeBlogPost = new Route("my-post", "/my-post/{id}", [BlogController::class, "BlogPost"]);
-        $router->add($route);
+        $route = new Route("GET", 'blog-post/{id}/{slug}', function (string $slug, string $id) { return sprintf("%s/%s", $slug, $id); });
+        $routeBlogPost = new Route("GET", "blog-post/{id}/my-post", [BlogController::class, "blogPost"]);
         $router->add($routeBlogPost);
+        $router->add($route);
 
 
         $this->assertCount(2,$router->getRouterCollection());
 
         $this->assertContainsOnlyInstancesOf(Route::class,$router->getRouterCollection());
 
-        $this->assertEquals($route, $router->get("blog-post"));
-        $this->assertEquals($routeBlogPost, $router->get("my-post"));
+        $this->assertEquals($route, $router->get("GET"));
+        $this->assertEquals($routeBlogPost, $router->get("GET"));
 
 
-        $this->assertEquals("10", $router->call("/12/journal"));
-        $this->assertEquals("9", $router->call("/1/my-post"));
+        $this->assertEquals("journal/12", $router->call("/12/journal"));
+        $this->assertEquals("1", $router->call("/1/my-post"));
     }
 
     /**
