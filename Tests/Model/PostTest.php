@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Router\Tests\Model;
+namespace Tests\Model;
 
 
 use App\Model\Post;
@@ -9,10 +9,11 @@ use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
 {
-    public function test(){
+    public function test(): void
+    {
 
-        $post = new Post('title', 'content');
-        $this->assertEquals('title', $post->getTitle());
+        $post = new Post('titre', 'content');
+        $this->assertEquals('titre', $post->getTitle());
         $this->assertEquals('content', $post->getContent());
         $post->setTitle('Mardi');
         $this->assertEquals('Mardi', $post->getTitle());

@@ -67,11 +67,12 @@ class Post
 
     /**
      * @param mixed $title
+     * @throws ModelException
      */
     public function setTitle($title): void
     {
         if (strlen($title) < 3){
-            throw new Exception('Le titre est non valide');
+            throw new ModelException('Désoler titre trop court');
         }
         $this->title = $title;
     }

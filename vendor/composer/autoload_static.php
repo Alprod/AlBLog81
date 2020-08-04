@@ -23,16 +23,16 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Tests\\' => 6,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\VarDumper\\' => 28,
-        ),
-        'R' => 
-        array (
-            'Router\\Tests\\' => 13,
         ),
         'P' => 
         array (
@@ -60,6 +60,10 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Tests',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -75,10 +79,6 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
-        ),
-        'Router\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Prophecy\\' => 
         array (

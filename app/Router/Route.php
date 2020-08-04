@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App;
+namespace App\Router;
 
 
 
@@ -11,11 +11,6 @@ use ReflectionParameter;
 
 class Route
 {
-    /**
-     * @var string
-     */
-    private string $verb;
-
     /**
      * @var string
      */
@@ -32,14 +27,13 @@ class Route
 
     /**
      * Route constructor.
-     * @param string $verb
      * @param string $name
      * @param string $path
      * @param array|callable $callback
      */
-    public function __construct(string $verb, string $name, string $path, $callback)
+    public function __construct( string $name, string $path, $callback)
     {
-        $this->verb = $verb;
+
         $this->name = $name;
         $this->path = $path;
         $this->callback = $callback;
@@ -53,24 +47,6 @@ class Route
     {
         return $this->name;
     }
-
-    /**
-     * @return string
-     */
-    public function getVerb(): string
-    {
-        return $this->verb;
-    }
-
-    /**
-     * @param string $verb
-     */
-    public function setVerb(string $verb): void
-    {
-        $this->verb = $verb;
-    }
-
-
     /**
      * @param string $path
      * @return bool
@@ -90,6 +66,7 @@ class Route
     /**
      * @param string $path
      * @return mixed
+     * @throws \ReflectionException
      */
     public function call(string $path)
     {
@@ -112,7 +89,6 @@ class Route
         $parameters = $paramMatches[1];
 
         if(count($parameters) > 0){
-
             $parameters = array_combine($parameters,$matches);
             if(is_array($this->callback)){
                 $reflection = (new ReflectionClass($this->callback[0]))->getMethod($this->callback[1]);

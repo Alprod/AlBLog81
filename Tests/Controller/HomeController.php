@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Router\Tests\Fixtures;
+namespace Tests\Controller;
 
 
 class HomeController

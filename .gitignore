@@ -13,5 +13,3 @@ composer.lock
 phpunit_xml.dist
 .phpunit.result.cache
 
-
-
