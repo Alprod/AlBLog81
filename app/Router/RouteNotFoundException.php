@@ -3,7 +3,7 @@ namespace App\Router;
 
 use Exception;
 
-class RouteNotFoundExecption extends Exception
+class RouteNotFoundException extends Exception
 {
 
 

@@ -4,7 +4,7 @@ namespace Tests;
 
 use App\Router\Route;
 use App\Router\RouteAlreadyExistExecption;
-use App\Router\RouteNotFoundExecption;
+use App\Router\RouteNotFoundException;
 use App\Router\Router;
 use PHPUnit\Framework\TestCase;
 use Tests\Controller\BlogController;
@@ -17,8 +17,8 @@ class RouterTest extends TestCase
     {
         $router = new Router();
 
-        $route = new Route('home', '/', [HomeController::class, "index"]);
-        $routeContacrt = new Route('contact', '/contact', [BlogController::class, "blog"]);
+        $route = new Route('GET','home', '/', [HomeController::class, "index"]);
+        $routeContacrt = new Route('POST','contact', '/contact', [BlogController::class, "blog"]);
 
         $router->add($route);
         $router->add($routeContacrt);
@@ -27,27 +27,70 @@ class RouterTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Route::class,$router->getRouterCollection());
 
-        $this->assertEquals($route, $router->get("home"));
-        $this->assertEquals($routeContacrt, $router->get("contact"));
+        $this->assertEquals($route, $router->findRouteName("home"));
+        $this->assertEquals($routeContacrt, $router->findRouteName("contact"));
 
-        $this->assertEquals($route, $router->match("/"));
-        $this->assertEquals($routeContacrt, $router->match("/contact"));
+        $this->assertEquals('Bienvenu dans mon site', $router->call('GET',"/"));
+        $this->assertEquals('blog', $router->call('POST',"/contact"));
 
+    }
 
-        $this->assertEquals('Bienvenu dans mon site', $router->call("/"));
-        $this->assertEquals('blog', $router->call("/contact"));
+    public function testMatch(): void
+    {
+        $router = new Router();
+        $route = new Route('POST','contact', '/contact', [BlogController::class, "blog"]);
+        $router->add($route);
+        $this->assertEquals($route, $router->match('POST',"/contact"));
 
     }
 
     /**
+     * @return \string[][]
+     */
+    public function dataProviderMatchThrowExecptionMethod(): array
+    {
+        return [
+            "Aucun des arguments n'est valide" =>
+               [
+                'GET',
+                '/membre'
+            ],
+            "Le Path non valide" => [
+                'POST',
+                'mercredi'
+            ],
+            "Le methode non valide" => [
+                'PUT',
+                '/contact'
+            ]
+        ];
+    }
+
+    /**
+     * @param $method
+     * @param $path
+     * @dataProvider dataProviderMatchThrowExecptionMethod
      * @throws RouteAlreadyExistExecption
-     * @throws RouteNotFoundExecption
+     * @throws RouteNotFoundException
+     */
+    public function testMatchThrowExecptionMethod($method, $path): void
+    {
+        $router = new Router();
+        $route = new Route('POST','contact', '/contact', [BlogController::class, "blog"]);
+        $router->add($route);
+        $this->expectException(RouteNotFoundException::class);
+        $router->match($method, $path);
+    }
+
+    /**
+     * @throws RouteAlreadyExistExecption
+     * @throws RouteNotFoundException
      */
     public function testRouterByIdsWithSlug(): void
     {
         $router = new Router();
-        $route = new Route("blog-post", '/{id}/{slug}', function (string $slug, string $id) { return sprintf("%s/%s", $slug, $id); });
-        $routeBlogPost = new Route("membres", "/{id}/my-post", [BlogController::class, "blogPost"]);
+        $route = new Route('GET',"blog-post", '/{id}/{slug}', function (string $slug, string $id) { return sprintf("%s/%s", $slug, $id); });
+        $routeBlogPost = new Route('POST',"membres", "/{id}/my-post", [BlogController::class, "blogPost"]);
         $router->add($routeBlogPost);
         $router->add($route);
 
@@ -56,37 +99,37 @@ class RouterTest extends TestCase
 
         $this->assertContainsOnlyInstancesOf(Route::class,$router->getRouterCollection());
 
-        $this->assertEquals($route, $router->get("blog-post"));
-        $this->assertEquals($routeBlogPost, $router->get("membres"));
+        $this->assertEquals($route, $router->findRouteName("blog-post"));
+        $this->assertEquals($routeBlogPost, $router->findRouteName("membres"));
 
 
-        $this->assertEquals("journal/12", $router->call("/12/journal"));
-        $this->assertEquals("1", $router->call("/1/my-post"));
+        $this->assertEquals("journal/12", $router->call('GET',"/12/journal"));
+        $this->assertEquals("1", $router->call('POST',"/1/my-post"));
     }
 
     /**
      * Verifier la route si elle est recuperer
-     * @throws RouteNotFoundExecption
+     * @throws RouteNotFoundException
      */
-    public function testIfNotFoundRouteByGet(): void
+    public function testIfNotFoundRouteByName(): void
     {
         $router = new Router();
 
-        $this->expectException(RouteNotFoundExecption::class);
-        $router->get("fail");
+        $this->expectException(RouteNotFoundException::class);
+        $router->findRouteName("fail");
 
     }
 
     /**
      * Verfier le matching des pages
-     * @throws RouteNotFoundExecption
+     * @throws RouteNotFoundException
      */
     public function testIfNotFoundRouteByMatch(): void
     {
         $router = new Router();
 
-        $this->expectException(RouteNotFoundExecption::class);
-        $router->match("/");
+        $this->expectException(RouteNotFoundException::class);
+        $router->match('POST',"/");
 
     }
 
@@ -97,7 +140,7 @@ class RouterTest extends TestCase
     public function testIfRouteAlreadyExist(): void
     {
         $router = new Router();
-        $route = new Route("home","/", function (){});
+        $route = new Route('GET',"home","/", function (){});
 
         $router->add($route);
         $this->expectException(RouteAlreadyExistExecption::class);
