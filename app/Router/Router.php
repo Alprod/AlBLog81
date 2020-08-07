@@ -39,12 +39,12 @@ class Router
      * La route n'est pas trouver
      * @param string $name
      * @return Route
-     * @throws RouteNotFoundExecption
+     * @throws RouteNotFoundException
      */
-    public function get(string $name): ?Route
+    public function findRouteName(string $name): ?Route
     {
         if(!$this->has($name)){
-            throw new RouteNotFoundExecption('No Route found');
+            throw new RouteNotFoundException('No Route found');
         }
         return $this->routes[$name];
     }
@@ -60,26 +60,29 @@ class Router
 
     /**
      * @param string $path
+     * @param string $method
      * @return Route
-     * @throws RouteNotFoundExecption
+     * @throws RouteNotFoundException
      */
-    public function match(string $path): Route
+    public function match(string $method,string $path): Route
     {
         foreach ($this->routes as $route) {
-            if ($route->testMatchIds($path)) {
+            if ($route->testMatchIds($path) && $route->getMethode() === $method) {
                 return $route;
             }
         }
-        throw new RouteNotFoundExecption('No route found');
+        throw new RouteNotFoundException('No route found');
     }
 
     /**
+     * @param string $method
      * @param string $path
      * @return mixed
-     * @throws RouteNotFoundExecption
+     * @throws RouteNotFoundException
+     * @throws \ReflectionException
      */
-    public function call(string $path)
+    public function call(string $method, string $path)
     {
-        return $this->match($path)->call($path);
+        return $this->match($method,$path )->call($path);
     }
 }

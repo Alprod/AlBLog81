@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Router;
 
 
@@ -11,6 +9,11 @@ use ReflectionParameter;
 
 class Route
 {
+    /**
+     * @var string
+     */
+    private string $method;
+
     /**
      * @var string
      */
@@ -27,13 +30,14 @@ class Route
 
     /**
      * Route constructor.
+     *  @param string $method
      * @param string $name
      * @param string $path
      * @param array|callable $callback
      */
-    public function __construct( string $name, string $path, $callback)
+    public function __construct(string $method, string $name, string $path, $callback)
     {
-
+        $this->method = $method;
         $this->name = $name;
         $this->path = $path;
         $this->callback = $callback;
@@ -47,6 +51,12 @@ class Route
     {
         return $this->name;
     }
+
+    public function getMethode()
+    {
+        return $this->method;
+    }
+
     /**
      * @param string $path
      * @return bool
@@ -61,6 +71,7 @@ class Route
 
         return preg_match($pattern, $path);
     }
+
 
 
     /**
