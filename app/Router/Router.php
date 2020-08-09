@@ -1,6 +1,8 @@
 <?php
 namespace App\Router;
 
+use ReflectionException;
+
 /**
  * Class Router
  */
@@ -12,9 +14,12 @@ class Router
     private array $routes = [];
 
     /**
-     * Ajouter de nouvelle route
+     *Add new route
+     *
      * @param Route $route
+     *
      * @return $this
+     *
      * @throws RouteAlreadyExistExecption
      */
     public function add(Route $route):self
@@ -27,8 +32,10 @@ class Router
     }
 
     /**
-     * Insert dans un tableau toutes les routes
+     * Insert all routes into a table
+     *
      * @return Route[]|array
+     *
      */
     public function getRouterCollection():array
     {
@@ -36,9 +43,12 @@ class Router
     }
 
     /**
-     * La route n'est pas trouver
+     * The road is not to find
+     *
      * @param string $name
+     *
      * @return Route
+     *
      * @throws RouteNotFoundException
      */
     public function findRouteName(string $name): ?Route
@@ -50,7 +60,9 @@ class Router
     }
 
     /**
+     *
      * @param string $name
+     *
      * @return bool
      */
     public function has(string $name): bool
@@ -59,9 +71,14 @@ class Router
     }
 
     /**
+     * Check the method as well as the path of the route
+     *
      * @param string $path
+     *
      * @param string $method
+     *
      * @return Route
+     *
      * @throws RouteNotFoundException
      */
     public function match(string $method,string $path): Route
@@ -76,13 +93,17 @@ class Router
 
     /**
      * @param string $method
+     *
      * @param string $path
+     *
      * @return mixed
+     *
      * @throws RouteNotFoundException
-     * @throws \ReflectionException
+     *
+     * @throws ReflectionException
      */
-    public function call(string $method, string $path)
+    public function call( string $method, string $path )
     {
-        return $this->match($method,$path )->call($path);
+        return $this->match( $method, $path )->call( $path );
     }
 }
