@@ -14,6 +14,10 @@
     <php>
         <ini name="error_reporting" value="-1"/>
         <server name="APP_ENV" value="test" force="true"/>
+        <var name="DB_DSN" value="mysql:dbname=my_blog;host=localhost" />
+        <var name="DB_USER" value="root" />
+        <var name="DB_PASSWD" value="root" />
+        <var name="DB_DBNAME" value="my_blog" />
     </php>
     <testsuites>
         <testsuite name="Tests Suite">
