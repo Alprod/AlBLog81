@@ -4,7 +4,7 @@
 namespace Tests\Model;
 
 
-use App\Model\Post;
+use App\Model\Posts;
 use PHPUnit\Framework\TestCase;
 
 class PostTest extends TestCase
@@ -12,7 +12,7 @@ class PostTest extends TestCase
     public function test(): void
     {
 
-        $post = new Post('titre', 'content');
+        $post = new Posts('titre', 'content');
         $this->assertEquals('titre', $post->getTitle());
         $this->assertEquals('content', $post->getContent());
         $post->setTitle('Mardi');

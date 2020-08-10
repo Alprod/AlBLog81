@@ -6,14 +6,17 @@
             "email": "alain@andjaro.com"
         }
     ],
-    "require": {},
+    "require": {
+      "ext-pdo": "*"
+    },
     "require-dev": {
         "symfony/var-dumper": "^5.1",
         "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Config\\": "Config/"
         }
      },
     "autoload-dev": {

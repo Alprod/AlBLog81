@@ -4,6 +4,7 @@ namespace App\Router;
 
 
 use ReflectionClass;
+use ReflectionException;
 use ReflectionFunction;
 use ReflectionParameter;
 
@@ -29,10 +30,12 @@ class Route
     private $callback;
 
     /**
-     * Route constructor.
      *  @param string $method
+     *
      * @param string $name
+     *
      * @param string $path
+     *
      * @param array|callable $callback
      */
     public function __construct(string $method, string $name, string $path, $callback)
@@ -52,13 +55,17 @@ class Route
         return $this->name;
     }
 
-    public function getMethode()
+    /**
+     * @return string
+     */
+    public function getMethode(): string
     {
         return $this->method;
     }
 
     /**
      * @param string $path
+     *
      * @return bool
      */
     public function testMatchIds(string $path): bool
@@ -76,8 +83,10 @@ class Route
 
     /**
      * @param string $path
+     *
      * @return mixed
-     * @throws \ReflectionException
+     *
+     * @throws ReflectionException
      */
     public function call(string $path)
     {
