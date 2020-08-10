@@ -3,7 +3,8 @@
 
 namespace Config;
 
-class PDOmanager
+
+class PDOmanager extends PDO
 {
     /**
      * @var null
@@ -24,8 +25,16 @@ class PDOmanager
         return self::$instance;
     }
 
-    public function getPdo()
+    public function getPdo(): PDO
     {
+        $config = new Config();
+        $paramBdd = $config->getParametersConnect();
+
+        return new PDO('mysql:host='.$paramBdd['host'].';dbname='.$paramBdd['dbname'],
+            $paramBdd['login'],
+            $paramBdd['password'],[
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8'
+            ]);
 
     }
 
