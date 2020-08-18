@@ -13,6 +13,6 @@ class BlogController
 
     public function blogPost(string $id): string
     {
-        return $id;
+        return "Mon article n° $id";
     }
 }

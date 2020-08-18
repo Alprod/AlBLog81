@@ -29,12 +29,20 @@ class PDOmanager extends PDO
     {
         $config = new Config();
         $paramBdd = $config->getParametersConnect();
-
-        return new PDO('mysql:host='.$paramBdd['host'].';dbname='.$paramBdd['dbname'],
-            $paramBdd['login'],
-            $paramBdd['password'],[
-                PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8'
-            ]);
+        var_dump($paramBdd);
+        try {
+            $bdd = new PDO('mysql:host='.$paramBdd['host'].';dbname='.$paramBdd['dbname'],
+                $paramBdd['login'],
+                $paramBdd['password'],[
+                    PDO::MYSQL_ATTR_INIT_COMMAND => 'set names utf8',
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT
+                ]);
+        } catch (\Exception $e)
+        {
+            die('Erreur : '.$e->getLine());
+        }
+        return $bdd;
 
     }
 

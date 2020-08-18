@@ -88,7 +88,7 @@ class Router
                 return $route;
             }
         }
-        throw new RouteNotFoundException('No route found');
+        throw new RouteNotFoundException('Route non trouver');
     }
 
     /**

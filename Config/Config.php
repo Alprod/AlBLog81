@@ -11,10 +11,12 @@ class Config
      */
     protected array $parameters;
 
+
     public function __construct()
     {
         $params = new Parameter();
         $this->parameters = $params->parametersConnectBdd();
+
     }
 
     public function getParametersConnect(): array

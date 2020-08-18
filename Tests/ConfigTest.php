@@ -15,7 +15,12 @@ class ConfigTest extends TestCase
       $config = new  Config();
       $this->assertCount(1, $parameters->parametersConnectBdd());
       $this->assertCount(4, $config->getParametersConnect());
-      $connectBdd = $config->getParametersConnect();
-      var_dump($connectBdd['host']);
     }
+
+   /* public function testConnectionBdd():void
+    {
+        $config = new  Config();
+        $connectBdd = $config->getParametersConnect();
+        var_dump($connectBdd['login']);
+    }*/
 }
