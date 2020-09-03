@@ -118,7 +118,7 @@ class Route
 
             $args = array_map(fn ( ReflectionParameter $params ) => $params->getName(), $reflection->getParameters() );
 
-            $argsValue = array_map(function (string $name) use ($parameters) {
+            $argsValue = array_map(static function (string $name) use ($parameters) {
 
                 return $parameters[$name];
 

@@ -7,7 +7,7 @@ class RouteNotFoundException extends Exception
 {
     public function errorPageNotFound()
     {
-        $errorPage = include '../View/404.html';
+        $errorPage = require '../View/404.html';
         return $errorPage;
     }
 }

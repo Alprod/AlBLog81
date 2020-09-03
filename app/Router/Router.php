@@ -54,7 +54,7 @@ class Router
     public function findRouteName(string $name): ?Route
     {
         if(!$this->has($name)){
-            throw new RouteNotFoundException('No Route found');
+            throw new RouteNotFoundException('Route no found');
         }
         return $this->routes[$name];
     }
@@ -88,7 +88,7 @@ class Router
                 return $route;
             }
         }
-        throw new RouteNotFoundException('Route non trouver');
+        throw new RouteNotFoundException('Route Matching not found');
     }
 
     /**
