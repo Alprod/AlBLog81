@@ -30,7 +30,7 @@ class Model
         return $table;
     }
 
-    public function findAll()
+    public function findAll() : bool
     {
         $requete = "SELECT * FROM".$this->getTableName();
         $resultat = $this->getBdd()->query($requete);

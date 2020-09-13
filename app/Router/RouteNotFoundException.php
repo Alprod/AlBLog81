@@ -5,9 +5,8 @@ use Exception;
 
 class RouteNotFoundException extends Exception
 {
-    public function errorPageNotFound()
+    public function __construct()
     {
-        $errorPage = require '../View/404.html';
-        return $errorPage;
+
     }
 }

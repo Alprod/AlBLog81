@@ -90,7 +90,7 @@ class RouterTest extends TestCase
     public function testRouterByIdsWithSlug(): void
     {
         $router = new Router();
-        $route = new Route('GET',"blog-post", '/{id}/{slug}', static fn(string $slug, string $id): string => sprintf("%s/%s", $slug, $id));
+        $route = new Route('GET',"blog-post", '/{$id}/{$slug}', static fn(string $slug, string $id): string => sprintf("%s/%s", $slug, $id));
         $routeBlogPost = new Route('POST',"membres", "/{id}/{slug}", [BlogController::class, "blogPost"]);
         $router->add($routeBlogPost);
         $router->add($route);

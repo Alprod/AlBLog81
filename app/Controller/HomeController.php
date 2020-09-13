@@ -4,20 +4,48 @@
 namespace App\Controller;
 
 
+use App\Router\Route;
+use App\Router\RouteAlreadyExistExecption;
+use App\Router\RouteNotFoundException;
+use App\Router\Router;
+use Config\Config;
 use DateTime;
+use ReflectionException;
 
-class HomeController
+class HomeController extends Config
 {
+
 
     /**
      * @return string
+     * @throws RouteAlreadyExistExecption
+     * @throws RouteNotFoundException
+     * @throws ReflectionException
      */
     public function index(): string
     {
+        $url = $_REQUEST['url']??null;
+        $methode = $_SERVER['REQUEST_METHOD'];
+        $router = new Router();
+
+        $route = new Route('GET','home','/',[HomeController::class, 'index']);
+        $router->add($route);
+        $router->call($methode, (string)$url);
+
         $laDateDuJour = $this->dateOfTheDay();
+
         $heureDuJour = date('H:i');
+
         $calendarChinese = $this->calendarChinese(date('Y'));
-        return "<h1>Bienvenue sur ma page d'acceuil nous sommes <br/> $laDateDuJour et il est $heureDuJour à Paris <br/> c'est l'année $calendarChinese</h1>";
+
+        $params = array(
+            'laDateDuJour' => $laDateDuJour,
+            'heureDuJour' => $heureDuJour,
+            'calendarChinese' => $calendarChinese
+
+        );
+        
+        return $this->render('layout.html','base.html',$params);
     }
 
     /**

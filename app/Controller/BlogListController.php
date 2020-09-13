@@ -4,10 +4,14 @@
 namespace App\Controller;
 
 
+use App\Model\Model;
+
 class BlogListController
 {
    public function blogList(): string
    {
+       $postAll = new Model();
+       $listPost = $postAll->findAll();
        return "Voici tout mes articles";
    }
 
