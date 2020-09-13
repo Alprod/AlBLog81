@@ -16,7 +16,9 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Config\\": "Config/"
+            "Config\\": "Config/",
+            "Public\\": "public/"
+
         }
      },
     "autoload-dev": {

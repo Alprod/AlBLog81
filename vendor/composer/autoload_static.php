@@ -36,6 +36,7 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         ),
         'P' => 
         array (
+            'Public\\' => 7,
             'Prophecy\\' => 9,
         ),
         'D' => 
@@ -83,6 +84,10 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         'Symfony\\Component\\VarDumper\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
+        'Public\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public',
         ),
         'Prophecy\\' => 
         array (

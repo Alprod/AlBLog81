@@ -14,20 +14,6 @@ class Posts
     private $images;
     private DateTime $dateCreateAt;
 
-    /**
-     * @param $title
-     *
-     * @param $content
-     *
-     * @param $images
-     */
-    public function __construct($title, $content, $images)
-    {
-        $this->setTitle($title);
-        $this->setContent($content);
-        $this->setImages($images);
-        $this->dateCreateAt = new DateTime;
-    }
 
 
     /**

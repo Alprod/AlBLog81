@@ -7,6 +7,7 @@ use App\Router\RouteAlreadyExistExecption;
 use App\Router\RouteNotFoundException;
 use App\Router\Router;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use Tests\Controller\BlogController;
 use Tests\Controller\HomeController;
 
@@ -84,27 +85,27 @@ class RouterTest extends TestCase
 
     /**
      * @throws RouteAlreadyExistExecption
-     * @throws RouteNotFoundException
+     * @throws RouteNotFoundException|ReflectionException
      */
     public function testRouterByIdsWithSlug(): void
     {
         $router = new Router();
-        $route = new Route('GET',"blog-post", '/{id}/{slug}', function (string $slug, string $id) { return sprintf("%s/%s", $slug, $id); });
-        $routeBlogPost = new Route('POST',"membres", "/{id}/my-post", [BlogController::class, "blogPost"]);
+        $route = new Route('GET',"blog-post", '/{$id}/{$slug}', static fn(string $slug, string $id): string => sprintf("%s/%s", $slug, $id));
+        $routeBlogPost = new Route('POST',"membres", "/{id}/{slug}", [BlogController::class, "blogPost"]);
         $router->add($routeBlogPost);
         $router->add($route);
-
 
         $this->assertCount(2,$router->getRouterCollection());
 
         $this->assertContainsOnlyInstancesOf(Route::class,$router->getRouterCollection());
+
 
         $this->assertEquals($route, $router->findRouteName("blog-post"));
         $this->assertEquals($routeBlogPost, $router->findRouteName("membres"));
 
 
         $this->assertEquals("journal/12", $router->call('GET',"/12/journal"));
-        $this->assertEquals("1", $router->call('POST',"/1/my-post"));
+        $this->assertEquals("Mon article my-post n° 2", $router->call('POST',"/2/my-post"));
     }
 
     /**
@@ -140,7 +141,7 @@ class RouterTest extends TestCase
     public function testIfRouteAlreadyExist(): void
     {
         $router = new Router();
-        $route = new Route('GET',"home","/", function (){});
+        $route = new Route('GET',"home","/", static function (){});
 
         $router->add($route);
         $this->expectException(RouteAlreadyExistExecption::class);

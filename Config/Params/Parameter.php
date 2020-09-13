@@ -7,7 +7,7 @@ namespace Config\Params;
 class Parameter
 {
     /**
-     * @return \string[][]
+     * @return string[]
      */
     public function parametersConnectBdd(): array
     {
