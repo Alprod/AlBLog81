@@ -1,6 +1,2 @@
 <?php
-require 'vendor/autoload.php';
-use App\Router;
-use App\Route;
-$router = new Router();
-
+require_once __DIR__.'/vendor/autoload.php';

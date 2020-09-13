@@ -36,12 +36,17 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         ),
         'P' => 
         array (
+            'Public\\' => 7,
             'Prophecy\\' => 9,
         ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
             'DeepCopy\\' => 9,
+        ),
+        'C' => 
+        array (
+            'Config\\' => 7,
         ),
         'A' => 
         array (
@@ -80,6 +85,10 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         array (
             0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
+        'Public\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public',
+        ),
         'Prophecy\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
@@ -91,6 +100,10 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Config',
         ),
         'App\\' => 
         array (

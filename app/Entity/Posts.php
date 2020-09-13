@@ -1,35 +1,27 @@
 <?php
 
 
-namespace App\Model;
+namespace App\Entity;
 
 
-class Post
+use DateTime;
+
+class Posts
 {
-    private $id;
+    private $idPosts;
     private $title;
     private $content;
-    private \DateTime $dateCreateAt;
+    private $images;
+    private DateTime $dateCreateAt;
 
-    /**
-     * Post constructor.
-     * @param $title
-     * @param $content
-     */
-    public function __construct($title, $content)
-    {
-        $this->setTitle($title);
-        $this->setContent($content);
-        $this->dateCreateAt = new \DateTime;
-    }
 
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getIdPosts()
     {
-        return $this->id;
+        return $this->idPosts;
     }
 
     /**
@@ -49,24 +41,33 @@ class Post
     }
 
     /**
-     * @return \DateTime
+     * @return mixed
      */
-    public function getDateCreateAt(): \DateTime
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDateCreateAt(): DateTime
     {
         return $this->dateCreateAt;
     }
 
 
     /**
-     * @param mixed $id
+     * @param mixed $idPosts
      */
-    public function setId($id): void
+    public function setIdPosts($idPosts): void
     {
-        $this->id = $id;
+        $this->idPosts = $idPosts;
     }
 
     /**
      * @param mixed $title
+     *
      * @throws ModelException
      */
     public function setTitle($title): void
@@ -84,5 +85,23 @@ class Post
     {
         $this->content = $content;
     }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images): void
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @param DateTime $dateCreateAt
+     */
+    public function setDateCreateAt(DateTime $dateCreateAt): void
+    {
+        $this->dateCreateAt = $dateCreateAt;
+    }
+
+
 
 }

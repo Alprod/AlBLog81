@@ -1,6 +1,8 @@
 <?php
 namespace App\Router;
 
+use ReflectionException;
+
 /**
  * Class Router
  */
@@ -12,9 +14,12 @@ class Router
     private array $routes = [];
 
     /**
-     * Ajouter de nouvelle route
+     *Add new route
+     *
      * @param Route $route
+     *
      * @return $this
+     *
      * @throws RouteAlreadyExistExecption
      */
     public function add(Route $route):self
@@ -27,8 +32,10 @@ class Router
     }
 
     /**
-     * Insert dans un tableau toutes les routes
+     * Insert all routes into a table
+     *
      * @return Route[]|array
+     *
      */
     public function getRouterCollection():array
     {
@@ -36,21 +43,26 @@ class Router
     }
 
     /**
-     * La route n'est pas trouver
+     * The road is not to find
+     *
      * @param string $name
+     *
      * @return Route
-     * @throws RouteNotFoundExecption
+     *
+     * @throws RouteNotFoundException
      */
-    public function get(string $name): ?Route
+    public function findRouteName(string $name): ?Route
     {
         if(!$this->has($name)){
-            throw new RouteNotFoundExecption('No Route found');
+            throw new RouteNotFoundException('Route no found');
         }
         return $this->routes[$name];
     }
 
     /**
+     *
      * @param string $name
+     *
      * @return bool
      */
     public function has(string $name): bool
@@ -59,27 +71,39 @@ class Router
     }
 
     /**
+     * Check the method as well as the path of the route
+     *
      * @param string $path
+     *
+     * @param string $method
+     *
      * @return Route
-     * @throws RouteNotFoundExecption
+     *
+     * @throws RouteNotFoundException
      */
-    public function match(string $path): Route
+    public function match(string $method,string $path): Route
     {
         foreach ($this->routes as $route) {
-            if ($route->testMatchIds($path)) {
+            if ($route->testMatchIds($path) && $route->getMethode() === $method) {
                 return $route;
             }
         }
-        throw new RouteNotFoundExecption('No route found');
+        throw new RouteNotFoundException('Route Matching not found');
     }
 
     /**
+     * @param string $method
+     *
      * @param string $path
+     *
      * @return mixed
-     * @throws RouteNotFoundExecption
+     *
+     * @throws RouteNotFoundException
+     *
+     * @throws ReflectionException
      */
-    public function call(string $path)
+    public function call( string $method, string $path )
     {
-        return $this->match($path)->call($path);
+        return $this->match( $method, $path )->call( $path );
     }
 }

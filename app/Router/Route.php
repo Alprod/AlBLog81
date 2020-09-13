@@ -1,16 +1,20 @@
 <?php
-
-
 namespace App\Router;
 
 
 
 use ReflectionClass;
+use ReflectionException;
 use ReflectionFunction;
 use ReflectionParameter;
 
 class Route
 {
+    /**
+     * @var string
+     */
+    private string $method;
+
     /**
      * @var string
      */
@@ -26,14 +30,17 @@ class Route
     private $callback;
 
     /**
-     * Route constructor.
+     *  @param string $method
+     *
      * @param string $name
+     *
      * @param string $path
+     *
      * @param array|callable $callback
      */
-    public function __construct( string $name, string $path, $callback)
+    public function __construct(string $method, string $name, string $path, $callback)
     {
-
+        $this->method = $method;
         $this->name = $name;
         $this->path = $path;
         $this->callback = $callback;
@@ -47,8 +54,18 @@ class Route
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getMethode(): string
+    {
+        return $this->method;
+    }
+
     /**
      * @param string $path
+     *
      * @return bool
      */
     public function testMatchIds(string $path): bool
@@ -63,10 +80,13 @@ class Route
     }
 
 
+
     /**
      * @param string $path
+     *
      * @return mixed
-     * @throws \ReflectionException
+     *
+     * @throws ReflectionException
      */
     public function call(string $path)
     {
@@ -98,7 +118,7 @@ class Route
 
             $args = array_map(fn ( ReflectionParameter $params ) => $params->getName(), $reflection->getParameters() );
 
-            $argsValue = array_map(function (string $name) use ($parameters) {
+            $argsValue = array_map(static function (string $name) use ($parameters) {
 
                 return $parameters[$name];
 
