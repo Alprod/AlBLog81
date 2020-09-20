@@ -1,11 +1,17 @@
 {
     "name": "alain-andja/myblog",
+    "time": "2020/06/15",
+    "license": "MIT",
     "authors": [
         {
             "name": "Alprod",
-            "email": "alain@andjaro.com"
+            "email": "alprod81@gmail.com",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "email": "alprod81@gmail.com"
+    },
     "require": {
       "ext-pdo": "*"
     },
@@ -16,9 +22,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Config\\": "Config/",
-            "Public\\": "public/"
-
+            "Config\\": "Config/"
         }
      },
     "autoload-dev": {
