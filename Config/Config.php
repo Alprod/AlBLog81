@@ -46,16 +46,17 @@ class Config
      */
     public function render($layout,$view,$params): bool
     {
-        $dirView = __DIR__.'/app/View/';
+        $dirView = __DIR__.'/../app/View/';
         $pathView = $dirView.$view;
         $pathLayout = $dirView.$layout;
         if (is_array($params) && !empty($params)){
             extract($params,EXTR_OVERWRITE);
         }
         ob_start();
-        require $pathLayout;
-        $content = ob_get_clean();
         require $pathView;
+        $content= ob_get_clean();
+        ob_start();
+        require $pathLayout;
         return ob_end_flush();
 
     }

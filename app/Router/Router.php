@@ -84,6 +84,7 @@ class Router
     public function match(string $method,string $path): Route
     {
         foreach ($this->routes as $route) {
+
             if ($route->testMatchIds($path) && $route->getMethode() === $method) {
                 return $route;
             }
