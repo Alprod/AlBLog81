@@ -11,7 +11,7 @@ class BlogController
         return 'blog';
     }
 
-    public function blogPost(string $id, string $slug): string
+    public function blogPost(string $slug, string $id): string
     {
         return "Mon article $slug n° $id";
     }
