@@ -4,15 +4,14 @@
 namespace Config;
 
 
+use PDO;
+
 class PDOmanager extends PDO
 {
     /**
      * @var null
      */
     private static $instance = null;
-
-    private function __construct(){}
-    private function __clone(){}
 
     /**
      * @return null

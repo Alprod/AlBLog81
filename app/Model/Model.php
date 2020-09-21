@@ -5,14 +5,15 @@ namespace App\Model;
 
 
 use Config\PDOmanager;
+use PDO;
 
-class Model
+class Model extends PDOmanager
 {
     private $bdd;
 
     public function __construct()
     {
-        $this->bdd = PDOmanager::getInstance()->getPdo();
+        $this->bdd = $this->getPdo();
     }
 
     /**
@@ -30,16 +31,16 @@ class Model
         return $table;
     }
 
-    public function findAll() : bool
+    public function findAll()
     {
-        $requete = "SELECT * FROM".$this->getTableName();
+        $requete = ' SELECT * FROM  Posts';
         $resultat = $this->getBdd()->query($requete);
-        $donnees = $resultat->fetchAll(\PDO::FETCH_CLASS,'Entity\\'.ucfirst($this->getTableName()));
-        if (!$donnees) {
+        //$donnees = $resultat->fetch();
+        if (!$resultat) {
             return false;
         }
 
-        return $donnees;
+        return $resultat;
     }
 
 
