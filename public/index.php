@@ -15,12 +15,9 @@ $router = new Router();
 
 $routes = array(
     new Route('GET', 'home', '/', [HomeController::class, 'index']),
-    new Route('GET', 'blogList', '/blogs', [BlogListController::class, 'blogList'])
+    new Route('GET', 'blogs', '/blogs', [BlogListController::class, 'blogList'])
 );
 
-
-$explode = explode('/', $uri);
-array_shift($explode);
 
 
 foreach ($routes as $route) {
