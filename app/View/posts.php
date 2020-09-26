@@ -1,7 +1,17 @@
+<h1 class="text-center m-5 cover-heading display-4">Mes Articles</h1>
+<div class="row">
 <?php foreach ($listPost as $post): ?>
-<p><?= htmlspecialchars($post['title']) ?></p>
-<p><?=  nl2br(htmlspecialchars($post['contenu']))  ?></p>
-<p><?= $post['create_at'] ?></p>
-
+<div class="col-sm-6">
+<div class="card bg-black">
+  <img src="<?= $post['images'] ?>" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
+    <p class="text-muted"><?= $post['create_at'] ?></p>
+    <a href="viewPost.php?id=<?= $post['idPosts'] ?>" class="btn btn-outline-light btn-sm">Lire</a>
+  </div>
+</div>
+</div>
 <?php
 endforeach;
+?>
+</div>

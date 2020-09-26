@@ -14,9 +14,9 @@ class Parameter
         $parameters = [
             'connect' => [
                 'host' => 'localhost',
-                'dbname' => 'my_blog',
+                'dbname' => 'my_sql',
                 'login' => 'root',
-                'password' => 'root'
+                'password' => 'alprod81'
             ]
         ];
         return $parameters;

@@ -7,6 +7,7 @@ namespace App\Controller;
 
 use Config\Config;
 use DateTime;
+use DateTimeZone;
 use ReflectionException;
 
 class HomeController extends Config
@@ -19,7 +20,7 @@ class HomeController extends Config
     public function index(): string
     {
         $laDateDuJour = $this->dateOfTheDay();
-        $heure = new DateTime();
+        $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
         $heureDuJour = $heure->format('H:i');
 
         $calendarChinese = $this->calendarChinese(date('Y'));
