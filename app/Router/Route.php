@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Router;
 
 
@@ -19,6 +20,7 @@ class Route
      * @var string
      */
     private string $name;
+
     /**
      * @var string
      */
@@ -29,14 +31,15 @@ class Route
      */
     private $callback;
 
+
     /**
-     *  @param string $method
+     * __construct
      *
-     * @param string $name
-     *
-     * @param string $path
-     *
-     * @param array|callable $callback
+     * @param  mixed $method
+     * @param  mixed $name
+     * @param  mixed $path
+     * @param  mixed $callback
+     * @return void
      */
     public function __construct(string $method, string $name, string $path, $callback)
     {
@@ -108,31 +111,27 @@ class Route
 
         $parameters = $paramMatches[1];
 
-        if(count($parameters) > 0){
-            $parameters = array_combine($parameters,$matches);
-            if(is_array($this->callback)){
+        if (count($parameters) > 0) {
+            $parameters = array_combine($parameters, $matches);
+            if (is_array($this->callback)) {
                 $reflection = (new ReflectionClass($this->callback[0]))->getMethod($this->callback[1]);
-            }else{
+            } else {
                 $reflection = new ReflectionFunction($this->callback);
             }
 
-            $args = array_map(fn ( ReflectionParameter $params ) => $params->getName(), $reflection->getParameters() );
+            $args = array_map(fn (ReflectionParameter $params) => $params->getName(), $reflection->getParameters());
 
             $argsValue = array_map(static function (string $name) use ($parameters) {
 
                 return $parameters[$name];
-
             }, $args);
-
-
         }
 
-        if(is_array($callable)){
+        if (is_array($callable)) {
             $callable = [new $callable[0](), $callable[1]];
         }
 
 
-        return call_user_func_array( $callable, $argsValue);
+        return call_user_func_array($callable, $argsValue);
     }
-
 }

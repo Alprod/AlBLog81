@@ -33,7 +33,7 @@ class Model extends PDOmanager
 
     public function findAll()
     {
-        $requete = ' SELECT * FROM  Posts';
+        $requete = ' SELECT idPosts,title,contenu,images,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM  Posts';
         $resultat = $this->getBdd()->query($requete);
         //$donnees = $resultat->fetch();
         if (!$resultat) {

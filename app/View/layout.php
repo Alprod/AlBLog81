@@ -16,7 +16,8 @@
             <h2 class="masthead-brand">Alblog</h2>
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="index.php">Home</a>
+                    <a class="nav-link active" href="home">Home</a>
+                    <a class="nav-link active" href="blogs">Articles</a>
                 </nav>
             </div>
         </header>

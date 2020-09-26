@@ -1,30 +1,25 @@
 <?php
 
-
 namespace App\Controller;
-
 
 use App\Model\Model;
 use Config\Config;
 
-
 class BlogListController
 {
-
-
     public function blogList(): string
-   {
-       $postAll = new Model();
-       $config = new Config();
-       $listPost = $postAll->findAll();
+    {
+        $postAll = new Model();
+        $config = new Config();
+        $listPost = $postAll->findAll();
 
-       return $config->render("layout.php","posts.php", array(
-           "listPost" => $listPost
-       ));
-   }
+        return $config->render('layout.php', 'posts.php', [
+            'listPost' => $listPost,
+        ]);
+    }
 
-   public function blogByIds(string $id = "1", string $slug = "mes-articles"): string
-   {
+    public function blogByIds(string $id = '1', string $slug = 'mes-articles'): string
+    {
         return "$slug n°$id";
-   }
+    }
 }
