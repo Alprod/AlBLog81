@@ -5,7 +5,7 @@ namespace App\Model;
 
 
 use Config\PDOmanager;
-use PDO;
+
 
 class Model extends PDOmanager
 {
@@ -33,16 +33,15 @@ class Model extends PDOmanager
 
     public function findAll()
     {
-        $requete = ' SELECT idPosts,title,contenu,images,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM  Posts';
+        $requete = 'SELECT idPosts,title,contenu,images,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM  Posts';
         $resultat = $this->getBdd()->query($requete);
-        //$donnees = $resultat->fetch();
+
         if (!$resultat) {
             return false;
         }
 
         return $resultat;
     }
-
 
 
 }

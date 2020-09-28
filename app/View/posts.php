@@ -7,7 +7,7 @@
   <div class="card-body">
     <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
     <p class="text-muted"><?= $post['create_at'] ?></p>
-    <a href="viewPost.php?id=<?= $post['idPosts'] ?>" class="btn btn-outline-light btn-sm">Lire</a>
+    <a href="<?= 'viewPost/'.str_replace(' ','-', $post['title']).'/'.$post['idPosts'] ?>" class="btn btn-outline-light btn-sm">Lire</a>
   </div>
 </div>
 </div>

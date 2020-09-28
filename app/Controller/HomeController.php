@@ -8,14 +8,17 @@ namespace App\Controller;
 use Config\Config;
 use DateTime;
 use DateTimeZone;
+use Exception;
 use ReflectionException;
 
 class HomeController extends Config
 {
 
+    private $laDateDuJour;
 
     /**
      * @return string
+     * @throws Exception
      */
     public function index(): string
     {

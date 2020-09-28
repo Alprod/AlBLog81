@@ -7,19 +7,60 @@ use Config\Config;
 
 class BlogListController
 {
+
+    private Model $model;
+    private Config $config;
+
+
+    /**
+     * BlogListController constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this->model = new Model();
+        $this->config = new Config();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+
+
     public function blogList(): string
     {
-        $postAll = new Model();
-        $config = new Config();
-        $listPost = $postAll->findAll();
+        $listPost = $this->getModel()->findAll();
 
-        return $config->render('layout.php', 'posts.php', [
+        return $this->getConfig()->render('layout.php', 'posts.php', [
             'listPost' => $listPost,
         ]);
     }
 
-    public function blogByIds(string $id = '1', string $slug = 'mes-articles'): string
+    public function blogPost(string $slug, string $id): string
     {
-        return "$slug n°$id";
+        return $this->getConfig()->render('layout.php', 'viewPost.php', [
+            'slug' => $slug,
+            'id' => $id
+        ]);
     }
+
+    public function deleteSapceWord ($word)
+    {
+        $replaced = str_replace(' ', '', $word);
+        return $replaced;
+    }
+
 }
