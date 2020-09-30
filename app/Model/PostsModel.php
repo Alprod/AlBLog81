@@ -7,9 +7,9 @@ namespace App\Model;
 use Config\PDOmanager;
 
 
-class Model extends PDOmanager
+class PostsModel extends PDOmanager
 {
-    private $bdd;
+    private \PDO $bdd;
 
     public function __construct()
     {
@@ -24,14 +24,7 @@ class Model extends PDOmanager
         return $this->bdd;
     }
 
-    public function getTableName(): string
-    {
-        $table = strtolower(str_replace(array('Model\\', 'Model'),'', static::class));
-
-        return $table;
-    }
-
-    public function findAll()
+    public function findAllPosts()
     {
         $requete = 'SELECT idPosts,title,contenu,images,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM  Posts';
         $resultat = $this->getBdd()->query($requete);
@@ -41,6 +34,17 @@ class Model extends PDOmanager
         }
 
         return $resultat;
+    }
+
+    public function findPostByIds($id)
+    {
+        $req = 'SELECT idPosts, title, contenu, images, DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM Posts WHERE idPosts = :id_post';
+        $result = $this->getBdd()->prepare($req);
+        $result->bindParam(":id_post", $id);
+        $result->execute();
+        $posts= $result->fetch();
+
+        return $posts;
     }
 
 

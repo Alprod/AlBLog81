@@ -37,6 +37,19 @@ class Config
         exit();
     }
 
+    public function assets($url): string
+    {
+        return "http://localhost/AlBlog81/".$url;
+    }
+
+    public function getTableName(): array
+    {
+        $table = ucfirst(str_replace(array('Model\\', 'Model'),'', static::class));
+        $explode = explode('\\', $table);
+        array_shift($explode);
+        return $explode;
+    }
+
     /**
      * @param $layout
      * @param $view

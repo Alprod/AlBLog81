@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\Model\Model;
+use App\Model\PostsModel;
 use Config\Config;
 
 class BlogListController
 {
 
-    private Model $model;
+    private PostsModel $model;
     private Config $config;
 
 
@@ -18,7 +18,7 @@ class BlogListController
      */
     public function __construct()
     {
-        $this->model = new Model();
+        $this->model = new PostsModel();
         $this->config = new Config();
     }
 
@@ -42,18 +42,23 @@ class BlogListController
 
     public function blogList(): string
     {
-        $listPost = $this->getModel()->findAll();
+        $listPost = $this->getModel()->findAllPosts();
+        $conf = $this->getConfig();
+
 
         return $this->getConfig()->render('layout.php', 'posts.php', [
             'listPost' => $listPost,
+            'url' => $conf->assets($listPost["images"])
         ]);
     }
 
     public function blogPost(string $slug, string $id): string
     {
+        $viewPost = $this->getModel()->findPostByIds($id);
         return $this->getConfig()->render('layout.php', 'viewPost.php', [
             'slug' => $slug,
-            'id' => $id
+            'id' => $id,
+            'post' => $viewPost
         ]);
     }
 
