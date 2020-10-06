@@ -1,25 +1,19 @@
 <?php
 
-use App\Controller\BlogListController;
-use App\Controller\HomeController;
-use App\Router\Route;
+use App\Model\PostsModel;
 use App\Router\Router;
+use App\Router\Routes;
+use Config\Config;
 
 require __DIR__.'./../vendor/autoload.php';
 
-$url = $_REQUEST['url'] ?? null;
-$uri = $_SERVER['REQUEST_URI'];
-$methode = $_SERVER['REQUEST_METHOD'];
-
-$router = new Router();
-
-$routes = [
-    new Route('GET', 'home', '/home', [HomeController::class, 'index']),
-    new Route('GET', 'blogs', '/blogs', [BlogListController::class, 'blogList']),
-];
-
-foreach ($routes as $route) {
-    $router->add($route);
+function assets($url): string
+{
+    return "http://localhost/AlBlog81/".$url;
 }
 
-$router->call($methode, "/$url");
+
+$routes = new Routes();
+
+$routes->routesIndex();
+

@@ -1,6 +1,7 @@
 <?php
 namespace App\Router;
 
+use Config\Config;
 use ReflectionException;
 
 /**
@@ -12,6 +13,7 @@ class Router
      * @var Route[]
     */
     private array $routes = [];
+
 
     /**
      *Add new route
@@ -77,19 +79,14 @@ class Router
      *
      * @param string $method
      *
-     * @return Route
-     *
-     * @throws RouteNotFoundException
      */
-    public function match(string $method,string $path): Route
+    public function match(string $method,string $path)
     {
         foreach ($this->routes as $route) {
-
             if ($route->testMatchIds($path) && $route->getMethode() === $method) {
                 return $route;
             }
         }
-        throw new RouteNotFoundException('Route Matching not found');
     }
 
     /**
@@ -98,8 +95,6 @@ class Router
      * @param string $path
      *
      * @return mixed
-     *
-     * @throws RouteNotFoundException
      *
      * @throws ReflectionException
      */

@@ -104,7 +104,7 @@ class RouterTest extends TestCase
     {
         $router = new Router();
         $route = new Route('GET', 'blog-post', '/{id}/{slug}', static fn (string $slug, string $id): string => sprintf('%s/%s', $slug, $id));
-        $routeBlogPost = new Route('POST', 'membres', '/{id}/{slug}', [BlogController::class, 'blogPost']);
+        $routeBlogPost = new Route('POST', 'post', '/{id}/{slug}', [BlogController::class, 'blogPost']);
         $router->add($routeBlogPost);
         $router->add($route);
 
@@ -113,7 +113,7 @@ class RouterTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Route::class, $router->getRouterCollection());
 
         $this->assertEquals($route, $router->findRouteName('blog-post'));
-        $this->assertEquals($routeBlogPost, $router->findRouteName('membres'));
+        $this->assertEquals($routeBlogPost, $router->findRouteName('post'));
 
         $this->assertEquals('journal/12', $router->call('GET', '/12/journal'));
         $this->assertEquals('Mon article my-post n° 2', $router->call('POST', '/2/my-post'));

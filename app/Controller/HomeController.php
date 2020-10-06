@@ -8,14 +8,17 @@ namespace App\Controller;
 use Config\Config;
 use DateTime;
 use DateTimeZone;
+use Exception;
 use ReflectionException;
 
 class HomeController extends Config
 {
 
+    private $laDateDuJour;
 
     /**
      * @return string
+     * @throws Exception
      */
     public function index(): string
     {
@@ -26,6 +29,7 @@ class HomeController extends Config
         $calendarChinese = $this->calendarChinese(date('Y'));
 
         $params = array(
+            'titre' => 'Home page',
             'laDateDuJour' => $laDateDuJour,
             'heureDuJour' => $heureDuJour,
             'calendarChinese' => $calendarChinese
