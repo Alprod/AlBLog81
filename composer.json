@@ -24,7 +24,11 @@
         "psr-4": {
             "App\\": "app/",
             "Config\\": "Config/"
-        }
+        },
+        "files" : [
+            "env.php",
+            "loadEnv.php"
+        ]
      },
     "autoload-dev": {
         "psr-4": {

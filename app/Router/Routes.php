@@ -5,6 +5,7 @@ namespace App\Router;
 
 use App\Controller\BlogListController;
 use App\Controller\HomeController;
+use Config\Config;
 
 class Routes
 {
@@ -15,6 +16,7 @@ class Routes
         $methode = $_SERVER['REQUEST_METHOD'];
 
         $router = new Router();
+        $config = new Config();
 
         $routes = [
             new Route('GET', 'home', '/home', [HomeController::class, 'index']),
@@ -26,8 +28,13 @@ class Routes
             $router->add($route);
         }
 
-        return $router->call($methode, "/$url");
+        $match = $router->match($methode, "/$url");
 
+        if(!$match){
+            return $config->render("layout.php","error404.php", array());
+        }
+
+        return $router->call($methode, "/$url");
     }
 
 }

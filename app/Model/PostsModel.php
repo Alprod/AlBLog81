@@ -26,7 +26,7 @@ class PostsModel extends PDOmanager
 
     public function findAllPosts()
     {
-        $requete = 'SELECT idPosts,title,contenu,images,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM  Posts';
+        $requete = 'SELECT idPosts,title,content,images,DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as create_at FROM  Posts';
         $resultat = $this->getBdd()->query($requete);
 
         if (!$resultat) {
@@ -38,7 +38,7 @@ class PostsModel extends PDOmanager
 
     public function findPostByIds($id)
     {
-        $req = 'SELECT idPosts, title, contenu, images, DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as create_at FROM Posts WHERE idPosts = :id_post';
+        $req = 'SELECT idPosts, title, content, images, DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as create_at FROM Posts WHERE idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_post", $id);
         $result->execute();

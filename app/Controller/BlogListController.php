@@ -45,17 +45,17 @@ class BlogListController
         $listPost = $this->getModel()->findAllPosts();
         $conf = $this->getConfig();
 
-
-        return $this->getConfig()->render('layout.php', 'posts.php', [
+        return $conf->render('layout.php', 'posts.php', array(
+            'titre' => 'Mes articles',
             'listPost' => $listPost,
-            'url' => $conf->assets($listPost["images"])
-        ]);
+        ));
     }
 
     public function blogPost(string $slug, string $id): string
     {
         $viewPost = $this->getModel()->findPostByIds($id);
         return $this->getConfig()->render('layout.php', 'viewPost.php', [
+            'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,
             'post' => $viewPost

@@ -29,6 +29,7 @@ class HomeController extends Config
         $calendarChinese = $this->calendarChinese(date('Y'));
 
         $params = array(
+            'titre' => 'Home page',
             'laDateDuJour' => $laDateDuJour,
             'heureDuJour' => $heureDuJour,
             'calendarChinese' => $calendarChinese

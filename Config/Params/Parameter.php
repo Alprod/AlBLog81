@@ -14,12 +14,14 @@ class Parameter
         $parameters = [
             'connect' => [
                 'host' => 'localhost',
-                'dbname' => 'my_sql',
+                'dbname' => 'my_blog',
                 'login' => 'root',
-                'password' => 'alprod81'
+                'password' => 'Alprod_81'
             ]
         ];
         return $parameters;
     }
+
+
 
 }
