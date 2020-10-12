@@ -7,6 +7,9 @@ use Config\Params\Parameter;
 
 class Config
 {
+    const SUPER_USERS_ADMIN = 1;
+    const USERS_ADMIN = 2;
+    const USERS = 3;
     /**
      * @var array $parameters
      */
