@@ -14,7 +14,6 @@ use ReflectionException;
 class HomeController extends Config
 {
 
-    private $laDateDuJour;
 
     /**
      * @return string

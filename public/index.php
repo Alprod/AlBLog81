@@ -14,6 +14,5 @@ function assets($url): string
 
 
 $routes = new Routes();
-
 $routes->routesIndex();
 
