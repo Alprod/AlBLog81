@@ -9,20 +9,6 @@ use Config\PDOmanager;
 
 class PostsModel extends PDOmanager
 {
-    private \PDO $bdd;
-
-    public function __construct()
-    {
-        $this->bdd = $this->getPdo();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBdd()
-    {
-        return $this->bdd;
-    }
 
     public function findAllPosts()
     {
@@ -51,7 +37,8 @@ class PostsModel extends PDOmanager
         $req = 'SELECT idPosts, 
                        postTitle, 
                        postContent, 
-                       images, 
+                       images,
+                       link,
                        DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as create_at 
                        FROM Posts 
                        WHERE idPosts = :id_post';
@@ -63,5 +50,31 @@ class PostsModel extends PDOmanager
         return $posts;
     }
 
+    public function findCommentsByPostAndIds($id)
+    {
+        $req = 'SELECT DISTINCT
+                       pseudo,
+                       idUsers,
+                       commentTitle,
+                       commentContent,
+                       idPosts,
+                       link,
+                       postTitle,
+                       DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") AS dateCreate_at 
+                        FROM Comments
+                        INNER JOIN Posts
+                        INNER JOIN Users
+                        WHERE post_commentId = :idPosts
+                        AND user_commnetId = idUsers
+                        ORDER BY dateCreate_at
+                        LIMIT 10';
+
+        $result = $this->getBdd()->prepare($req);
+        $result->bindValue(":idPosts",$id);
+        $result->execute();
+        $commentPost = $result->fetch();
+
+        return $commentPost;
+    }
 
 }

@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Model\CommentsModel;
 use App\Model\PostsModel;
 use Config\Config;
 
 class BlogListController
 {
 
-    private PostsModel $model;
+    private CommentsModel $commentModel;
     private Config $config;
 
 
@@ -18,16 +19,17 @@ class BlogListController
      */
     public function __construct()
     {
-        $this->model = new PostsModel();
+        $this->postModel = new PostsModel();
+        $this->commentModel = new CommentsModel();
         $this->config = new Config();
     }
 
     /**
      * @return mixed
      */
-    public function getModel()
+    public function getPostModel()
     {
-        return $this->model;
+        return $this->postModel;
     }
 
     /**
@@ -42,7 +44,7 @@ class BlogListController
 
     public function blogList(): string
     {
-        $listPost = $this->getModel()->findAllPosts();
+        $listPost = $this->getPostModel()->findAllPosts();
         $conf = $this->getConfig();
 
         return $conf->render('layout.php', 'posts.php', array(
@@ -53,12 +55,14 @@ class BlogListController
 
     public function blogPost(string $slug, string $id): string
     {
-        $viewPost = $this->getModel()->findPostByIds($id);
+        $viewPost = $this->getPostModel()->findPostByIds($id);
+        $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
         return $this->getConfig()->render('layout.php', 'viewPost.php', [
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,
-            'post' => $viewPost
+            'post' => $viewPost,
+            'comments' => $commentByPost
         ]);
     }
 
