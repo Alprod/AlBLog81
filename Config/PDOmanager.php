@@ -4,6 +4,7 @@
 namespace Config;
 
 
+use Exception;
 use PDO;
 
 class PDOmanager extends PDO
@@ -12,6 +13,26 @@ class PDOmanager extends PDO
      * @var null
      */
     private static $instance = null;
+
+    /**
+     * @var PDO
+     */
+    private PDO $bdd;
+
+
+    public function __construct()
+    {
+        $this->bdd = $this->getPdo();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBdd()
+    {
+        return $this->bdd;
+    }
+
 
     /**
      * @return null
@@ -24,6 +45,10 @@ class PDOmanager extends PDO
         return self::$instance;
     }
 
+
+    /**
+     * @return PDO
+     */
     public function getPdo(): PDO
     {
         $config = new Config();
@@ -37,7 +62,7 @@ class PDOmanager extends PDO
             $bdd = new PDO('mysql:host='.$paramBdd['host'].';dbname='.$paramBdd['dbname'],
                 $paramBdd['login'],
                 $paramBdd['password'],$options);
-        } catch (\Exception $e)
+        } catch (Exception $e)
         {
             die('Erreur : '.$e->getMessage());
         }

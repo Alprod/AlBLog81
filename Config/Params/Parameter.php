@@ -16,7 +16,7 @@ class Parameter
                 'host' => 'localhost',
                 'dbname' => 'my_blog',
                 'login' => 'alprod',
-                'password' => 'Alprod81'
+                'password' => 'Alprod_81'
             ]
         ];
         return $parameters;

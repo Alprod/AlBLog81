@@ -7,7 +7,7 @@
         <div class="col-md-6  text-center">
             <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
 
-            <a href="home" class="btn btn-outline-light btn-lg iq-mt-15 text-center">HOME PAGE</a>
+            <a href="/home" class="btn btn-outline-light btn-lg iq-mt-15 text-center">HOME PAGE</a>
         </div>
     </div>
 </div>
