@@ -11,6 +11,7 @@ class BlogListController
 
     private CommentsModel $commentModel;
     private Config $config;
+    private PostsModel $postModel;
 
 
     /**

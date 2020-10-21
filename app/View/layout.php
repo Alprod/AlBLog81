@@ -20,6 +20,7 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="/home">Home</a>
                     <a class="nav-link" href="/blogs">Articles</a>
+                    <a class="nav-link" href="/contact">Contact</a>
                 </nav>
             </div>
         </header>

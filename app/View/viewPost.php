@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-sm mt-3">
             <?php
-            if(isset($comments)):
+            if(isset($comments) || is_array($comments)):
             foreach ($comments as $comment):
                 ?>
             <div class="media pl-3">

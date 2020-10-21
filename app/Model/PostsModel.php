@@ -52,27 +52,18 @@ class PostsModel extends PDOmanager
 
     public function findCommentsByPostAndIds($id)
     {
-        $req = 'SELECT DISTINCT
-                       pseudo,
-                       idUsers,
-                       commentTitle,
-                       commentContent,
-                       idPosts,
-                       link,
-                       postTitle,
-                       DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") AS dateCreate_at 
-                        FROM Comments
-                        INNER JOIN Posts
-                        INNER JOIN Users
-                        WHERE post_commentId = :idPosts
-                        AND user_commnetId = idUsers
-                        ORDER BY dateCreate_at
-                        LIMIT 10';
+        $req = 'SELECT idComments,pseudo,idUsers,commentTitle,commentContent,idPosts,DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as dateCreate_at 
+                FROM Comments
+                INNER JOIN Posts
+                INNER JOIN Users
+                WHERE post_commentId = :idPosts
+                AND user_commnetId = idUsers
+                ORDER BY dateCreate_at ASC;';
 
         $result = $this->getBdd()->prepare($req);
         $result->bindValue(":idPosts",$id);
         $result->execute();
-        $commentPost = $result->fetch();
+        $commentPost = $result->fetchAll();
 
         return $commentPost;
     }
