@@ -83,11 +83,36 @@ h1,h2,h3,h4,h5,h6{
 *Background image
 */
 body{
+  -webkit-animation: random 90s linear infinite ;
+  animation: random 90s linear infinite;
   background: #121213 url(./../images/peter-olexa-Q5GnQxjX7Jk-unsplash.jpg) no-repeat fixed center;
   background-size: cover;
   -webkit-background-size:cover;
   color: #fcfcfc;
   font-family: 'Work Sans', sans-serif;
+}
+
+@keyframes random {
+  25% {
+    background: #121213 url(./../images/jude-beck-zcvzfCgHQ6s-unsplash.jpg) no-repeat fixed center;
+    background-size: cover;
+    -webkit-background-size:cover;
+  }
+  50% {
+    background: #121213 url(./../images/markus-spiske-mbrF_62mp-Y-unsplash.jpg) no-repeat fixed center;
+    background-size: cover;
+    -webkit-background-size:cover;
+  }
+  75% {
+    background: #121213 url(./../images/max-kleinen-ohQinqTl_DE-unsplash.jpg) no-repeat fixed center;
+    background-size: cover;
+    -webkit-background-size:cover;
+  }
+  100% {
+    background: #121213 url(./../images/octavio-fossatti-HlWctEa8YH0-unsplash.jpg) no-repeat fixed center;
+    background-size: cover;
+    -webkit-background-size:cover;
+  }
 }
 
 /*
@@ -219,7 +244,7 @@ form .search-btn:hover {
   border-radius: 90px;
   margin: 2px;
   margin-top: 2px;
-  background-image: linear-gradient(to right, #09b3ef 0%, #1e50e2 51%,#09b3ef 100%);
+  background-image: linear-gradient(to right, #232526 0%, #4d4647 51%,#232526 100%);
   background-size: 200% auto;
   flex: 1 1 auto;
   text-decoration: none;
@@ -237,4 +262,11 @@ form .search-btn:hover {
   text-decoration: none;
 }
 
-
+/* Style form Contact */
+#inputName,
+#inputEmail,
+#message{
+  background: #232526;
+  background: -webkit-linear-gradient(to left, #4d4647, #232526);
+  background: linear-gradient(to left, #46484a, #232526);
+}
