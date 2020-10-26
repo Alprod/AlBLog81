@@ -7,14 +7,14 @@
 
         <?php if (isset($success,$name)): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <p class="text-dark m-auto"><?= $success.'. Merci'.htmlspecialchars($name).'.'?></p>
+            <p class="text-dark m-auto"><?= $success.', Merci '.$name.'.'?></p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <?php elseif (isset($error,$name)): ?>
+        <?php elseif (isset($error,$success) && $success == false): ?>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <p class="text-dark m-auto"><?= $error.' '.htmlspecialchars($name).'.' ?></p>
+            <p class="text-dark m-auto"><?= $error ?></p>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

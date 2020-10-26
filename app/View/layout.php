@@ -22,6 +22,7 @@
                     <a class="nav-link active" href="/home">Home</a>
                     <a class="nav-link" href="/blogs">Articles</a>
                     <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="/register">Inscription</a>
                 </nav>
             </div>
         </header>
