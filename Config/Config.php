@@ -34,7 +34,7 @@ class Config
     /**
      * @param $adress
      */
-    public function redirect($adress): void
+    public function redirect($adress)
     {
         header('Location:'.$adress);
         exit();

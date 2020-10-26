@@ -10,34 +10,35 @@ class ContactSendMail extends Config
     public function contact()
     {
 
-        return $this->render("layout.php","contact.php",array(
+        return $this->render("layout.php","front/contact.php",array(
             "titre" => "Contact"
         ));
     }
 
 
     /**
-     * @param string $to
-     * @param $subject
-     * @param $content
+     *
      * @return mixed
-     * @noinspection PhpOptionalBeforeRequiredParametersInspection
      */
-    public function sendMail(string $to = 'alprod81@gmail.com', $subject, $content)
+    public function sendMail()
     {
-        $webMaster = $to;
+        $allPost = $_POST;
         $name = $_POST['inputName'];
-        $mailTitle = $subject;
+        $content = $_POST["message"];
+        $mailEmail = $_POST["inputEmail"];
+        $mailSujet = $_POST["inputSujet"];
+        $webMaster = $_SERVER['SERVER_ADMIN'];
+
         $message ='<html lang="fr">
                        <body>
-                         <h2>Message de '.$name.'</h2>
+                         <h2>Message de '.htmlspecialchars($name).'</h2>
                          <table>
                             <tr>
                               <th>Message</th>
                             </tr>
                             <tr>
                                 <td>
-                                  '.$content.'
+                                  '.htmlspecialchars($content).'
                                 </td>
                             </tr>
                          </table>
@@ -45,17 +46,31 @@ class ContactSendMail extends Config
                    </html>';
         $headers[]= "MIME-Version: 1.0";
         $headers[]= "Content-type: text/html charset=iso-8859-1";
+        $headers[]= "From : ".$name;
+        $headers[]= "Mail : ".$mailEmail;
 
-        $sendMail = $this->mail($webMaster,$mailTitle,$message, implode("\r\n",$headers));
+        $sending = true;
+        $successMail= "Mail envoyer";
+        $errorSend= "Mail Non envoyer car il mmanque des informations";
 
-        if ( !$sendMail ) {
-            $errorSend = "";
+        $sendMail = mail($webMaster,$mailSujet,$message, implode("\r\n",$headers));
+
+        if ( !$sendMail || empty($name) || empty($mailEmail) || empty($message)) {
+            $errorSend;
+            $sending = false;
+
         }
         else{
-            $successMail = "";
+            $successMail;
         }
 
-        return $sendMail;
+        return $this->render("layout.php","front/contact.php",array(
+            'titre' => 'Envoi Mail',
+            'success' => $successMail,
+            'error' => $errorSend,
+            'name' => $name
+        ));
+
     }
 
 }

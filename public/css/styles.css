@@ -7,7 +7,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .cover-container {
-  max-width: 49em;
+  max-width: 57em;
 }
 
 
@@ -83,8 +83,8 @@ h1,h2,h3,h4,h5,h6{
 *Background image
 */
 body{
-  -webkit-animation: random 90s linear infinite ;
-  animation: random 90s linear infinite;
+  -webkit-animation: random 50s infinite ;
+  animation: random 50s infinite;
   background: #121213 url(./../images/peter-olexa-Q5GnQxjX7Jk-unsplash.jpg) no-repeat fixed center;
   background-size: cover;
   -webkit-background-size:cover;
@@ -263,9 +263,14 @@ form .search-btn:hover {
 }
 
 /* Style form Contact */
-#inputName,
-#inputEmail,
-#message{
+.inputName,
+.inputSujet,
+.inputEmail,
+.message,
+.inputCommentName,
+.inputCommentEmail,
+.inputComment
+{
   background: #232526;
   background: -webkit-linear-gradient(to left, #4d4647, #232526);
   background: linear-gradient(to left, #46484a, #232526);
