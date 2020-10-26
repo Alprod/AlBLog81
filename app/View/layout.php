@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#563d7c">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" media="screen" type="text/css" href="/css/styles.css">
@@ -20,12 +21,15 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="/home">Home</a>
                     <a class="nav-link" href="/blogs">Articles</a>
+                    <a class="nav-link" href="/contact">Contact</a>
                 </nav>
             </div>
         </header>
 
         <main role="main" class="inner cover">
-            <?= $content ?>
+            <?php
+            if (isset($content)) echo $content;
+            ?>
         </main>
 
         <footer class="mastfoot mt-auto">

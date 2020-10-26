@@ -11,6 +11,7 @@ class BlogListController
 
     private CommentsModel $commentModel;
     private Config $config;
+    private PostsModel $postModel;
 
 
     /**
@@ -47,7 +48,7 @@ class BlogListController
         $listPost = $this->getPostModel()->findAllPosts();
         $conf = $this->getConfig();
 
-        return $conf->render('layout.php', 'posts.php', array(
+        return $conf->render('layout.php', 'front/posts.php', array(
             'titre' => 'Mes articles',
             'listPost' => $listPost,
         ));
@@ -57,7 +58,7 @@ class BlogListController
     {
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
-        return $this->getConfig()->render('layout.php', 'viewPost.php', [
+        return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,

@@ -1,7 +1,7 @@
 <h1 class="text-center m-5 cover-heading display-4">Mes Articles</h1>
-<div class="row">
+<div class="row mb-5">
     <?php foreach ($listPost as $post) : ?>
-        <div class="col-sm-6 mt-4">
+        <div class="col-sm-4 mt-4">
             <div class="card bg-black">
                 <img src="<?= $post['images'] ?>" class="card-img-top" alt="...">
                 <div class="card-body">

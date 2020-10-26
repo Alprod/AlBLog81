@@ -7,8 +7,8 @@ composer.lock
 /build/
 
 .htaccess
-/.idea/
-/.vscode/
+.idea
+.vscode
 
 #phpUnit
 phpunit_xml.dist
