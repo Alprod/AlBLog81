@@ -6,6 +6,7 @@ namespace App\Router;
 use App\Controller\BlogListController;
 use App\Controller\ContactSendMail;
 use App\Controller\HomeController;
+use App\Controller\MembreController;
 use Config\Config;
 
 class Routes
@@ -24,6 +25,7 @@ class Routes
             new Route('GET', 'blogs', '/blogs', [BlogListController::class, 'blogList']),
             new Route('GET', 'contact', '/contact', [ContactSendMail::class, 'contact']),
             new Route('GET', 'viewPost', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
+            new Route('GET', 'register', '/register', [MembreController::class, 'membresSubscribe']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
         ];
 

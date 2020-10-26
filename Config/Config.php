@@ -83,4 +83,17 @@ class Config
         return ob_end_flush();
 
     }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    public function sanitize($data)
+    {
+        $list = [];
+        foreach ($data as $key=>$value) {
+            $list[$key] = htmlentities($value);
+        }
+        return $list;
+    }
 }

@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use Config\Config;
+use Exception;
 
 class ContactSendMail extends Config
 {
@@ -15,62 +16,114 @@ class ContactSendMail extends Config
         ));
     }
 
-
     /**
-     *
-     * @return mixed
+     * @return bool
+     * @throws Exception
      */
     public function sendMail()
     {
-        $allPost = $_POST;
-        $name = $_POST['inputName'];
-        $content = $_POST["message"];
-        $mailEmail = $_POST["inputEmail"];
-        $mailSujet = $_POST["inputSujet"];
-        $webMaster = $_SERVER['SERVER_ADMIN'];
+        try {
+            $this->validate($_POST);
 
-        $message ='<html lang="fr">
-                       <body>
-                         <h2>Message de '.htmlspecialchars($name).'</h2>
-                         <table>
-                            <tr>
-                              <th>Message</th>
-                            </tr>
-                            <tr>
-                                <td>
-                                  '.htmlspecialchars($content).'
-                                </td>
-                            </tr>
-                         </table>
-                       </body>
-                   </html>';
-        $headers[]= "MIME-Version: 1.0";
-        $headers[]= "Content-type: text/html charset=iso-8859-1";
-        $headers[]= "From : ".$name;
-        $headers[]= "Mail : ".$mailEmail;
-
-        $sending = true;
-        $successMail= "Mail envoyer";
-        $errorSend= "Mail Non envoyer car il mmanque des informations";
-
-        $sendMail = mail($webMaster,$mailSujet,$message, implode("\r\n",$headers));
-
-        if ( !$sendMail || empty($name) || empty($mailEmail) || empty($message)) {
-            $errorSend;
-            $sending = false;
+        }catch (Exception $e){
+            return $this->render("layout.php","front/contact.php",array(
+                'titre' => 'Erreur d\'Envoi',
+                'success' => false,
+                'error' => $e->getMessage(),
+                'name' => null
+            ));
 
         }
-        else{
-            $successMail;
-        }
+
+        $data = $this->sanitize($_POST);
+
+        $to = [
+            'name'=>$data['inputName'],
+            'email' => 'alprod81@gamil.com'
+            ];
+        $message = $this->renderMessage($data['inputName'], $data['message']);
+
+        $this->email($to['email'],$data['message'],$message);
 
         return $this->render("layout.php","front/contact.php",array(
             'titre' => 'Envoi Mail',
-            'success' => $successMail,
-            'error' => $errorSend,
-            'name' => $name
+            'success' => 'Mail envoyer',
+            'error' => [],
+            'name' => $data['inputName']
         ));
+    }
+
+
+    /**
+     * @param $data
+     * @throws Exception
+     */
+    public function validate($data)
+    {
+
+        $name = $data['inputName'];
+        $content = $data["message"];
+        $mailEmail = $data["inputEmail"];
+        $mailSujet = $data["inputSujet"];
+        $rgexe10 = "/^[\w\W0-9]{10,}$/i";
+
+
+        if(empty($name)){
+            throw new Exception('Veuillez indique un nom ou un Pseudo');
+        }
+
+        if(!filter_var($mailEmail, FILTER_VALIDATE_EMAIL)){
+            throw new Exception('Le champ de votre email est incorrect');
+        }
+
+        if(strlen($mailSujet) <= 3){
+            throw new Exception('Votre titre du sujet est trop court');
+        }
+
+        if(empty($content) ||  strlen($content) < 10){
+            throw new Exception('Le message ne peut être vide, indiquez au minimum 10 caractères');
+        }
 
     }
+
+    /**
+     * @param $to
+     * @param $subject
+     * @param $message
+     * @return bool
+     * @throws Exception
+     * @noinspection PhpUnreachableStatementInspection
+     */
+    public function email($to, $subject, $message)
+    {
+
+        $sendMail = mail($to,$subject,$message);
+        if(!$sendMail){
+            throw new Exception('Une erreur est survenu lors de l\'envoi');
+            return false;
+        }
+        return true;
+    }
+
+    public function renderMessage($name,$content)
+    {
+        return '<html lang="fr">
+                   <body>
+                     <h2>Message de '.$name.'</h2>
+                     <table>
+                        <tr>
+                          <th>Message</th>
+                        </tr>
+                        <tr>
+                            <td>
+                              '.$content.'
+                            </td>
+                        </tr>
+                     </table>
+                   </body>
+               </html>';
+    }
+
+
 
 }
