@@ -27,6 +27,7 @@ class Routes
             new Route('GET', 'viewPost', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
             new Route('GET', 'register', '/register', [MembreController::class, 'membresSubscribe']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
+            new Route('POST', 'addComment', '/{slug}/{id}', [BlogListController::class, 'blogPost'])
         ];
 
         foreach ($routes as $route) {

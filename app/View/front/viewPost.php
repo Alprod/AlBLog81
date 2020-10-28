@@ -14,14 +14,14 @@
         </button>
         <div class="collapse row bg-dark" id="collapseExample">
             <div class="card card-body mb-5 p-5 bg-dark border border-dark">
-                <form method="POST" action="">
+                <form method="POST" action="<?php '/'.$slug.'/'.$id ?>">
                     <div class="col-md-12 mt-3">
-                        <label for="inputCommentName">Nom/Pseudo</label>
-                        <input type="text" name="inputCommentName" id="inputCommentName" class="inputCommentName text-white rounded-lg form-control border border-dark">
+                        <label for="commentName">Nom/Pseudo</label>
+                        <input type="text" name="commentName" id="inputCommentName" class="inputCommentName text-white rounded-lg form-control border border-dark">
                     </div>
                     <div class="col-md-12 mt-3">
-                        <label for="inputCommentEmail">Titre</label>
-                        <input type="email" name="inputCommentEmail" id="inputCommentEmail" class="inputCommentEmail text-white rounded-lg form-control border border-dark">
+                        <label for="commentEmail">Titre</label>
+                        <input type="text" name="commentTitle" id="inputCommentEmail" class="inputCommentEmail text-white rounded-lg form-control border border-dark">
                     </div>
 
                     <div class="col-md-12 mt-3">

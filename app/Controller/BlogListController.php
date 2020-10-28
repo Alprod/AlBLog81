@@ -48,16 +48,22 @@ class BlogListController
         $listPost = $this->getPostModel()->findAllPosts();
         $conf = $this->getConfig();
 
-        return $conf->render('layout.php', 'front/posts.php', array(
+        return $conf->render('layout.php', 'front/posts.php', [
             'titre' => 'Mes articles',
             'listPost' => $listPost,
-        ));
+        ]);
     }
 
     public function blogPost(string $slug, string $id): string
     {
+        $post = $this->getConfig()->sanitize($_POST);
+
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
+        if(!empty($post)){
+            $this->addCommentToBlogPost($id);
+        }
+
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
@@ -67,10 +73,14 @@ class BlogListController
         ]);
     }
 
-    public function deleteSapceWord ($word)
+    public function addCommentToBlogPost($id)
     {
-        $replaced = str_replace(' ', '', $word);
-        return $replaced;
+        $post = $this->getConfig()->sanitize($_POST);
+        $idPost= $id;
+        $title = $post['commentTitle'];
+        $comment =$post['Commentaire'];
+
+        return $this->getPostModel()->addCommentToPost($idPost,$title,$comment);
     }
 
 }

@@ -30,11 +30,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Router/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router/Routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/front/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/layout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +55,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="newDeparture" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -180,9 +179,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.RouterTest.testMatchThrowExecptionMethod" />
-        <item itemvalue="PHPUnit.RouterTest.testRouter" />
         <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
+        <item itemvalue="PHPUnit.RouterTest.testRouter" />
+        <item itemvalue="PHPUnit.RouterTest.testMatchThrowExecptionMethod" />
         <item itemvalue="PHPUnit.RouterTest" />
         <item itemvalue="PHPUnit.PostTest" />
       </list>
@@ -570,6 +569,10 @@
     </state>
     <state x="484" y="283" key="IDE.errors.dialog/-1075.-1080.1920.1080/845.-1080.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596551108654" />
     <state x="484" y="287" key="IDE.errors.dialog/0.23.1792.1045@0.23.1792.1045" timestamp="1596269339123" />
+    <state x="0" y="101" key="MergeDialog" timestamp="1603838261974">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="0" y="101" key="MergeDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1603838261974" />
     <state x="680" y="255" key="NewPhpClassDialog" timestamp="1603711708536">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -632,6 +635,10 @@
     <state x="661" y="256" width="668" height="585" key="find.popup/-1920.-20.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603699565445" />
     <state x="661" y="255" width="602" height="580" key="find.popup/-1920.-429.1920.1057/1792.-399.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1600338090709" />
     <state x="661" y="255" width="668" height="581" key="find.popup/0.23.1792.1045@0.23.1792.1045" timestamp="1601766290673" />
+    <state x="157" y="280" key="git4idea.branch.GitSmartOperationDialog" timestamp="1603838334078">
+      <screen x="0" y="0" width="1792" height="1120" />
+    </state>
+    <state x="157" y="280" key="git4idea.branch.GitSmartOperationDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1603838334078" />
     <state width="600" height="440" key="javadoc.popup" timestamp="1596933419306">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
@@ -649,17 +656,6 @@
     <state x="561" y="257" width="670" height="631" key="search.everywhere.popup/-1920.-429.1920.1057/1792.-399.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1600337622167" />
     <state x="561" y="259" width="838" height="635" key="search.everywhere.popup/-1920.-52.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1602502505161" />
     <state x="561" y="251" width="670" height="676" key="search.everywhere.popup/0.0.1792.1120@0.0.1792.1120" timestamp="1600652410842" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Controller/ContactSendMail.php</url>
-          <line>74</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/myblog@tests.xml" NAME="tests Coverage Results" MODIFIED="1596551118825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
