@@ -60,8 +60,9 @@ class BlogListController
 
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
+
         if(!empty($post)){
-            $this->addCommentToBlogPost($id);
+            return $this->addCommentToBlogPost($id);
         }
 
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [

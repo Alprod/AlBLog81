@@ -181,11 +181,11 @@ background: #f1f1f1;
 }
 */
 
-.form-group {
+/*.form-group {
   display: flex;
-  /* border: 1px #53a0e4 solid;
+   border: 1px #53a0e4 solid;
   border-radius:30px;
-  overflow: hidden;*/
+  overflow: hidden;
 }
 
 /*
@@ -195,7 +195,7 @@ background: #f1f1f1;
 */
 
 /*	input:focus + .control-label
-*/
+
 .form-control {
   overflow: hidden;
   background: #fff;
@@ -212,6 +212,7 @@ background: #f1f1f1;
 
 
 /* Style the submit button */
+/*
 form .search-btn {
   all: unset;
   width: 15%;
@@ -220,7 +221,8 @@ form .search-btn {
   color: white;
   font-size: 17px;
   border: 1px #1e50e2 solid;
-  /* Prevent double borders */
+
+   Prevent double borders
   border: 1px #53a0e4 solid;
   border-radius: 0px 25px 25px 0px;
   cursor: pointer;
@@ -260,7 +262,7 @@ form .search-btn:hover {
   -moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.1);
   text-decoration: none;
-}
+}*/
 
 /* Style form Contact */
 .inputName,
@@ -274,4 +276,10 @@ form .search-btn:hover {
   background: #232526;
   background: -webkit-linear-gradient(to left, #4d4647, #232526);
   background: linear-gradient(to left, #46484a, #232526);
+}
+
+.Subcribe {
+  background: #141E30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #243B55, #141E30); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
