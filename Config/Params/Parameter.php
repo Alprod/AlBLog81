@@ -15,7 +15,7 @@ class Parameter
             'connect' => [
                 'host' => 'localhost',
                 'dbname' => 'my_blog',
-                'login' => 'alprod',
+                'login' => 'root',
                 'password' => 'Alprod_81'
             ]
         ];

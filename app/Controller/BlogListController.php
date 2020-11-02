@@ -54,7 +54,12 @@ class BlogListController
         ]);
     }
 
-    public function blogPost(string $slug, string $id): string
+    /**
+     * @param string $slug
+     * @param string $id
+     * @return bool|void
+     */
+    public function blogPost(string $slug, string $id)
     {
         $post = $this->getConfig()->sanitize($_POST);
 

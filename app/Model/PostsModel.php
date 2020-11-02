@@ -87,7 +87,7 @@ class PostsModel extends PDOmanager
 
     /**
      * Attention ne pas oublier de changer user_commentId
-     * par la session de l'utilisateur.
+     * par l'id session de l'utilisateur.
      * @param $postId
      * @param $title
      * @param $comment

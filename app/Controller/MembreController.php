@@ -51,9 +51,38 @@ class MembreController
 
     public function inscription()
     {
+        try {
+            $data= $this->getConfig()->sanitize($_POST);
+            $this->validation($data);
+        }catch (Exception $e){
+           return $this->getConfig()->render('layout.php', "membres/subscribe.php", [
+                'titre'=>'Inscription',
+                'error'=> $e->getMessage()
+            ]);
+        }
+        //Afin de verifier le mdp lors de la connexion utiliser la fonction password_verify()
+        $pwd = $data['mdp2'];
+        $crypt = $this->cryptMdp($pwd);
+        $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
+        $pwd_hash = password_hash($pwd_pepper, PASSWORD_BCRYPT);
+
+        if(!empty($data)){
+            $this->getMembreModel()->register($pwd_hash,$data);
+        }
+
+        return $this->getConfig()->render('layout.php', 'membres/subscribe.php',[
+            'titre' => 'Inscris',
+            'success' => 'Inscription réussi',
+            'pseudo' => $data['pseudo']
+        ]);
+
 
     }
 
+    /**
+     * @param $data
+     * @throws Exception
+     */
     public function validation($data)
     {
         $fistname = $data['firstname'];
@@ -63,16 +92,7 @@ class MembreController
         $mdp = $data['mdp'];
         $mdp2 = $data['mdp2'];
 
-        if(!empty($data)){
-            $champsVide = 0;
-            foreach ($data as $value){
-                if(empty(trim($value))) $champsVide++;
-            }
-            if ($champsVide > 0){
-                throw new Exception('Veuilez remplir tout les champs, il y a '.$champsVide.' manquant.');
-            }
-
-        }
+        /**/
 
         if (empty($fistname)){
             throw new Exception('Indiquez Votre nom');
@@ -88,7 +108,29 @@ class MembreController
         }
 
         if(strlen($data['pseudo']) <= 3){
-            throw new Exception('Désolé mais pseudo trop court');
+            throw new Exception('Désolé mais votre pseudo est trop court');
+        }
+
+        if(!filter_var($email,FILTER_VALIDATE_EMAIL) && empty($email)){
+            throw new Exception('Le champs de votre email est incorrect');
+        }
+
+        if(!empty($mdp) && ($mdp != $mdp2)){
+            throw new Exception('Erreur dans votre mot de passe');
+        }
+
+        if(empty($mdp) || empty($mdp2)){
+            throw new Exception('Il vous faut un mot de passe');
+        }
+
+        if(!empty($data)){
+            $champsVide = 0;
+            foreach ($data as $value){
+                if(empty(trim($value))) $champsVide++;
+            }
+            if ($champsVide > 0){
+                throw new Exception('Veuilez remplir tout les champs, il y a '.$champsVide.' champs manquant.');
+            }
         }
 
 

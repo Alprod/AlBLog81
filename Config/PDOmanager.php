@@ -6,6 +6,7 @@ namespace Config;
 
 use Exception;
 use PDO;
+use PDOStatement;
 
 class PDOmanager extends PDO
 {
@@ -68,6 +69,15 @@ class PDOmanager extends PDO
         }
         return $bdd;
 
+    }
+
+    public function bindArrayValue($req,$array,$typeArray = false)
+    {
+        foreach ($array as $key => $val) {
+            if($typeArray){
+                $req->bindValue(":$key",$val,$typeArray[$key]);
+            }
+        }
     }
 
 
