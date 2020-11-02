@@ -5,11 +5,15 @@ namespace App\Model;
 
 
 use Config\PDOmanager;
+use PDOStatement;
 
 
 class PostsModel extends PDOmanager
 {
 
+    /**
+     * @return false|PDOStatement
+     */
     public function findAllPosts()
     {
         $requete = 'SELECT lastname,
@@ -32,6 +36,10 @@ class PostsModel extends PDOmanager
         return $resultat;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function findPostByIds($id)
     {
         $req = 'SELECT idPosts, 
@@ -50,6 +58,10 @@ class PostsModel extends PDOmanager
         return $posts;
     }
 
+    /**
+     * @param $id
+     * @return array
+     */
     public function findCommentsByPostAndIds($id)
     {
         $req = 'SELECT idComments,
@@ -71,6 +83,36 @@ class PostsModel extends PDOmanager
         $commentPost = $result->fetchAll();
 
         return $commentPost;
+    }
+
+    /**
+     * Attention ne pas oublier de changer user_commentId
+     * par l'id session de l'utilisateur.
+     * @param $postId
+     * @param $title
+     * @param $comment
+     */
+    public function addCommentToPost($postId,$title,$comment)
+    {
+        $bdd = $this->getBdd();
+        $request = $bdd->prepare('INSERT INTO Comments (
+                                                        commentTitle,
+                                                        commentContent,
+                                                        create_at,
+                                                        post_commentId,
+                                                        user_commentId)
+                                                VALUES (
+                                                        :title,
+                                                        :contenu,
+                                                        NOW(),
+                                                        :idPost,
+                                                        1)');
+        $request->bindValue(':title', $title);
+        $request->bindValue(':contenu', $comment);
+        $request->bindValue(':idPost', $postId);
+        $request->execute();
+
+
     }
 
 }
