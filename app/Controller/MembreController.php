@@ -66,9 +66,13 @@ class MembreController
         $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
         $pwd_hash = password_hash($pwd_pepper, PASSWORD_BCRYPT);
 
-        if(!empty($data)){
-            $this->getMembreModel()->register($pwd_hash,$data);
+        $this->getMembreModel()->register($pwd_hash,$data);
+
+        if(session_status() === PHP_SESSION_NONE){
+            session_start();
         }
+        $_SESSION['id'] = $this->getMembreModel()->getLatest();
+
 
         return $this->getConfig()->render('layout.php', 'membres/subscribe.php',[
             'titre' => 'Inscris',

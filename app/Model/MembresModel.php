@@ -13,11 +13,18 @@ class MembresModel extends PDOmanager
     {
         $req = 'SELECT * FROM Users WHERE pseudo = :pseudo';
         $result = $this->getBdd()->prepare($req);
-        $result->bindValue(':pseudo', $pseudo);
+        $result->bindParam(':pseudo', $pseudo);
         $result->execute();
         $data = $result->fetch();
         if($data) return $data;
         else return false;
+    }
+
+    public function getLatest()
+    {
+        $req = 'SELECT id FROM Users ORDER BY id DESC LIMIT 0,1';
+        return $this->getBdd()->prepare($req);
+
     }
 
     public function register($mdp,$data)
@@ -32,7 +39,7 @@ class MembresModel extends PDOmanager
         $zip = $data['zipcode'];
         $dept = $data['state'];
         $pays = $data['country'];
-        $date = date('d-m-Y H:i');
+        $date = date('Y-m-d H:i:s');
         $userRole = Config::USERS;
 
         $req = 'INSERT INTO Users (
@@ -65,21 +72,21 @@ class MembresModel extends PDOmanager
                                     :country)';
         $result = $this->getBdd()->prepare($req);
 
-        $result->bindValue(':roles', $userRole);
-        $result->bindValue(':firstname', $firstname);
-        $result->bindValue(':lastname', $lastname);
-        $result->bindValue(':pseudo', $pseudo);
-        $result->bindValue('mdp', $mdp);
-        $result->bindValue(':email', $email);
-        $result->bindValue(':dateAt', $date);
-        $result->bindValue(':addressNumber', $voie);
-        $result->bindValue(':addressName', $addressName);
-        $result->bindValue(':city', $ville);
-        $result->bindValue(':zipcode', $zip);
-        $result->bindValue(':departement', $dept);
-        $result->bindValue(':country', $pays);
+        $result->bindParam(':roles', $userRole);
+        $result->bindParam(':firstname', $firstname);
+        $result->bindParam(':lastname', $lastname);
+        $result->bindParam(':pseudo', $pseudo);
+        $result->bindParam('mdp', $mdp);
+        $result->bindParam(':email', $email);
+        $result->bindParam(':dateAt', $date);
+        $result->bindParam(':addressNumber', $voie);
+        $result->bindParam(':addressName', $addressName);
+        $result->bindParam(':city', $ville);
+        $result->bindParam(':zipcode', $zip);
+        $result->bindParam(':departement', $dept);
+        $result->bindParam(':country', $pays);
 
-        $result->execute();
+        return $result->execute();
     }
 
 }

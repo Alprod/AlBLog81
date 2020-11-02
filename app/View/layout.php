@@ -2,7 +2,8 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-language" content="fr" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#563d7c">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -35,7 +36,7 @@
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>&copy; Copyright | Alain Germain, <a href="#">Alblog</a> | <?= date('Y') ?>.</p>
+                <p>&copy; Copyright | Alain Germain, <a href="/home">Alblog</a> | <?= date('Y') ?>.</p>
             </div>
         </footer>
 
