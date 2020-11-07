@@ -33,20 +33,15 @@ class Config
 
     /**
      * @param $adress
+     * @param $params
      */
-    public function redirect($adress)
+    public function redirect($adress,$params)
     {
+        if (is_array($params) && !empty($params)){
+            extract($params,EXTR_OVERWRITE);
+        }
         header('Location:'.$adress);
         exit();
-    }
-
-    /**
-     * @param $url
-     * @return string
-     */
-    public function assets($url): string
-    {
-        return "http://localhost/AlBlog81/".$url;
     }
 
     /**
@@ -96,4 +91,35 @@ class Config
         }
         return $list;
     }
+
+    /**
+     * @param $membre
+     */
+    public function createSession($membre)
+    {
+        $_SESSION['id_membre'] = $membre;
+    }
+
+    /**
+     * @return bool
+     */
+    public function initSessionId()
+    {
+        if(!session_id()){
+            session_start();
+            session_regenerate_id();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Nettoyage de la session.
+     */
+    public function cleanSessionPhp()
+    {
+        session_unset();
+        session_destroy();
+    }
+
 }

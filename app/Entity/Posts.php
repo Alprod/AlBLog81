@@ -9,35 +9,59 @@ use DateTime;
 class Posts
 {
     private $idPosts;
-    private $title;
-    private $content;
+    private $postTitle;
+    private $postContent;
     private $images;
-    private DateTime $dateCreateAt;
-
-
+    private $link;
+    private DateTime $date_create_at;
+    private $post_userId;
 
     /**
      * @return mixed
      */
     public function getIdPosts()
     {
-        return $this->idPosts;
+        return $this -> idPosts;
+    }
+
+    /**
+     * @param mixed $idPosts
+     */
+    public function setIdPosts($idPosts): void
+    {
+        $this -> idPosts = $idPosts;
     }
 
     /**
      * @return mixed
      */
-    public function getTitle()
+    public function getPostTitle()
     {
-        return $this->title;
+        return $this -> postTitle;
+    }
+
+    /**
+     * @param mixed $postTitle
+     */
+    public function setPostTitle($postTitle): void
+    {
+        $this -> postTitle = $postTitle;
     }
 
     /**
      * @return mixed
      */
-    public function getContent()
+    public function getPostContent()
     {
-        return $this->content;
+        return $this -> postContent;
+    }
+
+    /**
+     * @param mixed $postContent
+     */
+    public function setPostContent($postContent): void
+    {
+        $this -> postContent = $postContent;
     }
 
     /**
@@ -45,45 +69,7 @@ class Posts
      */
     public function getImages()
     {
-        return $this->images;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDateCreateAt(): DateTime
-    {
-        return $this->dateCreateAt;
-    }
-
-
-    /**
-     * @param mixed $idPosts
-     */
-    public function setIdPosts($idPosts): void
-    {
-        $this->idPosts = $idPosts;
-    }
-
-    /**
-     * @param mixed $title
-     *
-     * @throws ModelException
-     */
-    public function setTitle($title): void
-    {
-        if (strlen($title) < 3){
-            throw new ModelException('Désoler titre trop court');
-        }
-        $this->title = $title;
-    }
-
-    /**
-     * @param mixed $content
-     */
-    public function setContent($content): void
-    {
-        $this->content = $content;
+        return $this -> images;
     }
 
     /**
@@ -91,17 +77,40 @@ class Posts
      */
     public function setImages($images): void
     {
-        $this->images = $images;
+        $this -> images = $images;
     }
 
     /**
-     * @param DateTime $dateCreateAt
+     * @return mixed
      */
-    public function setDateCreateAt(DateTime $dateCreateAt): void
+    public function getLink()
     {
-        $this->dateCreateAt = $dateCreateAt;
+        return $this -> link;
     }
 
+    /**
+     * @param mixed $link
+     */
+    public function setLink($link): void
+    {
+        $this -> link = $link;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostUserId()
+    {
+        return $this -> post_userId;
+    }
+
+    /**
+     * @param mixed $post_userId
+     */
+    public function setPostUserId($post_userId): void
+    {
+        $this -> post_userId = $post_userId;
+    }
 
 
 }

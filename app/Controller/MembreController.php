@@ -66,19 +66,27 @@ class MembreController
         $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
         $pwd_hash = password_hash($pwd_pepper, PASSWORD_BCRYPT);
 
-        $this->getMembreModel()->register($pwd_hash,$data);
+       if($this->getMembreModel()->register($pwd_hash,$data)){
 
-        if(session_status() === PHP_SESSION_NONE){
-            session_start();
-        }
-        $_SESSION['id'] = $this->getMembreModel()->getLatest();
+           if(session_status() === PHP_SESSION_NONE){
+               session_start();
+           }
 
+           $id_user = $this->getMembreModel()->getLatest();
+           $this->getConfig()->createSession($id_user);
+
+           return $this->getConfig()->redirect('/',[
+               'success' => 'Bienvenue à vous',
+               'pseudo' => $data['pseudo']
+           ]);
+       }
 
         return $this->getConfig()->render('layout.php', 'membres/subscribe.php',[
-            'titre' => 'Inscris',
-            'success' => 'Inscription réussi',
+            'titre' => 'Erreur d\'inscription',
+            'error' => 'Inscription non réussit',
             'pseudo' => $data['pseudo']
         ]);
+
 
 
     }
@@ -103,7 +111,7 @@ class MembreController
         }
 
         if (empty($lastname)){
-            throw new Exception('Indiquez Votre nom');
+            throw new Exception('Indiquez Votre Prénom');
         }
 
         $verifpseudo = $this->getMembreModel()->existPseudo($pseudo);
@@ -146,6 +154,8 @@ class MembreController
         $mdp_crypt = md5($mdp.$salt);
         return $mdp_crypt;
     }
+
+
 
 
 }

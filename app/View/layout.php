@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,10 +24,10 @@
             <h2 class="masthead-brand">Alblog</h2>
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="/home">Home</a>
+                    <a class="nav-link active" href="/">Home</a>
                     <a class="nav-link" href="/blogs">Articles</a>
                     <a class="nav-link" href="/contact">Contact</a>
-                    <a class="nav-link" href="/register">Inscription</a>
+                    <a class="nav-link" href="/addRegister">Inscription</a>
                 </nav>
             </div>
         </header>
