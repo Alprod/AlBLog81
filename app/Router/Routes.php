@@ -21,7 +21,7 @@ class Routes
         $config = new Config();
 
         $routes = [
-            new Route('GET', 'home', '/home', [HomeController::class, 'index']),
+            new Route('GET', 'home', '/', [HomeController::class, 'index']),
             new Route('GET', 'blogs', '/blogs', [BlogListController::class, 'blogList']),
             new Route('GET', 'contact', '/contact', [ContactSendMail::class, 'contact']),
             new Route('GET', 'viewPost', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
