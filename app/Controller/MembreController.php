@@ -6,8 +6,9 @@ namespace App\Controller;
 
 use App\Model\MembresModel;
 use Config\Config;
+use DateTime;
+use DateTimeZone;
 use Exception;
-
 
 class MembreController
 {
@@ -42,11 +43,21 @@ class MembreController
         return $this -> membreModel;
     }
 
+    /**
+     * @return bool
+     */
     public function membresSubscribe()
     {
         return $this->getConfig()->render("layout.php", "membres/subscribe.php", array(
             'titre' => 'Inscription'
         ));
+    }
+
+    public function membresConnexion()
+    {
+        return $this->getConfig()->render("layout.php", "membres/login.php", [
+            'titre'=> 'Connexion'
+        ]);
     }
 
     public function inscription()
@@ -64,9 +75,9 @@ class MembreController
         $pwd = $data['mdp2'];
         $crypt = $this->cryptMdp($pwd);
         $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
-        $pwd_hash = password_hash($pwd_pepper, PASSWORD_BCRYPT);
 
-       if($this->getMembreModel()->register($pwd_hash,$data)){
+
+       if($this->getMembreModel()->register($pwd_pepper,$data)){
 
            if(session_status() === PHP_SESSION_NONE){
                session_start();
@@ -75,9 +86,18 @@ class MembreController
            $id_user = $this->getMembreModel()->getLatest();
            $this->getConfig()->createSession($id_user);
 
-           return $this->getConfig()->redirect('/',[
+           $home = new HomeController();
+           $laDateDuJour= $home->dateOfTheDay();
+           $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
+           $heureDuJour = $heure->format('H:i');
+           $calendarChinese= $home->calendarChinese(date('Y'));
+
+           return $this->getConfig()->render('layout.php','base.php',[
                'success' => 'Bienvenue à vous',
-               'pseudo' => $data['pseudo']
+               'pseudo' => $data['pseudo'],
+               'laDateDuJour' => $laDateDuJour,
+               'heureDuJour' => $heureDuJour,
+               'calendarChinese' => $calendarChinese
            ]);
        }
 
@@ -87,7 +107,20 @@ class MembreController
             'pseudo' => $data['pseudo']
         ]);
 
+    }
 
+    public function login()
+    {
+        try {
+            $data = $this->getConfig()->sanitize($_POST);
+            $this->verifLogin($data);
+
+        }catch (Exception $e){
+            return $this->getConfig()->render("layout.php", "membres/login.php", [
+               'error'=> $e->getMessage(),
+                'titre'=> 'Connexion'
+            ]);
+        }
 
     }
 
@@ -144,10 +177,38 @@ class MembreController
                 throw new Exception('Veuilez remplir tout les champs, il y a '.$champsVide.' champs manquant.');
             }
         }
+    }
 
+    public function verifLogin($data)
+    {
+      $email = $data['email'];
+      $pwd = $data['password'];
+
+      $value = $this->getMembreModel()->loginOfConnexion($email);
+
+        if(!filter_var($email,FILTER_VALIDATE_EMAIL) && empty($email)){
+            throw new Exception('Le champs de votre email est incorrect');
+        }
+
+      if(isset($email) && !$value){
+          throw new Exception('Désolé mais votre mail n\'existe pas');
+      }
+
+      $crypt = $this->cryptMdp($pwd);
+      $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
+      $pwd_hash = password_hash($pwd_pepper, PASSWORD_BCRYPT);
+
+
+      if($value['mdp'] != $pwd_hash){
+          throw new Exception('Désolé erreure dans vore mot de passe');
+      }
 
     }
 
+    /**
+     * @param $mdp
+     * @return string
+     */
     public function cryptMdp($mdp)
     {
         $salt = 'AlBlog_81';

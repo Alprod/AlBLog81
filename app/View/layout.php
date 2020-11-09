@@ -27,7 +27,8 @@
                     <a class="nav-link active" href="/">Home</a>
                     <a class="nav-link" href="/blogs">Articles</a>
                     <a class="nav-link" href="/contact">Contact</a>
-                    <a class="nav-link" href="/addRegister">Inscription</a>
+                    <a class="nav-link" href="/register">Inscription</a>
+                    <a class="nav-link connexion" href="/login">Connexion</a>
                 </nav>
             </div>
         </header>

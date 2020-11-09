@@ -20,6 +20,17 @@ class MembresModel extends PDOmanager
         else return false;
     }
 
+    public function loginOfConnexion($data)
+    {
+        $req = 'SELECT mdp, email FROM Users WHERE email = :email';
+        $result = $this->getBdd()->prepare($req);
+        $result->bindParam(':email', $data);
+        $result->execute();
+        $donnee = $result->fetch();
+        if($donnee) return $donnee;
+        else return false;
+    }
+
     public function getLatest()
     {
         $req = 'SELECT id FROM Users ORDER BY id DESC LIMIT 0,1';

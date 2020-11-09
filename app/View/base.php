@@ -2,7 +2,7 @@
 
     <h1 class="cover-heading display-4">Welcome To AlBlog</h1>
 
-    <?php if(isset($_SESSION['id'])): ?>
+    <?php if(isset($success,$pseudo)): ?>
     <h2 class="display-5"><?= $success.' '.$pseudo?></h2>
     <?php endif; ?>
 
