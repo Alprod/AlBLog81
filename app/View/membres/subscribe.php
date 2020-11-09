@@ -1,4 +1,4 @@
-<h1 class="display-1 mt-5 mb-5">Inscription</h1>
+<h1 class="display-2 mt-5 mb-2"><?= $titre ?></h1>
 <form action="/addRegister" method="post">
     <div class="row">
         <?php if(isset($error)): ?>
