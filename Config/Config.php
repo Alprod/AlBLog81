@@ -32,19 +32,6 @@ class Config
     }
 
     /**
-     * @param $adress
-     * @param $params
-     */
-    public function redirect($adress,$params)
-    {
-        if (is_array($params) && !empty($params)){
-            extract($params,EXTR_OVERWRITE);
-        }
-        header('Location:'.$adress);
-        exit();
-    }
-
-    /**
      * @return array
      */
     public function getTableName(): array
@@ -54,6 +41,18 @@ class Config
         array_shift($explode);
         return $explode;
     }
+
+    /**
+     * @param $adress
+     *
+     */
+    public function redirect($adress)
+    {
+        header('Location:'.$adress);
+        exit();
+    }
+
+
 
     /**
      * @param $layout
@@ -77,6 +76,17 @@ class Config
         require $pathLayout;
         return ob_end_flush();
 
+    }
+
+    /**
+     * @param $mdp
+     * @return string
+     */
+    public function cryptMdp($mdp)
+    {
+        $salt = 'AlBlog_81';
+        $mdp_crypt = md5($mdp.$salt);
+        return $mdp_crypt;
     }
 
     /**

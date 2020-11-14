@@ -9,15 +9,19 @@
         <p>Visitez le site <a href="<?= $post['link']; ?>" class="font-italic" target="_blank"><?= htmlspecialchars( $post['postTitle']) ?></a></p>
         <p class="text-muted"><?= $post['create_at'] ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
+
+        <?php if (isset($_SESSION['id_membre'])):?>
         <button class="btn btn-outline-light btn-sm mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Rediger un commentaire
         </button>
+        <?php endif; ?>
+
         <div class="collapse row bg-dark" id="collapseExample">
             <div class="card card-body mb-5 p-5 bg-dark border border-dark">
                 <form method="POST" action="<?php '/'.$slug.'/'.$id ?>">
                     <div class="col-md-12 mt-3">
                         <label for="commentName">Nom/Pseudo</label>
-                        <input type="text" name="commentName" id="inputCommentName" class="inputCommentName text-white rounded-lg form-control border border-dark">
+                        <input type="text" name="commentName" id="inputCommentName" value="<?= $_SESSION['name_membre'] ?? '' ?>" class="inputCommentName text-white rounded-lg form-control border border-dark">
                     </div>
                     <div class="col-md-12 mt-3">
                         <label for="commentEmail">Titre</label>

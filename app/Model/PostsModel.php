@@ -78,7 +78,7 @@ class PostsModel extends PDOmanager
                 ORDER BY dateCreate_at ASC;';
 
         $result = $this->getBdd()->prepare($req);
-        $result->bindValue(":idPosts",$id);
+        $result->bindParam(":idPosts",$id);
         $result->execute();
         $commentPost = $result->fetchAll();
 
@@ -92,7 +92,7 @@ class PostsModel extends PDOmanager
      * @param $title
      * @param $comment
      */
-    public function addCommentToPost($postId,$title,$comment)
+    public function addCommentToPost($commentId,$postId,$title,$comment)
     {
         $bdd = $this->getBdd();
         $request = $bdd->prepare('INSERT INTO Comments (
@@ -106,10 +106,11 @@ class PostsModel extends PDOmanager
                                                         :contenu,
                                                         NOW(),
                                                         :idPost,
-                                                        1)');
-        $request->bindValue(':title', $title);
-        $request->bindValue(':contenu', $comment);
-        $request->bindValue(':idPost', $postId);
+                                                        :idComments)');
+        $request->bindParam(':title', $title);
+        $request->bindParam(':contenu', $comment);
+        $request->bindParam(':idPost', $postId);
+        $request->bindParam(':idComments', $commentId);
         $request->execute();
 
 
