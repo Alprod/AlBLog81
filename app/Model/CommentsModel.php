@@ -24,7 +24,7 @@ class CommentsModel extends PDOmanager
                         INNER JOIN Posts
                         INNER JOIN Users
                         WHERE post_commentId = :idPosts
-                        AND user_commnetId = idUsers
+                        AND user_commentId = idUsers
                         ORDER BY dateCreate_at
                         LIMIT 10';
 

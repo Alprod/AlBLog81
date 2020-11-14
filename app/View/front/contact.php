@@ -24,12 +24,12 @@
         <form action="/sendMail" method="post">
             <div class="col-md-12 mt-3">
                 <label for="inputName">Nom/Pseudo</label>
-                <input type="text" name="inputName" id="inputName" class="inputName text-white rounded-lg form-control border border-dark">
+                <input type="text" name="inputName" id="inputName" value="<?= $_SESSION['name_membre'] ?? '' ?>" class="inputName text-white rounded-lg form-control border border-dark">
             </div>
 
             <div class="col-md-12 mt-3">
                 <label for="inputEmail">Email</label>
-                <input type="email" name="inputEmail" id="inputEmail" class="inputEmail text-white rounded-lg form-control border border-dark">
+                <input type="email" name="inputEmail" id="inputEmail" value="<?= $_SESSION['email_membre'] ?? '' ?>" class="inputEmail text-white rounded-lg form-control border border-dark">
             </div>
 
             <div class="col-md-12 mt-3">

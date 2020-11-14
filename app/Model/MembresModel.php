@@ -6,9 +6,39 @@ namespace App\Model;
 
 use Config\Config;
 use Config\PDOmanager;
+use PDOStatement;
 
 class MembresModel extends PDOmanager
 {
+    public function findAll()
+    {
+        $req = "SELECT * FROM Users";
+        $result = $this->getBdd()->prepare($req);
+        $data = $result->fetchAll();
+        if(!$data) return false;
+        return $data;
+    }
+
+    /**
+     * @param $id
+     * @return false|mixed
+     */
+    public function find($id)
+    {
+        $req = "SELECT * FROM Users WHERE idUsers = :id";
+        $result = $this->getBdd()->prepare($req);
+        $result->bindParam(':id', $id);
+        $result->execute();
+        $data = $result->fetch();
+        if($data) return $data;
+        else return false;
+    }
+
+    /**
+     * @param $pseudo
+     * @return false|mixed
+     *
+     */
     public function existPseudo($pseudo)
     {
         $req = 'SELECT * FROM Users WHERE pseudo = :pseudo';
@@ -20,17 +50,24 @@ class MembresModel extends PDOmanager
         else return false;
     }
 
-    public function loginOfConnexion($data)
+    /**
+     * @param $email
+     * @return false|mixed
+     */
+    public function loginOfConnexion($email)
     {
-        $req = 'SELECT mdp, email FROM Users WHERE email = :email';
+        $req = 'SELECT * FROM Users WHERE email = :email';
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(':email', $data);
+        $result->bindParam(':email', $email);
         $result->execute();
         $donnee = $result->fetch();
         if($donnee) return $donnee;
         else return false;
     }
 
+    /**
+     * @return bool|PDOStatement
+     */
     public function getLatest()
     {
         $req = 'SELECT id FROM Users ORDER BY id DESC LIMIT 0,1';
@@ -38,6 +75,11 @@ class MembresModel extends PDOmanager
 
     }
 
+    /**
+     * @param $mdp
+     * @param $data
+     * @return bool
+     */
     public function register($mdp,$data)
     {
         $firstname = $data['firstname'];
