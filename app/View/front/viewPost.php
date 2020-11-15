@@ -20,17 +20,17 @@
             <div class="card card-body mb-5 p-5 bg-dark border border-dark">
                 <form method="POST" action="<?php '/'.$slug.'/'.$id ?>">
                     <div class="col-md-12 mt-3">
-                        <label for="commentName">Nom/Pseudo</label>
+                        <label for="inputCommentName">Nom/Pseudo</label>
                         <input type="text" name="commentName" id="inputCommentName" value="<?= $_SESSION['pseudo_membre'] ?? '' ?>" class="inputCommentName text-white rounded-lg form-control border border-dark">
                     </div>
                     <div class="col-md-12 mt-3">
-                        <label for="commentEmail">Titre</label>
+                        <label for="inputCommentEmail">Titre</label>
                         <input type="text" name="commentTitle" id="inputCommentEmail" class="inputCommentEmail text-white rounded-lg form-control border border-dark">
                     </div>
 
                     <div class="col-md-12 mt-3">
-                        <label for="Commentaire">Commentaire</label>
-                        <textarea name="Commentaire" id="Commentaire" cols="30" rows="10" class="inputComment text-white rounded form-control border border-dark"></textarea>
+                        <label for="commentaire">Commentaire</label>
+                        <textarea name="Commentaire" id="commentaire" cols="30" rows="10" class="inputComment text-white rounded form-control border border-dark"></textarea>
                     </div>
                     <button type="submit" class="btn btn-outline-light ml-3 mt-3">Envoyer</button>
                 </form>

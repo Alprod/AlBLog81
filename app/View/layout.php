@@ -24,8 +24,8 @@
                     <a class="nav-link" href="/blogs">Articles</a>
                     <a class="nav-link" href="/contact">Contact</a>
 
-                    <?php if (isset($_SESSION['id_membre'])): ?>
-                    <a class="nav-link" href="#">Ajouter un post</a>
+                    <?php if (isset($_SESSION['id_membre'], $isAdmin) && $isAdmin): ?>
+                    <a class="nav-link" href="#">Nouveau post</a>
                     <?php endif; ?>
 
                     <?php if (!isset($_SESSION['id_membre'])): ?>
