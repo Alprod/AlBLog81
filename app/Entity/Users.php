@@ -244,8 +244,4 @@ class Users
     {
         $this -> country = $country;
     }
-
-
-
-
 }
