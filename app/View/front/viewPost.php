@@ -21,7 +21,7 @@
                 <form method="POST" action="<?php '/'.$slug.'/'.$id ?>">
                     <div class="col-md-12 mt-3">
                         <label for="commentName">Nom/Pseudo</label>
-                        <input type="text" name="commentName" id="inputCommentName" value="<?= $_SESSION['name_membre'] ?? '' ?>" class="inputCommentName text-white rounded-lg form-control border border-dark">
+                        <input type="text" name="commentName" id="inputCommentName" value="<?= $_SESSION['pseudo_membre'] ?? '' ?>" class="inputCommentName text-white rounded-lg form-control border border-dark">
                     </div>
                     <div class="col-md-12 mt-3">
                         <label for="commentEmail">Titre</label>

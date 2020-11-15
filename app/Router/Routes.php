@@ -30,7 +30,7 @@ class Routes
             new Route('GET', 'logout', '/logout', [MembreController::class, 'logout']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
             new Route('POST', 'addComment', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
-            new Route('POST', 'addRegister', '/addRegister', [MembreController::class, 'inscription']),
+            new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login'])
         ];
 
