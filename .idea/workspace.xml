@@ -29,13 +29,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router/Routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/base.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/layout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/error404.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/error404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/membres/subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/membres/subscribe.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +60,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="adminSession" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -324,7 +327,6 @@
       <screen x="0" y="23" width="1792" height="1045" />
     </state>
     <state x="496" y="217" key="#Plugins/-1920.-392.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1598012032711" />
-    <state x="496" y="208" key="#Plugins/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596793246503" />
     <state x="496" y="208" key="#Plugins/0.0.1792.1120@0.0.1792.1120" timestamp="1597093949536" />
     <state x="0" y="391" width="1792" height="398" key="#SQL_Dialects" timestamp="1604770461994">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -371,7 +373,6 @@
     <state x="651" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605392015198">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
-    <state x="651" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596792880733" />
     <state x="651" y="315" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.-429.1920.1057/1792.-399.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1600337351527" />
     <state x="651" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1920.0.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596932894430" />
     <state x="651" y="313" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1792.1120@0.0.1792.1120" timestamp="1605392015198" />
@@ -405,7 +406,6 @@
     <state width="1748" height="390" key="GridCell.Tab.0.bottom/-1920.-20.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1603735476574" />
     <state width="1748" height="354" key="GridCell.Tab.0.bottom/-1920.-20.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603702142876" />
     <state width="1750" height="386" key="GridCell.Tab.0.bottom/-1920.-392.1920.1057/0.0.1792.1068@0.0.1792.1068" timestamp="1596895469299" />
-    <state width="1750" height="276" key="GridCell.Tab.0.bottom/-1920.-392.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1596790679181" />
     <state width="1750" height="247" key="GridCell.Tab.0.bottom/-1920.-392.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1598018573009" />
     <state width="1750" height="276" key="GridCell.Tab.0.bottom/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596916273066" />
     <state width="1748" height="390" key="GridCell.Tab.0.bottom/-1920.-43.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1603736709960" />
@@ -428,7 +428,6 @@
     <state width="1748" height="390" key="GridCell.Tab.0.center/-1920.-20.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1603735476572" />
     <state width="1748" height="354" key="GridCell.Tab.0.center/-1920.-20.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603702142876" />
     <state width="1750" height="386" key="GridCell.Tab.0.center/-1920.-392.1920.1057/0.0.1792.1068@0.0.1792.1068" timestamp="1596895469297" />
-    <state width="1750" height="276" key="GridCell.Tab.0.center/-1920.-392.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1596790679178" />
     <state width="1750" height="247" key="GridCell.Tab.0.center/-1920.-392.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1598018573009" />
     <state width="1750" height="276" key="GridCell.Tab.0.center/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596916273065" />
     <state width="1748" height="390" key="GridCell.Tab.0.center/-1920.-43.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1603736709959" />
@@ -451,7 +450,6 @@
     <state width="1748" height="390" key="GridCell.Tab.0.left/-1920.-20.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1603735476572" />
     <state width="1748" height="354" key="GridCell.Tab.0.left/-1920.-20.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603702142876" />
     <state width="1750" height="386" key="GridCell.Tab.0.left/-1920.-392.1920.1057/0.0.1792.1068@0.0.1792.1068" timestamp="1596895469295" />
-    <state width="1750" height="276" key="GridCell.Tab.0.left/-1920.-392.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1596790679177" />
     <state width="1750" height="247" key="GridCell.Tab.0.left/-1920.-392.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1598018573009" />
     <state width="1750" height="276" key="GridCell.Tab.0.left/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596916273064" />
     <state width="1748" height="390" key="GridCell.Tab.0.left/-1920.-43.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1603736709958" />
@@ -474,7 +472,6 @@
     <state width="1748" height="390" key="GridCell.Tab.0.right/-1920.-20.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1603735476573" />
     <state width="1748" height="354" key="GridCell.Tab.0.right/-1920.-20.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603702142876" />
     <state width="1750" height="386" key="GridCell.Tab.0.right/-1920.-392.1920.1057/0.0.1792.1068@0.0.1792.1068" timestamp="1596895469298" />
-    <state width="1750" height="276" key="GridCell.Tab.0.right/-1920.-392.1920.1057/0.0.1792.1120@0.0.1792.1120" timestamp="1596790679180" />
     <state width="1750" height="247" key="GridCell.Tab.0.right/-1920.-392.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1598018573009" />
     <state width="1750" height="276" key="GridCell.Tab.0.right/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596916273065" />
     <state width="1748" height="390" key="GridCell.Tab.0.right/-1920.-43.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1603736709959" />
@@ -654,7 +651,6 @@
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="-1495" y="6" key="SettingsEditor/-1920.-156.1920.1057/0.23.1792.1045@-1920.-156.1920.1057" timestamp="1599465432172" />
-    <state x="397" y="172" key="SettingsEditor/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596792688936" />
     <state x="523" y="177" key="SettingsEditor/-1920.-52.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603310260972" />
     <state x="397" y="173" key="SettingsEditor/-1920.-75.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1604938281472" />
     <state x="397" y="172" key="SettingsEditor/0.0.1792.1120@0.0.1792.1120" timestamp="1599999865531" />
@@ -694,14 +690,14 @@
     <state x="-1205" y="-50" key="com.jetbrains.php.test.PhpNewTestDialog/-1920.-392.1920.1057/0.23.1792.1045@-1920.-392.1920.1057" timestamp="1599153295857" />
     <state x="667" y="362" key="com.jetbrains.php.test.PhpNewTestDialog/-1920.-415.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1596895514854" />
     <state x="667" y="362" key="com.jetbrains.php.test.PhpNewTestDialog/850.-1080.1920.1080/-1070.-1080.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1599669985142" />
-    <state x="699" y="245" width="668" height="624" key="find.popup" timestamp="1604938851117">
+    <state x="699" y="245" width="668" height="624" key="find.popup" timestamp="1605458425649">
       <screen x="0" y="0" width="1792" height="1120" />
     </state>
     <state x="661" y="249" width="602" height="622" key="find.popup/-1920.-179.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1601343242363" />
     <state x="661" y="256" width="668" height="585" key="find.popup/-1920.-20.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1603699565445" />
     <state x="661" y="255" width="602" height="580" key="find.popup/-1920.-429.1920.1057/1792.-399.1920.1057/0.23.1792.1045@0.23.1792.1045" timestamp="1600338090709" />
     <state x="661" y="256" width="668" height="585" key="find.popup/-1920.-52.1920.1057/0.23.1792.1051@0.23.1792.1051" timestamp="1604601877141" />
-    <state x="699" y="245" width="668" height="624" key="find.popup/-1920.-75.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1604938851117" />
+    <state x="699" y="245" width="668" height="624" key="find.popup/-1920.-75.1920.1080/0.0.1792.1120@0.0.1792.1120" timestamp="1605458425649" />
     <state x="661" y="255" width="668" height="581" key="find.popup/0.23.1792.1045@0.23.1792.1045" timestamp="1601766290673" />
     <state x="157" y="280" key="git4idea.branch.GitSmartOperationDialog" timestamp="1603838334078">
       <screen x="0" y="0" width="1792" height="1120" />
@@ -729,7 +725,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
-          <line>241</line>
+          <line>209</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

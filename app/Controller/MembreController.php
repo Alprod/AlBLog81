@@ -78,30 +78,12 @@ class MembreController extends Users
         $crypt = $this->getConfig()->cryptMdp($pwd);
         $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
 
-
        if($this->getMembreModel()->register($pwd_pepper,$data)){
 
            if(session_status() === PHP_SESSION_NONE){
                session_start();
            }
-
-           $id_user = $this->getMembreModel()->getLatest();
-           $this->getConfig()->createSession($id_user);
-
-           $home = new HomeController();
-           $laDateDuJour= $home->dateOfTheDay();
-           $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
-           $heureDuJour = $heure->format('H:i');
-           $calendarChinese= $home->calendarChinese(date('Y'));
-
-           $params=[
-               'success' => 'Bienvenue à vous',
-               'pseudo' => $data['pseudo'],
-               'laDateDuJour' => $laDateDuJour,
-               'heureDuJour' => $heureDuJour,
-               'calendarChinese' => $calendarChinese
-           ];
-           return $this->getConfig()->render('layout.php','base.php',$params);
+           return $this->getConfig()->redirect("/login");
        }
 
        $params = [
@@ -125,27 +107,13 @@ class MembreController extends Users
             ]);
         }
 
-        $homePage = new HomeController();
-        $laDateDuJour = $homePage->dateOfTheDay();
-        $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
-        $heureDuJour = $heure->format('H:i');
-        $calendarChinese = $homePage->calendarChinese(date('Y'));
         $req = $this->getMembreModel()->loginOfConnexion($data['email']);
         $this->getConfig()->createSession($req['idUsers']);
 
-        $_SESSION['name_membre'] = $req['pseudo'];
+        $_SESSION['pseudo_membre'] = $req['pseudo'];
         $_SESSION['email_membre'] = $req['email'];
 
-        $params = [
-            'titre'=> 'Salut'.$req['pseudo'].'!',
-            'success'=>'Salut à toi',
-            'pseudo' => $req['pseudo'],
-            'laDateDuJour' => $laDateDuJour,
-            'heureDuJour' => $heureDuJour,
-            'calendarChinese' => $calendarChinese
-        ];
-
-        return $this->getConfig()->render("layout.php", "base.php",$params);
+        return $this->getConfig()->redirect("/");
 
     }
 

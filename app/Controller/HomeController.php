@@ -24,9 +24,9 @@ class HomeController extends Config
         $laDateDuJour = $this->dateOfTheDay();
         $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
         $heureDuJour = $heure->format('H:i');
-
         $calendarChinese = $this->calendarChinese(date('Y'));
-        $userName = isset($_SESSION['name_membre']);
+        $userName = $_SESSION['pseudo_membre'] ?? null;
+
 
         $params = array(
             'titre' => 'Home page',
@@ -34,7 +34,7 @@ class HomeController extends Config
             'heureDuJour' => $heureDuJour,
             'calendarChinese' => $calendarChinese,
             'pseudo'=> $userName,
-            'success'=> 'On continue '
+            'success'=> 'Salut '
 
         );
 
