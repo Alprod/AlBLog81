@@ -26,7 +26,7 @@ class PostsModel extends PDOmanager
                            FROM Posts
                            INNER JOIN Users
                            WHERE post_userId = idUsers
-                           ORDER BY create_at';
+                           ORDER BY create_at LIMIT 0,15';
         $resultat = $this->getBdd()->query($requete);
 
         if (!$resultat) {
@@ -75,7 +75,7 @@ class PostsModel extends PDOmanager
                 INNER JOIN Posts on idPosts = post_commentId
                 INNER JOIN Users on idUsers = user_commentId
                 WHERE post_commentId = :idPosts
-                ORDER BY dateCreate_at ASC;';
+                ORDER BY dateCreate_at ASC LIMIT 0,10';
 
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":idPosts",$id);
@@ -88,6 +88,7 @@ class PostsModel extends PDOmanager
     /**
      * Attention ne pas oublier de changer user_commentId
      * par l'id session de l'utilisateur.
+     * @param $commentId
      * @param $postId
      * @param $title
      * @param $comment

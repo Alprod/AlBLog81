@@ -44,16 +44,6 @@ class MembreController extends Users
         return $this -> membreModel;
     }
 
-    public function isAdmin()
-    {
-        $userId = $this->getMembreModel()->find($_SESSION['id_membre']);
-        if($userId['roles'] == (Config::USERS_ADMIN)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     /**
      * @return bool
      */
@@ -242,7 +232,18 @@ class MembreController extends Users
       if($value['mdp'] != $pwd_pepper){
           throw new Exception('Désolé erreure dans votre mot de passe');
       }
+    }
 
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        if((Users::class)->getRoles() == (Config::USERS_ADMIN)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
