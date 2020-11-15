@@ -110,6 +110,7 @@ class MembreController extends Users
         $req = $this->getMembreModel()->loginOfConnexion($data['email']);
         $this->getConfig()->createSession($req['idUsers']);
 
+        $_SESSION['membre'] = $req;
         $_SESSION['pseudo_membre'] = $req['pseudo'];
         $_SESSION['email_membre'] = $req['email'];
 
@@ -202,12 +203,10 @@ class MembreController extends Users
       }
     }
 
-    /**
-     * @return bool
-     */
     public function isAdmin()
     {
-        if((Users::class)->getRoles() == (Config::USERS_ADMIN)){
+        $all = $_SESSION;
+        if (isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == Config::USERS_ADMIN){
             return true;
         }else{
             return false;

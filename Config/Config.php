@@ -119,6 +119,7 @@ class Config
      */
     public function createSession($membre)
     {
+        $_SESSION['membre'] = $membre;
         $_SESSION['id_membre'] = $membre;
     }
 

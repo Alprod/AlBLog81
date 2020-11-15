@@ -12,6 +12,7 @@ class BlogListController
     private CommentsModel $commentModel;
     private Config $config;
     private PostsModel $postModel;
+    private $isAdmin;
 
 
     /**
@@ -23,6 +24,7 @@ class BlogListController
         $this->postModel = new PostsModel();
         $this->commentModel = new CommentsModel();
         $this->config = new Config();
+        $this->isAdmin = (new MembreController)->isAdmin();
     }
 
     /**
@@ -51,6 +53,7 @@ class BlogListController
         return $conf->render('layout.php', 'front/posts.php', [
             'titre' => 'Mes articles',
             'listPost' => $listPost,
+            'isAdmin' => $this->isAdmin
         ]);
     }
 

@@ -4,6 +4,8 @@
 namespace App\Entity;
 
 
+use Config\Config;
+
 class Users
 {
     private $idUsers;
@@ -243,5 +245,16 @@ class Users
     public function setCountry($country): void
     {
         $this -> country = $country;
+    }
+
+
+
+    public  function superAdmin()
+    {
+        if($this->getRoles() == Config::SUPER_USERS_ADMIN){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

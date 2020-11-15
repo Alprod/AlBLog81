@@ -13,6 +13,16 @@ use ReflectionException;
 
 class HomeController extends Config
 {
+    private $isAdmin;
+
+    /**
+     * HomeController constructor.
+     *
+     */
+    public function __construct()
+    {
+        $this -> isAdmin = (new MembreController) -> isAdmin();
+    }
 
 
     /**
@@ -26,6 +36,7 @@ class HomeController extends Config
         $heureDuJour = $heure->format('H:i');
         $calendarChinese = $this->calendarChinese(date('Y'));
         $userName = $_SESSION['pseudo_membre'] ?? null;
+
 
 
         $params = array(
