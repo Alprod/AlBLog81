@@ -25,7 +25,7 @@
                     <a class="nav-link" href="/contact">Contact</a>
 
                     <?php if (isset($_SESSION['id_membre'], $isAdmin) && $isAdmin): ?>
-                    <a class="nav-link" href="#">Nouveau post</a>
+                    <a class="nav-link" href="/editPost">Nouveau post</a>
                     <?php endif; ?>
 
                     <?php if (!isset($_SESSION['id_membre'])): ?>
@@ -46,7 +46,7 @@
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>&copy; Copyright | Alain Germain, <a href="/home">Alblog</a> | <?= date('Y') ?>.</p>
+                <p>&copy; Copyright | Alain Germain, <a href="/">Alblog</a> | <?= date('Y') ?>.</p>
             </div>
         </footer>
 

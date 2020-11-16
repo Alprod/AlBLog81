@@ -3,7 +3,7 @@
     <?php foreach ($listPost as $post) : ?>
         <div class="col-sm-4 mt-4">
             <div class="card bg-black">
-                <img src="<?= $post['images'] ?>" class="card-img-top" alt="...">
+                <img src="./images/<?= $post['images'] ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?= htmlspecialchars($post['postTitle']) ?></h5>
                     <p class="text-muted"><?= $post['create_at'] ?></p>

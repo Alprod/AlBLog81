@@ -24,12 +24,14 @@ class Routes
             new Route('GET', 'home', '/', [HomeController::class, 'index']),
             new Route('GET', 'blogs', '/blogs', [BlogListController::class, 'blogList']),
             new Route('GET', 'contact', '/contact', [ContactSendMail::class, 'contact']),
+            new Route('GET', 'editPost', '/editPost', [BlogListController::class, 'edit']),
             new Route('GET', 'viewPost', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
             new Route('GET', 'register', '/register', [MembreController::class, 'membresSubscribe']),
             new Route('GET', 'login', '/login', [MembreController::class, 'membresConnexion']),
             new Route('GET', 'logout', '/logout', [MembreController::class, 'logout']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
             new Route('POST', 'addComment', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
+            new Route('POST', 'addPost', '/addPost', [BlogListController::class, 'addPost']),
             new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login'])
         ];

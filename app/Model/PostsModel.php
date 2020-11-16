@@ -117,4 +117,28 @@ class PostsModel extends PDOmanager
 
     }
 
+    public function editPost($postTitle,$postContent,$image,$link)
+    {
+        $bdd = $this->getBdd();
+        $request = $bdd->prepare('INSERT INTO Posts (
+                                                                postTitle,
+                                                                postContent,
+                                                                images,
+                                                                link,
+                                                                date_create_at,
+                                                                post_userId)
+                                                         VALUES (:title,
+                                                                 :content,
+                                                                 :images,
+                                                                 :link,
+                                                                 NOW(),
+                                                                 :idUser)');
+        $request->bindParam(':title',$postTitle);
+        $request->bindParam(':content',$postContent);
+        $request->bindParam(':images',$image);
+        $request->bindParam(':link',$link);
+        $request->bindParam(':idUser',$_SESSION['id_membre']);
+        $request->execute();
+    }
+
 }

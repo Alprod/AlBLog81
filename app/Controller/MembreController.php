@@ -78,6 +78,7 @@ class MembreController extends Users
         $crypt = $this->getConfig()->cryptMdp($pwd);
         $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
 
+
        if($this->getMembreModel()->register($pwd_pepper,$data)){
 
            if(session_status() === PHP_SESSION_NONE){
@@ -107,6 +108,11 @@ class MembreController extends Users
             ]);
         }
 
+        $homePage = new HomeController();
+        $laDateDuJour = $homePage->dateOfTheDay();
+        $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
+        $heureDuJour = $heure->format('H:i');
+        $calendarChinese = $homePage->calendarChinese(date('Y'));
         $req = $this->getMembreModel()->loginOfConnexion($data['email']);
         $this->getConfig()->createSession($req['idUsers']);
 
@@ -203,10 +209,13 @@ class MembreController extends Users
       }
     }
 
+    /**
+     * @return bool
+     */
     public function isAdmin()
     {
-        $all = $_SESSION;
-        if (isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == Config::USERS_ADMIN){
+        $userAdmin = Config::USERS_ADMIN;
+        if (isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $userAdmin){
             return true;
         }else{
             return false;
