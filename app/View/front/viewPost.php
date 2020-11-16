@@ -2,7 +2,7 @@
 <h3><?= $slug ?></h3>
 
 <div class="card border-dark text-white bg-dark mb-3 bg-black">
-    <img class="card-img-top" src="<?= $post['images'] ?>" alt="<?= $post['postTitle'] ?>">
+    <img class="card-img-top" src="./../images/<?= $post['images'] ?>" alt="<?= $post['postTitle'] ?>">
     <div class="card-body">
         <h5 class="card-title"><?= htmlspecialchars( $post['postTitle']) ?></h5>
         <p class="card-text"><?= nl2br(htmlspecialchars($post['postContent']))  ?></p>

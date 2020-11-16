@@ -103,17 +103,6 @@ class Config
     }
 
 
-    public function copyImages()
-    {
-        if(!empty($_FILES['images']['name'])){
-            $nom = $_POST['reference'].'_'.$_FILES['photo']['name'];
-            $_POST['photo'] = $nom;
-            $pathPhoto = __DIR__ . '/public/images/' . $nom;
-            move_uploaded_file($_FILES['images']['tmp_name'],$pathPhoto);
-        }
-    }
-
-
     /**
      * @param $membre
      */

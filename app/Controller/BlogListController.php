@@ -12,7 +12,7 @@ class BlogListController
     private CommentsModel $commentModel;
     private Config $config;
     private PostsModel $postModel;
-    private $isAdmin;
+    private bool $isAdmin;
 
 
     /**
@@ -90,6 +90,42 @@ class BlogListController
         $comment =$post['Commentaire'];
 
         return $this->getPostModel()->addCommentToPost($commentId,$idPost,$title,$comment);
+    }
+
+
+    public function edit()
+    {
+        return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
+            'titre'=> 'Nouvel Article'
+        ]);
+    }
+
+
+    public function addPost()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        $title = $post['titlePost'];
+        $content = $post['contenuPost'];
+        $link = $post['linkPost'];
+        $this->copyImages();
+        $photo = $_POST['photo'];
+
+        $this->getPostModel()->editPost($title,$content,$photo,$link);
+
+        return $this->getConfig()->redirect("/blogs");
+    }
+
+    public function copyImages()
+    {
+        $titleSpace = trim($_POST['titlePost']);
+        $title = str_replace(" ", "_",$titleSpace);
+        $file = $_FILES;
+        if(!empty($_FILES['photo']['name'])){
+            $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['photo']['name'];
+            $_POST['photo'] = $nom;
+            $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
+            move_uploaded_file($_FILES['photo']['tmp_name'],$pathPhoto);
+        }
     }
 
 }
