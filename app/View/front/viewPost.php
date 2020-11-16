@@ -6,7 +6,7 @@
     <div class="card-body">
         <h5 class="card-title"><?= htmlspecialchars( $post['postTitle']) ?></h5>
         <p class="card-text"><?= nl2br(htmlspecialchars($post['postContent']))  ?></p>
-        <p>Visitez le site <a href="<?= $post['link']; ?>" class="font-italic" target="_blank"><?= htmlspecialchars( $post['postTitle']) ?></a></p>
+        <p>Visitez le site <a href="https://<?= $post['link']; ?>" class="font-italic" target="_blank"><?= htmlspecialchars( $post['postTitle']) ?></a></p>
         <p class="text-muted"><?= $post['create_at'] ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 

@@ -113,8 +113,6 @@ class PostsModel extends PDOmanager
         $request->bindParam(':idPost', $postId);
         $request->bindParam(':idComments', $commentId);
         $request->execute();
-
-
     }
 
     public function editPost($postTitle,$postContent,$image,$link)

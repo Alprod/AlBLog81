@@ -81,6 +81,7 @@ class BlogListController
         ]);
     }
 
+
     public function addCommentToBlogPost($id, $commentIds)
     {
         $post = $this->getConfig()->sanitize($_POST);
