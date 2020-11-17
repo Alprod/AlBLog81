@@ -69,7 +69,7 @@ class BlogListController
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
 
-        if(!empty($post)) $this->addCommentToBlogPost($id, $_SESSION['id_membre']);
+        if(!empty($post)) $this->addCommentToBlogPost($id,$slug,$_SESSION['id_membre']);
 
 
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
@@ -82,7 +82,7 @@ class BlogListController
     }
 
 
-    public function addCommentToBlogPost($id, $commentIds)
+    public function addCommentToBlogPost($id,$slug ,$commentIds)
     {
         $post = $this->getConfig()->sanitize($_POST);
         $idPost= $id;
@@ -90,7 +90,9 @@ class BlogListController
         $title = $post['commentTitle'];
         $comment =$post['Commentaire'];
 
-        return $this->getPostModel()->addCommentToPost($commentId,$idPost,$title,$comment);
+        $this->getPostModel()->addCommentToPost($commentId,$idPost,$title,$comment);
+
+        return $this->getConfig()->redirect("/$slug/$id");
     }
 
 
