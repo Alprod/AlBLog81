@@ -3,8 +3,6 @@
 use App\Router\Routes;
 use Config\Config;
 
-
-
 require __DIR__.'./../vendor/autoload.php';
 
 $config = new Config();

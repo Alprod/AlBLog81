@@ -107,12 +107,6 @@ class MembreController extends Users
                 'titre'=> 'Connexion',
             ]);
         }
-
-        $homePage = new HomeController();
-        $laDateDuJour = $homePage->dateOfTheDay();
-        $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
-        $heureDuJour = $heure->format('H:i');
-        $calendarChinese = $homePage->calendarChinese(date('Y'));
         $req = $this->getMembreModel()->loginOfConnexion($data['email']);
         $this->getConfig()->createSession($req['idUsers']);
 
