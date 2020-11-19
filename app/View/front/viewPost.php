@@ -5,8 +5,10 @@
     <img class="card-img-top" src="./../images/<?= $post['images'] ?>" alt="<?= $post['postTitle'] ?>">
     <div class="card-body">
         <h5 class="card-title"><?= htmlspecialchars( $post['postTitle']) ?></h5>
-        <p class="card-text"><?= nl2br(htmlspecialchars($post['postContent']))  ?></p>
+        <p class="card-text"><?= html_entity_decode($post['postContent'])  ?></p>
+        <?php if(!empty($post['link'])): ?>
         <p>Visitez le site <a href="https://<?= $post['link']; ?>" class="font-italic" target="_blank"><?= htmlspecialchars( $post['postTitle']) ?></a></p>
+        <?php endif; ?>
         <p class="text-muted"><?= $post['create_at'] ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
@@ -49,7 +51,7 @@
                 <img src="https://via.placeholder.com/64" class="align-self-start mr-3 rounded-circle" alt="...">
                 <div class="media-body">
                     <h5 class="mt-0"><?= htmlspecialchars($comment['commentTitle']); ?></h5>
-                    <p><?= $comment['commentContent']; ?></p>
+                    <p><?= html_entity_decode($comment['commentContent']); ?></p>
                     <p class="font-italic">Posté par <?= $comment['pseudo']; ?></p>
                     <p class="text-muted"><?= $comment['dateCreate_at']; ?></p>
                 </div>
