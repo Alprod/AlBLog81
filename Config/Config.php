@@ -110,6 +110,7 @@ class Config
     {
         $_SESSION['membre'] = $membre;
         $_SESSION['id_membre'] = $membre;
+        setcookie ("timeUsers","$membre",time()+3600*24,"/","www.alblog81.fr",false,false);
     }
 
     /**

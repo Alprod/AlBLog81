@@ -81,6 +81,20 @@ class BlogListController
         ]);
     }
 
+    public function addPost()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        $title = $post['titlePost'];
+        $content = $post['contenuPost'];
+        $link = $post['linkPost'];
+        $this->copyImages();
+        $photo = $_POST['photo'];
+
+        $this->getPostModel()->editPost($title,$content,$photo,$link);
+
+        return $this->getConfig()->redirect("/blogs");
+    }
+
 
     public function addCommentToBlogPost($id,$slug ,$commentIds)
     {
@@ -101,21 +115,6 @@ class BlogListController
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
             'titre'=> 'Nouvel Article'
         ]);
-    }
-
-
-    public function addPost()
-    {
-        $post = $this->getConfig()->sanitize($_POST);
-        $title = $post['titlePost'];
-        $content = $post['contenuPost'];
-        $link = $post['linkPost'];
-        $this->copyImages();
-        $photo = $_POST['photo'];
-
-        $this->getPostModel()->editPost($title,$content,$photo,$link);
-
-        return $this->getConfig()->redirect("/blogs");
     }
 
     public function copyImages()
