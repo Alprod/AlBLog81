@@ -47,13 +47,14 @@ class RouterTest extends TestCase
      *  Match
      *
      * @return void
+     * @throws RouteAlreadyExistExecption
      */
     public function testMatch(): void
     {
         $router = new Router();
-        $route = new Route('POST', 'contact', '/contact', [BlogController::class, 'blog']);
+        $route = new Route('POST', 'contat', 'contact/{id}', [BlogController::class, 'blog']);
         $router->add($route);
-        $this->assertEquals($route, $router->match('POST', '/contact'));
+        $this->assertEquals($route, $router->match('POST', '/contac'));
     }
 
     /**

@@ -2,8 +2,6 @@
 
 namespace App\Router;
 
-
-
 use ReflectionClass;
 use ReflectionException;
 use ReflectionFunction;

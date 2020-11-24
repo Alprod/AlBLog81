@@ -25,7 +25,7 @@
                     <a class="nav-link" href="/contact">Contact</a>
 
                     <?php if (isset($_SESSION['id_membre'], $isAdmin) && $isAdmin): ?>
-                    <a class="nav-link" href="/editPost">Nouveau post</a>
+                    <a class="nav-link" href="/editPost/create">Nouveau post</a>
                     <?php endif; ?>
 
                     <?php if (!isset($_SESSION['id_membre'])): ?>
