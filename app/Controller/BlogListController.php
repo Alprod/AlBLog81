@@ -15,6 +15,8 @@ class BlogListController
     private bool $isAdmin;
 
 
+
+
     /**
      * BlogListController constructor.
      *
@@ -43,17 +45,22 @@ class BlogListController
         return $this->config;
     }
 
+    public function isAdmin()
+    {
+        return $this->isAdmin;
+    }
 
 
     public function blogList(): string
     {
         $listPost = $this->getPostModel()->findAllPosts();
+        $isAdmin = $this->isAdmin();
         $conf = $this->getConfig();
 
         return $conf->render('layout.php', 'front/posts.php', [
             'titre' => 'Mes articles',
             'listPost' => $listPost,
-            'isAdmin' => $this->isAdmin
+            'isAdmin' => $isAdmin
         ]);
     }
 
@@ -64,39 +71,42 @@ class BlogListController
      */
     public function blogPost(string $slug, string $id)
     {
+        $isAdmin = $this->isAdmin();
         $post = $this->getConfig()->sanitize($_POST);
-
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
 
-        if(!empty($post)) $this->addCommentToBlogPost($id,$slug,$_SESSION['id_membre']);
-
+        if (!empty($post)) {
+            $this->addCommentToBlogPost($id, $slug, $_SESSION['id_membre']);
+        }
 
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,
             'post' => $viewPost,
-            'comments' => $commentByPost
+            'comments' => $commentByPost,
+            'changer'=> 'Modifier l\'article',
+            'isAdmin' => $isAdmin
         ]);
     }
 
     public function addPost()
     {
         $post = $this->getConfig()->sanitize($_POST);
-        $title = $post['titlePost'];
-        $content = $post['contenuPost'];
-        $link = $post['linkPost'];
+        $title = $post['postTitle'];
+        $content = $post['postContent'];
+        $link = $post['link'];
         $this->copyImages();
-        $photo = $_POST['photo'];
+        $photo = $_POST['images'];
 
-        $this->getPostModel()->editPost($title,$content,$photo,$link);
+        $this->getPostModel()->editPost($title, $content, $photo, $link);
 
         return $this->getConfig()->redirect("/blogs");
     }
 
 
-    public function addCommentToBlogPost($id,$slug ,$commentIds)
+    public function addCommentToBlogPost($id, $slug, $commentIds)
     {
         $post = $this->getConfig()->sanitize($_POST);
         $idPost= $id;
@@ -104,30 +114,49 @@ class BlogListController
         $title = $post['commentTitle'];
         $comment =$post['Commentaire'];
 
-        $this->getPostModel()->addCommentToPost($commentId,$idPost,$title,$comment);
+        $this->getPostModel()->addCommentToPost($commentId, $idPost, $title, $comment);
 
         return $this->getConfig()->redirect("/$slug/$id");
     }
 
 
-    public function edit()
+    public function form()
     {
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
             'titre'=> 'Nouvel Article'
         ]);
     }
 
-    public function copyImages()
+    public function postFormById($id)
     {
-        $titleSpace = trim($_POST['titlePost']);
-        $title = str_replace(" ", "_",$titleSpace);
-        $file = $_FILES;
-        if(!empty($_FILES['photo']['name'])){
-            $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['photo']['name'];
-            $_POST['photo'] = $nom;
-            $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
-            move_uploaded_file($_FILES['photo']['tmp_name'],$pathPhoto);
+        $post = $this->getConfig()->sanitize($_POST);
+        $postByIds = $this->getPostModel()->findPostByIds($id);
+        $params['titre'] = 'Modifier l\'article';
+        $params['blog_actuel'] = (!empty($post)) ? $post : $postByIds;
+        $params['blog_actuel']['photo'] = $postByIds['images'];
+
+        return $this->getConfig()->render("layout.php", "admin/postEdit.php", $params);
+    }
+
+    public function updatePostById()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        if (!empty($post)) {
+            $this->copyImages();
+            $this->getPostModel()->updatePost($post['idPosts'], $_POST);
+            return $this->getConfig()->redirect('/blogs');
         }
     }
 
+    public function copyImages()
+    {
+        $titleSpace = trim($_POST['postTitle']);
+        $title = str_replace(" ", "_", $titleSpace);
+        if (!empty($_FILES['images']['name'])) {
+            $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['images']['name'];
+            $_POST['images'] = $nom;
+            $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
+            move_uploaded_file($_FILES['images']['tmp_name'], $pathPhoto);
+        }
+    }
 }

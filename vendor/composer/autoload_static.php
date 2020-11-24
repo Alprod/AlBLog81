@@ -12,6 +12,8 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        'cfbf8307ed082cb129d303203aecde11' => __DIR__ . '/../..' . '/env.php',
+        'dbf79e35dcff9c10f18e93f6eb4fc453' => __DIR__ . '/../..' . '/loadEnv.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -107,6 +109,8 @@ class ComposerStaticInit5a541becb812e9f1857099c6b59e4655
     );
 
     public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',

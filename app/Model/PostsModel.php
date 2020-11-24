@@ -3,10 +3,8 @@
 
 namespace App\Model;
 
-
 use Config\PDOmanager;
 use PDOStatement;
-
 
 class PostsModel extends PDOmanager
 {
@@ -42,11 +40,7 @@ class PostsModel extends PDOmanager
      */
     public function findPostByIds($id)
     {
-        $req = 'SELECT idPosts, 
-                       postTitle, 
-                       postContent, 
-                       images,
-                       link,
+        $req = 'SELECT *,
                        DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as create_at 
                        FROM Posts 
                        WHERE idPosts = :id_post';
@@ -78,7 +72,7 @@ class PostsModel extends PDOmanager
                 ORDER BY dateCreate_at ASC LIMIT 0,10';
 
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(":idPosts",$id);
+        $result->bindParam(":idPosts", $id);
         $result->execute();
         $commentPost = $result->fetchAll();
 
@@ -93,7 +87,7 @@ class PostsModel extends PDOmanager
      * @param $title
      * @param $comment
      */
-    public function addCommentToPost($commentId,$postId,$title,$comment)
+    public function addCommentToPost($commentId, $postId, $title, $comment)
     {
         $bdd = $this->getBdd();
         $request = $bdd->prepare('INSERT INTO Comments (
@@ -115,7 +109,13 @@ class PostsModel extends PDOmanager
         $request->execute();
     }
 
-    public function editPost($postTitle,$postContent,$image,$link)
+    /**
+     * @param $postTitle
+     * @param $postContent
+     * @param $image
+     * @param $link
+     */
+    public function editPost($postTitle, $postContent, $image, $link)
     {
         $bdd = $this->getBdd();
         $request = $bdd->prepare('INSERT INTO Posts (
@@ -131,12 +131,30 @@ class PostsModel extends PDOmanager
                                                                  :link,
                                                                  NOW(),
                                                                  :idUser)');
-        $request->bindParam(':title',$postTitle);
-        $request->bindParam(':content',$postContent);
-        $request->bindParam(':images',$image);
-        $request->bindParam(':link',$link);
-        $request->bindParam(':idUser',$_SESSION['id_membre']);
+        $request->bindParam(':title', $postTitle);
+        $request->bindParam(':content', $postContent);
+        $request->bindParam(':images', $image);
+        $request->bindParam(':link', $link);
+        $request->bindParam(':idUser', $_SESSION['id_membre']);
         $request->execute();
     }
 
+    /**
+     * @param $id
+     * @param $post
+     * @return bool
+     */
+    public function updatePost($id, $post)
+    {
+        foreach ($post as $key => $value) {
+            $newValue[] = "$key = :$key";
+        }
+
+        $bdd = $this->getBdd();
+        $request = 'UPDATE Posts SET '.implode(',', $newValue).' WHERE idPosts = :id';
+        $post['idPost'] = $id;
+        $result = $bdd->prepare($request);
+
+        return $result->execute($post);
+    }
 }

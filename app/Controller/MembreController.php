@@ -3,7 +3,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Users;
 use App\Model\MembresModel;
 use Config\Config;
@@ -25,7 +24,6 @@ class MembreController extends Users
     {
         $this->config = new Config();
         $this->membreModel = new MembresModel();
-
     }
 
     /**
@@ -66,7 +64,7 @@ class MembreController extends Users
         try {
             $data= $this->getConfig()->sanitize($_POST);
             $this->validation($data);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             $params=[
                 'titre'=>'Inscription',
                 'error'=> $e->getMessage()
@@ -76,24 +74,22 @@ class MembreController extends Users
 
         $pwd = $data['mdp2'];
         $crypt = $this->getConfig()->cryptMdp($pwd);
-        $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
+        $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
 
 
-       if($this->getMembreModel()->register($pwd_pepper,$data)){
+        if ($this->getMembreModel()->register($pwd_pepper, $data)) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            return $this->getConfig()->redirect("/login");
+        }
 
-           if(session_status() === PHP_SESSION_NONE){
-               session_start();
-           }
-           return $this->getConfig()->redirect("/login");
-       }
-
-       $params = [
+        $params = [
            'titre' => 'Erreur d\'inscription',
            'error' => 'Inscription non réussit',
            'pseudo' => $data['pseudo']
-       ];
-        return $this->getConfig()->render('layout.php', 'membres/subscribe.php',$params);
-
+        ];
+        return $this->getConfig()->render('layout.php', 'membres/subscribe.php', $params);
     }
 
     public function login()
@@ -101,7 +97,7 @@ class MembreController extends Users
         try {
             $data = $this->getConfig()->sanitize($_POST);
             $this->verifLogin($data);
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $this->getConfig()->render("layout.php", "membres/login.php", [
                 'error'=> $e->getMessage(),
                 'titre'=> 'Connexion',
@@ -115,7 +111,6 @@ class MembreController extends Users
         $_SESSION['email_membre'] = $req['email'];
 
         return $this->getConfig()->redirect("/");
-
     }
 
     public function logout()
@@ -140,41 +135,43 @@ class MembreController extends Users
         $mdp = $data['mdp'];
         $mdp2 = $data['mdp2'];
 
-        if (empty($fistname)){
+        if (empty($fistname)) {
             throw new Exception('Indiquez Votre nom');
         }
 
-        if (empty($lastname)){
+        if (empty($lastname)) {
             throw new Exception('Indiquez Votre Prénom');
         }
 
         $verifpseudo = $this->getMembreModel()->existPseudo($pseudo);
-        if(isset($data['pseudo']) && $verifpseudo){
+        if (isset($data['pseudo']) && $verifpseudo) {
             throw new Exception('Désolé mais le Pseudo existe déjà');
         }
 
-        if(strlen($data['pseudo']) <= 3){
+        if (strlen($data['pseudo']) <= 3) {
             throw new Exception('Désolé mais votre pseudo est trop court');
         }
 
-        if(!filter_var($email,FILTER_VALIDATE_EMAIL) && empty($email)){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) && empty($email)) {
             throw new Exception('Le champs de votre email est incorrect');
         }
 
-        if(!empty($mdp) && ($mdp != $mdp2)){
+        if (!empty($mdp) && ($mdp != $mdp2)) {
             throw new Exception('Erreur dans votre mot de passe');
         }
 
-        if(empty($mdp) || empty($mdp2)){
+        if (empty($mdp) || empty($mdp2)) {
             throw new Exception('Il vous faut un mot de passe');
         }
 
-        if(!empty($data)){
+        if (!empty($data)) {
             $champsVide = 0;
-            foreach ($data as $value){
-                if(empty(trim($value))) $champsVide++;
+            foreach ($data as $value) {
+                if (empty(trim($value))) {
+                    $champsVide++;
+                }
             }
-            if ($champsVide > 0){
+            if ($champsVide > 0) {
                 throw new Exception('Veuilez remplir tout les champs, il y a '.$champsVide.' champs manquant.');
             }
         }
@@ -182,25 +179,25 @@ class MembreController extends Users
 
     public function verifLogin($data)
     {
-      $email = $data['email'];
-      $pwd = $data['password'];
+        $email = $data['email'];
+        $pwd = $data['password'];
 
-      $value = $this->getMembreModel()->loginOfConnexion($email);
+        $value = $this->getMembreModel()->loginOfConnexion($email);
 
-        if(!filter_var($email,FILTER_VALIDATE_EMAIL) && empty($email)){
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL) && empty($email)) {
             throw new Exception('Le champs de votre email est incorrect');
         }
 
-      if(isset($email) && !$value){
-          throw new Exception('Désolé mais votre mail n\'existe pas');
-      }
+        if (isset($email) && !$value) {
+            throw new Exception('Désolé mais votre mail n\'existe pas');
+        }
 
-      $crypt = $this->getConfig()->cryptMdp($pwd);
-      $pwd_pepper = hash_hmac("sha256",$pwd,$crypt);
+        $crypt = $this->getConfig()->cryptMdp($pwd);
+        $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
 
-      if($value['mdp'] != $pwd_pepper){
-          throw new Exception('Désolé erreure dans votre mot de passe');
-      }
+        if ($value['mdp'] != $pwd_pepper) {
+            throw new Exception('Désolé erreure dans votre mot de passe');
+        }
     }
 
     /**
@@ -209,11 +206,10 @@ class MembreController extends Users
     public function isAdmin()
     {
         $userAdmin = Config::USERS_ADMIN;
-        if (isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $userAdmin){
+        if (isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $userAdmin) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-
 }

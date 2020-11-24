@@ -10,4 +10,3 @@ $config->initSessionId();
 
 $routes = new Routes();
 $routes->routesIndex();
-
