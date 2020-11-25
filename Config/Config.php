@@ -20,7 +20,6 @@ class Config
     {
         $params = new Parameter();
         $this->parameters = $params->parametersConnectBdd();
-
     }
 
     /**
@@ -36,7 +35,7 @@ class Config
      */
     public function getTableName(): array
     {
-        $table = ucfirst(str_replace(array('Model\\', 'Model'),'', static::class));
+        $table = ucfirst(str_replace(array('Model\\', 'Model'), '', static::class));
         $explode = explode('\\', $table);
         array_shift($explode);
         return $explode;
@@ -61,13 +60,13 @@ class Config
      * @noinspection PhpIncludeInspection
      * @return bool
      */
-    public function render($layout,$view,$params): bool
+    public function render($layout, $view, $params): bool
     {
         $dirView = __DIR__.'/../app/View/';
         $pathView = $dirView.$view;
         $pathLayout = $dirView.$layout;
-        if (is_array($params) && !empty($params)){
-            extract($params,EXTR_OVERWRITE);
+        if (is_array($params) && !empty($params)) {
+            extract($params, EXTR_OVERWRITE);
         }
         ob_start();
         require $pathView;
@@ -75,7 +74,6 @@ class Config
         ob_start();
         require $pathLayout;
         return ob_end_flush();
-
     }
 
     /**
@@ -96,7 +94,7 @@ class Config
     public function sanitize($data)
     {
         $list = [];
-        foreach ($data as $key=>$value) {
+        foreach ($data as $key => $value) {
             $list[$key] = htmlentities($value);
         }
         return $list;
@@ -110,7 +108,7 @@ class Config
     {
         $_SESSION['membre'] = $membre;
         $_SESSION['id_membre'] = $membre;
-        setcookie ("timeUsers","$membre",time()+3600*24,"/","www.alblog81.fr",false,false);
+        setcookie("timeUsers", "$membre", time()+3600*24, "/", "www.alblog81.fr", false, false);
     }
 
     /**
@@ -118,7 +116,7 @@ class Config
      */
     public function initSessionId()
     {
-        if(!session_id()){
+        if (!session_id()) {
             session_start();
             session_regenerate_id();
             return true;
@@ -134,5 +132,4 @@ class Config
         session_unset();
         session_destroy();
     }
-
 }

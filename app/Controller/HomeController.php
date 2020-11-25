@@ -3,8 +3,6 @@
 
 namespace App\Controller;
 
-
-
 use Config\Config;
 use DateTime;
 use DateTimeZone;
@@ -32,7 +30,7 @@ class HomeController extends Config
     public function index(): string
     {
         $laDateDuJour = $this->dateOfTheDay();
-        $heure = new DateTime('now',  new DateTimeZone( 'EUROPE/Paris' ));
+        $heure = new DateTime('now', new DateTimeZone('EUROPE/Paris'));
         $heureDuJour = $heure->format('H:i');
         $calendarChinese = $this->calendarChinese(date('Y'));
         $userName = $_SESSION['pseudo_membre'] ?? null;
@@ -49,7 +47,7 @@ class HomeController extends Config
 
         );
 
-        return $this->render('layout.php','base.php',$params);
+        return $this->render('layout.php', 'base.php', $params);
     }
 
     /**
@@ -58,26 +56,26 @@ class HomeController extends Config
      */
     public function calendarChinese($year): string
     {
-        switch ($year % 12):
-            case  0:
+        switch ($year % 12) :
+            case 0:
                 return 'Singe / Monkey / 猴';
-            case  1:
+            case 1:
                 return 'Coq / Rooster / 公鸡';
-            case  2:
+            case 2:
                 return 'Chien / Dog / 狗';
-            case  3:
+            case 3:
                 return 'Sanglier / Boar / 公猪';
-            case  4:
+            case 4:
                 return 'Rat / 鼠';
-            case  5:
+            case 5:
                 return 'Vache / Ox / 牛';
-            case  6:
+            case 6:
                 return 'Tigre / Tiger / 虎';
-            case  7:
+            case 7:
                 return 'Lapin / Rabit / 兔子';
-            case  8:
+            case 8:
                 return 'Dragon / 龙';
-            case  9:
+            case 9:
                 return 'Snake';
             case 10:
                 return 'Cheval / Horse / 马';
@@ -96,6 +94,5 @@ class HomeController extends Config
         $dateFormat = strftime("%A %d %B %G", strtotime($date));
 
         return $dateFormat;
-
     }
 }
