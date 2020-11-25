@@ -40,6 +40,7 @@
                 <input
                         type="file"
                         name="images"
+                        value="<?= $blog_actuel['images'] ?? '' ?>"
                         class="form-control-file Subcribe border border-dark"
                         id="imagePost">
             </div>

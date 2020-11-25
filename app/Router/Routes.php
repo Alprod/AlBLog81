@@ -36,6 +36,7 @@ class Routes
             new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login']),
             new Route('POST', 'updatePost', '/updatePost', [BlogListController::class, 'updatePostById']),
+            new Route('DELETE', 'deletePostById', '/deletePostById', [BlogListController::class, 'deletePostById']),
         ];
 
         foreach ($routes as $route) {

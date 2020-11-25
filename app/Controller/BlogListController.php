@@ -37,6 +37,7 @@ class BlogListController
         return $this->postModel;
     }
 
+
     /**
      * @return mixed
      */
@@ -45,12 +46,18 @@ class BlogListController
         return $this->config;
     }
 
+
+    /**
+     * @return bool
+     */
     public function isAdmin()
     {
         return $this->isAdmin;
     }
 
-
+    /**
+     * @return string
+     */
     public function blogList(): string
     {
         $listPost = $this->getPostModel()->findAllPosts();
@@ -86,10 +93,11 @@ class BlogListController
             'id' => $id,
             'post' => $viewPost,
             'comments' => $commentByPost,
-            'changer'=> 'Modifier l\'article',
+            'changer'=> 'Modifier',
             'isAdmin' => $isAdmin
         ]);
     }
+
 
     public function addPost()
     {
@@ -105,7 +113,11 @@ class BlogListController
         return $this->getConfig()->redirect("/blogs");
     }
 
-
+    /**
+     * @param $id
+     * @param $slug
+     * @param $commentIds
+     */
     public function addCommentToBlogPost($id, $slug, $commentIds)
     {
         $post = $this->getConfig()->sanitize($_POST);
@@ -120,6 +132,9 @@ class BlogListController
     }
 
 
+    /**
+     * @return bool
+     */
     public function form()
     {
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
@@ -127,6 +142,10 @@ class BlogListController
         ]);
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function postFormById($id)
     {
         $post = $this->getConfig()->sanitize($_POST);
@@ -138,15 +157,18 @@ class BlogListController
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", $params);
     }
 
+
     public function updatePostById()
     {
         $post = $this->getConfig()->sanitize($_POST);
         if (!empty($post)) {
             $this->copyImages();
-            $this->getPostModel()->updatePost($post['idPosts'], $_POST);
+            $post['images'] = $_POST['images'];
+            $this->getPostModel()->updatePost($_POST);
             return $this->getConfig()->redirect('/blogs');
         }
     }
+
 
     public function copyImages()
     {

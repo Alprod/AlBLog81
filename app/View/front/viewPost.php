@@ -32,7 +32,7 @@
                 data-toggle="collapse"
                 data-target="#collapseExample"
                 aria-expanded="false"
-                aria-controls="collapseExample">Rediger un commentaire
+                aria-controls="collapseExample">Commentaire
         </button>
             <?php if (isset($isAdmin) && $_SESSION['id_membre'] === $post['post_userId']) : ?>
             <a
@@ -40,6 +40,13 @@
                 value="Modifier l'article"
                 class="btn btn-outline-info btn-sm mb-2"><?= $changer ?>
             </a>
+            <div class="d-flex justify-content-end">
+                <a
+                    href=""
+                    class="btn btn-outline-danger btn-sm">Supprimer
+                </a>
+            </div>
+
             <?php endif; ?>
         <?php endif; ?>
 
@@ -90,7 +97,7 @@
             <div class="media pl-3">
                 <img src="https://via.placeholder.com/64" class="align-self-start mr-3 rounded-circle" alt="...">
                 <div class="media-body">
-                    <h5 class="mt-0"><?= htmlspecialchars($comment['commentTitle']); ?></h5>
+                    <h5 class="mt-0"><?= htmlspecialchars(html_entity_decode($comment['commentTitle'])); ?></h5>
                     <p><?= html_entity_decode($comment['commentContent']); ?></p>
                     <p class="font-italic">Posté par <?= $comment['pseudo']; ?></p>
                     <p class="text-muted"><?= $comment['dateCreate_at']; ?></p>

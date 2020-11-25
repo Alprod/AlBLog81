@@ -4,6 +4,9 @@
 namespace App\Model;
 
 use Config\PDOmanager;
+use DateTime;
+use DateTimeZone;
+use Exception;
 use PDOStatement;
 
 class PostsModel extends PDOmanager
@@ -140,21 +143,32 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $id
-     * @param $post
+     * @param $post => $_Post
      * @return bool
+     * @throws Exception
      */
-    public function updatePost($id, $post)
+    public function updatePost($post)
     {
+        $newValue = array();
         foreach ($post as $key => $value) {
             $newValue[] = "$key = :$key";
         }
 
         $bdd = $this->getBdd();
-        $request = 'UPDATE Posts SET '.implode(',', $newValue).' WHERE idPosts = :id';
-        $post['idPost'] = $id;
+        $request = 'UPDATE Posts SET '.implode(',', $newValue).' WHERE idPosts = :idPosts';
         $result = $bdd->prepare($request);
 
         return $result->execute($post);
+    }
+
+    /**
+     * @param $id
+     */
+    public function deletePost($id)
+    {
+        $bdd = $this->getBdd();
+        $request = $bdd->prepare('DELETE FROM Posts WHERE idPosts = :id');
+        $request->bindParam(':id', $id);
+        $request->execute();
     }
 }
