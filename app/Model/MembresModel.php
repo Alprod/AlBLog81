@@ -3,7 +3,6 @@
 
 namespace App\Model;
 
-
 use Config\Config;
 use Config\PDOmanager;
 use PDOStatement;
@@ -15,7 +14,9 @@ class MembresModel extends PDOmanager
         $req = "SELECT * FROM Users";
         $result = $this->getBdd()->prepare($req);
         $data = $result->fetchAll();
-        if(!$data) return false;
+        if (!$data) {
+            return false;
+        }
         return $data;
     }
 
@@ -30,8 +31,11 @@ class MembresModel extends PDOmanager
         $result->bindParam(':id', $id);
         $result->execute();
         $data = $result->fetch();
-        if($data) return $data;
-        else return false;
+        if ($data) {
+            return $data;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -46,8 +50,11 @@ class MembresModel extends PDOmanager
         $result->bindParam(':pseudo', $pseudo);
         $result->execute();
         $data = $result->fetch();
-        if($data) return $data;
-        else return false;
+        if ($data) {
+            return $data;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -61,8 +68,11 @@ class MembresModel extends PDOmanager
         $result->bindParam(':email', $email);
         $result->execute();
         $donnee = $result->fetch();
-        if($donnee) return $donnee;
-        else return false;
+        if ($donnee) {
+            return $donnee;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -72,7 +82,6 @@ class MembresModel extends PDOmanager
     {
         $req = 'SELECT id FROM Users ORDER BY id DESC LIMIT 0,1';
         return $this->getBdd()->prepare($req);
-
     }
 
     /**
@@ -80,7 +89,7 @@ class MembresModel extends PDOmanager
      * @param $data
      * @return bool
      */
-    public function register($mdp,$data)
+    public function register($mdp, $data)
     {
         $firstname = $data['firstname'];
         $lastname = $data['lastname'];
@@ -141,5 +150,4 @@ class MembresModel extends PDOmanager
 
         return $result->execute();
     }
-
 }

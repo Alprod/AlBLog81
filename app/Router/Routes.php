@@ -29,6 +29,7 @@ class Routes
             new Route('GET', 'register', '/register', [MembreController::class, 'membresSubscribe']),
             new Route('GET', 'login', '/login', [MembreController::class, 'membresConnexion']),
             new Route('GET', 'logout', '/logout', [MembreController::class, 'logout']),
+            new Route('GET', 'membreProfil', '/profil', [MembreController::class, 'userProfil']),
             new Route('GET', 'postFormById', '/{id}', [BlogListController::class, 'postFormById']),
             new Route('POST', 'addComment', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
@@ -36,7 +37,7 @@ class Routes
             new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login']),
             new Route('POST', 'updatePost', '/updatePost', [BlogListController::class, 'updatePostById']),
-            new Route('DELETE', 'deletePostById', '/deletePostById', [BlogListController::class, 'deletePostById']),
+            new Route('POST', 'deletePost', '/deletePost', [BlogListController::class, 'deletePostId'])
         ];
 
         foreach ($routes as $route) {

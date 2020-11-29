@@ -42,7 +42,7 @@
             </a>
             <div class="d-flex justify-content-end">
                 <a
-                    href=""
+                    href="/deletePost"
                     class="btn btn-outline-danger btn-sm">Supprimer
                 </a>
             </div>

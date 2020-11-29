@@ -169,6 +169,12 @@ class BlogListController
         }
     }
 
+    public function deletePostId($id)
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        return $this->getConfig()->redirect('/blogs');
+    }
+
 
     public function copyImages()
     {

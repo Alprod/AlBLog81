@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Config\Params;
-
 
 class Parameter
 {
@@ -21,7 +19,4 @@ class Parameter
         ];
         return $parameters;
     }
-
-
-
 }
