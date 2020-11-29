@@ -200,16 +200,28 @@ class MembreController extends Users
         }
     }
 
+    public function userProfil()
+    {
+        return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
+            'titre' => 'Nom du membre'
+        ]);
+    }
+
     /**
      * @return bool
      */
     public function isAdmin()
     {
         $userAdmin = Config::USERS_ADMIN;
-        if (isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $userAdmin) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] === $userAdmin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSuperAdmin()
+    {
+        $superAdmin = Config::SUPER_USERS_ADMIN;
+        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] === $superAdmin;
     }
 }
