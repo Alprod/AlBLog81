@@ -196,15 +196,79 @@ class MembreController extends Users
         $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
 
         if ($value['mdp'] != $pwd_pepper) {
-            throw new Exception('Désolé erreure dans votre mot de passe');
+            throw new Exception('Désolé erreur dans votre mot de passe');
         }
     }
 
     public function userProfil()
     {
+        $idUser = $_SESSION['id_membre'];
+        $userProfil = $this->getMembreModel()->find($idUser);
+        $date = \date($userProfil['createdAt']);
+        $dateFomate = strftime("%d %B %G", strtotime($date));
+
         return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
-            'titre' => 'Nom du membre'
+            'titre' => 'Profil',
+            'profil' => $userProfil,
+            'dateInscription' => $dateFomate
         ]);
+    }
+
+    public function mdpUpdate()
+    {
+        try {
+            $data = $this->getConfig()->sanitize($_POST);
+            $this->verifMdp($data);
+        } catch (Exception $e) {
+            $idUser = $_SESSION['id_membre'];
+            $profil = $this->getMembreModel()->find($idUser);
+            $date = \date($profil['createdAt']);
+            $dateFomate = strftime("%d %B %G", strtotime($date));
+
+            return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
+                'titre' => 'Profil',
+                'errorMdp'=> $e->getMessage(),
+                'profil'=> $profil,
+                'dateInscription' => $dateFomate
+            ]);
+        }
+        $idUser = $_SESSION['id_membre'];
+        $mdpConfirm = $data['mdpComfirm'];
+
+        $criptConfirm = $this->getConfig()->cryptMdp($mdpConfirm);
+        $pwd_Confirm = hash_hmac("sha256", $mdpConfirm, $criptConfirm);
+
+        if (isset($data) && !empty($data['mdpActuel'])) {
+            $this->getMembreModel()->updateMdp($idUser, $pwd_Confirm);
+        }
+        return $this->getConfig()->redirect("/profil");
+    }
+
+    public function verifMdp($data)
+    {
+        $idUser = $_SESSION['id_membre'];
+        $mdpActuel = $data['mdpActuel'];
+        $mdpNew = $data['mdpNew'];
+        $mdpConfirm = $data['mdpComfirm'];
+
+        $criptActuel = $this->getConfig()->cryptMdp($mdpActuel);
+        $pwd_Actuel = hash_hmac("sha256", $mdpActuel, $criptActuel);
+
+        $criptNew = $this->getConfig()->cryptMdp($mdpNew);
+        $pwd_New = hash_hmac("sha256", $mdpNew, $criptNew);
+
+        $criptConfirm = $this->getConfig()->cryptMdp($mdpConfirm);
+        $pwd_Confirm = hash_hmac("sha256", $mdpConfirm, $criptConfirm);
+
+        $profil = $this->getMembreModel()->find($idUser);
+
+        if ($pwd_Actuel !== $profil['mdp']) {
+            throw new Exception('Désolé mais votre mot de pas est inéxate');
+        }
+
+        if ($pwd_New   !== $pwd_Confirm) {
+            throw new Exception('les mots de passe ne sont pas identique');
+        }
     }
 
     /**

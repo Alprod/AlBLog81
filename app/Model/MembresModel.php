@@ -84,6 +84,15 @@ class MembresModel extends PDOmanager
         return $this->getBdd()->prepare($req);
     }
 
+    public function updateMdp($idUsers, $mdp)
+    {
+        $bdd = $this->getBdd();
+        $request = $bdd->prepare('UPDATE Users SET mdp = :mdp WHERE idUsers = :idUsers');
+        $request->bindParam(':idUsers', $idUsers, \PDO::PARAM_INT);
+        $request->bindValue(':mdp', $mdp, \PDO::PARAM_STR);
+        $request->execute();
+    }
+
     /**
      * @param $mdp
      * @param $data
