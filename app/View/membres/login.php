@@ -2,7 +2,7 @@
     <div class="col-md-8 m-auto">
         <h1 class="display-2 mt-5 mb-5"><?= $titre ?></h1>
 
-        <?php if(isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <div class="col-md-12">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?= $error ?>

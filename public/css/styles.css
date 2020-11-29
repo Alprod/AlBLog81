@@ -139,9 +139,11 @@ color: #fcfcfc !important;
 .message,
 .inputCommentName,
 .inputCommentEmail,
-.inputComment
+.inputComment,
+.mdp
 {
   background: #232526;
+  border: #232526;
   background: -webkit-linear-gradient(to left, #4d4647, #232526);
   background: linear-gradient(to left, #46484a, #232526);
 }
@@ -158,4 +160,8 @@ color: #fcfcfc !important;
 .legend{
   width: 170px !important;
   padding: 5px;
+}
+
+.formMdp{
+  padding: 15px 20px;
 }
