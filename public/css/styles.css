@@ -162,6 +162,10 @@ color: #fcfcfc !important;
   padding: 5px;
 }
 
+/* Style form mis à jour mdp */
 .formMdp{
   padding: 15px 20px;
+}
+.mdp{
+  text-decoration-color: #fcfcfc;
 }

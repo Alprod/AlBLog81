@@ -34,17 +34,18 @@
                 aria-expanded="false"
                 aria-controls="collapseExample">Commentaire
         </button>
-            <?php if (isset($isAdmin) && $_SESSION['id_membre'] === $post['post_userId']) : ?>
+            <?php if (isset($isAdmin) && $isAdmin && $_SESSION['id_membre'] === $post['post_userId']) : ?>
             <a
                 href="<?= '/'.$post['idPosts'] ?>"
                 value="Modifier l'article"
                 class="btn btn-outline-info btn-sm mb-2"><?= $changer ?>
             </a>
             <div class="d-flex justify-content-end">
-                <a
-                    href="/deletePost"
-                    class="btn btn-outline-danger btn-sm">Supprimer
-                </a>
+                <form method="post" action="/deletePost">
+                    <input type="hidden" name="idPost" value="<?= $post['idPosts'] ?>">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>
+                </form>
+
             </div>
 
             <?php endif; ?>

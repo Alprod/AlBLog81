@@ -34,25 +34,48 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Actuel</span>
                     </div>
-                    <input type="password" name="mdpActuel" class="form-control mdp" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="password"
+                           name="mdpActuel"
+                           class="text-white form-control mdp"
+                           aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Nouveau</span>
                     </div>
-                    <input type="password" name="mdpNew" class="form-control mdp" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="password"
+                           name="mdpNew"
+                           class="text-white form-control mdp"
+                           aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Comfirmer</span>
                     </div>
-                    <input type="password" name="mdpComfirm" class="form-control mdp" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="password"
+                           name="mdpComfirm"
+                           class="text-white form-control mdp"
+                           aria-label="Sizing example input"
+                           aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <button type="submit" class="btn btn-outline-light btn-sm btn-block">Validez</button>
             </form>
         </div>
+    </div>
+    <div class="col-md-12 overflow-auto mt-5" id="commentsUser">
+        <?php foreach ($comments as $comment) : ?>
+        <div class="card bg-black mt-3" data-spy="scroll" data-target="#commentsUser" data-offset="0">
+            <div class="card-body">
+                <p> <?= htmlspecialchars(html_entity_decode($comment['commentTitle'])) ?> </p>
+                <p> <?= html_entity_decode($comment['commentContent']) ?> </p>
+                <p> <?= $comment['dateCreateAt'] ?> </p>
+            </div>
+        </div>
+        <?php endforeach; ?>
     </div>
 </div>

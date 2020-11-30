@@ -82,6 +82,21 @@ class PostsModel extends PDOmanager
         return $commentPost;
     }
 
+    public function findCommentById($id)
+    {
+        $bdd = $this->getBdd();
+        $req = 'SELECT *,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as dateCreateAt 
+                FROM Comments 
+                INNER JOIN Users ON idUsers = user_commentId 
+                WHERE user_commentId = :id';
+        $result = $bdd->prepare($req);
+        $result->bindParam(':id', $id);
+        $result->execute();
+        $commentUser = $result->fetchAll();
+
+        return $commentUser;
+    }
+
     /**
      * Attention ne pas oublier de changer user_commentId
      * par l'id session de l'utilisateur.

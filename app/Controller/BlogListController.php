@@ -169,9 +169,10 @@ class BlogListController
         }
     }
 
-    public function deletePostId($id)
+    public function deletePostId()
     {
         $post = $this->getConfig()->sanitize($_POST);
+        $this->getPostModel()->deletePost($post['idPost']);
         return $this->getConfig()->redirect('/blogs');
     }
 

@@ -5,15 +5,18 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Model\MembresModel;
+use App\Model\PostsModel;
 use Config\Config;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use function date;
 
 class MembreController extends Users
 {
     private Config $config;
     private MembresModel $membreModel;
+    private PostsModel $postModel;
 
 
     /**
@@ -24,6 +27,7 @@ class MembreController extends Users
     {
         $this->config = new Config();
         $this->membreModel = new MembresModel();
+        $this->postModel = new PostsModel();
     }
 
     /**
@@ -40,6 +44,11 @@ class MembreController extends Users
     public function getMembreModel(): MembresModel
     {
         return $this -> membreModel;
+    }
+
+    public function getPostModel()
+    {
+        return $this->postModel;
     }
 
     /**
@@ -204,25 +213,29 @@ class MembreController extends Users
     {
         $idUser = $_SESSION['id_membre'];
         $userProfil = $this->getMembreModel()->find($idUser);
-        $date = \date($userProfil['createdAt']);
+        $commentUserId = $this->getPostModel()->findCommentById($idUser);
+        $date = date($userProfil['createdAt']);
         $dateFomate = strftime("%d %B %G", strtotime($date));
 
         return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
             'titre' => 'Profil',
             'profil' => $userProfil,
+            'comments' => $commentUserId,
             'dateInscription' => $dateFomate
         ]);
     }
 
     public function mdpUpdate()
     {
+        $donnee = false;
         try {
             $data = $this->getConfig()->sanitize($_POST);
             $this->verifMdp($data);
+            $donnee = true;
         } catch (Exception $e) {
             $idUser = $_SESSION['id_membre'];
             $profil = $this->getMembreModel()->find($idUser);
-            $date = \date($profil['createdAt']);
+            $date = date($profil['createdAt']);
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
             return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
@@ -277,7 +290,7 @@ class MembreController extends Users
     public function isAdmin()
     {
         $userAdmin = Config::USERS_ADMIN;
-        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] === $userAdmin;
+        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == 2;
     }
 
     /**
