@@ -23,7 +23,7 @@ class PostsModel extends PDOmanager
                            postTitle,
                            images,
                            postContent, 
-                           DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") AS create_at
+                           DATE_FORMAT(date_create_at, "%d/%m/%Y") AS create_at
                            FROM Posts
                            INNER JOIN Users
                            WHERE post_userId = idUsers
@@ -44,7 +44,7 @@ class PostsModel extends PDOmanager
     public function findPostByIds($id)
     {
         $req = 'SELECT *,
-                       DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as create_at 
+                       DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
                        FROM Posts 
                        WHERE idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
@@ -86,7 +86,8 @@ class PostsModel extends PDOmanager
     {
         $bdd = $this->getBdd();
         $req = 'SELECT *,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as dateCreateAt 
-                FROM Comments 
+                FROM Comments
+                INNER JOIN Posts ON idPosts = post_commentId
                 INNER JOIN Users ON idUsers = user_commentId 
                 WHERE user_commentId = :id';
         $result = $bdd->prepare($req);
