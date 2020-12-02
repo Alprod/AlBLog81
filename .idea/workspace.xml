@@ -30,13 +30,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/front/membreProfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/membreProfil.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/layout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,6 +281,8 @@
       <workItem from="1606634983015" duration="1650000" />
       <workItem from="1606734074418" duration="796000" />
       <workItem from="1606759730945" duration="134000" />
+      <workItem from="1606813182324" duration="6000" />
+      <workItem from="1606947544535" duration="3636000" />
     </task>
     <servers />
   </component>
@@ -897,7 +897,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
-          <line>289</line>
+          <line>291</line>
           <properties>
             <option name="className" value="\App\Controller\MembreController" />
             <option name="methodName" value="isAdmin" />

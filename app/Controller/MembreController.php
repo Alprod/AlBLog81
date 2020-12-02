@@ -235,6 +235,7 @@ class MembreController extends Users
         } catch (Exception $e) {
             $idUser = $_SESSION['id_membre'];
             $profil = $this->getMembreModel()->find($idUser);
+            $commentUserId = $this->getPostModel()->findCommentById($idUser);
             $date = date($profil['createdAt']);
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
@@ -242,6 +243,7 @@ class MembreController extends Users
                 'titre' => 'Profil',
                 'errorMdp'=> $e->getMessage(),
                 'profil'=> $profil,
+                'comments' => $commentUserId,
                 'dateInscription' => $dateFomate
             ]);
         }

@@ -68,14 +68,22 @@
         </div>
     </div>
     <div class="col-md-12 overflow-auto mt-5" id="commentsUser">
+        <h2>Liste de vos commentaires sur les articles</h2>
         <?php foreach ($comments as $comment) : ?>
-        <div class="card bg-black mt-3" data-spy="scroll" data-target="#commentsUser" data-offset="0">
-            <div class="card-body">
-                <p> <?= htmlspecialchars(html_entity_decode($comment['commentTitle'])) ?> </p>
-                <p> <?= html_entity_decode($comment['commentContent']) ?> </p>
-                <p> <?= $comment['dateCreateAt'] ?> </p>
+            <div class="media bg-black mt-3">
+                <img src="<?= './images/'.$comment['images'] ?>"
+                     class="align-self-center m-3 rounded-lg"
+                     style="width: 80px;height: 80px"
+                     alt="<?= htmlspecialchars($comment['postTitle']) ?>">
+
+                <div class="media-body">
+                    <h5 class="mt-2"><?= htmlspecialchars($comment['postTitle']) ?></h5>
+                    <hr class="my-4 mr-4 border-white">
+                    <p> <?= htmlspecialchars(html_entity_decode($comment['commentTitle'])) ?> </p>
+                    <p> <?= html_entity_decode($comment['commentContent']) ?> </p>
+                    <p> <?= $comment['dateCreateAt'] ?> </p>
+                </div>
             </div>
-        </div>
         <?php endforeach; ?>
     </div>
 </div>

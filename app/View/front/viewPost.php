@@ -22,7 +22,7 @@
         </p>
         <?php endif; ?>
 
-        <p class="text-muted"><?= $post['create_at'] ?></p>
+        <p class="text-muted">Créer le : <?= $post['create_at'] ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
         <?php if (isset($_SESSION['id_membre'])) :?>
@@ -95,13 +95,32 @@
             if (isset($comments)) :
                 foreach ($comments as $comment) :
                     ?>
-            <div class="media pl-3">
+            <div class="media pl-3 mb-3">
                 <img src="https://via.placeholder.com/64" class="align-self-start mr-3 rounded-circle" alt="...">
                 <div class="media-body">
                     <h5 class="mt-0"><?= htmlspecialchars(html_entity_decode($comment['commentTitle'])); ?></h5>
                     <p><?= html_entity_decode($comment['commentContent']); ?></p>
                     <p class="font-italic">Posté par <?= $comment['pseudo']; ?></p>
                     <p class="text-muted"><?= $comment['dateCreate_at']; ?></p>
+                    <?php if (!isset($_SESSION['id_membre'])) : ?>
+                    <p class="font-italic text-muted">
+                        Si vous trouvez se texte inapproprié. Veuillez soit vous
+                        <a href="/register">s'inscrire</a> ou vous <a href="/login">connectez</a>
+                    </p>
+                    <?php else : ?>
+                    <form class="row">
+                        <div class="col col-md-8 m-auto">
+                            <input type="hidden" name="signal">
+                            <p class="font-italic text-muted">
+                                Si vous constatez que le commentaire vous semble inapproprié,
+                                veuillez le signaler et nous ferons le nécessaire
+                            </p>
+                        </div>
+                        <div class="col col-md-4 m-auto">
+                            <button type="submit" class="btn btn-sm btn-outline-danger m-auto">Signaler</button>
+                        </div>
+                    </form>
+                    <?php endif; ?>
                 </div>
             </div>
                     <?php
