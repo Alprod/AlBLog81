@@ -101,7 +101,7 @@
                     <h5 class="mt-0"><?= htmlspecialchars(html_entity_decode($comment['commentTitle'])); ?></h5>
                     <p><?= html_entity_decode($comment['commentContent']); ?></p>
                     <p class="font-italic">Posté par <?= $comment['pseudo']; ?></p>
-                    <p class="text-muted"><?= $comment['dateCreate_at']; ?></p>
+                    <p class="text-muted"><?= $comment['dateCreate']; ?></p>
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <p class="font-italic text-muted">
                         Si vous trouvez se texte inapproprié. Veuillez soit vous

@@ -43,14 +43,26 @@ class PostsModel extends PDOmanager
      */
     public function findPostByIds($id)
     {
-        $req = 'SELECT *,
-                       DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
-                       FROM Posts 
-                       WHERE idPosts = :id_post';
+        $req = 'SELECT *, DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
+                FROM Posts 
+                WHERE idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_post", $id);
         $result->execute();
         $posts= $result->fetch();
+
+        return $posts;
+    }
+
+    public function findPostsByIdUser($id)
+    {
+        $req = 'SELECT *, DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
+                FROM Posts 
+                WHERE post_userId = :id_user';
+        $result = $this->getBdd()->prepare($req);
+        $result->bindParam(":id_user", $id);
+        $result->execute();
+        $posts= $result->fetchAll();
 
         return $posts;
     }
@@ -65,14 +77,15 @@ class PostsModel extends PDOmanager
                         pseudo,
                         commentTitle,
                         commentContent,
-                        DATE_FORMAT(date_create_at, "Créer le : %d/%m/%Y") as dateCreate_at,
+                        DATE_FORMAT(date_create_at, "%d/%m/%Y") as dateCreate_at,
+                        DATE_FORMAT(create_at, "%d/%m/%Y") as dateCreate,
                         idPosts,
                         idUsers
                 FROM Comments
                 INNER JOIN Posts on idPosts = post_commentId
                 INNER JOIN Users on idUsers = user_commentId
                 WHERE post_commentId = :idPosts
-                ORDER BY dateCreate_at ASC LIMIT 0,10';
+                ORDER BY dateCreate ASC LIMIT 0,10';
 
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":idPosts", $id);
@@ -85,7 +98,7 @@ class PostsModel extends PDOmanager
     public function findCommentById($id)
     {
         $bdd = $this->getBdd();
-        $req = 'SELECT *,DATE_FORMAT(create_at, "Créer le : %d/%m/%Y") as dateCreateAt 
+        $req = 'SELECT *,DATE_FORMAT(create_at, "%d/%m/%Y") as dateCreateAt 
                 FROM Comments
                 INNER JOIN Posts ON idPosts = post_commentId
                 INNER JOIN Users ON idUsers = user_commentId 
