@@ -212,8 +212,10 @@ class MembreController extends Users
     public function userProfil()
     {
         $idUser = $_SESSION['id_membre'];
+        $admin = $this->isAdmin();
         $userProfil = $this->getMembreModel()->find($idUser);
         $commentUserId = $this->getPostModel()->findCommentById($idUser);
+        $postUserId = $this->getPostModel()->findPostsByIdUser($idUser);
         $date = date($userProfil['createdAt']);
         $dateFomate = strftime("%d %B %G", strtotime($date));
 
@@ -221,6 +223,8 @@ class MembreController extends Users
             'titre' => 'Profil',
             'profil' => $userProfil,
             'comments' => $commentUserId,
+            'posts' => $postUserId,
+            'isAdmin' => $admin,
             'dateInscription' => $dateFomate
         ]);
     }
@@ -301,6 +305,6 @@ class MembreController extends Users
     public function isSuperAdmin()
     {
         $superAdmin = Config::SUPER_USERS_ADMIN;
-        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] === $superAdmin;
+        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $superAdmin;
     }
 }

@@ -67,10 +67,12 @@
             </form>
         </div>
     </div>
-    <div class="col-md-12 overflow-auto mt-5" id="commentsUser">
-        <h2>Liste de vos commentaires sur les articles</h2>
-        <?php foreach ($comments as $comment) : ?>
-            <div class="media bg-black mt-3">
+    <div class="<?= (isset($isAdmin) && $isAdmin) ? 'col-md-6' : 'col-md-12' ?> overflow-auto mt-5" id="commentsUser">
+        <h2>Vos commentaires</h2>
+
+        <?php if (!empty($comments)) :
+            foreach ($comments as $comment) : ?>
+            <div class="media bg-black mt-3 rounded">
                 <img src="<?= './images/'.$comment['images'] ?>"
                      class="align-self-center m-3 rounded-lg"
                      style="width: 80px;height: 80px"
@@ -81,9 +83,35 @@
                     <hr class="my-4 mr-4 border-white">
                     <p> <?= htmlspecialchars(html_entity_decode($comment['commentTitle'])) ?> </p>
                     <p> <?= html_entity_decode($comment['commentContent']) ?> </p>
-                    <p> <?= $comment['dateCreateAt'] ?> </p>
+                    <p>Créer le : <?= $comment['dateCreateAt'] ?> </p>
+                </div>
+            </div>
+            <?php endforeach;
+        else :
+            ?>
+            <p>Désolé mais vous avez fais aucun commentaire sur un article.</p>
+            <?php
+        endif;
+        ?>
+    </div>
+    <?php if (isset($isAdmin) && $isAdmin) : ?>
+    <div class="col-md-6 overflow-auto mt-5" id="commentsUser">
+        <h2>Vos articles</h2>
+        <?php foreach ($posts as $post) : ?>
+            <div class="media bg-black mt-3 rounded">
+                <img src="<?= './images/'.$post['images'] ?>"
+                     class="align-self-center m-3 rounded-lg"
+                     style="width: 80px;height: 80px"
+                     alt="<?= htmlspecialchars($post['postTitle']) ?>">
+
+                <div class="media-body">
+                    <h5 class="mt-2"><?= htmlspecialchars(html_entity_decode($post['postTitle'])) ?></h5>
+                    <hr class="my-4 mr-4 border-white">
+                    <p> <?= html_entity_decode($post['postContent']) ?> </p>
+                    <p>Créer le : <?= $post['create_at'] ?> </p>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+    <?php endif; ?>
 </div>
