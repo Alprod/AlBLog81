@@ -11,7 +11,8 @@ use ReflectionException;
 
 class HomeController extends Config
 {
-    private $isAdmin;
+    private bool $isAdmin;
+    private bool $superAdmin;
 
     /**
      * HomeController constructor.
@@ -19,7 +20,8 @@ class HomeController extends Config
      */
     public function __construct()
     {
-        $this -> isAdmin = (new MembreController) -> isAdmin();
+        $this -> isAdmin = (new MembreController)->isAdmin();
+        $this-> superAdmin = (new AdminController)->isSuperAdmin();
     }
 
 

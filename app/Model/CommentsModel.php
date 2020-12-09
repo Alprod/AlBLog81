@@ -3,11 +3,28 @@
 
 namespace App\Model;
 
-
 use Config\PDOmanager;
 
 class CommentsModel extends PDOmanager
 {
+    /**
+     * @return bool|array
+     */
+    public function findAllComments()
+    {
+        $req = 'SELECT *, DATE_FORMAT(create_at, "%d/%m/%Y") AS dateCreate_at  
+                         FROM Comments 
+                         INNER JOIN Posts ON post_commentId = idPosts
+                         INNER JOIN Users ON user_commentId = idUsers
+                         GROUP BY idComments';
+        $result = $this->getBdd()->prepare($req);
+        $result->execute();
+        $data = $result->fetchAll();
+        if (!$data) {
+            return false;
+        }
+        return $data;
+    }
 
     public function findCommentsByIds($id)
     {
@@ -29,11 +46,10 @@ class CommentsModel extends PDOmanager
                         LIMIT 10';
 
         $result = $this->getBdd()->query($req);
-        $result->bindParam(":idPost",$id);
+        $result->bindParam(":idPost", $id);
         $result->execute();
         $commentPost = $result->fetch();
 
         return $commentPost;
     }
-
 }

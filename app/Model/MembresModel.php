@@ -3,8 +3,10 @@
 
 namespace App\Model;
 
+use App\Entity\Users;
 use Config\Config;
 use Config\PDOmanager;
+use PDO;
 use PDOStatement;
 
 class MembresModel extends PDOmanager
@@ -13,6 +15,7 @@ class MembresModel extends PDOmanager
     {
         $req = "SELECT * FROM Users";
         $result = $this->getBdd()->prepare($req);
+        $result->execute();
         $data = $result->fetchAll();
         if (!$data) {
             return false;
@@ -38,6 +41,7 @@ class MembresModel extends PDOmanager
         }
     }
 
+
     /**
      * @param $pseudo
      * @return false|mixed
@@ -50,6 +54,7 @@ class MembresModel extends PDOmanager
         $result->bindParam(':pseudo', $pseudo);
         $result->execute();
         $data = $result->fetch();
+        $result->closeCursor();
         if ($data) {
             return $data;
         } else {
@@ -88,8 +93,8 @@ class MembresModel extends PDOmanager
     {
         $bdd = $this->getBdd();
         $request = $bdd->prepare('UPDATE Users SET mdp = :mdp WHERE idUsers = :idUsers');
-        $request->bindParam(':idUsers', $idUsers, \PDO::PARAM_INT);
-        $request->bindValue(':mdp', $mdp, \PDO::PARAM_STR);
+        $request->bindParam(':idUsers', $idUsers, PDO::PARAM_INT);
+        $request->bindValue(':mdp', $mdp, PDO::PARAM_STR);
         $request->execute();
     }
 

@@ -34,13 +34,18 @@
                     <a class="nav-link" href="/editPost/create">Nouveau post</a>
                     <?php endif; ?>
 
+                    <?php //if (isset($_SESSION['id_membre'], $superAdmin) && $superAdmin) : ?>
+                    <a class="nav-link" href="/dashbaord">Dashbaord</a>
+                    <?php //endif; ?>
+
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <a class="nav-link" href="/register">Inscription</a>
                     <a class="nav-link connexion" href="/login">Connexion</a>
                     <?php else : ?>
-                        <a class="nav-link" href="/profil">Profil</a>
+                    <a class="nav-link" href="/profil">Profil</a>
                     <a class="nav-link connexion" href="/logout">Déconnexion</a>
                     <?php endif; ?>
+
                 </nav>
             </div>
         </header>

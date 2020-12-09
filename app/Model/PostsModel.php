@@ -13,7 +13,7 @@ class PostsModel extends PDOmanager
 {
 
     /**
-     * @return false|PDOStatement
+     * @return bool|array
      */
     public function findAllPosts()
     {
@@ -28,13 +28,15 @@ class PostsModel extends PDOmanager
                            INNER JOIN Users
                            WHERE post_userId = idUsers
                            ORDER BY create_at LIMIT 0,15';
-        $resultat = $this->getBdd()->query($requete);
+        $resultat = $this->getBdd()->prepare($requete);
+        $resultat->execute();
+        $data = $resultat->fetchAll();
 
-        if (!$resultat) {
+        if (!$data) {
             return false;
         }
 
-        return $resultat;
+        return $data;
     }
 
     /**

@@ -169,3 +169,8 @@ color: #fcfcfc !important;
 .mdp{
   text-decoration-color: #fcfcfc;
 }
+
+.dashContentView{
+  height: 400px;
+  overflow: scroll !important;
+}
