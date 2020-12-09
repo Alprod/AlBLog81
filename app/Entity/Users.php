@@ -23,6 +23,7 @@ class Users
     private $departement;
     private $country;
 
+
     /**
      * @return mixed
      */
@@ -53,6 +54,14 @@ class Users
     public function setRoles($roles): void
     {
         $this -> roles = $roles;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->roles == 2;
     }
 
     /**

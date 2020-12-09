@@ -10,13 +10,14 @@ use Config\Config;
 use DateTime;
 use DateTimeZone;
 use Exception;
-use function date;
+use Date;
 
 class MembreController extends Users
 {
     private Config $config;
     private MembresModel $membreModel;
     private PostsModel $postModel;
+
 
 
     /**
@@ -49,6 +50,15 @@ class MembreController extends Users
     public function getPostModel()
     {
         return $this->postModel;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        $userAdmin = Config::USERS_ADMIN;
+        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $userAdmin;
     }
 
     /**
@@ -101,6 +111,10 @@ class MembreController extends Users
         return $this->getConfig()->render('layout.php', 'membres/subscribe.php', $params);
     }
 
+
+    /**
+     * @return bool|void
+     */
     public function login()
     {
         try {
@@ -112,9 +126,9 @@ class MembreController extends Users
                 'titre'=> 'Connexion',
             ]);
         }
+
         $req = $this->getMembreModel()->loginOfConnexion($data['email']);
         $this->getConfig()->createSession($req['idUsers']);
-
         $_SESSION['membre'] = $req;
         $_SESSION['pseudo_membre'] = $req['pseudo'];
         $_SESSION['email_membre'] = $req['email'];
@@ -188,10 +202,13 @@ class MembreController extends Users
 
     public function verifLogin($data)
     {
+
         $email = $data['email'];
         $pwd = $data['password'];
 
         $value = $this->getMembreModel()->loginOfConnexion($email);
+
+        var_dump($value);
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) && empty($email)) {
             throw new Exception('Le champs de votre email est incorrect');
@@ -288,23 +305,5 @@ class MembreController extends Users
         if ($pwd_New   !== $pwd_Confirm) {
             throw new Exception('les mots de passe ne sont pas identique');
         }
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin()
-    {
-        $userAdmin = Config::USERS_ADMIN;
-        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == 2;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isSuperAdmin()
-    {
-        $superAdmin = Config::SUPER_USERS_ADMIN;
-        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $superAdmin;
     }
 }

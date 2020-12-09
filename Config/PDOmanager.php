@@ -3,7 +3,6 @@
 
 namespace Config;
 
-
 use Exception;
 use PDO;
 use PDOStatement;
@@ -40,7 +39,7 @@ class PDOmanager extends PDO
      */
     public static function getInstance()
     {
-        if(is_null(self::$instance)){
+        if (is_null(self::$instance)) {
             self::$instance;
         }
         return self::$instance;
@@ -60,25 +59,24 @@ class PDOmanager extends PDO
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 
         try {
-            $bdd = new PDO('mysql:host='.$paramBdd['host'].';dbname='.$paramBdd['dbname'],
+            $bdd = new PDO(
+                'mysql:host='.$paramBdd['host'].';dbname='.$paramBdd['dbname'],
                 $paramBdd['login'],
-                $paramBdd['password'],$options);
-        } catch (Exception $e)
-        {
+                $paramBdd['password'],
+                $options
+            );
+        } catch (Exception $e) {
             die('Erreur : '.$e->getMessage());
         }
         return $bdd;
-
     }
 
-    public function bindArrayValue($req,$array,$typeArray = false)
+    public function bindArrayValue($req, $array, $typeArray = false)
     {
         foreach ($array as $key => $val) {
-            if($typeArray){
-                $req->bindValue(":$key",$val,$typeArray[$key]);
+            if ($typeArray) {
+                $req->bindValue(":$key", $val, $typeArray[$key]);
             }
         }
     }
-
-
 }

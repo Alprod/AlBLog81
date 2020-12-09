@@ -3,6 +3,7 @@
 
 namespace App\Router;
 
+use App\Controller\AdminController;
 use App\Controller\BlogListController;
 use App\Controller\ContactSendMail;
 use App\Controller\HomeController;
@@ -30,6 +31,7 @@ class Routes
             new Route('GET', 'login', '/login', [MembreController::class, 'membresConnexion']),
             new Route('GET', 'logout', '/logout', [MembreController::class, 'logout']),
             new Route('GET', 'membreProfil', '/profil', [MembreController::class, 'userProfil']),
+            new Route('GET', 'dashbaord', '/dashbaord', [AdminController::class, 'dashbaordAdmin']),
             new Route('GET', 'postFormById', '/{id}', [BlogListController::class, 'postFormById']),
             new Route('POST', 'addComment', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
