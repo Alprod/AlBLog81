@@ -29,20 +29,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/myblog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myblog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/PDOmanager.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/PDOmanager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/CommentsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/CommentsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/MembresModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/MembresModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Posts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Router/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router/Routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/layout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/admin/postEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/postEdit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +120,7 @@
     <property name="Constants" value="false" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="Git.Branch.Popup.ShowAllLocals" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="TYPO3AuthorEmailAddress" value="myname@example.org" />
     <property name="TYPO3AuthorName" value="My Name" />
@@ -298,6 +290,8 @@
       <workItem from="1607453738588" duration="1945000" />
       <workItem from="1607497436411" duration="50000" />
       <workItem from="1607497496562" duration="2144000" />
+      <workItem from="1607811830835" duration="8230000" />
+      <workItem from="1607883307523" duration="9580000" />
     </task>
     <servers />
   </component>
@@ -356,9 +350,14 @@
           <line>201</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
+          <line>196</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
         <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
-          <line>171</line>
+          <line>186</line>
           <properties>
             <option name="className" value="\App\Controller\BlogListController" />
             <option name="methodName" value="deletePostId" />
@@ -374,11 +373,29 @@
           </properties>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
+          <line>172</line>
+          <properties>
+            <option name="className" value="\App\Controller\BlogListController" />
+            <option name="methodName" value="updatePostById" />
+          </properties>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Model/PostsModel.php</url>
+          <line>181</line>
+          <properties>
+            <option name="className" value="\App\Model\PostsModel" />
+            <option name="methodName" value="updatePost" />
+          </properties>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="index.php">
-        <watch expression="$donnee[0]" />
+        <watch expression="$nom" />
       </configuration>
     </watches-manager>
   </component>

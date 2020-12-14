@@ -4,11 +4,11 @@
         <form
             enctype="multipart/form-data"
             method="post"
-            action="<?= (isset($blog_actuel)) ? '/updatePost' : '/addPost' ?>">
+            action="<?= (!empty($blog_actuel)) ? '/updatePost' : '/addPost' ?>">
             <input
                 type="hidden"
                 name="idPosts"
-                value="<?= (isset($blog_actuel)) ? $blog_actuel['idPosts'] : '' ?>">
+                value="<?= (!empty($blog_actuel)) ? $blog_actuel->getIdPosts() : '' ?>">
 
             <div class="form-group">
                 <label for="postTitle">Titre de l'article</label>
@@ -16,7 +16,7 @@
                         type="text"
                         name="postTitle"
                         class="form-control Subcribe text-white border border-dark"
-                        value="<?= $blog_actuel['postTitle'] ?? '' ?>"
+                        value="<?=  (!empty($blog_actuel)) ? $blog_actuel->getPostTitle() : '' ?>"
                         id="postTitle"
                         aria-describedby="emailHelp">
             </div>
@@ -26,21 +26,21 @@
                         name="postContent"
                         rows="8"
                         class="form-control Subcribe text-white border border-dark"
-                        id="postContent"><?= $blog_actuel['postContent'] ?? '' ?>
+                        id="postContent"><?= (!empty($blog_actuel)) ? $blog_actuel->getPostContent() : '' ?>
                 </textarea>
             </div>
             <div class="form-group">
-                <?php if (isset($blog_actuel['photo'])) : ?>
+                <?php if (!empty($blog_image)) : ?>
                     <img
-                        src="./images/<?= $blog_actuel['photo'] ?>"
+                        src="./images/<?= $blog_actuel->getImages() ?>"
                         class="w-25 h-25 m-3 rounded-lg"
-                        alt="<?= $blog_actuel['postTitle'] ?>">
+                        alt="<?=  $blog_actuel->getPostTitle() ?>">
                 <?php endif; ?>
-                <label for="imagePost">Ajouter votre photo/images.</label>
+                <label for="imagePost">Votre photo/images actuel.</label>
                 <input
                         type="file"
                         name="images"
-                        value="<?= $blog_actuel['images'] ?? '' ?>"
+                        value="<?= (!empty($blog_actuel)) ? $blog_actuel->getImages() : '' ?>"
                         class="form-control-file Subcribe border border-dark"
                         id="imagePost">
             </div>
@@ -49,7 +49,7 @@
                 <input
                         type="text"
                         name="link"
-                        value="<?= $blog_actuel['link'] ?? '' ?>"
+                        value="<?= (!empty($blog_actuel)) ? $blog_actuel->getLink() : '' ?>"
                         class="form-control Subcribe text-white border border-dark"
                         id="link">
             </div>

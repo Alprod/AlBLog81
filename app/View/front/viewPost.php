@@ -4,25 +4,25 @@
 <div class="card border-dark text-white bg-dark mb-3 bg-black">
     <img
         class="card-img-top"
-        src="./../images/<?= $post['images'] ?>"
-        alt="<?= $post['postTitle'] ?>">
+        src="./../images/<?= $post->getImages() ?>"
+        alt="<?= $post->getPostTitle() ?>">
 
     <div class="card-body">
 
-        <h5 class="card-title"><?= htmlspecialchars($post['postTitle']) ?></h5>
-        <p class="card-text"><?= html_entity_decode($post['postContent'])  ?></p>
+        <h5 class="card-title"><?= htmlspecialchars($post->getPostTitle()) ?></h5>
+        <p class="card-text"><?= html_entity_decode($post->getPostContent())  ?></p>
 
-        <?php if (!empty($post['link'])) : ?>
+        <?php if (!empty($post->getLink())) : ?>
         <p>Visitez le site
             <a
-                href="https://<?= $post['link']; ?>"
+                href="https://<?= $post->getLink(); ?>"
                 class="font-italic"
-                target="_blank"><?= htmlspecialchars($post['postTitle']) ?>
+                target="_blank"><?= htmlspecialchars($post->getPostTitle()) ?>
             </a>
         </p>
         <?php endif; ?>
 
-        <p class="text-muted">Créer le : <?= $post['create_at'] ?></p>
+        <p class="text-muted">Créer le : <?= $post->getDateCreateAt() ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
         <?php if (isset($_SESSION['id_membre'])) :?>
@@ -34,15 +34,15 @@
                 aria-expanded="false"
                 aria-controls="collapseExample">Commentaire
         </button>
-            <?php if (isset($isAdmin) && $isAdmin && $_SESSION['id_membre'] === $post['post_userId']) : ?>
+            <?php if (isset($isAdmin) && $isAdmin && $_SESSION['id_membre'] === $post->getPostUserId()) : ?>
             <a
-                href="<?= '/'.$post['idPosts'] ?>"
+                href="<?= '/'.$post->getIdPosts() ?>"
                 value="Modifier l'article"
                 class="btn btn-outline-info btn-sm mb-2"><?= $changer ?>
             </a>
             <div class="d-flex justify-content-end">
                 <form method="post" action="/deletePost">
-                    <input type="hidden" name="idPost" value="<?= $post['idPosts'] ?>">
+                    <input type="hidden" name="idPost" value="<?= $post->getIdPosts() ?>">
                     <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>
                 </form>
 

@@ -3,9 +3,6 @@
 
 namespace App\Entity;
 
-
-use DateTime;
-
 class Posts
 {
     private $idPosts;
@@ -13,8 +10,20 @@ class Posts
     private $postContent;
     private $images;
     private $link;
-    private DateTime $date_create_at;
+    private $date_create_at;
     private $post_userId;
+
+
+
+    public function hydrate(array $donnees)
+    {
+        foreach ($donnees as $key => $value) {
+            $methode = 'set'.ucfirst($key);
+            if (method_exists($this, $methode)) {
+                $this->$methode($value);
+            }
+        }
+    }
 
     /**
      * @return mixed
@@ -112,5 +121,19 @@ class Posts
         $this -> post_userId = $post_userId;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDateCreateAt()
+    {
+        return $this -> date_create_at;
+    }
 
+    /**
+     * @param mixed $date_create_at
+     */
+    public function setDateCreateAt($date_create_at): void
+    {
+        $this -> date_create_at = $date_create_at;
+    }
 }

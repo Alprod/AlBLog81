@@ -3,6 +3,7 @@
 
 namespace App\Model;
 
+use App\Entity\Posts;
 use Config\PDOmanager;
 use DateTime;
 use DateTimeZone;
@@ -51,7 +52,7 @@ class PostsModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_post", $id);
         $result->execute();
-        $posts= $result->fetch();
+        $posts= $result->fetchAll(self::FETCH_CLASS, "App\Entity\Posts");
 
         return $posts;
     }
@@ -178,18 +179,24 @@ class PostsModel extends PDOmanager
      * @return bool
      * @throws Exception
      */
-    public function updatePost($post)
+    public function updatePost(Posts $post): bool
     {
-        $newValue = array();
-        foreach ($post as $key => $value) {
-            $newValue[] = "$key = :$key";
-        }
 
         $bdd = $this->getBdd();
-        $request = 'UPDATE Posts SET '.implode(',', $newValue).' WHERE idPosts = :idPosts';
+        $request = 'UPDATE Posts SET 
+                                     postTitle = :title,
+                                     postContent = :content, 
+                                     images = :images, 
+                                     date_create_at = NOW() 
+                   WHERE idPosts = :idPosts';
         $result = $bdd->prepare($request);
+        $result->bindValue(':title', $post->getPostTitle());
+        $result->bindValue(':content', $post->getPostContent());
+        $result->bindValue(':images', $post->getImages());
+        $result->bindValue(':idPosts', $post->getIdPosts());
 
-        return $result->execute($post);
+
+        return $result->execute();
     }
 
     /**
