@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Posts;
+use App\Entity\Users;
 use App\Model\CommentsModel;
 use App\Model\PostsModel;
 use Config\Config;
@@ -81,6 +83,10 @@ class BlogListController
         $isAdmin = $this->isAdmin();
         $post = $this->getConfig()->sanitize($_POST);
         $viewPost = $this->getPostModel()->findPostByIds($id);
+        foreach ($viewPost as $views) {
+            $view = $views;
+        }
+
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
 
         if (!empty($post)) {
@@ -91,7 +97,7 @@ class BlogListController
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,
-            'post' => $viewPost,
+            'post' => $view,
             'comments' => $commentByPost,
             'changer'=> 'Modifier',
             'isAdmin' => $isAdmin
@@ -138,7 +144,7 @@ class BlogListController
     public function form()
     {
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
-            'titre'=> 'Nouvel Article'
+            'titre'=> 'Nouvel Article',
         ]);
     }
 
@@ -146,15 +152,21 @@ class BlogListController
      * @param $id
      * @return bool
      */
-    public function postFormById($id)
+    public function postFormById($id): bool
     {
         $post = $this->getConfig()->sanitize($_POST);
         $postByIds = $this->getPostModel()->findPostByIds($id);
-        $params['titre'] = 'Modifier l\'article';
-        $params['blog_actuel'] = (!empty($post)) ? $post : $postByIds;
-        $params['blog_actuel']['photo'] = $postByIds['images'];
+        foreach ($postByIds as $postById) {
+            $idPost = $postById;
+        }
+        $postImage = $idPost->getImages();
+        //dd($idPost);
 
-        return $this->getConfig()->render("layout.php", "admin/postEdit.php", $params);
+        return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
+            'titre' => 'Modifier l\'article',
+            'blog_actuel' => $idPost,
+            'blog_image' => $postImage
+        ]);
     }
 
 
@@ -162,9 +174,12 @@ class BlogListController
     {
         $post = $this->getConfig()->sanitize($_POST);
         if (!empty($post)) {
+            $newPost = new Posts();
             $this->copyImages();
             $post['images'] = $_POST['images'];
-            $this->getPostModel()->updatePost($_POST);
+            $newPost->hydrate($post);
+            $this->getPostModel()->updatePost($newPost);
+
             return $this->getConfig()->redirect('/blogs');
         }
     }
