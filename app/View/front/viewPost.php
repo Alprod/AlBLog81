@@ -22,7 +22,7 @@
         </p>
         <?php endif; ?>
 
-        <p class="text-muted">Créer le : <?= $post->getCreateAt() ?></p>
+        <p class="text-muted">Créer le : <?= $post->getDateCreateAt() ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
         <?php if (isset($_SESSION['id_membre'])) :?>
@@ -96,12 +96,12 @@
                 foreach ($comments as $comment) :
                     ?>
             <div class="media pl-3 mb-3">
-                <img src="https://via.placeholder.com/64" class="align-self-start mr-3 rounded-circle" alt="...">
+                <img src="https://picsum.photos/id/1074/64" class="align-self-start mr-3 rounded-circle" alt="...">
                 <div class="media-body">
-                    <h5 class="mt-0"><?= htmlspecialchars(html_entity_decode($comment['commentTitle'])); ?></h5>
-                    <p><?= html_entity_decode($comment['commentContent']); ?></p>
-                    <p class="font-italic">Posté par <?= $comment['pseudo']; ?></p>
-                    <p class="text-muted"><?= $comment['dateCreate']; ?></p>
+                    <h5 class="mt-0"><?= htmlspecialchars(html_entity_decode($comment->getCommentTitle())); ?></h5>
+                    <p><?= html_entity_decode($comment->getCommentContent()); ?></p>
+                    <p class="font-italic">Posté par <?= $comment->getUserId()->getPseudo(); ?></p>
+                    <p class="text-muted">Créer le : <?= $comment->getCommentCreateAt(); ?></p>
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <p class="font-italic text-muted">
                         Si vous trouvez se texte inapproprié. Veuillez soit vous

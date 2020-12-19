@@ -12,7 +12,7 @@
                 <img src="./images/<?= $post->getImages() ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?= htmlspecialchars($post->getPostTitle()) ?></h5>
-                    <p class="text-muted"><?= $post->getCreateAt() ?></p>
+                    <p class="text-muted"><?= $post->getDateCreateAt() ?></p>
                     <p class="text-muted">Ecris par : <?= $post->getuserId()->getPseudo() ?> </p>
 
                     <a

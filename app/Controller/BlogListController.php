@@ -73,7 +73,6 @@ class BlogListController
     public function blogList(): string
     {
         $listPost = $this->getPostModel()->findAllPosts();
-
         $isAdmin = $this->isAdmin();
         $conf = $this->getConfig();
 
@@ -109,21 +108,6 @@ class BlogListController
             'changer'=> 'Modifier',
             'isAdmin' => $isAdmin
         ]);
-    }
-
-
-    public function addPost()
-    {
-        $post = $this->getConfig()->sanitize($_POST);
-        $newPost = new Posts();
-        $this->copyImages();
-        $post['images'] = $_POST['images'];
-        $newPost->hydrate($post);
-
-
-        $this->getPostModel()->editPost($newPost);
-
-        return $this->getConfig()->redirect("/blogs");
     }
 
     /**
@@ -173,6 +157,20 @@ class BlogListController
             'blog_actuel' => $idPost,
             'blog_image' => $postImage
         ]);
+    }
+
+    public function addPost()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        $newPost = new Posts();
+        $this->copyImages();
+        $post['images'] = $_POST['images'];
+        $newPost->hydrate($post);
+
+
+        $this->getPostModel()->editPost($newPost);
+
+        return $this->getConfig()->redirect("/blogs");
     }
 
 

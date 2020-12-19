@@ -3,15 +3,36 @@
 
 namespace App\Entity;
 
-
 class Comments extends Entity
 {
     private $idComments;
     private $commentTitle;
     private $commentContent;
-    private $create_at;
-    private $post_commentId;
-    private $user_commentId;
+    private $commentCreateAt;
+    private $postCommentId;
+    private $userCommentId;
+    private $signal;
+    private $postId;
+    private $userId;
+
+    public function __set($name, $value)
+    {
+        if ($this->postId === null && $this->userId === null) {
+            $this->postId = new Posts();
+            $this->userId= new Users();
+        }
+        switch ($name) {
+            case 'idPosts':
+                $this->postId->setIdPosts($value);
+                break;
+            case 'date_create_at':
+                $this->setCreateAt($value);
+                break;
+            case 'pseudo':
+                $this->userId->setPseudo($value);
+                break;
+        }
+    }
 
     /**
      * @return mixed
@@ -64,17 +85,17 @@ class Comments extends Entity
     /**
      * @return mixed
      */
-    public function getCreateAt()
+    public function getCommentCreateAt()
     {
-        return $this -> create_at;
+        return $this -> commentCreateAt;
     }
 
     /**
-     * @param mixed $create_at
+     * @param mixed $commentCreateAt
      */
-    public function setCreateAt($create_at): void
+    public function setCommentCreateAt($commentCreateAt): void
     {
-        $this -> create_at = $create_at;
+        $this -> commentCreateAt = $commentCreateAt;
     }
 
     /**
@@ -82,15 +103,15 @@ class Comments extends Entity
      */
     public function getPostCommentId()
     {
-        return $this -> post_commentId;
+        return $this -> postCommentId;
     }
 
     /**
-     * @param mixed $post_commentId
+     * @param mixed $postCommentId
      */
-    public function setPostCommentId($post_commentId): void
+    public function setPostCommentId($postCommentId): void
     {
-        $this -> post_commentId = $post_commentId;
+        $this -> postCommentId = $postCommentId;
     }
 
     /**
@@ -98,15 +119,46 @@ class Comments extends Entity
      */
     public function getUserCommentId()
     {
-        return $this -> user_commentId;
+        return $this -> $userCommentId;
     }
 
     /**
-     * @param mixed $user_commentId
+     * @param mixed $userCommentId
      */
-    public function setUserCommentId($user_commentId): void
+    public function setUserCommentId($userCommentId): void
     {
-        $this -> user_commentId = $user_commentId;
+        $this -> userCommentId = $userCommentId;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPostId()
+    {
+        return $this -> postId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this -> userId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSignal()
+    {
+        return $this -> signal;
+    }
+
+    /**
+     * @param mixed $signal
+     */
+    public function setSignal($signal): void
+    {
+        $this -> signal = $signal;
+    }
 }

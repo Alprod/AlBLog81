@@ -12,8 +12,8 @@ class Posts extends Entity
     private $postContent;
     private $images;
     private $link;
-    private $create_at;
-    private $post_userId;
+    private $dateCreateAt;
+    private $postUserId;
     private $userId;
 
 
@@ -122,31 +122,32 @@ class Posts extends Entity
      */
     public function getPostUserId()
     {
-        return $this -> post_userId;
+        return $this -> postUserId;
     }
 
     /**
-     * @param mixed $post_userId
+     * @param mixed $postUserId
      */
-    public function setPostUserId($post_userId): void
+    public function setPostUserId($postUserId): void
     {
-        $this -> post_userId = $post_userId;
+        $this -> postUserId = $postUserId;
     }
-
 
     /**
      * @return mixed
      */
-    public function getCreateAt()
+    public function getDateCreateAt()
     {
-        return $this -> create_at;
+        return $this -> dateCreateAt;
     }
 
     /**
-     * @param mixed $create_at
+     * @param mixed $dateCreateAt
      */
-    public function setCreateAt($create_at): void
+    public function setDateCreateAt($dateCreateAt): void
     {
-        $this -> create_at = $create_at;
+        $this -> dateCreateAt = $dateCreateAt;
     }
+
+
 }

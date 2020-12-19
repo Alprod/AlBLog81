@@ -20,17 +20,17 @@
                 </thead>
                 <tbody>
                 <?php foreach ($users as $membre) : ?>
-                    <?php if (isset($users) && $membre['roles'] == 3) :?>
+                    <?php if (isset($users) && $membre->getRoles() == 3) :?>
                         <tr>
-                            <th scope="row"><?= $membre['idUsers'] ?></th>
-                            <td><?= $membre['pseudo'] ?></td>
-                            <td  class="hidden"><?= $membre['roles'] ?></td>
-                            <td><?= $membre['firstname'] ?></td>
-                            <td><?= $membre['lastname'] ?></td>
-                            <td><?= $membre['email'] ?></td>
-                            <td><?= $membre['zip_code'] ?></td>
-                            <td><?= $membre['city'] ?></td>
-                            <td><?= $membre['country'] ?></td>
+                            <th scope="row"><?= $membre->getIdUsers() ?></th>
+                            <td><?= $membre->getPseudo() ?></td>
+                            <td  class="hidden"><?= $membre->getRoles() ?></td>
+                            <td><?= $membre->getFirstname() ?></td>
+                            <td><?= $membre->getLastname() ?></td>
+                            <td><?= $membre->getEmail() ?></td>
+                            <td><?= $membre->getZipCode() ?></td>
+                            <td><?= $membre->getCity() ?></td>
+                            <td><?= $membre->getCountry() ?></td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach;?>
@@ -58,17 +58,17 @@
                 </thead>
                 <tbody>
                 <?php foreach ($users as $bloger) : ?>
-                    <?php if (isset($users) && $bloger['roles'] == 2) :?>
+                    <?php if (isset($users) && $bloger->getRoles() == 2) :?>
                         <tr>
-                            <th scope="row"><?= $bloger['idUsers'] ?></th>
-                            <td><?= $bloger['pseudo'] ?></td>
-                            <td  class="hidden"><?= $bloger['roles'] ?></td>
-                            <td><?= $bloger['firstname'] ?></td>
-                            <td><?= $bloger['lastname'] ?></td>
-                            <td><?= $bloger['email'] ?></td>
-                            <td><?= $bloger['zip_code'] ?></td>
-                            <td><?= $bloger['city'] ?></td>
-                            <td><?= $bloger['country'] ?></td>
+                            <th scope="row"><?= $bloger->getIdUsers() ?></th>
+                            <td><?= $bloger->getPseudo() ?></td>
+                            <td  class="hidden"><?= $bloger->getRoles() ?></td>
+                            <td><?= $bloger->getFirstname() ?></td>
+                            <td><?= $bloger->getLastname() ?></td>
+                            <td><?= $bloger->getEmail() ?></td>
+                            <td><?= $bloger->getZipCode() ?></td>
+                            <td><?= $bloger->getCity() ?></td>
+                            <td><?= $bloger->getCountry() ?></td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach;?>
@@ -96,17 +96,17 @@
                 </thead>
                 <tbody>
                 <?php foreach ($users as $admin) : ?>
-                    <?php if (isset($users) && $admin['roles'] == 1) :?>
+                    <?php if (isset($users) && $admin->getRoles() == 1) :?>
                         <tr>
-                            <th scope="row"><?= $admin['idUsers'] ?></th>
-                            <td><?= $admin['pseudo'] ?></td>
-                            <td  class="hidden"><?= $admin['roles'] ?></td>
-                            <td><?= $admin['firstname'] ?></td>
-                            <td><?= $admin['lastname'] ?></td>
-                            <td><?= $admin['email'] ?></td>
-                            <td><?= $admin['zip_code'] ?></td>
-                            <td><?= $admin['city'] ?></td>
-                            <td><?= $admin['country'] ?></td>
+                            <th scope="row"><?= $admin->getIdUsers() ?></th>
+                            <td><?= $admin->getPseudo() ?></td>
+                            <td  class="hidden"><?= $admin->getRoles() ?></td>
+                            <td><?= $admin->getFirstname() ?></td>
+                            <td><?= $admin->getLastname() ?></td>
+                            <td><?= $admin->getEmail() ?></td>
+                            <td><?= $admin->getZipCode() ?></td>
+                            <td><?= $admin->getCity() ?></td>
+                            <td><?= $admin->getCountry() ?></td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach;?>
@@ -126,11 +126,11 @@
         <?php foreach ($posts as $post) : ?>
             <ul>
                 <li class="media my-1">
-                    <a href="/<?= $post['postTitle']?>/<?= $post['idPosts']?>">
-                    <img class="mr-3 rounded" style="width: 3em;" src="./images/<?= $post['images'] ?>" alt="Generic placeholder image">
+                    <a href="/<?= $post->getPostTitle() ?>/<?= $post->getIdPosts() ?>">
+                    <img class="mr-3 rounded" style="width: 3em;" src="./images/<?= $post->getImages()?>" alt="Generic placeholder image">
                     </a>
                     <div class="media-body">
-                        <p><strong><?= $post['postTitle']?></strong> <?= 'par '.$post['pseudo'].' <em>'.$post['create_at'] ?></em></p>
+                        <p><strong><?= $post->getPostTitle() ?></strong> <?= 'par '.$post->getUserId()->getPseudo().' <em>'.$post->getDateCreateAt() ?></em></p>
                     </div>
                 </li>
             </ul>
@@ -141,15 +141,15 @@
             <ul>
                 <li class="media my-1">
                     <div class="media-body">
-                        <p><strong><?= $comment['commentTitle']?></strong> <?= 'par '.$comment['pseudo'].' <em>'.$comment['dateCreate_at'] ?></em></p>
+                        <p><strong><?= $comment->getCommentTitle()?></strong> <?= 'par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getPostId()->getDateCreateAt() ?></em></p>
                     </div>
                 </li>
             </ul>
         <?php endforeach; ?>
     </div>
     <div class="col col-md-12">
-        <?php if(isset($comments['signal']) && $comments['signal'] == true): ?>
-        <?php else: ?>
+        <?php if ($comments == true) : ?>
+        <?php else : ?>
         <p>Aucun commentaires signaler</p>
         <?php endif;?>
     </div>
