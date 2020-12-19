@@ -22,7 +22,7 @@
         </p>
         <?php endif; ?>
 
-        <p class="text-muted">Créer le : <?= $post->getDateCreateAt() ?></p>
+        <p class="text-muted">Créer le : <?= $post->getCreateAt() ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
         <?php if (isset($_SESSION['id_membre'])) :?>

@@ -4,7 +4,7 @@
 namespace App\Entity;
 
 
-class Comments
+class Comments extends Entity
 {
     private $idComments;
     private $commentTitle;

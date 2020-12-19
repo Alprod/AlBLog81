@@ -4,6 +4,7 @@
 namespace App\Model;
 
 use App\Entity\Posts;
+use App\Entity\Users;
 use Config\PDOmanager;
 use DateTime;
 use DateTimeZone;
@@ -18,19 +19,21 @@ class PostsModel extends PDOmanager
      */
     public function findAllPosts()
     {
-        $requete = 'SELECT lastname,
-                           pseudo,
-                           idPosts, 
-                           postTitle,
-                           images,
-                           postContent, 
-                           DATE_FORMAT(date_create_at, "%d/%m/%Y") AS create_at
-                           FROM Posts
-                           INNER JOIN Users
-                           WHERE post_userId = idUsers
+        $requete = 'SELECT u.lastname,
+                           u.pseudo,
+                           p.idPosts, 
+                           p.postTitle,
+                           p.images,
+                           p.postContent,
+                           DATE_FORMAT(p.date_create_at, "%d/%m/%Y") AS create_at,
+                           p.post_userId
+                           FROM Posts AS p
+                           JOIN Users AS u
+                           WHERE p.post_userId = u.idUsers
                            ORDER BY create_at LIMIT 0,15';
         $resultat = $this->getBdd()->prepare($requete);
         $resultat->execute();
+        $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
         $data = $resultat->fetchAll();
 
         if (!$data) {
@@ -46,13 +49,15 @@ class PostsModel extends PDOmanager
      */
     public function findPostByIds($id)
     {
-        $req = 'SELECT *, DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
+        $req = 'SELECT *, pseudo, DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
                 FROM Posts 
+                JOIN Users ON Users.idUsers = Posts.post_userId
                 WHERE idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_post", $id);
         $result->execute();
-        $posts= $result->fetchAll(self::FETCH_CLASS, "App\Entity\Posts");
+        $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
+        $posts= $result->fetch();
 
         return $posts;
     }
@@ -145,12 +150,9 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $postTitle
-     * @param $postContent
-     * @param $image
-     * @param $link
+     * @param Posts $post
      */
-    public function editPost($postTitle, $postContent, $image, $link)
+    public function editPost(Posts $post)
     {
         $bdd = $this->getBdd();
         $request = $bdd->prepare('INSERT INTO Posts (
@@ -166,11 +168,11 @@ class PostsModel extends PDOmanager
                                                                  :link,
                                                                  NOW(),
                                                                  :idUser)');
-        $request->bindParam(':title', $postTitle);
-        $request->bindParam(':content', $postContent);
-        $request->bindParam(':images', $image);
-        $request->bindParam(':link', $link);
-        $request->bindParam(':idUser', $_SESSION['id_membre']);
+        $request->bindValue(':title', $post->getPostTitle());
+        $request->bindValue(':content', $post->getPostContent());
+        $request->bindValue(':images', $post->getImages());
+        $request->bindValue(':link', $post->getLink());
+        $request->bindValue(':idUser', $_SESSION['id_membre']);
         $request->execute();
     }
 
