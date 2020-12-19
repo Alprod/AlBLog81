@@ -208,8 +208,6 @@ class MembreController extends Users
 
         $value = $this->getMembreModel()->loginOfConnexion($email);
 
-        var_dump($value);
-
         if (!filter_var($email, FILTER_VALIDATE_EMAIL) && empty($email)) {
             throw new Exception('Le champs de votre email est incorrect');
         }

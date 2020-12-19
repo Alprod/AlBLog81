@@ -9,13 +9,14 @@
     foreach ($listPost as $post) : ?>
         <div class="col-md-4 mt-4">
             <div class="card bg-black">
-                <img src="./images/<?= $post['images'] ?>" class="card-img-top" alt="...">
+                <img src="./images/<?= $post->getImages() ?>" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($post['postTitle']) ?></h5>
-                    <p class="text-muted"><?= $post['create_at'] ?></p>
-                    <p class="text-muted">Ecrit par <?= $post['pseudo'] ?></p>
+                    <h5 class="card-title"><?= htmlspecialchars($post->getPostTitle()) ?></h5>
+                    <p class="text-muted"><?= $post->getDateCreateAt() ?></p>
+                    <p class="text-muted">Ecris par : <?= $post->getuserId()->getPseudo() ?> </p>
+
                     <a
-                        href="<?= str_replace(' ', '-', $post['postTitle']).'/'.$post['idPosts'] ?>"
+                        href="<?= str_replace(' ', '-', $post->getPostTitle()).'/'.$post->getIdPosts() ?>"
                         class="btn btn-outline-light btn-sm">Lire
                     </a>
                 </div>

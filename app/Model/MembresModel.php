@@ -3,6 +3,7 @@
 
 namespace App\Model;
 
+use App\Entity\Entity;
 use App\Entity\Users;
 use Config\Config;
 use Config\PDOmanager;
@@ -16,6 +17,7 @@ class MembresModel extends PDOmanager
         $req = "SELECT * FROM Users";
         $result = $this->getBdd()->prepare($req);
         $result->execute();
+        $result->setFetchMode(PDO::FETCH_CLASS, 'App\Entity\Users');
         $data = $result->fetchAll();
         if (!$data) {
             return false;
@@ -33,6 +35,7 @@ class MembresModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(':id', $id);
         $result->execute();
+        //$result->setFetchMode(self::FETCH_CLASS, "App\Entity\Users");
         $data = $result->fetch();
         if ($data) {
             return $data;

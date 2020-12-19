@@ -4,6 +4,7 @@
 namespace App\Model;
 
 use App\Entity\Posts;
+use App\Entity\Users;
 use Config\PDOmanager;
 use DateTime;
 use DateTimeZone;
@@ -18,19 +19,21 @@ class PostsModel extends PDOmanager
      */
     public function findAllPosts()
     {
-        $requete = 'SELECT lastname,
-                           pseudo,
-                           idPosts, 
-                           postTitle,
-                           images,
-                           postContent, 
-                           DATE_FORMAT(date_create_at, "%d/%m/%Y") AS create_at
-                           FROM Posts
-                           INNER JOIN Users
-                           WHERE post_userId = idUsers
-                           ORDER BY create_at LIMIT 0,15';
+        $requete = 'SELECT u.lastname,
+                           u.pseudo,
+                           p.idPosts, 
+                           p.postTitle,
+                           p.images,
+                           p.postContent,
+                           DATE_FORMAT(p.dateCreateAt, "%d/%m/%Y") AS dateCreateAt,
+                           p.postUserId
+                           FROM Posts AS p
+                           JOIN Users AS u
+                           WHERE p.postUserId = u.idUsers
+                           ORDER BY dateCreateAt LIMIT 0,15';
         $resultat = $this->getBdd()->prepare($requete);
         $resultat->execute();
+        $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
         $data = $resultat->fetchAll();
 
         if (!$data) {
@@ -46,22 +49,24 @@ class PostsModel extends PDOmanager
      */
     public function findPostByIds($id)
     {
-        $req = 'SELECT *, DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
+        $req = 'SELECT *, pseudo, DATE_FORMAT(dateCreateAt, "%d/%m/%Y") as dateCreateAt
                 FROM Posts 
+                JOIN Users ON Users.idUsers = Posts.postUserId
                 WHERE idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_post", $id);
         $result->execute();
-        $posts= $result->fetchAll(self::FETCH_CLASS, "App\Entity\Posts");
+        $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
+        $posts= $result->fetch();
 
         return $posts;
     }
 
     public function findPostsByIdUser($id)
     {
-        $req = 'SELECT *, DATE_FORMAT(date_create_at, "%d/%m/%Y") as create_at 
+        $req = 'SELECT *, DATE_FORMAT(dateCreateAt, "%d/%m/%Y") as dateCreateAt 
                 FROM Posts 
-                WHERE post_userId = :id_user';
+                WHERE postUserId = :id_user';
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_user", $id);
         $result->execute();
@@ -76,23 +81,24 @@ class PostsModel extends PDOmanager
      */
     public function findCommentsByPostAndIds($id)
     {
-        $req = 'SELECT idComments,
-                        pseudo,
-                        commentTitle,
-                        commentContent,
-                        DATE_FORMAT(date_create_at, "%d/%m/%Y") as dateCreate_at,
-                        DATE_FORMAT(create_at, "%d/%m/%Y") as dateCreate,
-                        idPosts,
-                        idUsers
-                FROM Comments
-                INNER JOIN Posts on idPosts = post_commentId
-                INNER JOIN Users on idUsers = user_commentId
-                WHERE post_commentId = :idPosts
-                ORDER BY dateCreate ASC LIMIT 0,10';
+        $req = 'SELECT  c.idComments,
+                        u.pseudo,
+                        c.commentTitle,
+                        c.commentContent,
+                        DATE_FORMAT(p.dateCreateAt, "%d/%m/%Y") AS dateCreateAt,
+                        DATE_FORMAT(c.commentCreateAt, "%d/%m/%Y") AS commentCreateAt,
+                        p.idPosts,
+                        u.idUsers
+                FROM Comments AS c
+                INNER JOIN Posts AS p on p.idPosts = c.postCommentId
+                INNER JOIN Users AS u on u.idUsers = c.userCommentId
+                WHERE c.postCommentId = :idPosts
+                ORDER BY c.commentCreateAt ASC LIMIT 0,10';
 
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":idPosts", $id);
         $result->execute();
+        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
         $commentPost = $result->fetchAll();
 
         return $commentPost;
@@ -101,11 +107,11 @@ class PostsModel extends PDOmanager
     public function findCommentById($id)
     {
         $bdd = $this->getBdd();
-        $req = 'SELECT *,DATE_FORMAT(create_at, "%d/%m/%Y") as dateCreateAt 
+        $req = 'SELECT *,DATE_FORMAT(commentCreateAt, "%d/%m/%Y") as dateCreateAt 
                 FROM Comments
-                INNER JOIN Posts ON idPosts = post_commentId
-                INNER JOIN Users ON idUsers = user_commentId 
-                WHERE user_commentId = :id';
+                INNER JOIN Posts ON idPosts = postCommentId
+                INNER JOIN Users ON idUsers = userCommentId 
+                WHERE userCommentId = :id';
         $result = $bdd->prepare($req);
         $result->bindParam(':id', $id);
         $result->execute();
@@ -129,8 +135,8 @@ class PostsModel extends PDOmanager
                                                         commentTitle,
                                                         commentContent,
                                                         create_at,
-                                                        post_commentId,
-                                                        user_commentId)
+                                                        postCommentId,
+                                                        userCommentId)
                                                 VALUES (
                                                         :title,
                                                         :contenu,
@@ -145,12 +151,9 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $postTitle
-     * @param $postContent
-     * @param $image
-     * @param $link
+     * @param Posts $post
      */
-    public function editPost($postTitle, $postContent, $image, $link)
+    public function editPost(Posts $post)
     {
         $bdd = $this->getBdd();
         $request = $bdd->prepare('INSERT INTO Posts (
@@ -158,19 +161,19 @@ class PostsModel extends PDOmanager
                                                                 postContent,
                                                                 images,
                                                                 link,
-                                                                date_create_at,
-                                                                post_userId)
+                                                                dateCreateAt,
+                                                                postUserId)
                                                          VALUES (:title,
                                                                  :content,
                                                                  :images,
                                                                  :link,
                                                                  NOW(),
                                                                  :idUser)');
-        $request->bindParam(':title', $postTitle);
-        $request->bindParam(':content', $postContent);
-        $request->bindParam(':images', $image);
-        $request->bindParam(':link', $link);
-        $request->bindParam(':idUser', $_SESSION['id_membre']);
+        $request->bindValue(':title', $post->getPostTitle());
+        $request->bindValue(':content', $post->getPostContent());
+        $request->bindValue(':images', $post->getImages());
+        $request->bindValue(':link', $post->getLink());
+        $request->bindValue(':idUser', $_SESSION['id_membre']);
         $request->execute();
     }
 

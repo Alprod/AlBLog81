@@ -3,27 +3,39 @@
 
 namespace App\Entity;
 
-class Posts
+use Config\PDOmanager;
+
+class Posts extends Entity
 {
     private $idPosts;
     private $postTitle;
     private $postContent;
     private $images;
     private $link;
-    private $date_create_at;
-    private $post_userId;
+    private $dateCreateAt;
+    private $postUserId;
+    private $userId;
 
 
-
-    public function hydrate(array $donnees)
+    public function __set($name, $value)
     {
-        foreach ($donnees as $key => $value) {
-            $methode = 'set'.ucfirst($key);
-            if (method_exists($this, $methode)) {
-                $this->$methode($value);
-            }
+        if ($this->userId === null) {
+            $this->userId = new Users();
+        }
+        if ($name == 'pseudo') {
+            $this->userId->setPseudo($value);
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this -> userId;
+    }
+
+
 
     /**
      * @return mixed
@@ -110,15 +122,15 @@ class Posts
      */
     public function getPostUserId()
     {
-        return $this -> post_userId;
+        return $this -> postUserId;
     }
 
     /**
-     * @param mixed $post_userId
+     * @param mixed $postUserId
      */
-    public function setPostUserId($post_userId): void
+    public function setPostUserId($postUserId): void
     {
-        $this -> post_userId = $post_userId;
+        $this -> postUserId = $postUserId;
     }
 
     /**
@@ -126,14 +138,16 @@ class Posts
      */
     public function getDateCreateAt()
     {
-        return $this -> date_create_at;
+        return $this -> dateCreateAt;
     }
 
     /**
-     * @param mixed $date_create_at
+     * @param mixed $dateCreateAt
      */
-    public function setDateCreateAt($date_create_at): void
+    public function setDateCreateAt($dateCreateAt): void
     {
-        $this -> date_create_at = $date_create_at;
+        $this -> dateCreateAt = $dateCreateAt;
     }
+
+
 }

@@ -3,10 +3,9 @@
 
 namespace App\Entity;
 
-
 use Config\Config;
 
-class Users
+class Users extends Entity
 {
     private $idUsers;
     private $roles;
@@ -258,11 +257,11 @@ class Users
 
 
 
-    public  function superAdmin()
+    public function superAdmin()
     {
-        if($this->getRoles() == Config::SUPER_USERS_ADMIN){
+        if ($this->getRoles() == Config::SUPER_USERS_ADMIN) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

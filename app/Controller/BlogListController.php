@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Posts;
 use App\Entity\Users;
 use App\Model\CommentsModel;
+use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
 
@@ -14,9 +15,7 @@ class BlogListController
     private CommentsModel $commentModel;
     private Config $config;
     private PostsModel $postModel;
-    private bool $isAdmin;
-
-
+    private MembresModel $membreModel;
 
 
     /**
@@ -28,22 +27,33 @@ class BlogListController
         $this->postModel = new PostsModel();
         $this->commentModel = new CommentsModel();
         $this->config = new Config();
+        $this->membreModel = new MembresModel();
         $this->isAdmin = (new MembreController)->isAdmin();
     }
 
     /**
      * @return mixed
      */
-    public function getPostModel()
+    public function getPostModel(): PostsModel
     {
         return $this->postModel;
     }
+
+    /**
+     * @return MembresModel
+     */
+    public function getMembreModel(): MembresModel
+    {
+        return $this -> membreModel;
+    }
+    private bool $isAdmin;
+
 
 
     /**
      * @return mixed
      */
-    public function getConfig()
+    public function getConfig(): Config
     {
         return $this->config;
     }
@@ -52,7 +62,7 @@ class BlogListController
     /**
      * @return bool
      */
-    public function isAdmin()
+    public function isAdmin(): bool
     {
         return $this->isAdmin;
     }
@@ -78,15 +88,11 @@ class BlogListController
      * @param string $id
      * @return bool|void
      */
-    public function blogPost(string $slug, string $id)
+    public function blogPost(string $slug, string $id): bool
     {
         $isAdmin = $this->isAdmin();
         $post = $this->getConfig()->sanitize($_POST);
         $viewPost = $this->getPostModel()->findPostByIds($id);
-        foreach ($viewPost as $views) {
-            $view = $views;
-        }
-
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
 
         if (!empty($post)) {
@@ -97,26 +103,11 @@ class BlogListController
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,
-            'post' => $view,
+            'post' => $viewPost,
             'comments' => $commentByPost,
             'changer'=> 'Modifier',
             'isAdmin' => $isAdmin
         ]);
-    }
-
-
-    public function addPost()
-    {
-        $post = $this->getConfig()->sanitize($_POST);
-        $title = $post['postTitle'];
-        $content = $post['postContent'];
-        $link = $post['link'];
-        $this->copyImages();
-        $photo = $_POST['images'];
-
-        $this->getPostModel()->editPost($title, $content, $photo, $link);
-
-        return $this->getConfig()->redirect("/blogs");
     }
 
     /**
@@ -160,13 +151,26 @@ class BlogListController
             $idPost = $postById;
         }
         $postImage = $idPost->getImages();
-        //dd($idPost);
 
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
             'titre' => 'Modifier l\'article',
             'blog_actuel' => $idPost,
             'blog_image' => $postImage
         ]);
+    }
+
+    public function addPost()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        $newPost = new Posts();
+        $this->copyImages();
+        $post['images'] = $_POST['images'];
+        $newPost->hydrate($post);
+
+
+        $this->getPostModel()->editPost($newPost);
+
+        return $this->getConfig()->redirect("/blogs");
     }
 
 

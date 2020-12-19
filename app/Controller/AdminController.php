@@ -64,6 +64,7 @@ class AdminController extends PDOmanager
         $users = $this->getMembreModel()->findAll();
         $posts = $this->getPostModel()->findAllPosts();
         $comments = $this->getCommentMoel()->findAllComments();
+        dump($comments);
 
         return $this->getConfig()->render("layout.php", "admin/dashbaord.php", [
             'titre' => 'Dashbarod',
