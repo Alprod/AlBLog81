@@ -122,33 +122,40 @@
         <h3 class="mt-3">Liste des commentaires </h3>
         <p>Nombre de commentaires <?= count($comments) ?></p>
     </div>
-    <div class="col col-md-7 mt-5">
+    <div class="col col-md-7 dashContentView mt-2">
+            <ul class="p-0">
         <?php foreach ($posts as $post) : ?>
-            <ul>
-                <li class="media my-1">
+                <li class="media my-4">
                     <a href="/<?= $post->getPostTitle() ?>/<?= $post->getIdPosts() ?>">
-                    <img class="mr-3 rounded" style="width: 3em;" src="./images/<?= $post->getImages()?>" alt="Generic placeholder image">
+                    <img class="mr-3 rounded"
+                         style="width: 3em;"
+                         src="./images/<?= $post->getImages()?>"
+                         alt="Generic placeholder image">
                     </a>
                     <div class="media-body">
-                        <p><strong><?= $post->getPostTitle() ?></strong> <?= 'par '.$post->getUserId()->getPseudo().' <em>'.$post->getDateCreateAt() ?></em></p>
+                        <p>
+                            <strong><?= $post->getPostTitle() ?></strong> <?= 'par '.$post->getUserId()->getPseudo().' <em>'.$post->getDateCreateAt() ?></em>
+                        </p>
                     </div>
                 </li>
-            </ul>
         <?php endforeach; ?>
+            </ul>
     </div>
-    <div class="col col-md-5 dashContentView mt-5">
+    <div class="col col-md-5 dashContentView mt-2">
+            <ul class="p-0">
         <?php foreach ($comments as $comment) : ?>
-            <ul>
-                <li class="media my-1">
+                <li class="media my-3">
                     <div class="media-body">
-                        <p><strong><?= $comment->getCommentTitle()?></strong> <?= 'par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getPostId()->getDateCreateAt() ?></em></p>
+                        <p>
+                            <strong><?= $comment->getCommentTitle()?></strong><?= ' par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getCommentCreateAt() ?></em>
+                        </p>
                     </div>
                 </li>
-            </ul>
         <?php endforeach; ?>
+            </ul>
     </div>
     <div class="col col-md-12">
-        <?php if ($comments == true) : ?>
+        <?php if ($comment->getSignal() == true) : ?>
         <?php else : ?>
         <p>Aucun commentaires signaler</p>
         <?php endif;?>

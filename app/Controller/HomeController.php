@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
+use App\Model\MembresModel;
 use Config\Config;
 use DateTime;
 use DateTimeZone;
@@ -11,8 +13,7 @@ use ReflectionException;
 
 class HomeController extends Config
 {
-    private bool $isAdmin;
-    private bool $superAdmin;
+    private MembresModel $membreModel;
 
     /**
      * HomeController constructor.
@@ -20,8 +21,7 @@ class HomeController extends Config
      */
     public function __construct()
     {
-        $this -> isAdmin = (new MembreController)->isAdmin();
-        $this-> superAdmin = (new AdminController)->isSuperAdmin();
+        $this->membreModel = new MembresModel();
     }
 
 
@@ -35,16 +35,15 @@ class HomeController extends Config
         $heure = new DateTime('now', new DateTimeZone('EUROPE/Paris'));
         $heureDuJour = $heure->format('H:i');
         $calendarChinese = $this->calendarChinese(date('Y'));
-        $userName = $_SESSION['pseudo_membre'] ?? null;
-
-
+        $idUser = $_SESSION['id_membre'] ?? null;
+        $user = $this->getMembreModel()->find($idUser);
 
         $params = array(
             'titre' => 'Home page',
             'laDateDuJour' => $laDateDuJour,
             'heureDuJour' => $heureDuJour,
             'calendarChinese' => $calendarChinese,
-            'pseudo'=> $userName,
+            'membreUser'=> $user,
             'success'=> 'Salut '
 
         );
@@ -96,5 +95,13 @@ class HomeController extends Config
         $dateFormat = strftime("%A %d %B %G", strtotime($date));
 
         return $dateFormat;
+    }
+
+    /**
+     * @return MembresModel
+     */
+    public function getMembreModel(): MembresModel
+    {
+        return $this -> membreModel;
     }
 }

@@ -4,6 +4,7 @@
 namespace App\Entity;
 
 use Config\Config;
+use phpDocumentor\Reflection\Location;
 
 class Users extends Entity
 {
@@ -55,13 +56,6 @@ class Users extends Entity
         $this -> roles = $roles;
     }
 
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->roles == 2;
-    }
 
     /**
      * @return mixed
@@ -256,13 +250,20 @@ class Users extends Entity
     }
 
 
-
-    public function superAdmin()
+    public function isAdmin(): bool
     {
-        if ($this->getRoles() == Config::SUPER_USERS_ADMIN) {
+        if ($this->roles == Config::USERS_ADMIN) {
             return true;
-        } else {
-            return false;
         }
+        return false;
+    }
+
+
+    public function isSuperAdmin(): bool
+    {
+        if ($this->roles == Config::SUPER_USERS_ADMIN) {
+            return true;
+        }
+        return false;
     }
 }

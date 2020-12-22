@@ -22,10 +22,11 @@
         </p>
         <?php endif; ?>
 
+        <p class="text-muted">Auteur de l'article : <?= $post->getUserId()->getPseudo() ?></p>
         <p class="text-muted">Créer le : <?= $post->getDateCreateAt() ?></p>
         <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
-        <?php if (isset($_SESSION['id_membre'])) :?>
+        <?php if (isset($_SESSION['id_membre'], $_SESSION['membre'])) :?>
         <button
                 class="btn btn-outline-light btn-sm mb-2"
                 type="button"
@@ -34,22 +35,22 @@
                 aria-expanded="false"
                 aria-controls="collapseExample">Commentaire
         </button>
-            <?php if (isset($isAdmin) && $isAdmin && $_SESSION['id_membre'] === $post->getPostUserId()) : ?>
-            <a
-                href="<?= '/'.$post->getIdPosts() ?>"
-                value="Modifier l'article"
-                class="btn btn-outline-info btn-sm mb-2"><?= $changer ?>
-            </a>
-            <div class="d-flex justify-content-end">
-                <form method="post" action="/deletePost">
-                    <input type="hidden" name="idPost" value="<?= $post->getIdPosts() ?>">
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>
-                </form>
+            <?php if ($post->getPostUserId() == $_SESSION['membre']->getIdUsers()) : ?>
+                <a
+                        href="<?= '/' . $post -> getIdPosts() ?>"
+                        value="Modifier l'article"
+                        class="btn btn-outline-info btn-sm mb-2"><?= $changer ?>
+                </a>
+                <div class="d-flex justify-content-end">
+                    <form method="post" action="/deletePost">
+                        <input type="hidden" name="idPost" value="<?= $post -> getIdPosts() ?>">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>
+                    </form>
 
-            </div>
-
-            <?php endif; ?>
-        <?php endif; ?>
+                </div>
+                <?php
+            endif;
+        endif; ?>
 
         <div class="collapse row bg-dark" id="collapseExample">
             <div class="card card-body mb-5 p-5 bg-dark border border-dark">
@@ -105,7 +106,7 @@
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <p class="font-italic text-muted">
                         Si vous trouvez se texte inapproprié. Veuillez soit vous
-                        <a href="/register">s'inscrire</a> ou vous <a href="/login">connectez</a>
+                        <a href="/register">inscrire</a> ou vous <a href="/login">connectez</a>
                     </p>
                     <?php else : ?>
                     <form class="row">

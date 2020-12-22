@@ -29,27 +29,19 @@ class CommentsModel extends PDOmanager
 
     public function findCommentsByIds($id)
     {
-        $req = 'SELECT idComments,
-                        firstname,
-                        lastname,
-                        pseudo,
-                        idUsers,
-                        commentTitle,
-                        commentContent,
-                        idPosts,postTitle,
-                        DATE_FORMAT(dateCreateAt, "Créer le : %d/%m/%Y") AS dateCreateAt 
-                        FROM Comments
-                        INNER JOIN Posts
-                        INNER JOIN Users
-                        WHERE post_commentId = :idPosts
-                        AND user_commentId = idUsers
-                        ORDER BY dateCreateAt
-                        LIMIT 10';
+        $req = 'SELECT * 
+                FROM Comments
+                INNER JOIN Posts ON idPosts = postCommentId
+                INNER JOIN Users ON idUsers = userCommentId 
+                WHERE userCommentId = :id
+                ORDER BY commentCreateAt
+                LIMIT 10';
 
-        $result = $this->getBdd()->query($req);
-        $result->bindParam(":idPost", $id);
+        $result = $this->getBdd()->prepare($req);
+        $result->bindParam(":id", $id);
         $result->execute();
-        $commentPost = $result->fetch();
+        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
+        $commentPost = $result->fetchAll();
 
         return $commentPost;
     }

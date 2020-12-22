@@ -35,7 +35,7 @@ class MembresModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(':id', $id);
         $result->execute();
-        //$result->setFetchMode(self::FETCH_CLASS, "App\Entity\Users");
+        $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Users");
         $data = $result->fetch();
         if ($data) {
             return $data;
@@ -75,7 +75,9 @@ class MembresModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(':email', $email);
         $result->execute();
+        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Users');
         $donnee = $result->fetch();
+
         if ($donnee) {
             return $donnee;
         } else {
@@ -106,20 +108,21 @@ class MembresModel extends PDOmanager
      * @param $data
      * @return bool
      */
-    public function register($mdp, $data)
+    public function register($mdp, Users $data): bool
     {
-        $firstname = $data['firstname'];
-        $lastname = $data['lastname'];
-        $pseudo = $data['pseudo'];
-        $email = $data['email'];
-        $voie = $data['voie'];
-        $addressName = $data['adresse'];
-        $ville = $data['city'];
-        $zip = $data['zipcode'];
-        $dept = $data['state'];
-        $pays = $data['country'];
+        $firstname = $data->getFirstname();
+        $lastname = $data->getLastname();
+        $pseudo = $data->getPseudo();
+        $email = $data->getEmail();
+        $voie = $data->getAddressNumber();
+        $addressName = $data->getAddressName();
+        $ville = $data->getCity();
+        $zip = $data->getZipCode();
+        $dept = $data->getDepartement();
+        $pays = $data->getCountry();
         $date = date('Y-m-d H:i:s');
         $userRole = Config::USERS;
+
 
         $req = 'INSERT INTO Users (
                                     roles,
@@ -155,7 +158,7 @@ class MembresModel extends PDOmanager
         $result->bindParam(':firstname', $firstname);
         $result->bindParam(':lastname', $lastname);
         $result->bindParam(':pseudo', $pseudo);
-        $result->bindParam('mdp', $mdp);
+        $result->bindParam(':mdp', $mdp);
         $result->bindParam(':email', $email);
         $result->bindParam(':dateAt', $date);
         $result->bindParam(':addressNumber', $voie);

@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
@@ -17,7 +18,7 @@ class MembreController extends Users
     private Config $config;
     private MembresModel $membreModel;
     private PostsModel $postModel;
-
+    private CommentsModel $commentModel;
 
 
     /**
@@ -29,6 +30,7 @@ class MembreController extends Users
         $this->config = new Config();
         $this->membreModel = new MembresModel();
         $this->postModel = new PostsModel();
+        $this->commentModel = new CommentsModel();
     }
 
     /**
@@ -53,36 +55,52 @@ class MembreController extends Users
     }
 
     /**
-     * @return bool
+     * @return CommentsModel
      */
-    public function isAdmin(): bool
+    public function getCommentModel(): CommentsModel
     {
-        $userAdmin = Config::USERS_ADMIN;
-        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $userAdmin;
+        return $this -> commentModel;
     }
 
     /**
      * @return bool
      */
-    public function membresSubscribe()
+    public function isAdmin(): bool
+    {
+        $userAdmin = Config::USERS_ADMIN;
+        return isset($_SESSION['membre']) && $_SESSION['membre']->getRoles() == $userAdmin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function membresSubscribe(): bool
     {
         return $this->getConfig()->render("layout.php", "membres/subscribe.php", array(
             'titre' => 'Inscription'
         ));
     }
 
-    public function membresConnexion()
+    /**
+     * @return bool
+     */
+    public function membresConnexion(): bool
     {
         return $this->getConfig()->render("layout.php", "membres/login.php", [
             'titre'=> 'Connexion'
         ]);
     }
 
-    public function inscription()
+    /**
+     * @return bool|void
+     */
+    public function inscription(): bool
     {
         try {
             $data= $this->getConfig()->sanitize($_POST);
             $this->validation($data);
+            $user = new Users();
+            $user->hydrate($data);
         } catch (Exception $e) {
             $params=[
                 'titre'=>'Inscription',
@@ -90,13 +108,12 @@ class MembreController extends Users
             ];
             return $this->getConfig()->render('layout.php', "membres/subscribe.php", $params);
         }
-
-        $pwd = $data['mdp2'];
+        $pwd = $user->getMdp();
         $crypt = $this->getConfig()->cryptMdp($pwd);
         $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
 
 
-        if ($this->getMembreModel()->register($pwd_pepper, $data)) {
+        if ($this->getMembreModel()->register($pwd_pepper, $user)) {
             if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
@@ -115,23 +132,24 @@ class MembreController extends Users
     /**
      * @return bool|void
      */
-    public function login()
+    public function login(): bool
     {
         try {
             $data = $this->getConfig()->sanitize($_POST);
             $this->verifLogin($data);
+            //$this->getConfig()->createSession($req['idUsers']);
         } catch (Exception $e) {
             return $this->getConfig()->render("layout.php", "membres/login.php", [
                 'error'=> $e->getMessage(),
                 'titre'=> 'Connexion',
             ]);
         }
+        $user = $this->getMembreModel()->loginOfConnexion($data['email']);
+        $this->getConfig()->createSession($user->getIdUsers());
 
-        $req = $this->getMembreModel()->loginOfConnexion($data['email']);
-        $this->getConfig()->createSession($req['idUsers']);
-        $_SESSION['membre'] = $req;
-        $_SESSION['pseudo_membre'] = $req['pseudo'];
-        $_SESSION['email_membre'] = $req['email'];
+        $_SESSION['membre'] = $user;
+        $_SESSION['pseudo_membre'] = $user->getPseudo();
+        $_SESSION['email_membre'] = $user->getEmail();
 
         return $this->getConfig()->redirect("/");
     }
@@ -139,8 +157,7 @@ class MembreController extends Users
     public function logout()
     {
         if (isset($_SESSION['id_membre'])) {
-            $_SESSION = array();
-            session_destroy();
+            $this->getConfig()->cleanSessionPhp();
         }
         return $this->getConfig()->redirect("/");
     }
@@ -219,7 +236,7 @@ class MembreController extends Users
         $crypt = $this->getConfig()->cryptMdp($pwd);
         $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
 
-        if ($value['mdp'] != $pwd_pepper) {
+        if ($value->getMdp() != $pwd_pepper) {
             throw new Exception('Désolé erreur dans votre mot de passe');
         }
     }
@@ -227,19 +244,20 @@ class MembreController extends Users
     public function userProfil()
     {
         $idUser = $_SESSION['id_membre'];
-        $admin = $this->isAdmin();
         $userProfil = $this->getMembreModel()->find($idUser);
-        $commentUserId = $this->getPostModel()->findCommentById($idUser);
-        $postUserId = $this->getPostModel()->findPostsByIdUser($idUser);
-        $date = date($userProfil['createdAt']);
+        $date = date($userProfil->getCreatedAt());
         $dateFomate = strftime("%d %B %G", strtotime($date));
+
+        $commentUserId = $this->getCommentModel()->findCommentsByIds($idUser);
+
+        $postUserId = $this->getPostModel()->findPostsByIdUser($idUser);
+
 
         return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
             'titre' => 'Profil',
             'profil' => $userProfil,
             'comments' => $commentUserId,
             'posts' => $postUserId,
-            'isAdmin' => $admin,
             'dateInscription' => $dateFomate
         ]);
     }
@@ -255,7 +273,7 @@ class MembreController extends Users
             $idUser = $_SESSION['id_membre'];
             $profil = $this->getMembreModel()->find($idUser);
             $commentUserId = $this->getPostModel()->findCommentById($idUser);
-            $date = date($profil['createdAt']);
+            $date = date($profil->getCreateAt());
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
             return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
@@ -296,7 +314,7 @@ class MembreController extends Users
 
         $profil = $this->getMembreModel()->find($idUser);
 
-        if ($pwd_Actuel !== $profil['mdp']) {
+        if ($pwd_Actuel !== $profil->getMdp()) {
             throw new Exception('Désolé mais votre mot de pas est inéxate');
         }
 

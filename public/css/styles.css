@@ -170,7 +170,11 @@ color: #fcfcfc !important;
   text-decoration-color: #fcfcfc;
 }
 
-.dashContentView{
+.dashContentView,
+.profilPostContentView,
+.profilCommentContentView
+{
   height: 400px;
-  overflow: scroll !important;
+  overflow: hidden !important;
+  overflow-y: scroll !important;
 }

@@ -28,15 +28,17 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="/">Home</a>
                     <a class="nav-link" href="/blogs">Articles</a>
-                    <a class="nav-link" href="/contact">Contact</a>
 
-                    <?php if (isset($_SESSION['id_membre'], $isAdmin) && $isAdmin) : ?>
+
+                    <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
                     <a class="nav-link" href="/editPost/create">Nouveau post</a>
                     <?php endif; ?>
 
-                    <?php //if (isset($_SESSION['id_membre'], $superAdmin) && $superAdmin) : ?>
+                    <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isSuperAdmin()) : ?>
                     <a class="nav-link" href="/dashbaord">Dashbaord</a>
-                    <?php //endif; ?>
+                    <?php endif; ?>
+
+                    <a class="nav-link" href="/contact">Contact</a>
 
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <a class="nav-link" href="/register">Inscription</a>

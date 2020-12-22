@@ -62,12 +62,12 @@
                 <legend>Coordonner</legend>
                 <div class="row">
                     <div class="col-md-3 mt-3">
-                        <label for="voie">Num/Voie</label>
-                        <input type="text" name="voie" id="voie" value="<?= $_POST['voie'] ?? '' ?>" class="Subcribe voie text-white rounded-lg form-control border border-dark">
+                        <label for="addressNumber">Num/addressNumber</label>
+                        <input type="text" name="addressNumber" id="addressNumber" value="<?= $_POST['addressNumber'] ?? '' ?>" class="Subcribe voie text-white rounded-lg form-control border border-dark">
                     </div>
                     <div class="col-md-9 mt-3">
-                        <label for="adresse">Adresse</label>
-                        <input type="text" name="adresse" id="adresse" value="<?= $_POST['adresse'] ?? '' ?>" class="Subcribe adresse text-white rounded-lg form-control border border-dark">
+                        <label for="addressName">Adresse</label>
+                        <input type="text" name="addressName" id="addressName" value="<?= $_POST['addressName'] ?? '' ?>" class="Subcribe adresse text-white rounded-lg form-control border border-dark">
                     </div>
                     <div class="col-md-3 mt-3">
                         <label for="zipcode">Code Postal</label>

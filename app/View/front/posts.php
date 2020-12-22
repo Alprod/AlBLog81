@@ -1,6 +1,6 @@
 <h1 class="text-center m-5 cover-heading display-4">Mes Articles</h1>
 <div class="row mb-5">
-    <?php if (isset($_SESSION['id_membre'], $isAdmin) && $isAdmin) : ?>
+    <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin()) : ?>
     <div class="col-md-12">
         <a class="btn btn-outline-light" href="/editPost/create">Ajouter un nouvelle article</a>
     </div>

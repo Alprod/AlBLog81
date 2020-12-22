@@ -47,14 +47,6 @@ class AdminController extends PDOmanager
         return $this->commentModel;
     }
 
-    /**
-     * @return bool
-     */
-    public function isSuperAdmin()
-    {
-        $superAdmin = Config::SUPER_USERS_ADMIN;
-        return isset($_SESSION['membre']) && $_SESSION['membre']['roles'] == $superAdmin;
-    }
 
     /**
      * @return bool
@@ -64,13 +56,12 @@ class AdminController extends PDOmanager
         $users = $this->getMembreModel()->findAll();
         $posts = $this->getPostModel()->findAllPosts();
         $comments = $this->getCommentMoel()->findAllComments();
-        dump($comments);
 
         return $this->getConfig()->render("layout.php", "admin/dashbaord.php", [
             'titre' => 'Dashbarod',
             'users' => $users,
             'posts' => $posts,
-            'comments' => $comments
+            'comments' => $comments,
         ]);
     }
 }
