@@ -80,7 +80,7 @@ class Config
      * @param $mdp
      * @return string
      */
-    public function cryptMdp($mdp)
+    public function cryptMdp($mdp): string
     {
         $salt = 'AlBlog_81';
         $mdp_crypt = md5($mdp.$salt);
@@ -91,7 +91,7 @@ class Config
      * @param $data
      * @return array
      */
-    public function sanitize($data)
+    public function sanitize($data): array
     {
         $list = [];
         foreach ($data as $key => $value) {
@@ -106,15 +106,14 @@ class Config
      */
     public function createSession($membre)
     {
-        $_SESSION['membre'] = $membre;
         $_SESSION['id_membre'] = $membre;
-        setcookie("timeUsers", "$membre", time()+3600*24, "/", "www.alblog81.fr", false, false);
+        setcookie("timeUsers", $membre, time()+3600*24, "/", "www.alblog81.fr", false, false);
     }
 
     /**
      * @return bool
      */
-    public function initSessionId()
+    public function initSessionId(): bool
     {
         if (!session_id()) {
             session_start();

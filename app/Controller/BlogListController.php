@@ -58,28 +58,17 @@ class BlogListController
         return $this->config;
     }
 
-
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->isAdmin;
-    }
-
     /**
      * @return string
      */
     public function blogList(): string
     {
         $listPost = $this->getPostModel()->findAllPosts();
-        $isAdmin = $this->isAdmin();
         $conf = $this->getConfig();
 
         return $conf->render('layout.php', 'front/posts.php', [
             'titre' => 'Mes articles',
             'listPost' => $listPost,
-            'isAdmin' => $isAdmin
         ]);
     }
 
@@ -90,7 +79,6 @@ class BlogListController
      */
     public function blogPost(string $slug, string $id): bool
     {
-        $isAdmin = $this->isAdmin();
         $post = $this->getConfig()->sanitize($_POST);
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
@@ -106,7 +94,6 @@ class BlogListController
             'post' => $viewPost,
             'comments' => $commentByPost,
             'changer'=> 'Modifier',
-            'isAdmin' => $isAdmin
         ]);
     }
 

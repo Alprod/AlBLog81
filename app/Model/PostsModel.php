@@ -30,7 +30,7 @@ class PostsModel extends PDOmanager
                            FROM Posts AS p
                            JOIN Users AS u
                            WHERE p.postUserId = u.idUsers
-                           ORDER BY dateCreateAt LIMIT 0,15';
+                           ORDER BY dateCreateAt DESC LIMIT 0,15';
         $resultat = $this->getBdd()->prepare($requete);
         $resultat->execute();
         $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
@@ -70,6 +70,7 @@ class PostsModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_user", $id);
         $result->execute();
+        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Posts');
         $posts= $result->fetchAll();
 
         return $posts;
@@ -86,7 +87,7 @@ class PostsModel extends PDOmanager
                         c.commentTitle,
                         c.commentContent,
                         DATE_FORMAT(p.dateCreateAt, "%d/%m/%Y") AS dateCreateAt,
-                        DATE_FORMAT(c.commentCreateAt, "%d/%m/%Y") AS commentCreateAt,
+                        c.commentCreateAt AS commentCreateAt,
                         p.idPosts,
                         u.idUsers
                 FROM Comments AS c
@@ -134,7 +135,7 @@ class PostsModel extends PDOmanager
         $request = $bdd->prepare('INSERT INTO Comments (
                                                         commentTitle,
                                                         commentContent,
-                                                        create_at,
+                                                        commentCreateAt,
                                                         postCommentId,
                                                         userCommentId)
                                                 VALUES (

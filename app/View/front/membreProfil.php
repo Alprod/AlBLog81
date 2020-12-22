@@ -1,13 +1,13 @@
 <h1 class="text-center m-5 cover-heading display-4"><?= $titre ?></h1>
-<h2 class="m-3">Profil de <?= $profil['pseudo'] ?></h2>
+<h2 class="m-3">Profil de <?= $profil->getPseudo() ?></h2>
 
 <div class="row">
     <div class="col-md-6">
         <div class="border rounded shadow-sm p-2">
-            <p><?= $profil['lastname'].' '.$profil['firstname']  ?></p>
-            <p>Prseudo : <?= $profil['pseudo'] ?></p>
-            <p>Email : <?= $profil['email'] ?></p>
-            <p>Pays : <?= $profil['country']  ?></p>
+            <p><?= $profil->getLastName().' '.$profil->getFirstname() ?></p>
+            <p>Prseudo : <?= $profil->getPseudo() ?></p>
+            <p>Email : <?= $profil->getEmail() ?></p>
+            <p>Pays : <?= $profil->getCountry() ?></p>
             <hr class="my-4 border-white">
             <p>Date d'inscription :  <?= $dateInscription ?></p>
         </div>
@@ -67,51 +67,53 @@
             </form>
         </div>
     </div>
-    <div class="<?= (isset($isAdmin) && $isAdmin) ? 'col-md-6' : 'col-md-12' ?> overflow-auto mt-5" id="commentsUser">
+    <div class="<?= ($profil->isAdmin() || $profil->isSuperAdmin()) ? 'col-md-6' : 'col-md-12' ?> overflow-auto mt-5 mb-5" id="commentsUser">
         <h2>Vos commentaires</h2>
+        <div class="profilCommentContentView">
+            <?php if (!empty($comments)) :
+                foreach ($comments as $comment) : ?>
+                <div class="media bg-black mt-3 rounded">
+                    <img src="<?= './images/'.$comment->getPostId()->getImages() ?>"
+                         class="align-self-center m-3 rounded-lg"
+                         style="width: 80px;height: 80px"
+                         alt="<?= htmlspecialchars($comment->getPostId()->getPostTitle()) ?>">
 
-        <?php if (!empty($comments)) :
-            foreach ($comments as $comment) : ?>
-            <div class="media bg-black mt-3 rounded">
-                <img src="<?= './images/'.$comment['images'] ?>"
-                     class="align-self-center m-3 rounded-lg"
-                     style="width: 80px;height: 80px"
-                     alt="<?= htmlspecialchars($comment['postTitle']) ?>">
-
-                <div class="media-body">
-                    <h5 class="mt-2"><?= htmlspecialchars($comment['postTitle']) ?></h5>
-                    <hr class="my-4 mr-4 border-white">
-                    <p> <?= htmlspecialchars(html_entity_decode($comment['commentTitle'])) ?> </p>
-                    <p> <?= html_entity_decode($comment['commentContent']) ?> </p>
-                    <p>Créer le : <?= $comment['dateCreateAt'] ?> </p>
+                    <div class="media-body">
+                        <h5 class="mt-2"><?= htmlspecialchars($comment->getPostId()->getPostTitle()) ?></h5>
+                        <hr class="my-4 mr-4 border-white">
+                        <p> <?= htmlspecialchars(html_entity_decode($comment->getCommentTitle())) ?> </p>
+                        <p>Créer le : <?= $comment->getCommentCreateAt() ?> </p>
+                    </div>
                 </div>
-            </div>
-            <?php endforeach;
-        else :
+                <?php endforeach;
+            else :
+                ?>
+                <p>Désolé mais vous avez fais aucun commentaire sur un article.</p>
+                <?php
+            endif;
             ?>
-            <p>Désolé mais vous avez fais aucun commentaire sur un article.</p>
-            <?php
-        endif;
-        ?>
+        </div>
     </div>
-    <?php if (isset($isAdmin) && $isAdmin) : ?>
-    <div class="col-md-6 overflow-auto mt-5" id="commentsUser">
+    <?php if ($profil->isAdmin() || $profil->isSuperAdmin()) : ?>
+    <div class="col-md-6 mt-5" id="commentsUser">
         <h2>Vos articles</h2>
+        <div class="profilPostContentView">
         <?php foreach ($posts as $post) : ?>
             <div class="media bg-black mt-3 rounded">
-                <img src="<?= './images/'.$post['images'] ?>"
-                     class="align-self-center m-3 rounded-lg"
-                     style="width: 80px;height: 80px"
-                     alt="<?= htmlspecialchars($post['postTitle']) ?>">
-
+                <a href="<?= '/'.$post->getPostTitle().'/'.$post->getIdPosts() ?>">
+                    <img src="<?= './images/'.$post->getImages() ?>"
+                         class="align-self-center m-3 rounded-lg"
+                         style="width: 80px;height: 80px"
+                         alt="<?= htmlspecialchars($post->getPostTitle()) ?>">
+                </a>
                 <div class="media-body">
-                    <h5 class="mt-2"><?= htmlspecialchars(html_entity_decode($post['postTitle'])) ?></h5>
+                    <h5 class="mt-2"><?= htmlspecialchars(html_entity_decode($post->getPostTitle())) ?></h5>
                     <hr class="my-4 mr-4 border-white">
-                    <p> <?= html_entity_decode($post['postContent']) ?> </p>
-                    <p>Créer le : <?= $post['create_at'] ?> </p>
+                    <p>Créer le : <?= $post->getDateCreateAt() ?> </p>
                 </div>
             </div>
         <?php endforeach; ?>
+        </div>
     </div>
     <?php endif; ?>
 </div>

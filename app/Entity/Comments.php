@@ -25,6 +25,12 @@ class Comments extends Entity
             case 'idPosts':
                 $this->postId->setIdPosts($value);
                 break;
+            case 'postTitle':
+                $this->postId->setPostTitle($value);
+                break;
+            case 'images':
+                $this->postId->setImages($value);
+                break;
             case 'date_create_at':
                 $this->setCreateAt($value);
                 break;
@@ -84,10 +90,13 @@ class Comments extends Entity
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     public function getCommentCreateAt()
     {
-        return $this -> commentCreateAt;
+        $date = new \DateTime($this -> commentCreateAt);
+        $dateFormate = $date->format('d/m/Y');
+        return $dateFormate;
     }
 
     /**

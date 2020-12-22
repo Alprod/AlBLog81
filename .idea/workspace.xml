@@ -29,17 +29,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/myBlog.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/my_blog_Comments.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/my_blog_Posts.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/my_blog_Users.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/AdminController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Entity/Comments.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Comments.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Posts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Users.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/CommentsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/CommentsModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/MembresModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/MembresModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/admin/dashbaord.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/dashbaord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/base.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/membreProfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/membreProfil.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/front/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/posts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/layout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/membres/subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/membres/subscribe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +161,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="DEFAULT" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -159,11 +172,11 @@
       <recent name="$PROJECT_DIR$/Tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Docs" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/app/View/admin" />
       <recent name="$PROJECT_DIR$/app/View/front" />
       <recent name="$PROJECT_DIR$/" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.RouterTest.testRouter">
@@ -301,6 +314,8 @@
       <workItem from="1608021985194" duration="1208000" />
       <workItem from="1608140717705" duration="9771000" />
       <workItem from="1608285767460" duration="29278000" />
+      <workItem from="1608482441269" duration="6774000" />
+      <workItem from="1608489445670" duration="26166000" />
     </task>
     <servers />
   </component>
@@ -335,46 +350,46 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/Config/Config.php</url>
-          <line>108</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/app/View/admin/postEdit.php</url>
           <line>14</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/app/View/layout.php</url>
-          <line>32</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/app/Model/MembresModel.php</url>
           <line>73</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
+        <line-breakpoint type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
+          <line>100</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
+          <line>137</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
         <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
-          <line>193</line>
+          <line>180</line>
           <properties>
             <option name="className" value="\App\Controller\BlogListController" />
             <option name="methodName" value="deletePostId" />
           </properties>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php-line-method">
+        <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Entity/Users.php</url>
-          <line>132</line>
+          <line>126</line>
           <properties>
             <option name="className" value="\App\Entity\Users" />
             <option name="methodName" value="getEmail" />
           </properties>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php-line-method">
+        <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Model/PostsModel.php</url>
-          <line>184</line>
+          <line>185</line>
           <properties>
             <option name="className" value="\App\Model\PostsModel" />
             <option name="methodName" value="updatePost" />

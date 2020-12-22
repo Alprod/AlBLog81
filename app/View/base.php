@@ -1,6 +1,6 @@
 <div class="text-center lead">
     <?php if (!empty($_SESSION['id_membre'])) : ?>
-        <h2 class="display-5"><?= $success.' '.$pseudo?> !</h2>
+        <h2 class="display-5"><?= $success.' '.$membreUser->getPseudo()?> !</h2>
     <?php endif; ?>
     <h1 class="cover-heading display-4">Welcome To AlBlog</h1>
 
