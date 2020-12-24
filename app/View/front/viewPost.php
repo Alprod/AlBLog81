@@ -96,34 +96,40 @@
             if (isset($comments)) :
                 foreach ($comments as $comment) :
                     ?>
-            <div class="media pl-3 mb-3">
-                <img src="https://picsum.photos/id/1074/64" class="align-self-start mr-3 rounded-circle" alt="...">
-                <div class="media-body">
-                    <h5 class="mt-0"><?= htmlspecialchars(html_entity_decode($comment->getCommentTitle())); ?></h5>
-                    <p><?= html_entity_decode($comment->getCommentContent()); ?></p>
-                    <p class="font-italic">Posté par <?= $comment->getUserId()->getPseudo(); ?></p>
-                    <p class="text-muted">Créer le : <?= $comment->getCommentCreateAt(); ?></p>
-                    <?php if (!isset($_SESSION['id_membre'])) : ?>
-                    <p class="font-italic text-muted">
-                        Si vous trouvez se texte inapproprié. Veuillez soit vous
-                        <a href="/register">inscrire</a> ou vous <a href="/login">connectez</a>
-                    </p>
-                    <?php else : ?>
-                    <form class="row">
-                        <div class="col col-md-8 m-auto">
-                            <input type="hidden" name="signal">
+                    <div class="media pl-3 mb-3">
+                        <img src="https://picsum.photos/id/1074/64"
+                             class="align-self-start mr-3 rounded-circle"
+                             alt="...">
+                        <div class="media-body">
+                            <h5 class="mt-0">
+                                <?= htmlspecialchars(html_entity_decode($comment->getCommentTitle())); ?>
+                            </h5>
+                            <p><?= html_entity_decode($comment->getCommentContent()); ?></p>
+                            <p class="font-italic">Posté par <?= $comment->getUserId()->getPseudo(); ?></p>
+                            <p class="text-muted">Créer le : <?= $comment->getCommentCreateAt(); ?></p>
+                            <?php if (!isset($_SESSION['id_membre'])) : ?>
                             <p class="font-italic text-muted">
-                                Si vous constatez que le commentaire vous semble inapproprié,
-                                veuillez le signaler et nous ferons le nécessaire
+                                Si vous trouvez se texte inapproprié. Veuillez soit vous
+                                <a href="/register">inscrire</a> ou vous <a href="/login">connectez</a>
                             </p>
+                            <?php else : ?>
+                            <form action="/updateSignal" method="post" class="row">
+                                <div class="col col-md-8 m-auto">
+                                    <input type="hidden" name="signal" value="<?= $comment->getSignal() ?>">
+                                    <input type="hidden" name="idComments" value="<?= $comment->getIdComments() ?>">
+                                    <input type="hidden" name="userId" value="<?= $comment->getUserId()->getIdUsers() ?>">
+                                    <p class="font-italic text-muted">
+                                        Si vous constatez que le commentaire vous semble inapproprié,
+                                        veuillez le signaler et nous ferons le nécessaire
+                                    </p>
+                                </div>
+                                <div class="col col-md-4 m-auto">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger m-auto">Signaler</button>
+                                </div>
+                            </form>
+                            <?php endif; ?>
                         </div>
-                        <div class="col col-md-4 m-auto">
-                            <button type="submit" class="btn btn-sm btn-outline-danger m-auto">Signaler</button>
-                        </div>
-                    </form>
-                    <?php endif; ?>
-                </div>
-            </div>
+                    </div>
                     <?php
                 endforeach;
             endif;

@@ -248,7 +248,7 @@ class MembreController extends Users
         $date = date($userProfil->getCreatedAt());
         $dateFomate = strftime("%d %B %G", strtotime($date));
 
-        $commentUserId = $this->getCommentModel()->findCommentsByIds($idUser);
+        $commentUserId = $this->getCommentModel()->findCommentsByUserId($idUser);
 
         $postUserId = $this->getPostModel()->findPostsByIdUser($idUser);
 

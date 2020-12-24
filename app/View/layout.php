@@ -23,7 +23,7 @@
 <body>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column vh-100">
         <header class="masthead mb-auto">
-            <h2 class="masthead-brand">Alblog</h2>
+            <h2 class="masthead-brand"><a class="iconTitle" href="/">Alblog</a></h2>
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="/">Home</a>

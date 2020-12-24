@@ -14,6 +14,19 @@ h1,h2,h3,h4,h5,h6{
 /*
  * Header
  */
+
+.iconTitle{
+  color: #fcfcfc;
+  text-decoration: none;
+}
+.iconTitle:hover{
+  background-image: linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .masthead {
   margin-bottom: 2rem;
 }
@@ -23,7 +36,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .nav-masthead{
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .nav-masthead .nav-link {

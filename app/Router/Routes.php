@@ -40,6 +40,7 @@ class Routes
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login']),
             new Route('POST', 'mdpUpdate', '/mdpUpdate', [MembreController::class, 'mdpUpdate']),
             new Route('POST', 'updatePost', '/updatePost', [BlogListController::class, 'updatePostById']),
+            new Route('POST', 'updateSignal', '/updateSignal', [BlogListController::class, 'updateSignalCommentById']),
             new Route('POST', 'deletePost', '/deletePost', [BlogListController::class, 'deletePostId'])
         ];
 

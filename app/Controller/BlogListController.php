@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
 use App\Entity\Posts;
 use App\Entity\Users;
 use App\Model\CommentsModel;
@@ -28,7 +29,6 @@ class BlogListController
         $this->commentModel = new CommentsModel();
         $this->config = new Config();
         $this->membreModel = new MembresModel();
-        $this->isAdmin = (new MembreController)->isAdmin();
     }
 
     /**
@@ -46,7 +46,14 @@ class BlogListController
     {
         return $this -> membreModel;
     }
-    private bool $isAdmin;
+
+    /**
+     * @return CommentsModel
+     */
+    public function getCommentModel(): CommentsModel
+    {
+        return $this -> commentModel;
+    }
 
 
 
@@ -113,6 +120,24 @@ class BlogListController
         $this->getPostModel()->addCommentToPost($commentId, $idPost, $title, $comment);
 
         return $this->getConfig()->redirect("/$slug/$id");
+    }
+
+
+    public function updateSignalCommentById()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        $comment = new Comments();
+        $comment->hydrate($post);
+
+        $findComment = $this->getCommentModel()->findCommentsById($comment->getIdComments());
+        $slug = $findComment->getPostId()->getPostTitle();
+        $idPost = $findComment->getPostId()->getIdPosts();
+
+        if (empty($comment->getSignal())) {
+            $this->getCommentModel()->updateSignal($comment);
+        }
+
+        return $this->getConfig()->redirect("/$slug/$idPost");
     }
 
 
