@@ -32,12 +32,31 @@ class Comments extends Entity
                 $this->postId->setImages($value);
                 break;
             case 'date_create_at':
-                $this->setCreateAt($value);
+                $this->postId->setDateCreateAt($value);
+                break;
+            case 'idUsers':
+                $this->userId->setIdUsers($value);
                 break;
             case 'pseudo':
                 $this->userId->setPseudo($value);
                 break;
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostId()
+    {
+        return $this -> postId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this -> userId;
     }
 
     /**
@@ -137,22 +156,6 @@ class Comments extends Entity
     public function setUserCommentId($userCommentId): void
     {
         $this -> userCommentId = $userCommentId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPostId()
-    {
-        return $this -> postId;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserId()
-    {
-        return $this -> userId;
     }
 
     /**

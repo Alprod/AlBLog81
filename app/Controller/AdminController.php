@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comments;
 use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
@@ -42,7 +43,7 @@ class AdminController extends PDOmanager
         return $this->membreModel;
     }
     
-    public function getCommentMoel()
+    public function getCommentModel()
     {
         return $this->commentModel;
     }
@@ -55,13 +56,24 @@ class AdminController extends PDOmanager
     {
         $users = $this->getMembreModel()->findAll();
         $posts = $this->getPostModel()->findAllPosts();
-        $comments = $this->getCommentMoel()->findAllComments();
+        $comments = $this->getCommentModel()->findAllComments();
+        $report = $this->getCommentModel()->findCommentsReport();
 
         return $this->getConfig()->render("layout.php", "admin/dashbaord.php", [
             'titre' => 'Dashbarod',
             'users' => $users,
             'posts' => $posts,
             'comments' => $comments,
+            'reports' => $report
         ]);
+    }
+
+    public function deleteReportNotApprouved()
+    {
+        $post = $this->getConfig()->sanitize($_POST);
+        $report  = new Comments();
+        $report->hydrate($post);
+        $this->getCommentModel()->deleteComment($report);
+        return $this->getConfig()->redirect("admin/dashbaord.php");
     }
 }

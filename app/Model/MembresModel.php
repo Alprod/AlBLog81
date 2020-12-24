@@ -76,10 +76,10 @@ class MembresModel extends PDOmanager
         $result->bindParam(':email', $email);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Users');
-        $donnee = $result->fetch();
+        $data = $result->fetch();
 
-        if ($donnee) {
-            return $donnee;
+        if ($data) {
+            return $data;
         } else {
             return false;
         }
@@ -97,10 +97,11 @@ class MembresModel extends PDOmanager
     public function updateMdp($idUsers, $mdp)
     {
         $bdd = $this->getBdd();
-        $request = $bdd->prepare('UPDATE Users SET mdp = :mdp WHERE idUsers = :idUsers');
-        $request->bindParam(':idUsers', $idUsers, PDO::PARAM_INT);
-        $request->bindValue(':mdp', $mdp, PDO::PARAM_STR);
-        $request->execute();
+        $req = 'UPDATE Users SET mdp = :mdp WHERE idUsers = :idUsers';
+        $result = $bdd->prepare($req);
+        $result->bindParam(':idUsers', $idUsers, PDO::PARAM_INT);
+        $result->bindValue(':mdp', $mdp, PDO::PARAM_STR);
+        $result->execute();
     }
 
     /**
