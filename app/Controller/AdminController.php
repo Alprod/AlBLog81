@@ -70,10 +70,23 @@ class AdminController extends PDOmanager
 
     public function deleteReportNotApprouved()
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $post = $_POST;
         $report  = new Comments();
         $report->hydrate($post);
+
         $this->getCommentModel()->deleteComment($report);
-        return $this->getConfig()->redirect("admin/dashbaord.php");
+
+        return $this->getConfig()->redirect("/dashbaord");
+    }
+
+    public function approuvedReport()
+    {
+        $post = $_POST;
+        $report = new Comments();
+        $report->hydrate($post);
+
+        $this->getCommentModel()->updateCommentReport($report);
+
+        return $this->getConfig()->redirect('/dashbaord');
     }
 }

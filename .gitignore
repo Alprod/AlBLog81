@@ -5,6 +5,7 @@ composer.lock
 
 /vendor/
 /build/
+/node_modules
 
 .htaccess
 .idea/
@@ -13,4 +14,7 @@ composer.lock
 #phpUnit
 phpunit_xml.dist
 .phpunit.result.cache
+
+package-lock.json
+package.json
 

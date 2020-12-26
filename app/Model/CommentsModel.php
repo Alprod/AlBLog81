@@ -108,4 +108,13 @@ class CommentsModel extends PDOmanager
 
         return $result->fetchAll();
     }
+
+    public function updateCommentReport(Comments $id)
+    {
+        $req = 'UPDATE Comments SET `signal` = FALSE WHERE idComments = :idComment';
+        $result = $this->getBdd()->prepare($req);
+        $result->bindValue(':idComment', $id->getIdComments());
+
+        return $result->execute();
+    }
 }

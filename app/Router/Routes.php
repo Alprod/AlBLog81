@@ -41,7 +41,9 @@ class Routes
             new Route('POST', 'mdpUpdate', '/mdpUpdate', [MembreController::class, 'mdpUpdate']),
             new Route('POST', 'updatePost', '/updatePost', [BlogListController::class, 'updatePostById']),
             new Route('POST', 'updateSignal', '/updateSignal', [BlogListController::class, 'updateSignalCommentById']),
-            new Route('POST', 'deletePost', '/deletePost', [BlogListController::class, 'deletePostId'])
+            new Route('POST', 'deletePost', '/deletePost', [BlogListController::class, 'deletePostId']),
+            new Route('POST', 'deleteReport', '/deleteReport', [AdminController::class, 'deleteReportNotApprouved']),
+            new Route('POST', 'updateReport', '/updateReport', [AdminController::class, 'approuvedReport']),
         ];
 
         foreach ($routes as $route) {

@@ -2,14 +2,15 @@
 <h3><?= $slug ?></h3>
 
 <div class="card border-dark text-white bg-dark mb-3 bg-black">
+    <?php if(!empty($post->getImages())): ?>
     <img
         class="card-img-top"
         src="./../images/<?= $post->getImages() ?>"
         alt="<?= $post->getPostTitle() ?>">
-
+    <?php endif; ?>
     <div class="card-body">
 
-        <h5 class="card-title"><?= htmlspecialchars($post->getPostTitle()) ?></h5>
+        <h5 class="card-title"><?= htmlspecialchars(html_entity_decode($post->getPostTitle())) ?></h5>
         <p class="card-text"><?= html_entity_decode($post->getPostContent())  ?></p>
 
         <?php if (!empty($post->getLink())) : ?>

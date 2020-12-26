@@ -9,9 +9,11 @@
     foreach ($listPost as $post) : ?>
         <div class="col-md-4 mt-4">
             <div class="card bg-black">
+                <?php if (!empty($post->getImages())) : ?>
                 <img src="./images/<?= $post->getImages() ?>" class="card-img-top" alt="...">
+                <?php endif; ?>
                 <div class="card-body">
-                    <h5 class="card-title"><?= htmlspecialchars($post->getPostTitle()) ?></h5>
+                    <h5 class="card-title"><?= htmlspecialchars(html_entity_decode($post->getPostTitle())) ?></h5>
                     <p class="text-muted"><?= $post->getDateCreateAt() ?></p>
                     <p class="text-muted">Ecris par : <?= $post->getuserId()->getPseudo() ?> </p>
 
