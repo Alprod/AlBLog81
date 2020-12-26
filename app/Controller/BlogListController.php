@@ -159,14 +159,11 @@ class BlogListController
     {
         $post = $this->getConfig()->sanitize($_POST);
         $postByIds = $this->getPostModel()->findPostByIds($id);
-        foreach ($postByIds as $postById) {
-            $idPost = $postById;
-        }
-        $postImage = $idPost->getImages();
+        $postImage = $postByIds->getImages();
 
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
             'titre' => 'Modifier l\'article',
-            'blog_actuel' => $idPost,
+            'blog_actuel' => $postByIds,
             'blog_image' => $postImage
         ]);
     }

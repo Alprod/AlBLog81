@@ -188,10 +188,10 @@ class PostsModel extends PDOmanager
 
         $bdd = $this->getBdd();
         $req = 'UPDATE Posts SET 
-                                     postTitle = :title,
-                                     postContent = :content, 
-                                     images = :images, 
-                                     date_create_at = NOW() 
+                                 postTitle = :title,
+                                 postContent = :content, 
+                                 images = :images, 
+                                 dateCreateAt = NOW() 
                    WHERE idPosts = :idPosts';
         $result = $bdd->prepare($req);
         $result->bindValue(':title', $post->getPostTitle());
