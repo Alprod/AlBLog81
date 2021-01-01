@@ -54,7 +54,7 @@ class RouterTest extends TestCase
         $router = new Router();
         $route = new Route('POST', 'contat', 'contact/{id}', [BlogController::class, 'blog']);
         $router->add($route);
-        $this->assertEquals($route, $router->match('POST', '/contac'));
+        $this->assertEquals($route, $router->match('/contac', 'POST'));
     }
 
     /**
@@ -92,7 +92,7 @@ class RouterTest extends TestCase
         $route = new Route('POST', 'contact', '/contact', [BlogController::class, 'blog']);
         $router->add($route);
         $this->expectException(RouteNotFoundException::class);
-        $router->match($method, $path);
+        $router->match($path, $method);
     }
 
 
@@ -145,7 +145,7 @@ class RouterTest extends TestCase
         $router = new Router();
 
         $this->expectException(RouteNotFoundException::class);
-        $router->match('POST', '/');
+        $router->match('/', 'POST');
     }
 
 

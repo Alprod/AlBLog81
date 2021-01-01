@@ -65,6 +65,15 @@ class Route
     }
 
     /**
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this -> path;
+    }
+
+
+    /**
      * @param string $path
      *
      * @return bool

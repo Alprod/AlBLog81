@@ -7,7 +7,7 @@
         <div class="text-center">
             <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
 
-            <a href="/" class="button text-center">HOME PAGE</a>
+            <a href="<?= url('home'); ?>" class="button btn btn-primary btn-block text-center">HOME PAGE</a>
         </div>
     </div>
 </div>

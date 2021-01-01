@@ -10,5 +10,7 @@ un projet pure PHP
   </li>
   <li>
     Autoload
+  </li><li>
+    Bootstrap
   </li>
 </ul>

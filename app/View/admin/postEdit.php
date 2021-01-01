@@ -4,7 +4,7 @@
         <form
             enctype="multipart/form-data"
             method="post"
-            action="<?= (!empty($blog_actuel)) ? '/updatePost' : '/addPost' ?>">
+            action="<?= (!empty($blog_actuel)) ? url('updatePost') : url('addPost') ?>">
             <input
                 type="hidden"
                 name="idPosts"

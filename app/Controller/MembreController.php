@@ -76,8 +76,12 @@ class MembreController extends Users
      */
     public function membresSubscribe(): bool
     {
+        if (!empty($_SESSION['id_membre'])) {
+            $user = $this->getMembreModel()->find($_SESSION['id_membre']);
+        }
         return $this->getConfig()->render("layout.php", "membres/subscribe.php", array(
-            'titre' => 'Inscription'
+            'titre' => 'Inscription',
+
         ));
     }
 
@@ -101,31 +105,25 @@ class MembreController extends Users
             $this->validation($data);
             $user = new Users();
             $user->hydrate($data);
+
+            $pwd = $user->getMdp();
+            $crypt = $this->getConfig()->cryptMdp($pwd);
+            $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
+
+            if ($this->getMembreModel()->register($pwd_pepper, $user)) {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                return $this->getConfig()->redirect("/login");
+            }
         } catch (Exception $e) {
             $params=[
-                'titre'=>'Inscription',
+                'titre'=>'Erreur d\'inscription',
+                'pseudo' => $user->getPseudo(),
                 'error'=> $e->getMessage()
             ];
             return $this->getConfig()->render('layout.php', "membres/subscribe.php", $params);
         }
-        $pwd = $user->getMdp();
-        $crypt = $this->getConfig()->cryptMdp($pwd);
-        $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
-
-
-        if ($this->getMembreModel()->register($pwd_pepper, $user)) {
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            return $this->getConfig()->redirect("/login");
-        }
-
-        $params = [
-           'titre' => 'Erreur d\'inscription',
-           'error' => 'Inscription non réussit',
-           'pseudo' => $data['pseudo']
-        ];
-        return $this->getConfig()->render('layout.php', 'membres/subscribe.php', $params);
     }
 
 

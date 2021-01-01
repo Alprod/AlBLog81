@@ -10,3 +10,9 @@ $config->initSessionId();
 
 $routes = new Routes();
 $routes->routesIndex();
+
+function url($name)
+{
+    global $routes;
+    return $routes->findNameRoute($name)->getPath();
+}

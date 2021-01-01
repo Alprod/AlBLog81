@@ -1,5 +1,5 @@
 <h1 class="display-2 mt-5 mb-2"><?= $titre ?></h1>
-<form action="/register" method="post">
+<form action="<?= url('register')?>" method="post">
     <div class="row">
         <?php if(isset($error)): ?>
         <div class="col-md-12">

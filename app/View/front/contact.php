@@ -21,7 +21,7 @@
         </div>
         <?php endif; ?>
 
-        <form action="/sendMail" method="post">
+        <form action="<?= url('sendMail') ?>" method="post">
             <div class="col-md-12 mt-3">
                 <label for="inputName">Nom/Pseudo</label>
                 <input type="text" name="inputName" id="inputName" value="<?= $_SESSION['pseudo_membre'] ?? '' ?>" class="inputName text-white rounded-lg form-control border border-dark">

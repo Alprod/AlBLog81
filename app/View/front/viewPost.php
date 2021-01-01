@@ -18,14 +18,14 @@
             <a
                 href="https://<?= $post->getLink(); ?>"
                 class="font-italic"
-                target="_blank"><?= htmlspecialchars($post->getPostTitle()) ?>
+                target="_blank"><?= htmlspecialchars($post->getLink()) ?>
             </a>
         </p>
         <?php endif; ?>
 
         <p class="text-muted">Auteur de l'article : <?= $post->getUserId()->getPseudo() ?></p>
         <p class="text-muted">Créer le : <?= $post->getDateCreateAt() ?></p>
-        <a href="/blogs" class="btn btn-outline-light btn-sm mb-2">retour</a>
+        <a href="<?= url('blogs')?>" class="btn btn-outline-light btn-sm mb-2">retour</a>
 
         <?php if (isset($_SESSION['id_membre'], $_SESSION['membre'])) :?>
         <button
@@ -38,12 +38,12 @@
         </button>
             <?php if ($post->getPostUserId() == $_SESSION['membre']->getIdUsers()) : ?>
                 <a
-                        href="<?= '/' . $post -> getIdPosts() ?>"
+                        href="<?= '/posts/' . $post -> getIdPosts() ?>"
                         value="Modifier l'article"
                         class="btn btn-outline-info btn-sm mb-2"><?= $changer ?>
                 </a>
                 <div class="d-flex justify-content-end">
-                    <form method="post" action="/deletePost">
+                    <form method="post" action="<?= url('deletePost')?>">
                         <input type="hidden" name="idPost" value="<?= $post -> getIdPosts() ?>">
                         <button type="submit" class="btn btn-outline-danger btn-sm">Supprimer</button>
                     </form>
@@ -114,7 +114,7 @@
                                 <a href="/register">inscrire</a> ou vous <a href="/login">connectez</a>
                             </p>
                             <?php else : ?>
-                            <form action="/updateSignal" method="post" class="row">
+                            <form action="<?= url('updateSignal')?>" method="post" class="row">
                                 <div class="col col-md-8 m-auto">
                                     <input type="hidden" name="signal" value="<?= $comment->getSignal() ?>">
                                     <input type="hidden" name="idComments" value="<?= $comment->getIdComments() ?>">
