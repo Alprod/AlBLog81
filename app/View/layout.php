@@ -21,7 +21,6 @@
 </head>
 
 <body>
-<?php dump(url('viewPost')) ?>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column vh-100">
         <header class="masthead mb-auto">
             <h2 class="masthead-brand"><a class="iconTitle" href="/">Alblog</a></h2>

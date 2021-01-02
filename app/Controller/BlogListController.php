@@ -161,7 +161,6 @@ class BlogListController
      */
     public function postFormById($id): bool
     {
-        $post = $this->getConfig()->sanitize($_POST);
         $postByIds = $this->getPostModel()->findPostByIds($id);
         $postImage = $postByIds->getImages();
 

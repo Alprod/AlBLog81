@@ -3,7 +3,6 @@
 
 namespace App\Entity;
 
-
 abstract class Entity
 {
     public function hydrate(array $donnees)
@@ -15,5 +14,4 @@ abstract class Entity
             }
         }
     }
-
 }
