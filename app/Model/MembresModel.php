@@ -27,7 +27,7 @@ class MembresModel extends PDOmanager
 
     /**
      * @param $id
-     * @return false|mixed
+     * @return mixed
      */
     public function find($id)
     {
@@ -37,11 +37,11 @@ class MembresModel extends PDOmanager
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Users");
         $data = $result->fetch();
+        $result->closeCursor();
         if ($data) {
             return $data;
-        } else {
-            return false;
         }
+        return false;
     }
 
 

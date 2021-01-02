@@ -13,7 +13,7 @@
             </div>
         <?php endif; ?>
 
-        <form method="post" action="/loginVerif">
+        <form method="post" action="<?= url('loginVerif')?>">
             <div class="form-group">
                 <label for="emailCo">Email address</label>
                 <input type="email" name="email" class="form-control Subcribe text-white border border-dark" id="emailCo" aria-describedby="emailHelp">

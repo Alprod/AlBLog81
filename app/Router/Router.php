@@ -26,7 +26,7 @@ class Router
      */
     public function add(Route $route):self
     {
-        if($this->has($route->getName())){
+        if ($this->has($route->getName())) {
             throw new RouteAlreadyExistExecption('This route Exist');
         }
         $this->routes[$route->getName()] = $route;
@@ -55,7 +55,7 @@ class Router
      */
     public function findRouteName(string $name): ?Route
     {
-        if(!$this->has($name)){
+        if (!$this->has($name)) {
             throw new RouteNotFoundException('Route name not found');
         }
         return $this->routes[$name];
@@ -76,17 +76,26 @@ class Router
      * Check the method as well as the path of the route
      *
      * @param string $path
-     *
      * @param string $method
-     *
      */
-    public function match(string $method,string $path)
+    public function match(string $method, string $path)
     {
         foreach ($this->routes as $route) {
             if ($route->testMatchIds($path) && $route->getMethode() === $method) {
                 return $route;
             }
         }
+        return false;
+    }
+
+    public function find(string $name)
+    {
+        foreach ($this->routes as $route) {
+            if ($name == $route->getName()) {
+                return $route;
+            }
+        }
+        return null;
     }
 
     /**
@@ -98,8 +107,8 @@ class Router
      *
      * @throws ReflectionException
      */
-    public function call( string $method, string $path )
+    public function call(string $method, string $path)
     {
-        return $this->match( $method, $path )->call( $path );
+        return $this->match($method, $path)->call($path);
     }
 }

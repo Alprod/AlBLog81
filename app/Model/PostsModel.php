@@ -59,7 +59,11 @@ class PostsModel extends PDOmanager
         return $posts;
     }
 
-    public function findPostsByIdUser($id)
+    /**
+     * @param $id
+     * @return array
+     */
+    public function findPostsByIdUser($id): array
     {
         $req = 'SELECT *, DATE_FORMAT(dateCreateAt, "%d/%m/%Y") as dateCreateAt 
                 FROM Posts 
@@ -78,7 +82,7 @@ class PostsModel extends PDOmanager
      * @param $id
      * @return array
      */
-    public function findCommentsByPostAndIds($id)
+    public function findCommentsByPostAndIds($id): array
     {
         $req = 'SELECT  c.idComments,
                         u.pseudo,
@@ -103,7 +107,12 @@ class PostsModel extends PDOmanager
         return $commentPost;
     }
 
-    public function findCommentById($id)
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function findCommentById($id): array
     {
         $bdd = $this->getBdd();
         $req = 'SELECT *,DATE_FORMAT(commentCreateAt, "%d/%m/%Y") as dateCreateAt 

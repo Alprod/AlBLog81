@@ -7,6 +7,7 @@ use App\Entity\Users;
 use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
+use bug\Bug;
 use Config\Config;
 use DateTime;
 use DateTimeZone;
@@ -77,7 +78,7 @@ class MembreController extends Users
     public function membresSubscribe(): bool
     {
         return $this->getConfig()->render("layout.php", "membres/subscribe.php", array(
-            'titre' => 'Inscription'
+            'titre' => 'Inscription',
         ));
     }
 
@@ -91,6 +92,23 @@ class MembreController extends Users
         ]);
     }
 
+
+    /**
+     * @return bool
+     */
+    public function updateRegister()
+    {
+
+        $user = $this->getMembreModel()->find($_SESSION['id_membre']);
+
+        $params = [
+            'titre' => 'Modifier les infos',
+            'user' => $user
+            ];
+        return $this->getConfig()->render('layout.php', "membres/subscribe.php", $params);
+    }
+
+
     /**
      * @return bool|void
      */
@@ -101,31 +119,30 @@ class MembreController extends Users
             $this->validation($data);
             $user = new Users();
             $user->hydrate($data);
+
+            $pwd = $user->getMdp();
+            $crypt = $this->getConfig()->cryptMdp($pwd);
+            $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
+
+            if ($this->getMembreModel()->register($pwd_pepper, $user)) {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                return $this->getConfig()->redirect("/login");
+            }
         } catch (Exception $e) {
             $params=[
-                'titre'=>'Inscription',
+                'titre'=>'Erreur d\'inscription',
                 'error'=> $e->getMessage()
             ];
             return $this->getConfig()->render('layout.php', "membres/subscribe.php", $params);
         }
-        $pwd = $user->getMdp();
-        $crypt = $this->getConfig()->cryptMdp($pwd);
-        $pwd_pepper = hash_hmac("sha256", $pwd, $crypt);
+    }
 
 
-        if ($this->getMembreModel()->register($pwd_pepper, $user)) {
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            return $this->getConfig()->redirect("/login");
-        }
-
-        $params = [
-           'titre' => 'Erreur d\'inscription',
-           'error' => 'Inscription non réussit',
-           'pseudo' => $data['pseudo']
-        ];
-        return $this->getConfig()->render('layout.php', 'membres/subscribe.php', $params);
+    public function updateMembreRegister()
+    {
+       dump($_POST);
     }
 
 
@@ -137,22 +154,21 @@ class MembreController extends Users
         try {
             $data = $this->getConfig()->sanitize($_POST);
             $this->verifLogin($data);
-            //$this->getConfig()->createSession($req['idUsers']);
+
+            $user = $this->getMembreModel()->loginOfConnexion($data['email']);
+            $this->getConfig()->createSession($user->getIdUsers());
+            $_SESSION['membre'] = $user;
+            $_SESSION['pseudo_membre'] = $user->getPseudo();
+            $_SESSION['email_membre'] = $user->getEmail();
+            return $this->getConfig()->redirect("/");
         } catch (Exception $e) {
             return $this->getConfig()->render("layout.php", "membres/login.php", [
                 'error'=> $e->getMessage(),
                 'titre'=> 'Connexion',
             ]);
         }
-        $user = $this->getMembreModel()->loginOfConnexion($data['email']);
-        $this->getConfig()->createSession($user->getIdUsers());
-
-        $_SESSION['membre'] = $user;
-        $_SESSION['pseudo_membre'] = $user->getPseudo();
-        $_SESSION['email_membre'] = $user->getEmail();
-
-        return $this->getConfig()->redirect("/");
     }
+
 
     public function logout()
     {
@@ -216,6 +232,7 @@ class MembreController extends Users
             }
         }
     }
+
 
     public function verifLogin($data)
     {

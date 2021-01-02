@@ -1,8 +1,8 @@
 <h1 class="text-center m-5 cover-heading display-4">Mes Articles</h1>
 <div class="row mb-5">
-    <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin()) : ?>
+    <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
     <div class="col-md-12">
-        <a class="btn btn-outline-light" href="/editPost/create">Ajouter un nouvelle article</a>
+        <a class="btn btn-outline-light" href="<?= url('editPost') ?>">Ajouter un nouvelle article</a>
     </div>
         <?php
     endif;
@@ -18,7 +18,7 @@
                     <p class="text-muted">Ecris par : <?= $post->getuserId()->getPseudo() ?> </p>
 
                     <a
-                        href="<?= str_replace(' ', '-', $post->getPostTitle()).'/'.$post->getIdPosts() ?>"
+                        href="<?= $titlePost.'/'.$post->getIdPosts() ?>"
                         class="btn btn-outline-light btn-sm">Lire
                     </a>
                 </div>

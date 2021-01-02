@@ -26,26 +26,26 @@
             <h2 class="masthead-brand"><a class="iconTitle" href="/">Alblog</a></h2>
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="/">Home</a>
-                    <a class="nav-link" href="/blogs">Articles</a>
+                    <a class="nav-link active" href="<?= url('home'); ?>">Home</a>
+                    <a class="nav-link" href="<?= url('blogs'); ?>">Articles</a>
 
 
                     <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
-                    <a class="nav-link" href="/editPost/create">Nouveau post</a>
+                    <a class="nav-link" href="<?= url('editPost'); ?>">Nouveau post</a>
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isSuperAdmin()) : ?>
-                    <a class="nav-link" href="/dashbaord">Dashbaord</a>
+                    <a class="nav-link" href="<?= url('dashbaord'); ?>">Dashbaord</a>
                     <?php endif; ?>
 
-                    <a class="nav-link" href="/contact">Contact</a>
+                    <a class="nav-link" href="<?= url('contact'); ?>">Contact</a>
 
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
-                    <a class="nav-link" href="/register">Inscription</a>
-                    <a class="nav-link connexion" href="/login">Connexion</a>
+                    <a class="nav-link" href="<?= url('register'); ?>">Inscription</a>
+                    <a class="nav-link connexion" href="<?= url('login'); ?>">Connexion</a>
                     <?php else : ?>
-                    <a class="nav-link" href="/profil">Profil</a>
-                    <a class="nav-link connexion" href="/logout">Déconnexion</a>
+                    <a class="nav-link" href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?></a>
+                    <a class="nav-link connexion" href="<?= url('logout'); ?>">Déconnexion</a>
                     <?php endif; ?>
 
                 </nav>

@@ -8,6 +8,12 @@
             <p>Prseudo : <?= $profil->getPseudo() ?></p>
             <p>Email : <?= $profil->getEmail() ?></p>
             <p>Pays : <?= $profil->getCountry() ?></p>
+            <a
+                href="<?= url('updateRegister')?>"
+                value="Modifier l'article"
+                class="btn btn-outline-info btn-sm btn-block mb-2">
+                Mettre à jour
+            </a>
             <hr class="my-4 border-white">
             <p>Date d'inscription :  <?= $dateInscription ?></p>
         </div>
@@ -28,7 +34,7 @@
                 </div>
             <?php endif; ?>
 
-            <form action="/mdpUpdate" method="post">
+            <form action="<?= url('mdpUpdate') ?>" method="post">
 
                 <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">

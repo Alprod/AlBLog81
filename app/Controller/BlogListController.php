@@ -71,10 +71,14 @@ class BlogListController
     public function blogList(): string
     {
         $listPost = $this->getPostModel()->findAllPosts();
+        foreach ($listPost as $list) {
+            $title = str_replace(' ', '-', $list->getPostTitle());
+        }
         $conf = $this->getConfig();
 
         return $conf->render('layout.php', 'front/posts.php', [
             'titre' => 'Mes articles',
+            'titlePost' => $title,
             'listPost' => $listPost,
         ]);
     }
@@ -157,7 +161,6 @@ class BlogListController
      */
     public function postFormById($id): bool
     {
-        $post = $this->getConfig()->sanitize($_POST);
         $postByIds = $this->getPostModel()->findPostByIds($id);
         $postImage = $postByIds->getImages();
 

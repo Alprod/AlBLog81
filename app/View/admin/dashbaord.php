@@ -147,7 +147,7 @@
             <li class="media my-3">
                 <div class="media-body">
                     <p>
-                        <strong><?= $comment->getCommentTitle()?></strong><?= ' par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getCommentCreateAt() ?></em>
+                        <strong><?= ($comment->getCommentTitle()) ? $comment->getCommentTitle() : 'Pas de titre indiqué' ?></strong><?= ' par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getCommentCreateAt() ?></em>
                     </p>
                 </div>
             </li>
