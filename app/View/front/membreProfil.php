@@ -8,6 +8,14 @@
             <p>Prseudo : <?= $profil->getPseudo() ?></p>
             <p>Email : <?= $profil->getEmail() ?></p>
             <p>Pays : <?= $profil->getCountry() ?></p>
+            <?php if (isset($success)) :?>
+                <div class="alert alert-success btn-sm alert-dismissible fade show" role="alert">
+                    <?= $success ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif; ?>
             <a
                 href="<?= url('updateRegister')?>"
                 value="Modifier l'article"

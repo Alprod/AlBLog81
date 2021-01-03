@@ -171,4 +171,33 @@ class MembresModel extends PDOmanager
 
         return $result->execute();
     }
+
+    public function updateMembreRegister(Users $user)
+    {
+        $bdd = $this->getBdd();
+        $req = 'UPDATE Users SET firstname = :firstname,
+                                 lastname = :lastname,
+                                 pseudo = :pseudo,
+                                 email = :email,
+                                 addressNumber = :addressNumber,
+                                 addressName = :addressName,
+                                 city = :city,
+                                 zip_code = :zipcode,
+                                 departement = :departement,
+                                 country = :country
+                             WHERE idUsers = :idUser';
+        $result = $bdd->prepare($req);
+        $result->bindValue(':firstname', $user->getFirstname());
+        $result->bindValue(':lastname', $user->getLastname());
+        $result->bindValue(':pseudo', $user->getPseudo());
+        $result->bindValue(':email', $user->getEmail());
+        $result->bindValue(':addressNumber', $user->getAddressNumber());
+        $result->bindValue(':addressName', $user->getAddressName());
+        $result->bindValue(':city', $user->getCity());
+        $result->bindValue(':zipcode', $user->getZipCode());
+        $result->bindValue(':departement', $user->getDepartement());
+        $result->bindValue(':country', $user->getCountry());
+        $result->bindValue(':idUser', $user->getIdUsers());
+        $result->execute();
+    }
 }
