@@ -17,6 +17,7 @@
             <legend>Identité</legend>
             <div class="row">
             <div class="col-md-6 mt-3">
+                <input hidden type="text" name="idUsers" value="<?= (!empty($user)) ?  $user->getidUsers() : ''?>">
                 <label for="firstname">Nom</label>
                 <input type="text"
                        name="firstname"
@@ -169,7 +170,7 @@
                     <div class="col-md-6 mt-3">
                         <label for="state">Departement</label>
                         <input type="text"
-                               name="state"
+                               name="departement"
                                id="state"
                                value="<?= (!empty($user)) ? $user->getDepartement() :'' ?>"
                                class="Subcribe

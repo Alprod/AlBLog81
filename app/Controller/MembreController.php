@@ -140,9 +140,49 @@ class MembreController extends Users
     }
 
 
+    /**
+     * @return bool
+     */
     public function updateMembreRegister()
     {
-       dump($_POST);
+        try {
+            $data = $this->getConfig()->sanitize($_POST);
+            $user = new Users();
+            $user->hydrate($data);
+            $this->updateValidation($user);
+            if (!empty($user->getMdp())) {
+                if ($user->getMdp() != $data['mdp2']) {
+                    throw new Exception('les mots de passe ne sont pas identique');
+                }
+                $mdpCripte = $this->getConfig()->cryptMdp($data['mdp2']);
+                $pwd_confirm = hash_hmac('sha256', $data['mdp2'], $mdpCripte);
+                $idUser = $_SESSION['id_membre'];
+                $this->getMembreModel()->updateMdp($idUser, $pwd_confirm);
+            }
+            $this->getMembreModel()->updateMembreRegister($user);
+            $userId = $user->getIdUsers();
+            $userProfil = $this->getMembreModel()->find($userId);
+            $commentUserId = $this->getCommentModel()->findCommentsByUserId($userId);
+            $postUserId = $this->getPostModel()->findPostsByIdUser($userId);
+            $date = date($userProfil->getCreatedAt());
+            $dateFomate = strftime("%d %B %G", strtotime($date));
+
+            return $this->getConfig()->render('layout.php', 'front/membreProfil.php', [
+                'titre' => 'Profil',
+                'profil'=>$userProfil,
+                'comments'=>$commentUserId,
+                'posts'=>$postUserId,
+                'dateInscription' => $dateFomate,
+                'success'=>'Information modifier'
+            ]);
+        } catch (Exception $e) {
+            $params = [
+                'titre'=> 'Inscription',
+                'user' => $user,
+                'error' => $e->getMessage()
+            ];
+            return $this->getConfig()->render('layout.php', 'membres/subscribe.php', $params);
+        }
     }
 
 
@@ -233,6 +273,46 @@ class MembreController extends Users
         }
     }
 
+    public function updateValidation(Users $data)
+    {
+        $userMembre = $this->getMembreModel()->find($data->getIdUsers());
+
+        if (empty($data->getFirstname())) {
+            throw new Exception('Veuiilez indiquer un votre nom');
+        }
+
+        if (empty($data->getLastname())) {
+            throw new Exception('Indiquez votre prénom');
+        }
+
+        if (strlen($data->getPseudo()) <= 3 || empty($data->getPseudo())) {
+            throw new Exception('Votre pseudo est trop court');
+        }
+
+        if ($data->getPseudo() != $userMembre->getPseudo()) {
+            if ($this->getMembreModel()->existPseudo($data->getPseudo())) {
+                throw new Exception('Désolé mais le pseudo existe déjà');
+            }
+        }
+
+        if ($data->getEmail() != $userMembre->getEmail()) {
+            if (!filter_var($data->getEmail(), FILTER_VALIDATE_EMAIL)) {
+                throw new Exception('Le champs de votre email est incorrect');
+            }
+        }
+
+        switch ($data) {
+            case empty($data->getAddressNumber()):
+            case empty($data->getAddressName()):
+            case empty($data->getZipCode()):
+            case empty($data->getCity()):
+            case empty($data->getDepartement()):
+            case empty($data->getCountry()):
+                throw new Exception('Veuillez Remplir les champs maquent');
+                break;
+        }
+    }
+
 
     public function verifLogin($data)
     {
@@ -258,6 +338,7 @@ class MembreController extends Users
         }
     }
 
+
     public function userProfil()
     {
         $idUser = $_SESSION['id_membre'];
@@ -281,11 +362,9 @@ class MembreController extends Users
 
     public function mdpUpdate()
     {
-        $donnee = false;
         try {
             $data = $this->getConfig()->sanitize($_POST);
             $this->verifMdp($data);
-            $donnee = true;
         } catch (Exception $e) {
             $idUser = $_SESSION['id_membre'];
             $profil = $this->getMembreModel()->find($idUser);
