@@ -172,7 +172,7 @@ class MembresModel extends PDOmanager
         return $result->execute();
     }
 
-    public function updateMembreRegister(Users $user)
+    public function updateMemberRegister(Users $user)
     {
         $bdd = $this->getBdd();
         $req = 'UPDATE Users SET firstname = :firstname,
@@ -209,6 +209,17 @@ class MembresModel extends PDOmanager
         $result = $bdd->prepare($req);
         $result->bindValue(':id', $roles->getIdUsers());
         $result->bindValue(':roles', $bloggerRole);
+        $result->execute();
+    }
+
+    public function updateMembreToSuperAdmin(Users $roles)
+    {
+        $bdd = $this->getBdd();
+        $superAdminRole = Config::SUPER_USERS_ADMIN;
+        $req = 'UPDATE Users SET roles = :roles WHERE idUsers = :id';
+        $result = $bdd->prepare($req);
+        $result->bindValue(':id', $roles->getIdUsers());
+        $result->bindValue(':roles', $superAdminRole);
         $result->execute();
     }
 

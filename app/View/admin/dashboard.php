@@ -36,7 +36,7 @@
                             <td><?= $membre->getCountry() ?></td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <form action="<?= url('deletedMembres') ?>" method="post">
+                                    <form action="<?= url('deletedMember') ?>" method="post">
                                         <input hidden name="idUsers" value="<?= $membre->getIdUsers() ?>" type="text">
                                         <button type="submit" class="bg-transparent border-0">
                                             <i class="bi bi-trash text-center" style="color: crimson"></i>
@@ -46,7 +46,7 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <form action="<?= url('updateMembreToBlogger') ?>" method="post">
+                                    <form action="<?= url('updateMemberToBlogger') ?>" method="post">
                                         <input hidden name="idUsers" value="<?= $membre->getIdUsers() ?>" type="text">
                                         <button type="submit" class="bg-transparent border-0">
                                             <i class="bi bi-person-fill" style="color: dodgerblue"></i>
@@ -56,7 +56,12 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                <i class="bi bi-person-square" style="color: forestgreen"></i>
+                                    <form action="<?= url('updateMemberToSuperAdmin') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $membre->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-person-square" style="color: forestgreen"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -100,7 +105,7 @@
                             <td><?= $bloger->getCountry() ?></td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <form action="<?= url('deletedMembres') ?>" method="post">
+                                    <form action="<?= url('deletedMember') ?>" method="post">
                                         <input hidden name="idUsers" value="<?= $bloger->getIdUsers() ?>" type="text">
                                         <button type="submit" class="bg-transparent border-0">
                                             <i class="bi bi-trash text-center" style="color: crimson"></i>
@@ -149,7 +154,7 @@
                             <td><?= $admin->getCountry() ?></td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <form action="<?= url('deletedMembres') ?>" method="post">
+                                    <form action="<?= url('deletedMember') ?>" method="post">
                                         <input hidden name="idUsers" value="<?= $admin->getIdUsers() ?>" type="text">
                                         <button type="submit" class="bg-transparent border-0">
                                             <i class="bi bi-trash text-center" style="color: crimson"></i>

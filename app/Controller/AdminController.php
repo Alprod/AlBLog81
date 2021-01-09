@@ -30,22 +30,34 @@ class AdminController extends PDOmanager
         $this -> commentModel = new CommentsModel();
     }
 
-    public function getConfig()
+    /**
+     * @return Config
+     */
+    public function getConfig(): Config
     {
         return $this->config;
     }
 
-    public function getPostModel()
+    /**
+     * @return PostsModel
+     */
+    public function getPostModel(): PostsModel
     {
         return $this->postModel;
     }
 
-    public function getMembreModel()
+    /**
+     * @return MembresModel
+     */
+    public function getMembreModel(): MembresModel
     {
         return $this->membreModel;
     }
-    
-    public function getCommentModel()
+
+    /**
+     * @return CommentsModel
+     */
+    public function getCommentModel(): CommentsModel
     {
         return $this->commentModel;
     }
@@ -70,6 +82,7 @@ class AdminController extends PDOmanager
         ]);
     }
 
+
     public Function deletedMembreRegister()
     {
         $post = $_POST;
@@ -83,7 +96,8 @@ class AdminController extends PDOmanager
         return $this->getConfig()->redirect('/dashboard');
     }
 
-    public function updateMembreRegisterToBlogger()
+
+    public function updateMemberRegisterToBlogger()
     {
         $post = $_POST;
         $user = new Users();
@@ -95,6 +109,19 @@ class AdminController extends PDOmanager
         return $this->getConfig()->redirect('/dashboard');
     }
 
+    public function updateMemberRegisterToSuperAdmin()
+    {
+        $post = $_POST;
+        $user = new Users();
+        $user->hydrate($post);
+        if(!empty($post)){
+            $this->getMembreModel()->updateMembreToSuperAdmin($user);
+        }
+
+        return $this->getConfig()->redirect('/dashboard');
+    }
+
+
     public function deleteReportNotApprouved()
     {
         $post = $_POST;
@@ -105,6 +132,7 @@ class AdminController extends PDOmanager
 
         return $this->getConfig()->redirect("/dashboard");
     }
+
 
     public function approuvedReport()
     {
