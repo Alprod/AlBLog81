@@ -142,7 +142,7 @@ class MembreController extends Users
     /**
      * @return bool
      */
-    public function updateMembreRegister()
+    public function updateMemberRegister()
     {
         try {
             $data = $this->getConfig()->sanitize($_POST);
@@ -158,7 +158,7 @@ class MembreController extends Users
                 $idUser = $_SESSION['id_membre'];
                 $this->getMembreModel()->updateMdp($idUser, $pwd_confirm);
             }
-            $this->getMembreModel()->updateMembreRegister($user);
+            $this->getMembreModel()->updateMemberRegister($user);
             $userId = $user->getIdUsers();
             $userProfil = $this->getMembreModel()->find($userId);
             $commentUserId = $this->getCommentModel()->findCommentsByUserId($userId);
