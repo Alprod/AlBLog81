@@ -16,6 +16,9 @@
                     <th scope="col">Zip Code</th>
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
+                    <th scope="col">Supp</th>
+                    <th scope="col">Bloggeur</th>
+                    <th scope="col">admin</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,6 +34,31 @@
                             <td><?= $membre->getZipCode() ?></td>
                             <td><?= $membre->getCity() ?></td>
                             <td><?= $membre->getCountry() ?></td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('deletedMembres') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $membre->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-trash text-center" style="color: crimson"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('updateMembreToBlogger') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $membre->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-person-fill" style="color: dodgerblue"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                <i class="bi bi-person-square" style="color: forestgreen"></i>
+                                </div>
+                            </td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach;?>
@@ -54,6 +82,7 @@
                     <th scope="col">Zip Code</th>
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
+                    <th scope="col">Supp</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -69,6 +98,16 @@
                             <td><?= $bloger->getZipCode() ?></td>
                             <td><?= $bloger->getCity() ?></td>
                             <td><?= $bloger->getCountry() ?></td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('deletedMembres') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $bloger->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-trash text-center" style="color: crimson"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     <?php endif; ?>
                 <?php endforeach;?>
@@ -92,6 +131,7 @@
                     <th scope="col">Zip Code</th>
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
+                    <th scope="col">Supp</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -107,6 +147,17 @@
                             <td><?= $admin->getZipCode() ?></td>
                             <td><?= $admin->getCity() ?></td>
                             <td><?= $admin->getCountry() ?></td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('deletedMembres') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $admin->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-trash text-center" style="color: crimson"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+
                         </tr>
                     <?php endif; ?>
                 <?php endforeach;?>

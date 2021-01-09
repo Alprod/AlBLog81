@@ -29,17 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Entity/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Posts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/CommentsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/CommentsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Router/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router/Routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/admin/dashbaord.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/dashbaord.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/front/membreProfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/membres/membreProfil.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/front/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/posts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/admin/dashbaord.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/dashboard.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +102,6 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
       <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
-      <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1fUOXkJzEpiJOTHZSl41tYI2pAd" />
@@ -360,11 +350,6 @@
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/app/Controller/AdminController.php</url>
-          <line>72</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
           <line>116</line>
           <option name="timeStamp" value="49" />
@@ -392,15 +377,6 @@
           </properties>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
-        <line-breakpoint type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Model/PostsModel.php</url>
-          <line>193</line>
-          <properties>
-            <option name="className" value="\App\Model\PostsModel" />
-            <option name="methodName" value="updatePost" />
-          </properties>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/ContactSendMail.php</url>
           <line>22</line>
@@ -409,6 +385,15 @@
             <option name="methodName" value="sendMail" />
           </properties>
           <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php-line-method">
+          <url>file://$PROJECT_DIR$/app/Controller/AdminController.php</url>
+          <line>72</line>
+          <properties>
+            <option name="className" value="\App\Controller\AdminController" />
+            <option name="methodName" value="deletedMembreRegister" />
+          </properties>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
