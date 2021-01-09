@@ -54,14 +54,14 @@ class AdminController extends PDOmanager
     /**
      * @return bool
      */
-    public function dashbaordAdmin(): bool
+    public function dashboardAdmin(): bool
     {
         $users = $this->getMembreModel()->findAll();
         $posts = $this->getPostModel()->findAllPosts();
         $comments = $this->getCommentModel()->findAllComments();
         $report = $this->getCommentModel()->findCommentsReport();
 
-        return $this->getConfig()->render("layout.php", "admin/dashbaord.php", [
+        return $this->getConfig()->render("layout.php", "admin/dashboard.php", [
             'titre' => 'Dashbarod',
             'users' => $users,
             'posts' => $posts,
@@ -80,7 +80,7 @@ class AdminController extends PDOmanager
             $this->getMembreModel()->deleteMemebresRegister($user);
         }
 
-        return $this->getConfig()->redirect('/dashbaord');
+        return $this->getConfig()->redirect('/dashboard');
     }
 
     public function updateMembreRegisterToBlogger()
@@ -92,7 +92,7 @@ class AdminController extends PDOmanager
             $this->getMembreModel()->updateMembreToBlogger($user);
         }
 
-        return $this->getConfig()->redirect('/dashbaord');
+        return $this->getConfig()->redirect('/dashboard');
     }
 
     public function deleteReportNotApprouved()
@@ -103,7 +103,7 @@ class AdminController extends PDOmanager
 
         $this->getCommentModel()->deleteComment($report);
 
-        return $this->getConfig()->redirect("/dashbaord");
+        return $this->getConfig()->redirect("/dashboard");
     }
 
     public function approuvedReport()
@@ -114,6 +114,6 @@ class AdminController extends PDOmanager
 
         $this->getCommentModel()->updateCommentReport($report);
 
-        return $this->getConfig()->redirect('/dashbaord');
+        return $this->getConfig()->redirect('/dashboard');
     }
 }

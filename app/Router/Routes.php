@@ -58,7 +58,7 @@ class Routes
             new Route('GET', 'login', '/login', [MembreController::class, 'membresConnexion']),
             new Route('GET', 'logout', '/logout', [MembreController::class, 'logout']),
             new Route('GET', 'profil', '/profil', [MembreController::class, 'userProfil']),
-            new Route('GET', 'dashbaord', '/dashbaord', [AdminController::class, 'dashbaordAdmin']),
+            new Route('GET', 'dashboard', '/dashboard', [AdminController::class, 'dashboardAdmin']),
             new Route('POST', 'addComment', '/{slug}/{id}', [BlogListController::class, 'blogPost']),
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
             new Route('POST', 'addPost', '/addPost', [BlogListController::class, 'addPost']),

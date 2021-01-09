@@ -35,7 +35,7 @@
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isSuperAdmin()) : ?>
-                    <a class="nav-link" href="<?= url('dashbaord'); ?>">Dashbaord</a>
+                    <a class="nav-link" href="<?= url('dashboard'); ?>">Dashboard</a>
                     <?php endif; ?>
 
                     <a class="nav-link" href="<?= url('contact'); ?>">Contact</a>
