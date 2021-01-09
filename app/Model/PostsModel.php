@@ -21,12 +21,12 @@ class PostsModel extends PDOmanager
                            p.postTitle,
                            p.images,
                            p.postContent,
-                           DATE_FORMAT(p.dateCreateAt, "%d/%m/%Y") AS dateCreateAt,
+                           p.dateCreateAt,
                            p.postUserId
                            FROM Posts AS p
                            JOIN Users AS u
                            WHERE p.postUserId = u.idUsers
-                           ORDER BY dateCreateAt DESC LIMIT 0,15';
+                           ORDER BY p.dateCreateAt DESC LIMIT 0,15';
         $resultat = $this->getBdd()->prepare($req);
         $resultat->execute();
         $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
@@ -46,16 +46,15 @@ class PostsModel extends PDOmanager
      */
     public function findPostByIds($id)
     {
-        $req = 'SELECT *, pseudo, DATE_FORMAT(dateCreateAt, "%d/%m/%Y") as dateCreateAt
-                FROM Posts 
-                JOIN Users ON Users.idUsers = Posts.postUserId
-                WHERE idPosts = :id_post';
+        $req = 'SELECT p.*, u.pseudo
+                FROM Posts AS p
+                JOIN Users AS u ON u.idUsers = p.postUserId
+                WHERE p.idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_post", $id);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
         $posts= $result->fetch();
-        $result->closeCursor();
         return $posts;
     }
 
@@ -88,7 +87,8 @@ class PostsModel extends PDOmanager
                         u.pseudo,
                         c.commentTitle,
                         c.commentContent,
-                        DATE_FORMAT(p.dateCreateAt, "%d/%m/%Y") AS dateCreateAt,
+                        c.signal,
+                        p.dateCreateAt,
                         c.commentCreateAt AS commentCreateAt,
                         p.idPosts,
                         u.idUsers
@@ -103,7 +103,6 @@ class PostsModel extends PDOmanager
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
         $commentPost = $result->fetchAll();
-        $result->closeCursor();
         return $commentPost;
     }
 
