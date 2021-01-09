@@ -127,10 +127,16 @@
         <?php foreach ($posts as $post) : ?>
                 <li class="media my-4">
                     <a href="/<?= $post->getPostTitle() ?>/<?= $post->getIdPosts() ?>">
+                    <?php if (!empty($post->getImages())) : ?>
                     <img class="mr-3 rounded"
                          style="width: 3em;"
                          src="./images/<?= $post->getImages()?>"
-                         alt="Generic placeholder image">
+                         alt="<?= $post->getPostTitle() ?>">
+                    <?php else :  ?>
+                    <img src="https://picsum.photos/id/1074/45"
+                         class="mr-3 rounded"
+                         alt="pas d'image">
+                    <?php endif; ?>
                     </a>
                     <div class="media-body">
                         <p>

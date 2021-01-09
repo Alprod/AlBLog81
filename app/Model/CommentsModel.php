@@ -49,12 +49,12 @@ class CommentsModel extends PDOmanager
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
         $data = $result->fetchAll();
-        $result->closeCursor();
         return $data;
     }
 
     /**
      * @param $id
+     * @return mixed
      */
     public function findCommentsById($id)
     {

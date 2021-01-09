@@ -4,6 +4,9 @@
 namespace App\Entity;
 
 use Config\PDOmanager;
+use DateTime;
+use DateTimeZone;
+use Exception;
 
 class Posts extends Entity
 {
@@ -135,10 +138,13 @@ class Posts extends Entity
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function getDateCreateAt()
     {
-        return $this -> dateCreateAt;
+        $date = new DateTime($this -> dateCreateAt);
+        $dateFormat = $date->format('d/m/Y');
+        return $dateFormat;
     }
 
     /**

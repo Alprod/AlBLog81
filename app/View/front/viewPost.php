@@ -2,7 +2,7 @@
 <h3><?= $slug ?></h3>
 
 <div class="card border-dark text-white bg-dark mb-3 bg-black">
-    <?php if(!empty($post->getImages())): ?>
+    <?php if (!empty($post->getImages())) : ?>
     <img
         class="card-img-top"
         src="./../images/<?= $post->getImages() ?>"
@@ -10,7 +10,7 @@
     <?php endif; ?>
     <div class="card-body">
 
-        <h5 class="card-title"><?= htmlspecialchars(html_entity_decode($post->getPostTitle())) ?></h5>
+        <h5 class="card-title"><?= $post->getPostTitle() ?></h5>
         <p class="card-text"><?= html_entity_decode($post->getPostContent())  ?></p>
 
         <?php if (!empty($post->getLink())) : ?>
@@ -105,7 +105,12 @@
                             <h5 class="mt-0">
                                 <?= htmlspecialchars(html_entity_decode($comment->getCommentTitle())); ?>
                             </h5>
-                            <p><?= html_entity_decode($comment->getCommentContent()); ?></p>
+                            <?php if ($comment->getSignal() == 0) :  ?>
+                                <p><?= html_entity_decode($comment->getCommentContent()); ?></p>
+                            <?php else : ?>
+                                <p class="font-italic pt-3">Le Commentaire de cet article a été signaler.<br/> Ce commentaire est par conséquent en cours de modération.</p>
+                            <?php endif; ?>
+
                             <p class="font-italic">Posté par <?= $comment->getUserId()->getPseudo(); ?></p>
                             <p class="text-muted">Créer le : <?= $comment->getCommentCreateAt(); ?></p>
                             <?php if (!isset($_SESSION['id_membre'])) : ?>

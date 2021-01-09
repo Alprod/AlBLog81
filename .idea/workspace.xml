@@ -30,10 +30,16 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/MembresModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/MembresModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/front/membreProfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/membreProfil.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/membres/subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/membres/subscribe.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Entity/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Entity/Posts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/CommentsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/CommentsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router/Routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/admin/dashbaord.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/dashbaord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/membreProfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/membres/membreProfil.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/posts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +66,10 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" xdebug_debug_port="9001" break_at_first_line="true" />
+  <component name="PhpDebugGeneral" xdebug_debug_port="9001" break_at_first_line="true">
+    <xdebug_debug_ports port="9001" />
+    <xdebug_debug_ports port="9003" />
+  </component>
   <component name="PhpServers">
     <servers>
       <server host="www.alblog81.fr" id="54cd220a-cb39-4a6a-975c-e49a04a373dd" name="www.alblog81.fr" />
@@ -133,7 +142,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/public/.htaccess&#10;/Users/alain-andja/Desktop/WorkSpace/AlBlog81/vendor/squizlabs/php_codesniffer/src/Standards/Squiz/Tests/CSS/EmptyStyleDefinitionUnitTest.css" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Docs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -147,6 +156,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Docs" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/Config/Params" />
       <recent name="$PROJECT_DIR$/Config" />
@@ -301,6 +311,11 @@
       <workItem from="1608981362407" duration="8146000" />
       <workItem from="1609270245733" duration="4926000" />
       <workItem from="1609492216376" duration="34489000" />
+      <workItem from="1609751215359" duration="161000" />
+      <workItem from="1610017988806" duration="5875000" />
+      <workItem from="1610114001325" duration="967000" />
+      <workItem from="1610122048460" duration="13000" />
+      <workItem from="1610130853141" duration="3984000" />
     </task>
     <servers />
   </component>
@@ -351,12 +366,17 @@
         </line-breakpoint>
         <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
-          <line>117</line>
+          <line>116</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
+          <line>88</line>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
-          <line>205</line>
+          <line>206</line>
           <properties>
             <option name="className" value="\App\Controller\BlogListController" />
             <option name="methodName" value="deletePostId" />
@@ -374,7 +394,7 @@
         </line-breakpoint>
         <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Model/PostsModel.php</url>
-          <line>194</line>
+          <line>193</line>
           <properties>
             <option name="className" value="\App\Model\PostsModel" />
             <option name="methodName" value="updatePost" />

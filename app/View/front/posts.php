@@ -18,7 +18,7 @@
                     <p class="text-muted">Ecris par : <?= $post->getuserId()->getPseudo() ?> </p>
 
                     <a
-                        href="<?= $titlePost.'/'.$post->getIdPosts() ?>"
+                        href="<?= $post->getPostTitle().'/'.$post->getIdPosts() ?>"
                         class="btn btn-outline-light btn-sm">Lire
                     </a>
                 </div>

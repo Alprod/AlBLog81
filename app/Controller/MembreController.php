@@ -7,7 +7,6 @@ use App\Entity\Users;
 use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
-use bug\Bug;
 use Config\Config;
 use DateTime;
 use DateTimeZone;
@@ -167,7 +166,7 @@ class MembreController extends Users
             $date = date($userProfil->getCreatedAt());
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
-            return $this->getConfig()->render('layout.php', 'front/membreProfil.php', [
+            return $this->getConfig()->render('layout.php', 'membres/membreProfil.php', [
                 'titre' => 'Profil',
                 'profil'=>$userProfil,
                 'comments'=>$commentUserId,
@@ -351,7 +350,7 @@ class MembreController extends Users
         $postUserId = $this->getPostModel()->findPostsByIdUser($idUser);
 
 
-        return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
+        return $this->getConfig()->render("layout.php", "membres/membreProfil.php", [
             'titre' => 'Profil',
             'profil' => $userProfil,
             'comments' => $commentUserId,
@@ -372,7 +371,7 @@ class MembreController extends Users
             $date = date($profil->getCreateAt());
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
-            return $this->getConfig()->render("layout.php", "front/membreProfil.php", [
+            return $this->getConfig()->render("layout.php", "membres/membreProfil.php", [
                 'titre' => 'Profil',
                 'errorMdp'=> $e->getMessage(),
                 'profil'=> $profil,

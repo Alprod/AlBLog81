@@ -74,7 +74,7 @@ class Routes
         ];
 
         foreach ($this -> routes as $route) {
-            $this->router-> add($route);
+            $this->router->add($route);
         }
 
 

@@ -71,15 +71,11 @@ class BlogListController
     public function blogList(): string
     {
         $listPost = $this->getPostModel()->findAllPosts();
-        foreach ($listPost as $list) {
-            $title = str_replace(' ', '-', $list->getPostTitle());
-        }
         $conf = $this->getConfig();
 
         return $conf->render('layout.php', 'front/posts.php', [
             'titre' => 'Mes articles',
-            'titlePost' => $title,
-            'listPost' => $listPost,
+            'listPost' => $listPost
         ]);
     }
 
@@ -93,10 +89,14 @@ class BlogListController
         $post = $this->getConfig()->sanitize($_POST);
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
-
+        foreach ($commentByPost as $postComment) {
+            $idComment = $postComment->getIdComments();
+        }
         if (!empty($post)) {
             $this->addCommentToBlogPost($id, $slug, $_SESSION['id_membre']);
         }
+        $commentSignal = $this->getCommentModel()->findCommentsById($idComment);
+        $signal = $commentSignal->getSignal();
 
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
             'titre' => 'l\'article '.$slug,
@@ -104,7 +104,8 @@ class BlogListController
             'id' => $id,
             'post' => $viewPost,
             'comments' => $commentByPost,
-            'changer'=> 'Modifier',
+            'signal' => $signal,
+            'changer'=> 'Modifier'
         ]);
     }
 
