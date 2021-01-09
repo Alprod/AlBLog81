@@ -200,4 +200,23 @@ class MembresModel extends PDOmanager
         $result->bindValue(':idUser', $user->getIdUsers());
         $result->execute();
     }
+
+    public function updateMembreToBlogger(Users $roles)
+    {
+        $bdd = $this->getBdd();
+        $bloggerRole = Config::USERS_ADMIN;
+        $req = 'UPDATE Users SET roles = :roles WHERE idUsers = :id';
+        $result = $bdd->prepare($req);
+        $result->bindValue(':id', $roles->getIdUsers());
+        $result->bindValue(':roles', $bloggerRole);
+        $result->execute();
+    }
+
+    public function deleteMemebresRegister(Users $id)
+    {
+        $req = 'DELETE FROM Users WHERE idUsers = :id ';
+        $result = $this->getBdd()->prepare($req);
+        $result->bindValue(':id', $id->getIdUsers());
+        $result->execute();
+    }
 }

@@ -4,11 +4,13 @@
 namespace App\Controller;
 
 use App\Entity\Comments;
+use App\Entity\Users;
 use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
 use Config\PDOmanager;
+use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff;
 
 class AdminController extends PDOmanager
 {
@@ -66,6 +68,31 @@ class AdminController extends PDOmanager
             'comments' => $comments,
             'reports' => $report
         ]);
+    }
+
+    public Function deletedMembreRegister()
+    {
+        $post = $_POST;
+        $user = new Users();
+        $user->hydrate($post);
+
+        if(!empty($post)){
+            $this->getMembreModel()->deleteMemebresRegister($user);
+        }
+
+        return $this->getConfig()->redirect('/dashbaord');
+    }
+
+    public function updateMembreRegisterToBlogger()
+    {
+        $post = $_POST;
+        $user = new Users();
+        $user->hydrate($post);
+        if(!empty($post)){
+            $this->getMembreModel()->updateMembreToBlogger($user);
+        }
+
+        return $this->getConfig()->redirect('/dashbaord');
     }
 
     public function deleteReportNotApprouved()

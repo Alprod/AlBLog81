@@ -64,6 +64,8 @@ class Routes
             new Route('POST', 'addPost', '/addPost', [BlogListController::class, 'addPost']),
             new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
             new Route('POST', 'updateMembreRegister', '/updateMembreRegister', [MembreController::class, 'updateMembreRegister']),
+            new Route('POST', 'deletedMembres', '/deletedMembres', [AdminController::class, 'deletedMembreRegister']),
+            new Route('POST', 'updateMembreToBlogger', '/updateMembreToBlogger', [AdminController::class, 'updateMembreRegisterToBlogger']),
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login']),
             new Route('POST', 'mdpUpdate', '/mdpUpdate', [MembreController::class, 'mdpUpdate']),
             new Route('POST', 'updatePost', '/updatePost', [BlogListController::class, 'updatePostById']),
