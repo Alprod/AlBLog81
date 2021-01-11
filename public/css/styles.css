@@ -6,9 +6,7 @@
 h1,h2,h3,h4,h5,h6{
   font-family: 'Nunito', sans-serif;
 }
-.cover-container {
-  max-width: 77em;
-}
+.cover-container { max-width: 77em; }
 
 /* Header */
 .iconTitle{
@@ -22,15 +20,9 @@ h1,h2,h3,h4,h5,h6{
   background-clip: text;
   color: transparent;
 }
-.masthead {
-  margin-bottom: 2rem;
-}
-.masthead-brand {
-  margin-bottom: 0;
-}
-.nav-masthead{
-  font-size: 18px;
-}
+.masthead { margin-bottom: 2rem; }
+.masthead-brand { margin-bottom: 0; }
+.nav-masthead { font-size: 18px; }
 .nav-masthead .nav-link {
   padding: .25rem 0;
   font-weight: 700;
@@ -38,22 +30,14 @@ h1,h2,h3,h4,h5,h6{
   background-color: transparent;
   border-bottom: .12rem solid transparent;
 }
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
-}
+.nav-masthead .nav-link + .nav-link { margin-left: 1rem; }
 @media (min-width: 48em) {
-  .masthead-brand {
-    float: left;
-  }
-  .nav-masthead {
-    float: right;
-  }
+  .masthead-brand { float: left; }
+  .nav-masthead { float: right; }
 }
 
 /* Cover */
-.cover {
-  padding: 0 1.5rem;
-}
+.cover { padding: 0 1.5rem; }
 .cover .btn-lg {
   padding: .75rem 1.25rem;
   font-weight: 700;
@@ -64,17 +48,13 @@ h1,h2,h3,h4,h5,h6{
   color: rgba(255, 255, 255, .5);
   text-align: center;
 }
-.footNavUl > li > a {
-  color: #fcfcfc;
-}
+.footNavUl > li > a { color: #fcfcfc; }
 .icons {
   font-size: 35px;
   padding: 5px;
   margin-top: 50%;
 }
-.footIcons {
-  margin-top: 4rem;
-}
+.footIcons { margin-top: 4rem; }
 
 /* Background image */
 body {
@@ -94,12 +74,8 @@ body {
   border-radius: 6px;
   color: #fcfcfc !important;
 }
-.hidden {
-  display: none;
-}
-.bg-black {
-  background: #0B0F13;
-}
+.hidden { display: none; }
+.bg-black { background: #0B0F13; }
 
 /************* Error 404 ******************/
 .error-container {
@@ -160,14 +136,8 @@ body {
 }
 
 /* Style form mis à jour mdp */
-.formMdp {
-  padding: 15px 20px;
-}
-.mdp {
-  text-decoration-color: #fcfcfc;
-}
-
-/** Style Dashboard contenu des listes ** Posts Style Comment in member profil **/
+.formMdp { padding: 15px 20px; }
+.mdp { text-decoration-color: #fcfcfc; }
 .dashContentView,
 .profilPostContentView
 {
@@ -175,27 +145,17 @@ body {
   overflow: hidden !important;
   overflow-y: scroll !important;
 }
-.profilCommentContentView
-{
-  height: 300px;
-}
+.profilCommentContentView { height: 300px; }
 
 /* Style liste des article */
-.viewPostCard{
-  width: 18rem;
-}
+.viewPostCard{ width: 18rem; }
 @media (max-width: 876px) {
   .viewPostCard,
   .postView {
     width: 16rem !important;
   }
-
-  .dashTitle {
-    font-size: 50px;
-  }
+  .dashTitle { font-size: 50px; }
 }
 
 /* Style détail des article  */
-.postView {
-  margin: 0 auto;
-}
+.postView { margin: 0 auto; }
