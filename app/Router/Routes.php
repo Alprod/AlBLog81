@@ -65,6 +65,7 @@ class Routes
             new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
             new Route('POST', 'updateMemberRegister', '/updateMemberRegister', [MembreController::class, 'updateMemberRegister']),
             new Route('POST', 'deletedMember', '/deletedMember', [AdminController::class, 'deletedMemberRegister']),
+            new Route('POST', 'updateToMember', '/updateToMember', [AdminController::class, 'updateUserRegisterToMember']),
             new Route('POST', 'updateMemberToBlogger', '/updateMemberToBlogger', [AdminController::class, 'updateMemberRegisterToBlogger']),
             new Route('POST', 'updateMemberToSuperAdmin', '/updateMemberToSuperAdmin', [AdminController::class, 'updateMemberRegisterToSuperAdmin']),
             new Route('POST', 'loginVerif', '/loginVerif', [MembreController::class, 'login']),

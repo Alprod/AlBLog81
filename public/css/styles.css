@@ -8,7 +8,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .cover-container {
-  max-width: 57em;
+  max-width: 77em;
 }
 
 
@@ -83,6 +83,18 @@ h1,h2,h3,h4,h5,h6{
   text-align: center;
 }
 
+.footNavUl > li > a {
+  color: #fcfcfc;
+}
+.icons{
+  font-size: 35px;
+  padding: 5px;
+  margin-top: 50%;
+}
+.footIcons{
+  margin-top: 4rem;
+}
+
 /*
 *Background image
 */
@@ -95,7 +107,7 @@ body{
 }
 
 /*
-*Boton de connexion
+*Botton de connexion
 */
 .connexion{
 background: rgba(252, 70, 106, 0.5);
@@ -184,11 +196,31 @@ color: #fcfcfc !important;
   text-decoration-color: #fcfcfc;
 }
 
+
 .dashContentView,
-.profilPostContentView,
-.profilCommentContentView
+.profilPostContentView
 {
   height: 400px;
   overflow: hidden !important;
   overflow-y: scroll !important;
+}
+
+.profilCommentContentView
+{
+  height: 300px;
+}
+.viewPostCard{
+  width: 18rem;
+}
+@media (max-width: 876px) {
+  .viewPostCard, .postView{
+    width: 16rem !important;
+  }
+  .dashTitle{
+    font-size: 50px;
+  }
+}
+
+.postView{
+  margin: 0 auto;
 }

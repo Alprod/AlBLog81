@@ -21,25 +21,17 @@
 </head>
 
 <body>
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column vh-100">
-        <header class="masthead mb-auto">
+    <div class="cover-container d-flex px-3 w-100 h-100 mx-auto flex-column vh-100">
+        <header class="masthead mb-auto bg-black p-4">
             <h2 class="masthead-brand"><a class="iconTitle" href="/">Alblog</a></h2>
             <div class="inner">
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link active" href="<?= url('home'); ?>">Home</a>
                     <a class="nav-link" href="<?= url('blogs'); ?>">Articles</a>
-
-
                     <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
                     <a class="nav-link" href="<?= url('editPost'); ?>">Nouveau post</a>
                     <?php endif; ?>
-
-                    <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isSuperAdmin()) : ?>
-                    <a class="nav-link" href="<?= url('dashboard'); ?>">Dashboard</a>
-                    <?php endif; ?>
-
                     <a class="nav-link" href="<?= url('contact'); ?>">Contact</a>
-
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <a class="nav-link" href="<?= url('register'); ?>">Inscription</a>
                     <a class="nav-link connexion" href="<?= url('login'); ?>">Connexion</a>
@@ -47,7 +39,6 @@
                     <a class="nav-link" href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?></a>
                     <a class="nav-link connexion" href="<?= url('logout'); ?>">Déconnexion</a>
                     <?php endif; ?>
-
                 </nav>
             </div>
         </header>
@@ -59,10 +50,56 @@
             }
             ?>
         </main>
-
-        <footer class="mastfoot mt-auto">
-            <div class="inner">
-                <p>&copy; Copyright | Alain Germain, <a href="/">Alblog</a> | <?= date('Y') ?>.</p>
+        <footer class="mastfoot mt-auto bg-black">
+            <div class="inner mb-4">
+                <p class="mt-2">&copy; Copyright | Alain Germain, <a href="/">Alblog</a> | <?= date('Y') ?>.</p>
+                <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isSuperAdmin()) : ?>
+                    <a class="btn btn-outline-warning" href="<?= url('dashboard'); ?>">Dashboard</a>
+                <?php endif; ?>
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <ul class="nav mx-auto flex-column w-50 footNavUl">
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= url('home'); ?>">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= url('blogs'); ?>">Articles</a>
+                            </li>
+                            <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= url('editPost'); ?>">Nouveau post</a>
+                            </li>
+                            <?php endif; ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= url('contact'); ?>">Contact</a>
+                            </li>
+                            <?php if (!isset($_SESSION['id_membre'])) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= url('register'); ?>">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link connexion" href="<?= url('login'); ?>">Connexion</a>
+                            </li>
+                            <?php else : ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link connexion" href="<?= url('logout'); ?>">Déconnexion</a>
+                            </li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 justify-content-center">
+                        <div class="footIcons">
+                            <i class="bi bi-github icons"></i>
+                            <i class="bi bi-facebook icons"></i>
+                            <i class="bi bi-linkedin icons"></i>
+                            <i class="bi bi-instagram icons"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4"></div>
+                </div>
             </div>
         </footer>
 
