@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use App\Entity\Comments;
@@ -10,13 +9,27 @@ use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
 use Config\PDOmanager;
-use PHP_CodeSniffer\Standards\Generic\Sniffs\Functions\FunctionCallArgumentSpacingSniff;
 
 class AdminController extends PDOmanager
 {
+    /**
+     * @var Config
+     */
     private Config $config;
+
+    /**
+     * @var PostsModel
+     */
     private PostsModel $postModel;
+
+    /**
+     * @var MembresModel
+     */
     private MembresModel $membreModel;
+
+    /**
+     * @var CommentsModel
+     */
     private CommentsModel $commentModel;
 
     /**
@@ -83,6 +96,9 @@ class AdminController extends PDOmanager
     }
 
 
+    /**
+     * Delete All member register
+     */
     public Function deletedMembreRegister()
     {
         $post = $_POST;
@@ -96,6 +112,9 @@ class AdminController extends PDOmanager
         return $this->getConfig()->redirect('/dashboard');
     }
 
+    /**
+     * Update a member (Admin|Blogger) to member
+     */
     public function updateUserRegisterToMember()
     {
         $post = $_POST;
@@ -108,6 +127,9 @@ class AdminController extends PDOmanager
     }
 
 
+    /**
+     * Update a member (Admin|Memeber) to blogger
+     */
     public function updateMemberRegisterToBlogger()
     {
         $post = $_POST;
@@ -120,6 +142,9 @@ class AdminController extends PDOmanager
         return $this->getConfig()->redirect('/dashboard');
     }
 
+    /**
+     * Update a member (Blogger|Memeber) to super admin
+     */
     public function updateMemberRegisterToSuperAdmin()
     {
         $post = $_POST;
@@ -133,6 +158,9 @@ class AdminController extends PDOmanager
     }
 
 
+    /**
+     * Delete comment not approved
+     */
     public function deleteReportNotApprouved()
     {
         $post = $_POST;
@@ -145,6 +173,9 @@ class AdminController extends PDOmanager
     }
 
 
+    /**
+     * Update comment approuved by super admin
+     */
     public function approuvedReport()
     {
         $post = $_POST;

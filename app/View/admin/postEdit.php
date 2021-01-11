@@ -15,7 +15,11 @@
                 <input
                         type="text"
                         name="postTitle"
-                        class="form-control Subcribe text-white border border-dark"
+                        class="form-control
+                               Subcribe
+                               text-white
+                               border
+                               border-dark"
                         value="<?=  (!empty($blog_actuel)) ? $blog_actuel->getPostTitle() : '' ?>"
                         id="postTitle"
                         aria-describedby="emailHelp">
@@ -25,7 +29,11 @@
                 <textarea
                         name="postContent"
                         rows="8"
-                        class="form-control Subcribe text-white border border-dark"
+                        class="form-control
+                               Subcribe
+                               text-white
+                               border
+                               border-dark"
                         id="postContent"><?= (!empty($blog_actuel)) ? $blog_actuel->getPostContent() : '' ?>
                 </textarea>
             </div>
@@ -41,7 +49,10 @@
                         type="file"
                         name="images"
                         value="<?= (!empty($blog_actuel)) ? $blog_actuel->getImages() : '' ?>"
-                        class="form-control-file Subcribe border border-dark"
+                        class="form-control-file
+                               Subcribe
+                               border
+                               border-dark"
                         id="imagePost">
             </div>
             <div class="form-group">
@@ -50,12 +61,20 @@
                         type="text"
                         name="link"
                         value="<?= (!empty($blog_actuel)) ? $blog_actuel->getLink() : '' ?>"
-                        class="form-control Subcribe text-white border border-dark"
+                        class="form-control
+                               Subcribe
+                               text-white
+                               border
+                               border-dark"
                         id="link">
             </div>
             <button
                     type="submit"
-                    class="btn btn-outline-dark btn-block text-white mt-3">Valider
+                    class="btn
+                           btn-outline-dark
+                           btn-block
+                           text-white
+                           mt-3">Valider
             </button>
         </form>
     </div>

@@ -9,9 +9,10 @@ use ReflectionException;
  */
 class Router
 {
+
     /**
-     * @var Route[]
-    */
+     * @var array
+     */
     private array $routes = [];
 
 
@@ -77,6 +78,7 @@ class Router
      *
      * @param string $path
      * @param string $method
+     * @return Route|false
      */
     public function match(string $method, string $path)
     {
@@ -88,6 +90,11 @@ class Router
         return false;
     }
 
+    /**
+     * Find name route
+     * @param string $name
+     * @return Route|null
+     */
     public function find(string $name)
     {
         foreach ($this->routes as $route) {

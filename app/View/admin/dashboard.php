@@ -4,7 +4,10 @@
     <div class="col col-md-12">
         <h3 class="mt-3">Table des Membres</h3>
         <div class="table-responsive">
-            <table class="table table-bordered table-dark table-hover">
+            <table class="table
+                          table-bordered
+                          table-dark
+                          table-hover">
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -75,7 +78,10 @@
     <div class="col col-md-12">
         <h3 class="mt-3">Table des Blogers</h3>
         <div class="table-responsive">
-            <table class="table table-bordered table-light table-hover">
+            <table class="table
+                          table-bordered
+                          table-light
+                          table-hover">
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -146,7 +152,10 @@
     <div class="col col-md-12">
         <h3 class="mt-3">Table des administrateurs</h3>
         <div class="table-responsive">
-            <table class="table table-bordered table-hover table-secondary">
+            <table class="table
+                          table-bordered
+                          table-hover
+                          table-secondary">
                 <thead>
                 <tr>
                     <th scope="col">Id</th>

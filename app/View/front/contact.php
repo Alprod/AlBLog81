@@ -6,16 +6,30 @@
     <div class="col-md-6 formulaire">
 
         <?php if (isset($success, $name)) : ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert
+                    alert-success
+                    alert-dismissible
+                    fade
+                    show" role="alert">
             <p class="text-dark m-auto"><?= $success.', Merci '.$name.'.'?></p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <?php elseif (isset($error, $success) && $success == false) : ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert
+                    alert-danger
+                    alert-dismissible
+                    fade
+                    show" role="alert">
             <p class="text-dark m-auto"><?= $error ?></p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -24,25 +38,67 @@
         <form action="<?= url('sendMail') ?>" method="post">
             <div class="col-md-12 mt-3">
                 <label for="inputName">Nom/Pseudo</label>
-                <input type="text" name="inputName" id="inputName" value="<?= $_SESSION['pseudo_membre'] ?? '' ?>" class="inputName text-white rounded-lg form-control border border-dark">
+                <input type="text"
+                       name="inputName"
+                       id="inputName"
+                       value="<?= $_SESSION['pseudo_membre'] ?? '' ?>"
+                       class="inputName
+                              text-white
+                              rounded-lg
+                              form-control
+                              border
+                              border-dark">
             </div>
 
             <div class="col-md-12 mt-3">
                 <label for="inputEmail">Email</label>
-                <input type="email" name="inputEmail" id="inputEmail" value="<?= $_SESSION['email_membre'] ?? '' ?>" class="inputEmail text-white rounded-lg form-control border border-dark">
+                <input type="email"
+                       name="inputEmail"
+                       id="inputEmail"
+                       value="<?= $_SESSION['email_membre'] ?? '' ?>"
+                       class="inputEmail
+                              text-white
+                              rounded-lg
+                              form-control
+                              border
+                              border-dark">
             </div>
 
             <div class="col-md-12 mt-3">
                 <label for="inputSujet">Sujet</label>
-                <input type="text" name="inputSujet" id="inputSujet" class="inputSujet text-white rounded-lg form-control border border-dark">
+                <input type="text"
+                       name="inputSujet"
+                       id="inputSujet"
+                       class="inputSujet
+                              text-white
+                              rounded-lg
+                              form-control
+                              border
+                              border-dark">
             </div>
 
             <div class="col-md-12 mt-3">
                 <label for="message">Message</label>
-                <textarea name="message" id="message" cols="30" rows="10" class="message text-white rounded form-control border border-dark"></textarea>
+                <textarea name="message"
+                          id="message"
+                          cols="30"
+                          rows="10"
+                          class="message
+                                 text-white
+                                 rounded
+                                 form-control
+                                 border
+                                 border-dark">
+                </textarea>
             </div>
             <div class="col-md-12">
-                <button type="submit" class="btn btn-outline-dark btn-block text-white mt-3">Envoyer</button>
+                <button type="submit"
+                        class="btn
+                               btn-outline-dark
+                               btn-block
+                               text-white
+                               mt-3">Envoyer
+                </button>
             </div>
         </form>
     </div>

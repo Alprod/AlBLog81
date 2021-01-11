@@ -44,6 +44,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get postId
      * @return mixed
      */
     public function getPostId()
@@ -52,6 +53,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get userId
      * @return mixed
      */
     public function getUserId()
@@ -60,6 +62,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get idComments
      * @return mixed
      */
     public function getIdComments()
@@ -68,7 +71,8 @@ class Comments extends Entity
     }
 
     /**
-     * @param mixed $idComments
+     * Set idComments
+     * @param mixed mixed $idComments
      */
     public function setIdComments($idComments): void
     {
@@ -76,6 +80,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get commentTitle
      * @return mixed
      */
     public function getCommentTitle()
@@ -84,6 +89,7 @@ class Comments extends Entity
     }
 
     /**
+     * Set commentTitle
      * @param mixed $commentTitle
      */
     public function setCommentTitle($commentTitle): void
@@ -92,6 +98,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get commentContent
      * @return mixed
      */
     public function getCommentContent()
@@ -100,6 +107,7 @@ class Comments extends Entity
     }
 
     /**
+     * Set commentContent
      * @param mixed $commentContent
      */
     public function setCommentContent($commentContent): void
@@ -108,6 +116,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get commentCreateAt
      * @return mixed
      * @throws \Exception
      */
@@ -119,6 +128,7 @@ class Comments extends Entity
     }
 
     /**
+     * Set commentCreateAt
      * @param mixed $commentCreateAt
      */
     public function setCommentCreateAt($commentCreateAt): void
@@ -127,6 +137,7 @@ class Comments extends Entity
     }
 
     /**
+     * Get postCommentId
      * @return mixed
      */
     public function getPostCommentId()
@@ -135,6 +146,7 @@ class Comments extends Entity
     }
 
     /**
+     * Set commentPostid
      * @param mixed $postCommentId
      */
     public function setPostCommentId($postCommentId): void
@@ -143,14 +155,16 @@ class Comments extends Entity
     }
 
     /**
+     * Get userCommentId
      * @return mixed
      */
     public function getUserCommentId()
     {
-        return $this -> $userCommentId;
+        return $this -> userCommentId;
     }
 
     /**
+     *  Set userCommentId
      * @param mixed $userCommentId
      */
     public function setUserCommentId($userCommentId): void
@@ -159,6 +173,7 @@ class Comments extends Entity
     }
 
     /**
+     *  Get signal
      * @return mixed
      */
     public function getSignal()
@@ -167,6 +182,7 @@ class Comments extends Entity
     }
 
     /**
+     *  Set signal
      * @param mixed $signal
      */
     public function setSignal($signal): void

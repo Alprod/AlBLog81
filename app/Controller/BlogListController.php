@@ -21,7 +21,6 @@ class BlogListController
 
     /**
      * BlogListController constructor.
-     *
      */
     public function __construct()
     {
@@ -128,6 +127,9 @@ class BlogListController
     }
 
 
+    /**
+     * Update Comment signal by member
+     */
     public function updateSignalCommentById()
     {
         $post = $this->getConfig()->sanitize($_POST);
@@ -172,6 +174,9 @@ class BlogListController
         ]);
     }
 
+    /**
+     * Add new Post
+     */
     public function addPost()
     {
         $post = $this->getConfig()->sanitize($_POST);
@@ -187,6 +192,10 @@ class BlogListController
     }
 
 
+    /**
+     * Update post by blogger
+     * @throws \Exception
+     */
     public function updatePostById()
     {
         $post = $this->getConfig()->sanitize($_POST);
@@ -201,6 +210,9 @@ class BlogListController
         }
     }
 
+    /**
+     * Delete post by blogger
+     */
     public function deletePostId()
     {
         $post = $this->getConfig()->sanitize($_POST);
@@ -209,6 +221,9 @@ class BlogListController
     }
 
 
+    /**
+     * Copy image in directory
+     */
     public function copyImages()
     {
         $titleSpace = trim($_POST['postTitle']);

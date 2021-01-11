@@ -8,6 +8,9 @@ use Exception;
 
 class ContactSendMail extends Config
 {
+    /**
+     * @return bool
+     */
     public function contact()
     {
 
@@ -89,7 +92,6 @@ class ContactSendMail extends Config
      * @param $message
      * @return bool
      * @throws Exception
-     * @noinspection PhpUnreachableStatementInspection
      */
     public function email($to, $subject, $message)
     {
@@ -102,6 +104,11 @@ class ContactSendMail extends Config
         return true;
     }
 
+    /**
+     * @param $name
+     * @param $content
+     * @return string
+     */
     public function renderMessage($name, $content)
     {
         return '<html lang="fr">

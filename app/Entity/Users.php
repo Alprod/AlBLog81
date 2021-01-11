@@ -25,6 +25,7 @@ class Users extends Entity
 
 
     /**
+     * Get idUsers
      * @return mixed
      */
     public function getIdUsers()
@@ -32,7 +33,9 @@ class Users extends Entity
         return $this -> idUsers;
     }
 
+
     /**
+     * Set idUsers
      * @param mixed $idUsers
      */
     public function setIdUsers($idUsers): void
@@ -41,6 +44,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Roles
      * @return mixed
      */
     public function getRoles()
@@ -48,7 +52,9 @@ class Users extends Entity
         return $this -> roles;
     }
 
+
     /**
+     * Set Roles
      * @param mixed $roles
      */
     public function setRoles($roles): void
@@ -58,6 +64,7 @@ class Users extends Entity
 
 
     /**
+     * Get Firstname
      * @return mixed
      */
     public function getFirstname()
@@ -65,7 +72,9 @@ class Users extends Entity
         return $this -> firstname;
     }
 
+
     /**
+     * Set Firstname
      * @param mixed $firstname
      */
     public function setFirstname($firstname): void
@@ -74,6 +83,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Lastname
      * @return mixed
      */
     public function getLastname()
@@ -81,7 +91,9 @@ class Users extends Entity
         return $this -> lastname;
     }
 
+
     /**
+     * Set Lastname
      * @param mixed $lastname
      */
     public function setLastname($lastname): void
@@ -90,6 +102,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Pseudo
      * @return mixed
      */
     public function getPseudo()
@@ -97,7 +110,9 @@ class Users extends Entity
         return $this -> pseudo;
     }
 
+
     /**
+     * Set Pseudo
      * @param mixed $pseudo
      */
     public function setPseudo($pseudo): void
@@ -106,6 +121,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Password
      * @return mixed
      */
     public function getMdp()
@@ -113,7 +129,9 @@ class Users extends Entity
         return $this -> mdp;
     }
 
+
     /**
+     * Set Password
      * @param mixed $mdp
      */
     public function setMdp($mdp): void
@@ -122,6 +140,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Email
      * @return mixed
      */
     public function getEmail()
@@ -129,7 +148,9 @@ class Users extends Entity
         return $this -> email;
     }
 
+
     /**
+     * Set Email
      * @param mixed $email
      */
     public function setEmail($email): void
@@ -138,6 +159,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Created At
      * @return mixed
      */
     public function getCreatedAt()
@@ -145,7 +167,9 @@ class Users extends Entity
         return $this -> createdAt;
     }
 
+
     /**
+     * Set Created At
      * @param mixed $createdAt
      */
     public function setCreatedAt($createdAt): void
@@ -154,6 +178,7 @@ class Users extends Entity
     }
 
     /**
+     * Get AddressNumber
      * @return mixed
      */
     public function getAddressNumber()
@@ -161,7 +186,9 @@ class Users extends Entity
         return $this -> addressNumber;
     }
 
+
     /**
+     * Set AddressNumber
      * @param mixed $addressNumber
      */
     public function setAddressNumber($addressNumber): void
@@ -170,6 +197,7 @@ class Users extends Entity
     }
 
     /**
+     * Get AddressName
      * @return mixed
      */
     public function getAddressName()
@@ -177,7 +205,9 @@ class Users extends Entity
         return $this -> addressName;
     }
 
+
     /**
+     * Set AddressName
      * @param mixed $addressName
      */
     public function setAddressName($addressName): void
@@ -186,6 +216,7 @@ class Users extends Entity
     }
 
     /**
+     * Get City
      * @return mixed
      */
     public function getCity()
@@ -193,7 +224,9 @@ class Users extends Entity
         return $this -> city;
     }
 
+
     /**
+     * Set City
      * @param mixed $city
      */
     public function setCity($city): void
@@ -202,6 +235,7 @@ class Users extends Entity
     }
 
     /**
+     * Get ZipCode
      * @return mixed
      */
     public function getZipCode()
@@ -209,7 +243,9 @@ class Users extends Entity
         return $this -> zip_code;
     }
 
+
     /**
+     * Set ZipCode
      * @param mixed $zip_code
      */
     public function setZipCode($zip_code): void
@@ -218,6 +254,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Departement
      * @return mixed
      */
     public function getDepartement()
@@ -226,6 +263,7 @@ class Users extends Entity
     }
 
     /**
+     * Set Departement
      * @param mixed $departement
      */
     public function setDepartement($departement): void
@@ -234,6 +272,7 @@ class Users extends Entity
     }
 
     /**
+     * Get Country
      * @return mixed
      */
     public function getCountry()
@@ -241,8 +280,10 @@ class Users extends Entity
         return $this -> country;
     }
 
+
     /**
-     * @param mixed $country
+     * Set Country
+     * @param mixed mixed $country
      */
     public function setCountry($country): void
     {
@@ -250,6 +291,10 @@ class Users extends Entity
     }
 
 
+    /**
+     * Verif if User is admin
+     * @return bool
+     */
     public function isAdmin(): bool
     {
         if ($this->roles == Config::USERS_ADMIN) {
@@ -259,6 +304,10 @@ class Users extends Entity
     }
 
 
+    /**
+     * Verif if User is super admin
+     * @return bool
+     */
     public function isSuperAdmin(): bool
     {
         if ($this->roles == Config::SUPER_USERS_ADMIN) {
