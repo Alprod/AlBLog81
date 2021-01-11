@@ -2,7 +2,8 @@
 <h3><?= $slug ?></h3>
 
 <div class="card
-            postView border-dark
+            postView
+            border-dark
             text-white
             bg-dark
             mb-3

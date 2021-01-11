@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap'); /*Titre*/
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');/*Body*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap'); /* Titre */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');/* Body */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 
 
@@ -86,19 +86,19 @@ h1,h2,h3,h4,h5,h6{
 .footNavUl > li > a {
   color: #fcfcfc;
 }
-.icons{
+.icons {
   font-size: 35px;
   padding: 5px;
   margin-top: 50%;
 }
-.footIcons{
+.footIcons {
   margin-top: 4rem;
 }
 
 /*
 *Background image
 */
-body{
+body {
   background: #121213 url(./../images/jonatan-pie-h8nxGssjQXs-unsplash.jpg) no-repeat fixed center;
   background-size: cover;
   -webkit-background-size:cover;
@@ -109,7 +109,7 @@ body{
 /*
 *Botton de connexion
 */
-.connexion{
+.connexion {
 background: rgba(252, 70, 106, 0.5);
 background: -webkit-linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
 background: linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
@@ -118,11 +118,11 @@ border-radius: 6px;
 color: #fcfcfc !important;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
-.bg-black{
+.bg-black {
   background: #0B0F13;
 }
 
@@ -183,22 +183,22 @@ color: #fcfcfc !important;
 }
 
 /* Style form inscription */
-.legend{
+.legend {
   width: 170px !important;
   padding: 5px;
 }
 
 /* Style form mis à jour mdp */
-.formMdp{
+.formMdp {
   padding: 15px 20px;
 }
-.mdp{
+.mdp {
   text-decoration-color: #fcfcfc;
 }
 
 
-.dashContentView,
-.profilPostContentView
+.dashContentView, /* Style Dashboard contenu des listes Posts */
+.profilPostContentView /* Style Comment in member profil */
 {
   height: 400px;
   overflow: hidden !important;
@@ -209,6 +209,8 @@ color: #fcfcfc !important;
 {
   height: 300px;
 }
+
+/* Style liste des article */
 .viewPostCard{
   width: 18rem;
 }
@@ -216,11 +218,13 @@ color: #fcfcfc !important;
   .viewPostCard, .postView{
     width: 16rem !important;
   }
-  .dashTitle{
+
+  .dashTitle {
     font-size: 50px;
   }
 }
 
-.postView{
+/* Style détail des article  */
+.postView {
   margin: 0 auto;
 }
