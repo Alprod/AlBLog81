@@ -167,10 +167,7 @@ body {
   text-decoration-color: #fcfcfc;
 }
 
-/**
- * Style Dashboard contenu des listes Posts
- * Style Comment in member profil
- */
+/** Style Dashboard contenu des listes ** Posts Style Comment in member profil **/
 .dashContentView,
 .profilPostContentView
 {
