@@ -1,7 +1,7 @@
 <div class="mt-5"></div>
 <h3><?= $slug ?></h3>
 
-<div class="card border-dark text-white bg-dark mb-3 bg-black">
+<div class="card postView border-dark text-white bg-dark mb-3 bg-black">
     <?php if (!empty($post->getImages())) : ?>
     <img
         class="card-img-top"
@@ -97,7 +97,7 @@
             if (isset($comments)) :
                 foreach ($comments as $comment) :
                     ?>
-                    <div class="media pl-3 mb-3">
+                    <div class="media pl-3 pr-3 mb-3" >
                         <img src="https://picsum.photos/id/1074/64"
                              class="align-self-start mr-3 rounded-circle"
                              alt="...">

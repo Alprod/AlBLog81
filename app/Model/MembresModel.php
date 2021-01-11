@@ -201,6 +201,17 @@ class MembresModel extends PDOmanager
         $result->execute();
     }
 
+    public function updateUserToMembre(Users $roles)
+    {
+        $bdd = $this->getBdd();
+        $bloggerRole = Config::USERS;
+        $req = 'UPDATE Users SET roles = :roles WHERE idUsers = :id';
+        $result = $bdd->prepare($req);
+        $result->bindValue(':id', $roles->getIdUsers());
+        $result->bindValue(':roles', $bloggerRole);
+        $result->execute();
+    }
+
     public function updateMembreToBlogger(Users $roles)
     {
         $bdd = $this->getBdd();

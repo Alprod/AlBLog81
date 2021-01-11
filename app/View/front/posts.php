@@ -8,7 +8,7 @@
     endif;
     foreach ($listPost as $post) : ?>
         <div class="col-md-4 mt-4">
-            <div class="card bg-black">
+            <div class="card bg-black mx-auto viewPostCard">
                 <?php if (!empty($post->getImages())) : ?>
                 <img src="./images/<?= $post->getImages() ?>" class="card-img-top" alt="...">
                 <?php endif; ?>

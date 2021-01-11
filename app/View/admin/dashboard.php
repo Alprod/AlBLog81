@@ -1,4 +1,4 @@
-<h1 class="display-2 mt-5 mb-5"> <?= $titre ?> </h1>
+<h1 class="display-2 mt-5 mb-5 dashTitle"> <?= $titre ?> </h1>
 <div class="row">
     <div class="col col-md-12">Actuellement le blog compte <?= count($users) ?> membres tout status confondu</div>
     <div class="col col-md-12">
@@ -18,7 +18,7 @@
                     <th scope="col">Country</th>
                     <th scope="col">Supp</th>
                     <th scope="col">Bloggeur</th>
-                    <th scope="col">admin</th>
+                    <th scope="col">Admin</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -88,6 +88,8 @@
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
                     <th scope="col">Supp</th>
+                    <th scope="col">Membre</th>
+                    <th scope="col">Admin</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -109,6 +111,26 @@
                                         <input hidden name="idUsers" value="<?= $bloger->getIdUsers() ?>" type="text">
                                         <button type="submit" class="bg-transparent border-0">
                                             <i class="bi bi-trash text-center" style="color: crimson"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('updateToMember') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $bloger->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-person"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('updateMemberToSuperAdmin') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $bloger->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-person-square" style="color: forestgreen"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -137,6 +159,8 @@
                     <th scope="col">City</th>
                     <th scope="col">Country</th>
                     <th scope="col">Supp</th>
+                    <th scope="col">Blogger</th>
+                    <th scope="col">Membre</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -162,6 +186,26 @@
                                     </form>
                                 </div>
                             </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('updateMemberToBlogger') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $admin->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-person-fill" style="color: dodgerblue"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-center">
+                                    <form action="<?= url('updateToMember') ?>" method="post">
+                                        <input hidden name="idUsers" value="<?= $bloger->getIdUsers() ?>" type="text">
+                                        <button type="submit" class="bg-transparent border-0">
+                                            <i class="bi bi-person"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
 
                         </tr>
                     <?php endif; ?>
@@ -170,112 +214,92 @@
             </table>
         </div>
     </div>
-    <div class="col col-md-7">
-        <h3 class="mt-3">Liste des articles du site</h3>
-        <p>Nombres d'article <?= count($posts) ?></p>
-    </div>
-    <div class="col col-md-5">
-        <h3 class="mt-3">Liste des commentaires </h3>
-        <p>Nombre de commentaires <?= count($comments) ?></p>
-    </div>
-    <div class="col col-md-7 dashContentView mt-2">
-            <ul class="p-0">
-        <?php foreach ($posts as $post) : ?>
-                <li class="media my-4">
-                    <a href="/<?= $post->getPostTitle() ?>/<?= $post->getIdPosts() ?>">
-                    <?php if (!empty($post->getImages())) : ?>
-                    <img class="mr-3 rounded"
-                         style="width: 3em;"
-                         src="./images/<?= $post->getImages()?>"
-                         alt="<?= $post->getPostTitle() ?>">
-                    <?php else :  ?>
-                    <img src="https://picsum.photos/id/1074/45"
-                         class="mr-3 rounded"
-                         alt="pas d'image">
-                    <?php endif; ?>
-                    </a>
-                    <div class="media-body">
-                        <p>
-                            <strong><?= $post->getPostTitle() ?></strong> <?= 'par '.$post->getUserId()->getPseudo().' <em>'.$post->getDateCreateAt() ?></em>
-                        </p>
-                    </div>
-                </li>
-        <?php endforeach; ?>
-            </ul>
-    </div>
-    <div class="col col-md-5 dashContentView mt-2">
-        <ul class="p-0">
-    <?php foreach ($comments as $comment) : ?>
-            <li class="media my-3">
-                <div class="media-body">
-                    <p>
-                        <strong><?= ($comment->getCommentTitle()) ? $comment->getCommentTitle() : 'Pas de titre indiqué' ?></strong><?= ' par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getCommentCreateAt() ?></em>
-                    </p>
+    <div class="col col-md-12 mt-4">
+        <div class="row">
+            <div class="col col-md-6">
+                <h3 class="mt-3">Liste des articles du site</h3>
+                <p>Nombres d'article <?= count($posts) ?></p>
+                <div class="dashContentView mt-2">
+                    <ul class="p-0">
+                        <?php foreach ($posts as $post) : ?>
+                            <li class="media my-4">
+                                <a href="/<?= $post->getPostTitle() ?>/<?= $post->getIdPosts() ?>">
+                                    <?php if (!empty($post->getImages())) : ?>
+                                        <img class="mr-3 rounded"
+                                             style="width: 3em;"
+                                             src="./images/<?= $post->getImages()?>"
+                                             alt="<?= $post->getPostTitle() ?>">
+                                    <?php else :  ?>
+                                        <img src="https://picsum.photos/id/1074/45"
+                                             class="mr-3 rounded"
+                                             alt="pas d'image">
+                                    <?php endif; ?>
+                                </a>
+                                <div class="media-body">
+                                    <p>
+                                        <strong><?= $post->getPostTitle() ?></strong> <?= 'par '.$post->getUserId()->getPseudo().' <em>'.$post->getDateCreateAt() ?></em>
+                                    </p>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
-            </li>
-    <?php endforeach; ?>
-        </ul>
+            </div>
+           <div class="col col-md-6">
+               <h3 class="mt-3">Liste des commentaires </h3>
+               <p>Nombre de commentaires <?= count($comments) ?></p>
+               <div class="dashContentView mt-2">
+                   <ul class="p-0">
+                       <?php foreach ($comments as $comment) : ?>
+                           <li class="media my-3">
+                               <div class="media-body">
+                                   <p>
+                                       <strong><?= ($comment->getCommentTitle()) ? $comment->getCommentTitle() : 'Pas de titre indiqué' ?></strong><?= ' par '.$comment->getUserId()->getPseudo().' <em>'.$comment->getCommentCreateAt() ?></em>
+                                   </p>
+                               </div>
+                           </li>
+                       <?php endforeach; ?>
+                   </ul>
+               </div>
+           </div>
+        </div>
     </div>
+
     <div class="col col-md-12 mt-4">
         <h3 class="mt-3">Commentaire signalé</h3>
         <p> actuelement <?= count($reports)?> Commentaire<?=(count($reports) > 1) ? " signalés" : " signalé"?></p>
         <div class="profilCommentContentView">
-        <?php foreach ($reports as $commentReport) :?>
-            <div class="card border-danger font-weight-bold bg-transparent mb-3 w-100">
-                <div class="card-header h5">Article : <?= $commentReport->getPostId()->getPostTitle() ?></div>
-                <div class="row">
-                    <div class="col col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $commentReport->getCommentTitle() ?></h5>
-                            <p class="card-text"><?= html_entity_decode($commentReport->getCommentContent()) ?></p>
-                            <p class="card-text">Commentaire écrit par : <?=$commentReport->getUserId()->getPseudo()?></p>
+            <?php foreach ($reports as $commentReport) :?>
+                <div class="card border-danger font-weight-bold bg-transparent mb-3 w-100">
+                    <div class="card-header h5">Article : <?= $commentReport->getPostId()->getPostTitle() ?></div>
+                    <div class="row">
+                        <div class="col col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $commentReport->getCommentTitle() ?></h5>
+                                <p class="card-text"><?= html_entity_decode($commentReport->getCommentContent()) ?></p>
+                                <p class="card-text">Commentaire écrit par : <?=$commentReport->getUserId()->getPseudo()?></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col col-md-4 d-flex justify-content-around">
-                        <div class="d-flex align-items-center">
-                            <form method="post" action="/deleteReport">
-                                <input type="hidden" name="idComments" value="<?= $commentReport->getIdComments() ?>">
-                                <button type="submit" class="btn btn-danger mx-2"
-                                        title="Supprimer le commentaire">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         width="20"
-                                         height="20"
-                                         fill="currentColor"
-                                         class="bi bi-trash"
-                                         viewBox="0 0 16 16">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1
-                                                 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1
-                                                 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3
-                                                 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                        <path fill-rule="evenodd"
-                                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1
-                                                 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1
-                                                 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1
-                                                 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                    </svg>
-                                </button>
-                            </form>
-                            <form method="post" action="/updateReport">
-                                <input type="hidden" name="idComments" value="<?= $commentReport->getIdComments() ?>">
-                                <button type="submit" class="btn btn-info mx-2" title="Approuver le commentaire">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         width="20"
-                                         height="20"
-                                         fill="currentColor"
-                                         class="bi bi-check"
-                                         viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd"
-                                              d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75
-                                                 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094
-                                                 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"/>
-                                    </svg>
-                                </button>
-                            </form>
+                        <div class="col col-md-4 d-flex justify-content-around">
+                            <div class="d-flex align-items-center">
+                                <form method="post" action="/deleteReport">
+                                    <input type="hidden" name="idComments" value="<?= $commentReport->getIdComments() ?>">
+                                    <button type="submit" class="btn btn-danger mx-2"
+                                            title="Supprimer le commentaire">
+                                        <i class="bi bi-trash text-center"></i>
+                                    </button>
+                                </form>
+                                <form method="post" action="/updateReport">
+                                    <input type="hidden" name="idComments" value="<?= $commentReport->getIdComments() ?>">
+                                    <button type="submit" class="btn btn-info mx-2" title="Approuver le commentaire">
+                                        <i class="bi bi-check text-center"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach;?>
+            <?php endforeach;?>
         </div>
     </div>
 </div>

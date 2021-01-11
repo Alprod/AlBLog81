@@ -96,6 +96,17 @@ class AdminController extends PDOmanager
         return $this->getConfig()->redirect('/dashboard');
     }
 
+    public function updateUserRegisterToMember()
+    {
+        $post = $_POST;
+        $user = new Users();
+        $user->hydrate($post);
+        if(!empty($post)){
+            $this->getMembreModel()->updateUserToMembre($user);
+        }
+        return $this->getConfig()->redirect('/dashboard');
+    }
+
 
     public function updateMemberRegisterToBlogger()
     {
