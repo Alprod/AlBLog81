@@ -1,10 +1,12 @@
 <?php
 
-
 namespace App\Entity;
 
 abstract class Entity
 {
+    /**
+     * @param array $donnees
+     */
     public function hydrate(array $donnees)
     {
         foreach ($donnees as $key => $value) {

@@ -1,9 +1,7 @@
 <?php
 
-
 namespace App\Model;
 
-use App\Entity\Entity;
 use App\Entity\Users;
 use Config\Config;
 use Config\PDOmanager;
@@ -12,6 +10,9 @@ use PDOStatement;
 
 class MembresModel extends PDOmanager
 {
+    /**
+     * @return array|false
+     */
     public function findAll()
     {
         $req = "SELECT * FROM Users";
@@ -94,6 +95,11 @@ class MembresModel extends PDOmanager
         return $this->getBdd()->prepare($req);
     }
 
+    /**
+     * Update Password
+     * @param $idUsers
+     * @param $mdp
+     */
     public function updateMdp($idUsers, $mdp)
     {
         $bdd = $this->getBdd();
@@ -172,6 +178,9 @@ class MembresModel extends PDOmanager
         return $result->execute();
     }
 
+    /**
+     * @param Users $user
+     */
     public function updateMemberRegister(Users $user)
     {
         $bdd = $this->getBdd();
@@ -201,6 +210,9 @@ class MembresModel extends PDOmanager
         $result->execute();
     }
 
+    /**
+     * @param Users $roles
+     */
     public function updateUserToMembre(Users $roles)
     {
         $bdd = $this->getBdd();
@@ -223,6 +235,9 @@ class MembresModel extends PDOmanager
         $result->execute();
     }
 
+    /**
+     * @param Users $roles
+     */
     public function updateMembreToSuperAdmin(Users $roles)
     {
         $bdd = $this->getBdd();
@@ -234,11 +249,14 @@ class MembresModel extends PDOmanager
         $result->execute();
     }
 
-    public function deleteMemebresRegister(Users $id)
+    /**
+     * @param Users $idUser
+     */
+    public function deleteMemebresRegister(Users $idUser)
     {
         $req = 'DELETE FROM Users WHERE idUsers = :id ';
         $result = $this->getBdd()->prepare($req);
-        $result->bindValue(':id', $id->getIdUsers());
+        $result->bindValue(':id', $idUser->getIdUsers());
         $result->execute();
     }
 }

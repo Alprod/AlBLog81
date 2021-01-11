@@ -69,10 +69,10 @@ class Config
             extract($params, EXTR_OVERWRITE);
         }
         ob_start();
-        require $pathView;
+        require_once $pathView;
         $content= ob_get_clean();
         ob_start();
-        require $pathLayout;
+        require_once $pathLayout;
         return ob_end_flush();
     }
 
@@ -101,9 +101,6 @@ class Config
     }
 
 
-    /**
-     * @param $membre
-     */
     public function createSession($membre)
     {
         $_SESSION['id_membre'] = $membre;

@@ -31,6 +31,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get idUsers from Users
      * @return mixed
      */
     public function getUserId()
@@ -41,6 +42,7 @@ class Posts extends Entity
 
 
     /**
+     * Get idPosts
      * @return mixed
      */
     public function getIdPosts()
@@ -49,6 +51,7 @@ class Posts extends Entity
     }
 
     /**
+     * Set idPosts
      * @param mixed $idPosts
      */
     public function setIdPosts($idPosts): void
@@ -57,6 +60,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get postTitle
      * @return mixed
      */
     public function getPostTitle()
@@ -65,6 +69,7 @@ class Posts extends Entity
     }
 
     /**
+     * Set postTitle
      * @param mixed $postTitle
      */
     public function setPostTitle($postTitle): void
@@ -73,6 +78,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get postContent
      * @return mixed
      */
     public function getPostContent()
@@ -81,6 +87,7 @@ class Posts extends Entity
     }
 
     /**
+     * Set postContent
      * @param mixed $postContent
      */
     public function setPostContent($postContent): void
@@ -89,6 +96,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get images
      * @return mixed
      */
     public function getImages()
@@ -97,6 +105,7 @@ class Posts extends Entity
     }
 
     /**
+     * Set images
      * @param mixed $images
      */
     public function setImages($images): void
@@ -105,6 +114,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get link
      * @return mixed
      */
     public function getLink()
@@ -113,6 +123,7 @@ class Posts extends Entity
     }
 
     /**
+     * Set link
      * @param mixed $link
      */
     public function setLink($link): void
@@ -121,6 +132,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get postUserId
      * @return mixed
      */
     public function getPostUserId()
@@ -129,6 +141,7 @@ class Posts extends Entity
     }
 
     /**
+     * Set postUserId
      * @param mixed $postUserId
      */
     public function setPostUserId($postUserId): void
@@ -137,6 +150,7 @@ class Posts extends Entity
     }
 
     /**
+     * Get DateCreateAt
      * @return mixed
      * @throws Exception
      */
@@ -147,7 +161,9 @@ class Posts extends Entity
         return $dateFormat;
     }
 
+
     /**
+     * Set DateCreateAt
      * @param mixed $dateCreateAt
      */
     public function setDateCreateAt($dateCreateAt): void

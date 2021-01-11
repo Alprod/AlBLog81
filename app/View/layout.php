@@ -21,23 +21,48 @@
 </head>
 
 <body>
-    <div class="cover-container d-flex px-3 w-100 h-100 mx-auto flex-column vh-100">
+    <div class="cover-container
+                d-flex
+                px-3
+                w-100
+                h-100
+                mx-auto
+                flex-column
+                vh-100">
         <header class="masthead mb-auto bg-black p-4">
             <h2 class="masthead-brand"><a class="iconTitle" href="/">Alblog</a></h2>
             <div class="inner">
-                <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="<?= url('home'); ?>">Home</a>
-                    <a class="nav-link" href="<?= url('blogs'); ?>">Articles</a>
+                <nav class="nav
+                            nav-masthead
+                            justify-content-center">
+                    <a class="nav-link active"
+                       href="<?= url('home'); ?>">Home
+                    </a>
+                    <a class="nav-link"
+                       href="<?= url('blogs'); ?>">Articles
+                    </a>
                     <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
-                    <a class="nav-link" href="<?= url('editPost'); ?>">Nouveau post</a>
+                    <a class="nav-link"
+                       href="<?= url('editPost'); ?>">Nouveau post
+                    </a>
                     <?php endif; ?>
-                    <a class="nav-link" href="<?= url('contact'); ?>">Contact</a>
+                    <a class="nav-link"
+                       href="<?= url('contact'); ?>">Contact
+                    </a>
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
-                    <a class="nav-link" href="<?= url('register'); ?>">Inscription</a>
-                    <a class="nav-link connexion" href="<?= url('login'); ?>">Connexion</a>
+                    <a class="nav-link"
+                       href="<?= url('register'); ?>">Inscription
+                    </a>
+                    <a class="nav-link connexion"
+                       href="<?= url('login'); ?>">Connexion
+                    </a>
                     <?php else : ?>
-                    <a class="nav-link" href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?></a>
-                    <a class="nav-link connexion" href="<?= url('logout'); ?>">Déconnexion</a>
+                    <a class="nav-link"
+                       href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?>
+                    </a>
+                    <a class="nav-link connexion"
+                       href="<?= url('logout'); ?>">Déconnexion
+                    </a>
                     <?php endif; ?>
                 </nav>
             </div>
@@ -47,6 +72,7 @@
             <?php
             if (isset($content)) {
                 echo $content;
+
             }
             ?>
         </main>
