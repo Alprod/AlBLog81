@@ -9,6 +9,7 @@ h1,h2,h3,h4,h5,h6{
 .cover-container {
   max-width: 77em;
 }
+
 /* Header */
 .iconTitle{
   color: #fcfcfc;
@@ -48,6 +49,7 @@ h1,h2,h3,h4,h5,h6{
     float: right;
   }
 }
+
 /* Cover */
 .cover {
   padding: 0 1.5rem;
@@ -56,6 +58,7 @@ h1,h2,h3,h4,h5,h6{
   padding: .75rem 1.25rem;
   font-weight: 700;
 }
+
 /* Footer */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
@@ -97,6 +100,7 @@ body {
 .bg-black {
   background: #0B0F13;
 }
+
 /************* Error 404 ******************/
 .error-container {
   height: 100vh !important;
@@ -125,6 +129,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
 }
+
 /* Style form Contact */
 .inputName,
 .inputSujet,
@@ -147,6 +152,7 @@ body {
   background: -webkit-linear-gradient(to right, #243B55, #141E30);
   background: linear-gradient(to right, #243B55, #141E30);
 }
+
 /* Style form inscription */
 .legend {
   width: 170px !important;
@@ -160,8 +166,13 @@ body {
 .mdp {
   text-decoration-color: #fcfcfc;
 }
-.dashContentView, /* Style Dashboard contenu des listes Posts */
-.profilPostContentView /* Style Comment in member profil */
+
+/**
+ * Style Dashboard contenu des listes Posts
+ * Style Comment in member profil
+ */
+.dashContentView,
+.profilPostContentView
 {
   height: 400px;
   overflow: hidden !important;
@@ -171,6 +182,7 @@ body {
 {
   height: 300px;
 }
+
 /* Style liste des article */
 .viewPostCard{
   width: 18rem;
@@ -185,6 +197,7 @@ body {
     font-size: 50px;
   }
 }
+
 /* Style détail des article  */
 .postView {
   margin: 0 auto;
