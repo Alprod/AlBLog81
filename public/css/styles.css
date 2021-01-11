@@ -6,16 +6,10 @@
 h1,h2,h3,h4,h5,h6{
   font-family: 'Nunito', sans-serif;
 }
-
 .cover-container {
   max-width: 77em;
 }
-
-
-/*
- * Header
- */
-
+/* Header */
 .iconTitle{
   color: #fcfcfc;
   text-decoration: none;
@@ -27,19 +21,15 @@ h1,h2,h3,h4,h5,h6{
   background-clip: text;
   color: transparent;
 }
-
 .masthead {
   margin-bottom: 2rem;
 }
-
 .masthead-brand {
   margin-bottom: 0;
 }
-
 .nav-masthead{
   font-size: 18px;
 }
-
 .nav-masthead .nav-link {
   padding: .25rem 0;
   font-weight: 700;
@@ -47,12 +37,9 @@ h1,h2,h3,h4,h5,h6{
   background-color: transparent;
   border-bottom: .12rem solid transparent;
 }
-
-
 .nav-masthead .nav-link + .nav-link {
   margin-left: 1rem;
 }
-
 @media (min-width: 48em) {
   .masthead-brand {
     float: left;
@@ -61,11 +48,7 @@ h1,h2,h3,h4,h5,h6{
     float: right;
   }
 }
-
-
-/*
- * Cover
- */
+/* Cover */
 .cover {
   padding: 0 1.5rem;
 }
@@ -73,16 +56,11 @@ h1,h2,h3,h4,h5,h6{
   padding: .75rem 1.25rem;
   font-weight: 700;
 }
-
-
-/*
- * Footer
- */
+/* Footer */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
   text-align: center;
 }
-
 .footNavUl > li > a {
   color: #fcfcfc;
 }
@@ -95,9 +73,7 @@ h1,h2,h3,h4,h5,h6{
   margin-top: 4rem;
 }
 
-/*
-*Background image
-*/
+/* Background image */
 body {
   background: #121213 url(./../images/jonatan-pie-h8nxGssjQXs-unsplash.jpg) no-repeat fixed center;
   background-size: cover;
@@ -106,26 +82,21 @@ body {
   font-family: 'Work Sans', sans-serif;
 }
 
-/*
-*Botton de connexion
-*/
+/* Botton de connexion */
 .connexion {
-background: rgba(252, 70, 106, 0.5);
-background: -webkit-linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
-background: linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
-padding: 5px !important;
-border-radius: 6px;
-color: #fcfcfc !important;
+  background: rgba(252, 70, 106, 0.5);
+  background: -webkit-linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
+  background: linear-gradient(to right, rgba(63, 94, 251, 0.5), rgba(252, 70, 106, 0.5));
+  padding: 5px !important;
+  border-radius: 6px;
+  color: #fcfcfc !important;
 }
-
 .hidden {
   display: none;
 }
-
 .bg-black {
   background: #0B0F13;
 }
-
 /************* Error 404 ******************/
 .error-container {
   height: 100vh !important;
@@ -134,9 +105,7 @@ color: #fcfcfc !important;
   justify-content: center;
   align-items: center;
   font-family: montserrat, sans-serif;
-
 }
-
 .big-text {
   font-size: 200px;
   font-weight: 900;
@@ -149,7 +118,6 @@ color: #fcfcfc !important;
   background-size: cover;
   background-position: center;
 }
-
 .small-text {
   font-family: montserrat, sans-serif;
   color: rgb(0, 0, 0);
@@ -157,7 +125,6 @@ color: #fcfcfc !important;
   font-weight: 700;
   text-transform: uppercase;
 }
-
 /* Style form Contact */
 .inputName,
 .inputSujet,
@@ -173,7 +140,6 @@ color: #fcfcfc !important;
   background: -webkit-linear-gradient(to left, #4d4647, #232526);
   background: linear-gradient(to left, #46484a, #232526);
 }
-
 .Subcribe,
 .tox-editor-container
 {
@@ -181,7 +147,6 @@ color: #fcfcfc !important;
   background: -webkit-linear-gradient(to right, #243B55, #141E30);
   background: linear-gradient(to right, #243B55, #141E30);
 }
-
 /* Style form inscription */
 .legend {
   width: 170px !important;
@@ -195,8 +160,6 @@ color: #fcfcfc !important;
 .mdp {
   text-decoration-color: #fcfcfc;
 }
-
-
 .dashContentView, /* Style Dashboard contenu des listes Posts */
 .profilPostContentView /* Style Comment in member profil */
 {
@@ -204,18 +167,17 @@ color: #fcfcfc !important;
   overflow: hidden !important;
   overflow-y: scroll !important;
 }
-
 .profilCommentContentView
 {
   height: 300px;
 }
-
 /* Style liste des article */
 .viewPostCard{
   width: 18rem;
 }
 @media (max-width: 876px) {
-  .viewPostCard, .postView{
+  .viewPostCard,
+  .postView {
     width: 16rem !important;
   }
 
@@ -223,7 +185,6 @@ color: #fcfcfc !important;
     font-size: 50px;
   }
 }
-
 /* Style détail des article  */
 .postView {
   margin: 0 auto;

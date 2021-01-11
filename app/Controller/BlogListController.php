@@ -109,21 +109,21 @@ class BlogListController
     }
 
     /**
-     * @param $id
+     * @param $idPosts
      * @param $slug
      * @param $commentIds
      */
-    public function addCommentToBlogPost($id, $slug, $commentIds)
+    public function addCommentToBlogPost($idPosts, $slug, $commentIds)
     {
         $post = $this->getConfig()->sanitize($_POST);
-        $idPost= $id;
+        $idPost= $idPosts;
         $commentId = $commentIds;
         $title = $post['commentTitle'];
         $comment =$post['Commentaire'];
 
         $this->getPostModel()->addCommentToPost($commentId, $idPost, $title, $comment);
 
-        return $this->getConfig()->redirect("/$slug/$id");
+        return $this->getConfig()->redirect("/$slug/$idPosts");
     }
 
 
@@ -159,12 +159,12 @@ class BlogListController
     }
 
     /**
-     * @param $id
+     * @param $idPost
      * @return bool
      */
-    public function postFormById($id): bool
+    public function postFormById($idPost): bool
     {
-        $postByIds = $this->getPostModel()->findPostByIds($id);
+        $postByIds = $this->getPostModel()->findPostByIds($idPost);
         $postImage = $postByIds->getImages();
 
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [

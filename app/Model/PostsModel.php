@@ -41,17 +41,17 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $id
+     * @param $idPost
      * @return mixed
      */
-    public function findPostByIds($id)
+    public function findPostByIds($idPost)
     {
         $req = 'SELECT p.*, u.pseudo
                 FROM Posts AS p
                 JOIN Users AS u ON u.idUsers = p.postUserId
                 WHERE p.idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(":id_post", $id);
+        $result->bindParam(":id_post", $idPost);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
         $posts= $result->fetch();
@@ -59,16 +59,16 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $id
+     * @param $idPostUser
      * @return array
      */
-    public function findPostsByIdUser($id): array
+    public function findPostsByIdUser($idPostUser): array
     {
         $req = 'SELECT *, DATE_FORMAT(dateCreateAt, "%d/%m/%Y") as dateCreateAt 
                 FROM Posts 
                 WHERE postUserId = :id_user';
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(":id_user", $id);
+        $result->bindParam(":id_user", $idPostUser);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Posts');
         $posts= $result->fetchAll();
@@ -78,10 +78,10 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $id
+     * @param $idCommentsPosts
      * @return array
      */
-    public function findCommentsByPostAndIds($id): array
+    public function findCommentsByPostAndIds($idCommentsPosts): array
     {
         $req = 'SELECT  c.idComments,
                         u.pseudo,
@@ -99,7 +99,7 @@ class PostsModel extends PDOmanager
                 ORDER BY c.commentCreateAt ASC LIMIT 0,10';
 
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(":idPosts", $id);
+        $result->bindParam(":idPosts", $idCommentsPosts);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
         $commentPost = $result->fetchAll();
@@ -108,10 +108,10 @@ class PostsModel extends PDOmanager
 
 
     /**
-     * @param $id
+     * @param $idComments
      * @return array
      */
-    public function findCommentById($id): array
+    public function findCommentById($idComments): array
     {
         $bdd = $this->getBdd();
         $req = 'SELECT *,DATE_FORMAT(commentCreateAt, "%d/%m/%Y") as dateCreateAt 
@@ -120,7 +120,7 @@ class PostsModel extends PDOmanager
                 INNER JOIN Users ON idUsers = userCommentId 
                 WHERE userCommentId = :id';
         $result = $bdd->prepare($req);
-        $result->bindParam(':id', $id);
+        $result->bindParam(':id', $idComments);
         $result->execute();
         $commentUser = $result->fetchAll();
         $result->closeCursor();
@@ -187,7 +187,7 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $post => $_Post
+     * @param Posts $post
      * @return bool
      * @throws Exception
      */
@@ -211,13 +211,13 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $id
+     * @param $idDeletePosts
      */
-    public function deletePost($id)
+    public function deletePost($idDeletePosts)
     {
         $bdd = $this->getBdd();
         $req = $bdd->prepare('DELETE FROM Posts WHERE idPosts = :id');
-        $req->bindParam(':id', $id);
+        $req->bindParam(':id', $idDeletePosts);
         $req->execute();
         $req->closeCursor();
     }

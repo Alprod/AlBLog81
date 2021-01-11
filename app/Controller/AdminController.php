@@ -99,14 +99,14 @@ class AdminController extends PDOmanager
     /**
      * Delete All member register
      */
-    public Function deletedMembreRegister()
+    public Function deletedMemberRegister()
     {
         $post = $_POST;
         $user = new Users();
         $user->hydrate($post);
 
         if(!empty($post)){
-            $this->getMembreModel()->deleteMemebresRegister($user);
+            $this->getMembreModel()->deleteMemebersRegister($user);
         }
 
         return $this->getConfig()->redirect('/dashboard');

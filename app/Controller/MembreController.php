@@ -8,8 +8,6 @@ use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
-use DateTime;
-use DateTimeZone;
 use Exception;
 use Date;
 
@@ -23,7 +21,6 @@ class MembreController extends Users
 
     /**
      * MembreController constructor.
-     *
      */
     public function __construct()
     {

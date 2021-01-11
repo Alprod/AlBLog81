@@ -30,6 +30,16 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Controller/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Controller/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/CommentsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/CommentsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/MembresModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/MembresModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

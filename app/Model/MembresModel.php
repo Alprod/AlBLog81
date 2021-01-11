@@ -27,14 +27,14 @@ class MembresModel extends PDOmanager
     }
 
     /**
-     * @param $id
+     * @param $idMember
      * @return mixed
      */
-    public function find($id)
+    public function find($idMember)
     {
         $req = "SELECT * FROM Users WHERE idUsers = :id";
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(':id', $id);
+        $result->bindParam(':id', $idMember);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Users");
         $data = $result->fetch();
@@ -252,7 +252,7 @@ class MembresModel extends PDOmanager
     /**
      * @param Users $idUser
      */
-    public function deleteMemebresRegister(Users $idUser)
+    public function deleteMemebersRegister(Users $idUser)
     {
         $req = 'DELETE FROM Users WHERE idUsers = :id ';
         $result = $this->getBdd()->prepare($req);

@@ -31,10 +31,10 @@ class CommentsModel extends PDOmanager
 
 
     /**
-     * @param $id
+     * @param $userComment
      * @return array
      */
-    public function findCommentsByUserId($id)
+    public function findCommentsByUserId($userComment)
     {
         $req = 'SELECT * 
                 FROM Comments
@@ -45,7 +45,7 @@ class CommentsModel extends PDOmanager
                 LIMIT 10';
 
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(":id", $id);
+        $result->bindParam(":id", $userComment);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
         $data = $result->fetchAll();
@@ -53,10 +53,10 @@ class CommentsModel extends PDOmanager
     }
 
     /**
-     * @param $id
+     * @param $idComment
      * @return mixed
      */
-    public function findCommentsById($id)
+    public function findCommentsById($idComment)
     {
         $req = 'SELECT * 
                 FROM Comments
@@ -64,7 +64,7 @@ class CommentsModel extends PDOmanager
                 JOIN Users ON idUsers = userCommentId
                 WHERE idComments = :id';
         $result = $this->getBdd()->prepare($req);
-        $result->bindValue(':id', $id);
+        $result->bindValue(':id', $idComment);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
 
@@ -86,15 +86,21 @@ class CommentsModel extends PDOmanager
         return $result->execute();
     }
 
-    public function deleteComment(Comments $id)
+    /**
+     * @param Comments $deleteComment
+     */
+    public function deleteComment(Comments $deleteComment)
     {
         $req = 'DELETE FROM Comments WHERE idComments = :id';
         $result = $this->getBdd()->prepare($req);
-        $result->bindValue(':id', $id->getIdComments());
+        $result->bindValue(':id', $deleteComment->getIdComments());
         $result->execute();
         $result->closeCursor();
     }
 
+    /**
+     * @return array
+     */
     public function findCommentsReport()
     {
         $req = 'SELECT idComments, commentTitle, commentContent, pseudo, postTitle 
@@ -109,11 +115,15 @@ class CommentsModel extends PDOmanager
         return $result->fetchAll();
     }
 
-    public function updateCommentReport(Comments $id)
+    /**
+     * @param Comments $idReport
+     * @return bool
+     */
+    public function updateCommentReport(Comments $idReport)
     {
         $req = 'UPDATE Comments SET `signal` = FALSE WHERE idComments = :idComment';
         $result = $this->getBdd()->prepare($req);
-        $result->bindValue(':idComment', $id->getIdComments());
+        $result->bindValue(':idComment', $idReport->getIdComments());
 
         return $result->execute();
     }
