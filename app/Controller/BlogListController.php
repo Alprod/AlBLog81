@@ -94,8 +94,6 @@ class BlogListController
         if (!empty($post)) {
             $this->addCommentToBlogPost($id, $slug, $_SESSION['id_membre']);
         }
-        $commentSignal = $this->getCommentModel()->findCommentsById($idComment);
-        $signal = $commentSignal->getSignal();
 
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
             'titre' => 'l\'article '.$slug,
@@ -103,7 +101,6 @@ class BlogListController
             'id' => $id,
             'post' => $viewPost,
             'comments' => $commentByPost,
-            'signal' => $signal,
             'changer'=> 'Modifier'
         ]);
     }
@@ -183,7 +180,9 @@ class BlogListController
         $newPost = new Posts();
         $this->copyImages();
         $post['images'] = $_POST['images'];
+        $post['postUserId'] = $_SESSION['id_membre'];
         $newPost->hydrate($post);
+
 
 
         $this->getPostModel()->editPost($newPost);

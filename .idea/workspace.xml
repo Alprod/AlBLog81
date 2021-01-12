@@ -30,6 +30,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,6 +356,16 @@
           <url>file://$PROJECT_DIR$/app/Model/MembresModel.php</url>
           <line>74</line>
           <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
+          <line>179</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
+          <line>87</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
