@@ -16,11 +16,11 @@ class BlogController
 
     /**
      * @param string $slug
-     * @param string $id
+     * @param string $idPost
      * @return string
      */
-    public function blogPost(string $slug, string $id): string
+    public function blogPost(string $slug, string $idPost): string
     {
-        return "Mon article $slug n° $id";
+        return "Mon article $slug n° $idPost";
     }
 }

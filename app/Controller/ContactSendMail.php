@@ -87,16 +87,16 @@ class ContactSendMail extends Config
     }
 
     /**
-     * @param $to
+     * @param $toMailUser
      * @param $subject
      * @param $message
      * @return bool
      * @throws Exception
      */
-    public function email($to, $subject, $message)
+    public function email($toMailUser, $subject, $message)
     {
 
-        $sendMail = mail($to, $subject, $message);
+        $sendMail = mail($toMailUser, $subject, $message);
         if (!$sendMail) {
             throw new Exception('Une erreur est survenu lors de l\'envoi');
             return false;

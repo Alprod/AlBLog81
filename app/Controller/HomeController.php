@@ -9,7 +9,6 @@ use Config\Config;
 use DateTime;
 use DateTimeZone;
 use Exception;
-use ReflectionException;
 
 class HomeController extends Config
 {
@@ -17,7 +16,6 @@ class HomeController extends Config
 
     /**
      * HomeController constructor.
-     *
      */
     public function __construct()
     {
@@ -58,29 +56,29 @@ class HomeController extends Config
     public function calendarChinese($year): string
     {
         switch ($year % 12) :
-            case 0:
+            case 0 :
                 return 'Singe / Monkey / 猴';
-            case 1:
+            case 1 :
                 return 'Coq / Rooster / 公鸡';
-            case 2:
+            case 2 :
                 return 'Chien / Dog / 狗';
-            case 3:
+            case 3 :
                 return 'Sanglier / Boar / 公猪';
-            case 4:
+            case 4 :
                 return 'Rat / 鼠';
-            case 5:
+            case 5 :
                 return 'Vache / Ox / 牛';
-            case 6:
+            case 6 :
                 return 'Tigre / Tiger / 虎';
-            case 7:
+            case 7 :
                 return 'Lapin / Rabit / 兔子';
-            case 8:
+            case 8 :
                 return 'Dragon / 龙';
-            case 9:
+            case 9 :
                 return 'Snake';
-            case 10:
+            case 10 :
                 return 'Cheval / Horse / 马';
-            case 11:
+            case 11 :
                 return 'Agneau / Lamb / 羊肉';
         endswitch;
     }
