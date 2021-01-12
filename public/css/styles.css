@@ -181,8 +181,7 @@ body {
 }
 
 .dashContentView,
-.profilPostContentView
-{
+.profilPostContentView {
   height: 400px;
   overflow: hidden !important;
   overflow-y: scroll !important;
