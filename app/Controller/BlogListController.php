@@ -85,12 +85,9 @@ class BlogListController
      */
     public function blogPost(string $slug, string $id): bool
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        //$post = $this->getConfig()->sanitize($_POST);
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
-        foreach ($commentByPost as $postComment) {
-            $idComment = $postComment->getIdComments();
-        }
         if (!empty($post)) {
             $this->addCommentToBlogPost($id, $slug, $_SESSION['id_membre']);
         }
@@ -180,11 +177,8 @@ class BlogListController
         $newPost = new Posts();
         $this->copyImages();
         $post['images'] = $_POST['images'];
-        $post['postUserId'] = $_SESSION['id_membre'];
         $newPost->hydrate($post);
-
-
-
+        $newPost->getPostUserId();
         $this->getPostModel()->editPost($newPost);
 
         return $this->getConfig()->redirect("/blogs");

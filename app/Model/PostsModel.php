@@ -181,7 +181,7 @@ class PostsModel extends PDOmanager
         $req->bindValue(':content', $post->getPostContent());
         $req->bindValue(':images', $post->getImages());
         $req->bindValue(':link', $post->getLink());
-        $req->bindValue(':idUser', $post->getPostUserId());
+        $req->bindValue(':idUser', $_SESSION['id_membre']);
         $req->execute();
         $req->closeCursor();
     }
