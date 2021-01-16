@@ -173,12 +173,8 @@ body {
 .Subcribe,
 .tox-editor-container {
   background: #141e30;
-  background: linear-gradient(to right, #243B55, #141E30);
-}
-
-.Subcribe,
-.tox-editor-container {
-  background: -webkit-linear-gradient(to right, #243B55, #141E30);
+  background: linear-gradient(to right, #243b55, #141e30);
+  -webkit-linear-gradient(to right, #243b55, #141e30);
 }
 
 /* Style form inscription */
