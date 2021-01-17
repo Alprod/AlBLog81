@@ -192,8 +192,10 @@ class MembreController extends Users
             $this->verifLogin($data);
 
             $user = $this->getMembreModel()->loginOfConnexion($data['email']);
-            $this->getConfig()->createSession($user);
-
+            $this->getConfig()->createSession($user->getIdUsers());
+            $_SESSION['membre'] = $user;
+            $_SESSION['pseudo_membre'] = $user->getPseudo();
+            $_SESSION['email_membre'] = $user->getEmail();
             return $this->getConfig()->redirect("/");
         } catch (Exception $e) {
             return $this->getConfig()->render("layout.php", "membres/login.php", [

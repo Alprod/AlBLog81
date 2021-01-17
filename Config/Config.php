@@ -102,13 +102,10 @@ class Config
     }
 
 
-    public function createSession(Users $membre)
+    public function createSession($membre)
     {
-        $_SESSION['id_membre'] = $membre->getIdUsers();
-        $_SESSION['membre'] = $membre;
-        $_SESSION['pseudo_membre'] = $membre->getPseudo();
-        $_SESSION['email_membre'] = $membre->getEmail();
-        setcookie("timeUsers", $membre->getIdUsers(), time()+3600*24, "/", "www.alblog81.fr", false, false);
+        $_SESSION['id_membre'] = $membre;
+        setcookie("timeUsers", $membre, time()+3600*24, "/", "www.alblog81.fr", false, false);
     }
 
     /**
