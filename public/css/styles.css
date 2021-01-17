@@ -159,22 +159,10 @@ body {
   background: linear-gradient(to left, #46484a, #232526);
 }
 
-.inputName,
-.inputSujet,
-.inputEmail,
-.message,
-.inputCommentName,
-.inputCommentEmail,
-.inputComment,
-.mdp {
-  background: -webkit-linear-gradient(to left, #4d4647, #232526);
-}
-
 .Subcribe,
 .tox-editor-container {
   background: #141e30;
   background: linear-gradient(to right, #243b55, #141e30);
-  -webkit-linear-gradient(to right, #243b55, #141e30);
 }
 
 /* Style form inscription */
