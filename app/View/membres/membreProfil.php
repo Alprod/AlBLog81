@@ -80,6 +80,15 @@
                 <button type="submit" class="btn btn-outline-light btn-sm btn-block">Validez</button>
             </form>
         </div>
+        <div class="px-5 bg-black mt-3 rounded">
+            <p class="text-center py-3"><i class="p-1 mb-1 bi bi-exclamation-triangle bg-warning rounded text-dark" style="font-size: 1rem;"> Attention</i> Une fois que vous supprimez votre compte, il n'y a plus de retour en arrière. Toutes les données vous concernent seront supprimées Soyez certain.</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <form method="post" action="<?= url('deleteRegister') ?>">
+                <input hidden name="idUsers" value="<?= $profil->getIdUsers() ?>">
+                <button type="submit" class="btn btn-danger">Supprimer votre profil</button>
+            </form>
+        </div>
     </div>
     <div class="<?= ($profil->isAdmin() || $profil->isSuperAdmin()) ? 'col-md-6' : 'col-md-12' ?> overflow-auto mt-5 mb-5" id="commentsUser">
         <h2>Vos commentaires</h2>

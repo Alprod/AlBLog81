@@ -252,7 +252,7 @@ class MembresModel extends PDOmanager
     /**
      * @param Users $idUser
      */
-    public function deleteMemebersRegister(Users $idUser)
+    public function deleteMembersRegister(Users $idUser)
     {
         $req = 'DELETE FROM Users WHERE idUsers = :id ';
         $result = $this->getBdd()->prepare($req);

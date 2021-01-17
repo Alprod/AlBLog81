@@ -181,6 +181,18 @@ class MembreController extends Users
         }
     }
 
+    public function deleteRegister()
+    {
+        $post = $_POST;
+        $user = new Users();
+        $user->hydrate($post);
+        $this->getMembreModel()->deleteMembersRegister($user);
+        if (isset($_SESSION['id_membre'])) {
+            $this->getConfig()->cleanSessionPhp();
+        }
+        return $this->getConfig()->redirect("/");
+    }
+
 
     /**
      * @return bool|void

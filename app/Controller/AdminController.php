@@ -106,7 +106,7 @@ class AdminController extends PDOmanager
         $user->hydrate($post);
 
         if(!empty($post)){
-            $this->getMembreModel()->deleteMemebersRegister($user);
+            $this->getMembreModel()->deleteMembersRegister($user);
         }
 
         return $this->getConfig()->redirect('/dashboard');
