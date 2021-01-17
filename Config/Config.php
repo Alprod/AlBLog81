@@ -3,6 +3,7 @@
 
 namespace Config;
 
+use App\Entity\Users;
 use Config\Params\Parameter;
 
 class Config

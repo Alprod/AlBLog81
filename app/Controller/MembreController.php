@@ -255,18 +255,6 @@ class MembreController extends Users
         if (empty($mdp) || empty($mdp2)) {
             throw new Exception('Il vous faut un mot de passe');
         }
-
-        if (!empty($data)) {
-            $champsVide = 0;
-            foreach ($data as $value) {
-                if (empty(trim($value))) {
-                    $champsVide++;
-                }
-            }
-            if ($champsVide > 0) {
-                throw new Exception('Veuilez remplir tout les champs, il y a '.$champsVide.' champs manquant.');
-            }
-        }
     }
 
     public function updateValidation(Users $data)
@@ -274,7 +262,7 @@ class MembreController extends Users
         $userMembre = $this->getMembreModel()->find($data->getIdUsers());
 
         if (empty($data->getFirstname())) {
-            throw new Exception('Veuiilez indiquer un votre nom');
+            throw new Exception('Veuilez indiquer un votre nom');
         }
 
         if (empty($data->getLastname())) {
@@ -365,7 +353,7 @@ class MembreController extends Users
             $idUser = $_SESSION['id_membre'];
             $profil = $this->getMembreModel()->find($idUser);
             $commentUserId = $this->getPostModel()->findCommentById($idUser);
-            $date = date($profil->getCreateAt());
+            $date = date($profil->getCreatedAt());
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
             return $this->getConfig()->render("layout.php", "membres/membreProfil.php", [
@@ -407,7 +395,7 @@ class MembreController extends Users
         $profil = $this->getMembreModel()->find($idUser);
 
         if ($pwd_Actuel !== $profil->getMdp()) {
-            throw new Exception('Désolé mais votre mot de pas est inéxate');
+            throw new Exception('Désolé mais votre mot de passe est inéxate');
         }
 
         if ($pwd_New   !== $pwd_Confirm) {
