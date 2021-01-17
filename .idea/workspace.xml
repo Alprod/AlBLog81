@@ -30,6 +30,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/MembreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/MembreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/MembresModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/MembresModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Router/Routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Router/Routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/membres/membreProfil.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/membres/membreProfil.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,14 +60,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="PhpDebugGeneral" xdebug_debug_port="9001" break_at_first_line="true">
     <xdebug_debug_ports port="9001" />
@@ -189,10 +186,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
         <item itemvalue="PHPUnit.RouterTest.testRouter" />
-        <item itemvalue="PHPUnit.RouterTest.testMatchThrowExecptionMethod" />
+        <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
         <item itemvalue="PHPUnit.RouterTest.testMatch" />
+        <item itemvalue="PHPUnit.RouterTest.testMatchThrowExecptionMethod" />
         <item itemvalue="PHPUnit.RouterTest" />
       </list>
     </recent_temporary>
@@ -312,8 +309,7 @@
       <workItem from="1610114001325" duration="967000" />
       <workItem from="1610122048460" duration="13000" />
       <workItem from="1610130853141" duration="3984000" />
-      <workItem from="1610815594279" duration="966000" />
-      <workItem from="1610837662999" duration="8663000" />
+      <workItem from="1610906335231" duration="3103000" />
     </task>
     <servers />
   </component>
@@ -347,42 +343,10 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/app/View/admin/postEdit.php</url>
-          <line>14</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint type="php">
-          <url>file://$PROJECT_DIR$/app/Model/MembresModel.php</url>
-          <line>74</line>
-          <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
-          <line>211</line>
-          <properties>
-            <option name="className" value="\App\Controller\BlogListController" />
-            <option name="methodName" value="deletePostId" />
-          </properties>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Entity/Users.php</url>
-          <line>126</line>
-          <properties>
-            <option name="className" value="\App\Entity\Users" />
-            <option name="methodName" value="getEmail" />
-          </properties>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Controller/ContactSendMail.php</url>
-          <line>25</line>
-          <properties>
-            <option name="className" value="\App\Controller\ContactSendMail" />
-            <option name="methodName" value="sendMail" />
-          </properties>
-          <option name="timeStamp" value="59" />
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/MembreController.php</url>
+          <line>185</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

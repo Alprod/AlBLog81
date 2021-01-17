@@ -63,6 +63,7 @@ class Routes
             new Route('POST', 'sendMail', '/sendMail', [ContactSendMail::class, 'sendMail']),
             new Route('POST', 'addPost', '/addPost', [BlogListController::class, 'addPost']),
             new Route('POST', 'addRegister', '/register', [MembreController::class, 'inscription']),
+            new Route('POST', 'deleteRegister', '/deleteRegister', [MembreController::class, 'deleteRegister']),
             new Route('POST', 'updateMemberRegister', '/updateMemberRegister', [MembreController::class, 'updateMemberRegister']),
             new Route('POST', 'deletedMember', '/deletedMember', [AdminController::class, 'deletedMemberRegister']),
             new Route('POST', 'updateToMember', '/updateToMember', [AdminController::class, 'updateUserRegisterToMember']),
