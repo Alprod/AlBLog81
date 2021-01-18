@@ -39,7 +39,7 @@
             <div class="col-md-12 mt-3">
                 <label for="inputName">Nom/Pseudo</label>
                 <input type="text"
-                       name="inputName"
+                       name="nameContact"
                        id="inputName"
                        value="<?= $_SESSION['pseudo_membre'] ?? '' ?>"
                        class="inputName
@@ -53,7 +53,7 @@
             <div class="col-md-12 mt-3">
                 <label for="inputEmail">Email</label>
                 <input type="email"
-                       name="inputEmail"
+                       name="email"
                        id="inputEmail"
                        value="<?= $_SESSION['email_membre'] ?? '' ?>"
                        class="inputEmail
@@ -67,7 +67,7 @@
             <div class="col-md-12 mt-3">
                 <label for="inputSujet">Sujet</label>
                 <input type="text"
-                       name="inputSujet"
+                       name="sujet"
                        id="inputSujet"
                        class="inputSujet
                               text-white
