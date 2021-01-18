@@ -63,7 +63,7 @@ class ContactSendMail extends Config
         $this->getContactModel()->insertMailSendByUser($contact);
 
 
-        $myMail = 'alprod81@gmail.com';
+        $myMail = Config::EMAIL_WEB_MASTER;
         $mySecret = Config::CSRF_TOKEN_GMAIL;
         $mail = new PHPMailer();
         $mail->isSMTP();

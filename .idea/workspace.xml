@@ -29,10 +29,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OAuth.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/OAuth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/POP3.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/POP3.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
