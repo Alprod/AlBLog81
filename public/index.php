@@ -11,6 +11,10 @@ $config->initSessionId();
 $routes = new Routes();
 $routes->routesIndex();
 
+/**
+ * @param $name
+ * @return string
+ */
 function url($name)
 {
     global $routes;

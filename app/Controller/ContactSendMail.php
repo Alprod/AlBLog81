@@ -3,11 +3,32 @@
 
 namespace App\Controller;
 
+use App\Entity\Contacts;
+use App\Model\ContactsModel;
 use Config\Config;
 use Exception;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 class ContactSendMail extends Config
 {
+    private ContactsModel $contactModel;
+
+    public function __construct()
+    {
+        $this->contactModel = new ContactsModel();
+    }
+
+    /**
+     * @return ContactsModel
+     */
+    public function getContactModel(): ContactsModel
+    {
+        return $this -> contactModel;
+    }
+
+
+
     /**
      * @return bool
      */
@@ -37,21 +58,46 @@ class ContactSendMail extends Config
         }
 
         $data = $this->sanitize($_POST);
+        $contact = new Contacts();
+        $contact->hydrate($data);
+        $this->getContactModel()->insertMailSendByUser($contact);
 
-        $to = [
-            'name'=>$data['inputName'],
-            'email' => 'alprod81@gmail.com'
-            ];
-        $message = $this->renderMessage($data['inputName'], $data['message']);
 
-        $this->email($to['email'], $data['message'], $message);
+        $myMail = 'alprod81@gmail.com';
+        $mySecret = Config::CSRF_TOKEN_GMAIL;
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPAuth = true;
+        $mail->Username = $myMail;
+        $mail->Password = $mySecret;
+        $mail->setFrom($contact->getEmail(), $contact->getNameContact());
+        $mail->addAddress($myMail);
+        $mail->Subject = $contact->getSujet();
 
-        return $this->render("layout.php", "front/contact.php", array(
-            'titre' => 'Envoi Mail',
-            'success' => 'Mail envoyer',
-            'error' => [],
-            'name' => $data['inputName']
-        ));
+        $name = $contact->getNameContact();
+        $content = $contact->getMessage();
+        $mail->isHTML(true);
+        $mail->Body = $this->renderMessage($name, $content);
+
+        if (!$mail->send()) {
+            return $this->render("layout.php", "front/contact.php", array(
+                'titre' => 'Erreur Mail',
+                'success' => false,
+                'error' => $mail->ErrorInfo,
+                'name' => null
+            ));
+        } else {
+            return $this->render("layout.php", "front/contact.php", array(
+                'titre' => 'Envoi Mail',
+                'success' => 'Message envoyé',
+                'error' => [],
+                'name' => $data['nameContact']
+            ));
+        }
     }
 
 
@@ -62,10 +108,10 @@ class ContactSendMail extends Config
     public function validate($data)
     {
 
-        $name = $data['inputName'];
+        $name = $data['nameContact'];
         $content = $data["message"];
-        $mailEmail = $data["inputEmail"];
-        $mailSujet = $data["inputSujet"];
+        $mailEmail = $data["email"];
+        $mailSujet = $data["sujet"];
         $rgexe10 = "/^[\w\W0-9]{10,}$/i";
 
 
@@ -87,38 +133,18 @@ class ContactSendMail extends Config
     }
 
     /**
-     * @param $toMailUser
-     * @param $subject
-     * @param $message
-     * @return bool
-     * @throws Exception
-     */
-    public function email($toMailUser, $subject, $message)
-    {
-
-        $sendMail = mail($toMailUser, $subject, $message);
-        if (!$sendMail) {
-            throw new Exception('Une erreur est survenu lors de l\'envoi');
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * @param $name
      * @param $content
      * @return string
      */
     public function renderMessage($name, $content)
     {
-        return '<html lang="fr">
+        $message = '<html lang="fr">
                    <body>
                      <h2>Message de '.$name.'</h2>
                      <table>
                         <tr>
-                          <th>Message</th>
-                        </tr>
-                        <tr>
+                          <th>Message :</th>
                             <td>
                               '.$content.'
                             </td>
@@ -126,5 +152,7 @@ class ContactSendMail extends Config
                      </table>
                    </body>
                </html>';
+
+        return $message;
     }
 }

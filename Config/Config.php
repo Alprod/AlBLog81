@@ -11,6 +11,7 @@ class Config
     const SUPER_USERS_ADMIN = 1;
     const USERS_ADMIN = 2;
     const USERS = 3;
+    const CSRF_TOKEN_GMAIL = 'M8V-tN7-x3H-5Ry';
     /**
      * @var array $parameters
      */
