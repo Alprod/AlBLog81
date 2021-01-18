@@ -24,6 +24,7 @@ namespace PHPMailer\PHPMailer;
 
 use League\OAuth2\Client\Grant\RefreshToken;
 use League\OAuth2\Client\Provider\AbstractProvider;
+use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
 use League\OAuth2\Client\Token\AccessToken;
 
 /**
@@ -48,7 +49,7 @@ class OAuth
      *
      * @var AccessToken
      */
-    protected $oauthToken;
+    protected AccessToken $oauthToken;
 
     /**
      * The user's email address, usually used as the login ID
@@ -85,7 +86,7 @@ class OAuth
      * @param array $options Associative array containing
      *                       `provider`, `userName`, `clientSecret`, `clientId` and `refreshToken` elements
      */
-    public function __construct($options)
+    public function __construct(array $options)
     {
         $this -> provider = $options['provider'];
         $this -> oauthUserEmail = $options['userName'];
@@ -99,7 +100,7 @@ class OAuth
      *
      * @return RefreshToken
      */
-    protected function getGrant()
+    protected function getGrant(): RefreshToken
     {
         return new RefreshToken();
     }
@@ -108,8 +109,9 @@ class OAuth
      * Get a new AccessToken.
      *
      * @return AccessToken
+     * @throws IdentityProviderException
      */
-    protected function getToken()
+    protected function getToken(): AccessToken
     {
         return $this -> provider -> getAccessToken(
             $this -> getGrant(),
@@ -121,8 +123,9 @@ class OAuth
      * Generate a base64-encoded OAuth token.
      *
      * @return string
+     * @throws IdentityProviderException
      */
-    public function getOauth64()
+    public function getOauth64(): string
     {
         // Get a new token if it's not available or has expired
         if (null === $this -> oauthToken || $this -> oauthToken -> hasExpired()) {
