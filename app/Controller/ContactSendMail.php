@@ -63,7 +63,7 @@ class ContactSendMail extends Config
         $this->getContactModel()->insertMailSendByUser($contact);
 
 
-        $myMail = 'alprod81@gmail.com';
+        $myMail = Config::EMAIL_WEB_MASTER;
         $mySecret = Config::CSRF_TOKEN_GMAIL;
         $mail = new PHPMailer();
         $mail->isSMTP();
@@ -90,14 +90,13 @@ class ContactSendMail extends Config
                 'error' => $mail->ErrorInfo,
                 'name' => null
             ));
-        } else {
-            return $this->render("layout.php", "front/contact.php", array(
-                'titre' => 'Envoi Mail',
-                'success' => 'Message envoyé',
-                'error' => [],
-                'name' => $data['nameContact']
-            ));
         }
+        return $this->render("layout.php", "front/contact.php", array(
+            'titre' => 'Envoi Mail',
+            'success' => 'Message envoyé',
+            'error' => [],
+            'name' => $data['nameContact']
+        ));
     }
 
 
@@ -144,7 +143,9 @@ class ContactSendMail extends Config
                      <h2>Message de '.$name.'</h2>
                      <table>
                         <tr>
-                          <th>Message :</th>
+                          <th>Message</th>
+                        </tr>
+                        <tr>
                             <td>
                               '.$content.'
                             </td>
