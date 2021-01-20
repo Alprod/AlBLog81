@@ -1,9 +1,9 @@
 <h1 class="text-center mb-4">Contactez-nous</h1>
-<div class="row">
+<div class="row mb-5">
     <div class="col-md-6 mt-4 messageText">
         <h2>Nous sommes a votre disposition</h2>
     </div>
-    <div class="col-md-6 formulaire">
+    <div class="col-md-6 formContact">
 
         <?php if (isset($success, $name)) : ?>
         <div class="alert

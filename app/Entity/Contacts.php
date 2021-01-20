@@ -3,6 +3,9 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Exception;
+
 class Contacts extends Entity
 {
     private $idContacts;
@@ -96,10 +99,13 @@ class Contacts extends Entity
 
     /**
      * @return mixed
+     * @throws Exception
      */
     public function getCreatedMailDate()
     {
-        return $this -> createdMailDate;
+        $date = new DateTime($this -> createdMailDate);
+        $dateFormat = $date->format('d/m/Y à H:i');
+        return $dateFormat;
     }
 
     /**

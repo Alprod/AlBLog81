@@ -8,6 +8,23 @@ use Config\PDOmanager;
 
 class ContactsModel extends PDOmanager
 {
+    public function findAllMailContact()
+    {
+        $req = "SELECT * FROM Contacts ORDER BY createdMailDate DESC";
+        $result = $this->getBdd()->prepare($req);
+        $result->execute();
+        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Contacts');
+        $data = $result->fetchAll();
+        if (!$data) {
+            return false;
+        }
+        return $data;
+    }
+
+    /**
+     * @param Contacts $contact
+     * @return bool
+     */
     public function insertMailSendByUser(Contacts $contact)
     {
         $date = date('Y-m-d H:i');
