@@ -1,7 +1,11 @@
 <?php
 
+
 namespace Config\Params;
 
+/*
+ * Modifer ParametreExemple par Parametre
+ */
 class Parameter
 {
     /**
