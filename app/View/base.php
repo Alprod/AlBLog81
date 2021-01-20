@@ -10,5 +10,4 @@
         <h5><?= $calendarChinese ?></h5>
         <p>J'espère que <?= (!empty($_SESSION['id_membre'])) ? 'tu vas' : 'vous allez' ?> prendre plaisir à visiter mon blog</p>
     </div>
-
 </div>

@@ -3,8 +3,10 @@
 
 namespace Config\Params;
 
-
-class Parameter
+/*
+ * Modifer ParametreExemple par Parametre
+ */
+class ParameterExemple
 {
     /**
      * @return string[]
@@ -14,12 +16,11 @@ class Parameter
         $parameters = [
             'connect' => [
                 'host' => 'localhost',
-                'dbname' => 'PoleNord',
-                'login' => 'root',
-                'password' => ''
+                'dbname' => 'my_blog',
+                'login' => 'yourLogin',
+                'password' => 'yourPassword'
             ]
         ];
         return $parameters;
     }
-
 }
