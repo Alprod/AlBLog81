@@ -1,5 +1,5 @@
 <h1 class="display-2 mt-5 mb-5 dashTitle"> <?=$titre?> </h1>
-<div class="row">
+<div class="row mb-5">
     <div class="col col-md-12">Actuellement le blog compte <?=count($users)?> membres tout status confondu</div>
     <div class="col col-md-12">
         <h3 class="mt-3">Table des Membres</h3>
@@ -274,12 +274,12 @@
         </div>
     </div>
 
-    <div class="col col-md-12 mt-4">
+    <div class="col col-md-6 mt-4">
         <h3 class="mt-3">Commentaire signalé</h3>
-        <p> actuelement <?= count($reports)?> Commentaire<?=(count($reports) > 1) ? " signalés" : " signalé"?></p>
-        <div class="profilCommentContentView">
+        <p> actuelement <?= count($reports)?><?=(count($reports) > 1) ? ' Commentaires signalés' : ' Commentaire signalé'?></p>
+        <div class="dashContentView">
             <?php foreach ($reports as $commentReport) :?>
-                <div class="card border-danger font-weight-bold bg-transparent mb-3 w-100">
+                <div class="card font-weight-bold bg-black mt-3 w-100">
                     <div class="card-header h5">Article : <?=$commentReport->getPostId()->getPostTitle()?></div>
                     <div class="row">
                         <div class="col col-md-8">
@@ -309,6 +309,29 @@
                     </div>
                 </div>
             <?php endforeach;?>
+        </div>
+    </div>
+    <div class="col col-md-6 mt-4 w-100">
+        <h3 class="mt-3">Email Contact envoyer par les utilisateurs</h3>
+        <p>Il y à <?= count($mailContact)?> <?=($mailContact > 1) ? ' emails' : ' email' ?> reçu par les utilisateurs</p>
+        <div class="dashContentView">
+            <?php foreach ($mailContact as $mail) : ?>
+                <div class="row no-gutters mt-3 justify-content-around bg-dark p-4">
+                    <div class="col col-md-3"><p class="ml-3 mt-2 mb-0"> <?= $mail->getCreatedMailDate() ?> </p></div>
+                    <div class="col col-md-3"><p class="ml-3 mt-2 mb-0"><?= $mail->getNameContact() ?></p></div>
+                    <div class="col col-md-5"><p class="ml-3 mt-2 mb-0"><?= $mail->getEmail() ?></p></div>
+                    <div class="col col-md-1">
+                        <button class="btn btn-primary border-0 rounded bg-transparent" type="button" data-toggle="collapse" data-target="#<?= $mail->getIdContacts() ?>" aria-expanded="false" aria-controls="<?= $mail->getIdContacts() ?>">
+                            <i class="bi bi-eye-fill rounded"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse" id="<?= $mail->getIdContacts() ?>">
+                    <div class="card card-body bg-black">
+                        <?= $mail->getMessage() ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

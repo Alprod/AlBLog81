@@ -85,7 +85,7 @@ class BlogListController
      */
     public function blogPost(string $slug, string $id): bool
     {
-        //$post = $this->getConfig()->sanitize($_POST);
+        $post = $this->getConfig()->sanitize($_POST);
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
         if (!empty($post)) {

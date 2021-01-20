@@ -1,6 +1,6 @@
-<h1 class="display-2 mt-5 mb-2"><?= $titre ?></h1>
+<h1 class="display-2 mt-5 mb-2 subcribTitle"><?= $titre ?></h1>
 <form action="<?= (empty($user)) ? url('addRegister') : url('updateMemberRegister')?>" method="post">
-    <div class="row">
+    <div class="row mb-5">
         <?php if (isset($error)) : ?>
         <div class="col-md-12">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -22,7 +22,7 @@
                 <input type="text"
                        name="firstname"
                        id="firstname"
-                       value="<?= (!empty($user)) ?  $user->getFirstname() : ''?>"
+                       value="<?= (!empty($user)) ?  $user->getFirstname() : ($_POST['firstname'] ?? '')?>"
                        class="Subcribe
                               firstname
                               text-white

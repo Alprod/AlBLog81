@@ -181,14 +181,11 @@ body {
 }
 
 .dashContentView,
-.profilPostContentView {
+.profilPostContentView,
+.profilCommentReport {
   height: 400px;
   overflow: hidden !important;
   overflow-y: scroll !important;
-}
-
-.profilCommentContentView {
-  height: 300px;
 }
 
 /* Style liste des article */
@@ -205,8 +202,10 @@ body {
   .dashTitle {
     font-size: 50px;
   }
+  .subcribTitle{font-size: 1rem !important;}
 }
 
 /* Style détail des article  */
 .postView { margin: 0 auto; }
+
 

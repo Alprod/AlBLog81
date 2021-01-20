@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Comments;
 use App\Entity\Users;
 use App\Model\CommentsModel;
+use App\Model\ContactsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
@@ -33,6 +34,11 @@ class AdminController extends PDOmanager
     private CommentsModel $commentModel;
 
     /**
+     * @var ContactsModel
+     */
+    private ContactsModel $contactsModel;
+
+    /**
      * AdminController constructor.
      */
     public function __construct()
@@ -41,6 +47,7 @@ class AdminController extends PDOmanager
         $this -> postModel = new PostsModel();
         $this -> membreModel = new MembresModel();
         $this -> commentModel = new CommentsModel();
+        $this -> contactsModel = new ContactsModel();
     }
 
     /**
@@ -58,6 +65,15 @@ class AdminController extends PDOmanager
     {
         return $this->postModel;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getContactsModel()
+    {
+        return $this -> contactsModel;
+    }
+
 
     /**
      * @return MembresModel
@@ -85,13 +101,15 @@ class AdminController extends PDOmanager
         $posts = $this->getPostModel()->findAllPosts();
         $comments = $this->getCommentModel()->findAllComments();
         $report = $this->getCommentModel()->findCommentsReport();
+        $contactMail = $this->getContactsModel()->findAllMailContact();
 
         return $this->getConfig()->render("layout.php", "admin/dashboard.php", [
             'titre' => 'Dashbarod',
             'users' => $users,
             'posts' => $posts,
             'comments' => $comments,
-            'reports' => $report
+            'reports' => $report,
+            'mailContact' => $contactMail
         ]);
     }
 
@@ -99,13 +117,13 @@ class AdminController extends PDOmanager
     /**
      * Delete All member register
      */
-    public Function deletedMemberRegister()
+    public function deletedMemberRegister()
     {
         $post = $_POST;
         $user = new Users();
         $user->hydrate($post);
 
-        if(!empty($post)){
+        if (!empty($post)) {
             $this->getMembreModel()->deleteMembersRegister($user);
         }
 
@@ -120,7 +138,7 @@ class AdminController extends PDOmanager
         $post = $_POST;
         $user = new Users();
         $user->hydrate($post);
-        if(!empty($post)){
+        if (!empty($post)) {
             $this->getMembreModel()->updateUserToMembre($user);
         }
         return $this->getConfig()->redirect('/dashboard');
@@ -135,7 +153,7 @@ class AdminController extends PDOmanager
         $post = $_POST;
         $user = new Users();
         $user->hydrate($post);
-        if(!empty($post)){
+        if (!empty($post)) {
             $this->getMembreModel()->updateMembreToBlogger($user);
         }
 
@@ -150,7 +168,7 @@ class AdminController extends PDOmanager
         $post = $_POST;
         $user = new Users();
         $user->hydrate($post);
-        if(!empty($post)){
+        if (!empty($post)) {
             $this->getMembreModel()->updateMembreToSuperAdmin($user);
         }
 
