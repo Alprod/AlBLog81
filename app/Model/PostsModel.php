@@ -31,12 +31,10 @@ class PostsModel extends PDOmanager
         $resultat->execute();
         $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
         $data = $resultat->fetchAll();
-        $resultat->closeCursor();
 
         if (!$data) {
             return false;
         }
-
         return $data;
     }
 
@@ -47,11 +45,11 @@ class PostsModel extends PDOmanager
     public function findPostByIds($idPost)
     {
         $req = 'SELECT p.*, u.pseudo
-                FROM Posts AS p
+                FROM Posts AS p 
                 JOIN Users AS u ON u.idUsers = p.postUserId
                 WHERE p.idPosts = :id_post';
         $result = $this->getBdd()->prepare($req);
-        $result->bindParam(":id_post", $idPost);
+        $result->bindValue(":id_post", $idPost);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
         $posts= $result->fetch();
@@ -64,7 +62,7 @@ class PostsModel extends PDOmanager
      */
     public function findPostsByIdUser($idPostUser): array
     {
-        $req = 'SELECT *, DATE_FORMAT(dateCreateAt, "%d/%m/%Y") as dateCreateAt 
+        $req = 'SELECT *
                 FROM Posts 
                 WHERE postUserId = :id_user';
         $result = $this->getBdd()->prepare($req);

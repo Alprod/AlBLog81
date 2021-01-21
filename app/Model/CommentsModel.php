@@ -17,7 +17,7 @@ class CommentsModel extends PDOmanager
                          FROM Comments 
                          INNER JOIN Posts ON idPosts = postCommentId
                          INNER JOIN Users ON idUsers = userCommentId
-                         GROUP BY idComments';
+                         ORDER BY commentCreateAt DESC';
         $result = $this->getBdd()->prepare($req);
         $result->execute();
         $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');

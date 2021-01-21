@@ -40,7 +40,7 @@
             <div class="form-group">
                 <?php if (!empty($blog_image)) : ?>
                     <img
-                        src="./images/<?=$blog_actuel->getImages()?>"
+                        src="./images/<?=$blog_image?>"
                         class="w-25 h-25 m-3 rounded-lg"
                         alt="<?=$blog_actuel->getPostTitle()?>">
                 <?php endif; ?>
