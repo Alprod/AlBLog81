@@ -9,6 +9,8 @@ use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
+use Config\Superglobal;
+use Exception;
 
 class BlogListController
 {
@@ -17,6 +19,7 @@ class BlogListController
     private Config $config;
     private PostsModel $postModel;
     private MembresModel $membreModel;
+    private Superglobal $superGlobal;
 
 
     /**
@@ -28,6 +31,15 @@ class BlogListController
         $this->commentModel = new CommentsModel();
         $this->config = new Config();
         $this->membreModel = new MembresModel();
+        $this->superGlobal = new Superglobal();
+    }
+
+    /**
+     * @return Superglobal
+     */
+    public function getSuperGlobal(): Superglobal
+    {
+        return $this -> superGlobal;
     }
 
     /**
@@ -85,11 +97,13 @@ class BlogListController
      */
     public function blogPost(string $slug, string $id): bool
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $sessionId = $this->getSuperGlobal()->getSession('id_membre');
+        $post = $this->getConfig()->sanitize($supeGolbal);
         $viewPost = $this->getPostModel()->findPostByIds($id);
         $commentByPost = $this->getPostModel()->findCommentsByPostAndIds($id);
         if (!empty($post)) {
-            $this->addCommentToBlogPost($id, $slug, $_SESSION['id_membre']);
+            $this->addCommentToBlogPost($id, $slug, $sessionId);
         }
 
         return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
@@ -109,7 +123,8 @@ class BlogListController
      */
     public function addCommentToBlogPost($idPosts, $slug, $commentIds)
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $post = $this->getConfig()->sanitize($supeGolbal);
         $idPost= $idPosts;
         $commentId = $commentIds;
         $title = $post['commentTitle'];
@@ -126,7 +141,8 @@ class BlogListController
      */
     public function updateSignalCommentById()
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $post = $this->getConfig()->sanitize($supeGolbal);
         $comment = new Comments();
         $comment->hydrate($post);
 
@@ -153,12 +169,12 @@ class BlogListController
     }
 
     /**
-     * @param $idPost
+     * @param $id
      * @return bool
      */
-    public function postFormById($idPost): bool
+    public function postFormById($id)
     {
-        $postByIds = $this->getPostModel()->findPostByIds($idPost);
+        $postByIds = $this->getPostModel()->findPostByIds($id);
         $postImage = $postByIds->getImages();
 
         return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
@@ -173,7 +189,8 @@ class BlogListController
      */
     public function addPost()
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $post = $this->getConfig()->sanitize($supeGolbal);
         $newPost = new Posts();
         $this->copyImages();
         $post['images'] = $_POST['images'];
@@ -187,11 +204,12 @@ class BlogListController
 
     /**
      * Update post by blogger
-     * @throws \Exception
+     * @throws Exception
      */
     public function updatePostById()
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $post = $this->getConfig()->sanitize($supeGolbal);
         if (!empty($post)) {
             $newPost = new Posts();
             $this->copyImages();
@@ -208,7 +226,8 @@ class BlogListController
      */
     public function deletePostId()
     {
-        $post = $this->getConfig()->sanitize($_POST);
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $post = $this->getConfig()->sanitize($supeGolbal);
         $this->getPostModel()->deletePost($post['idPost']);
         return $this->getConfig()->redirect('/blogs');
     }
@@ -219,10 +238,12 @@ class BlogListController
      */
     public function copyImages()
     {
-        $titleSpace = trim($_POST['postTitle']);
+        $postTitle = $this->getSuperGlobal()->post('postTitle');
+        $titleSpace = trim($postTitle);
         $title = str_replace(" ", "_", $titleSpace);
         if (!empty($_FILES['images']['name'])) {
             $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['images']['name'];
+            $imges = $this->getSuperGlobal()->setPost('images', $nom);
             $_POST['images'] = $nom;
             $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
             move_uploaded_file($_FILES['images']['tmp_name'], $pathPhoto);

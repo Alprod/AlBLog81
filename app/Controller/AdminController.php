@@ -10,6 +10,7 @@ use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
 use Config\PDOmanager;
+use Config\Superglobal;
 
 class AdminController extends PDOmanager
 {
@@ -39,6 +40,11 @@ class AdminController extends PDOmanager
     private ContactsModel $contactsModel;
 
     /**
+     * @var Superglobal
+     */
+    private Superglobal $superGlobal;
+
+    /**
      * AdminController constructor.
      */
     public function __construct()
@@ -48,7 +54,17 @@ class AdminController extends PDOmanager
         $this -> membreModel = new MembresModel();
         $this -> commentModel = new CommentsModel();
         $this -> contactsModel = new ContactsModel();
+        $this -> superGlobal = new Superglobal();
     }
+
+    /**
+     * @return Superglobal
+     */
+    public function getSuperGlobal(): Superglobal
+    {
+        return $this -> superGlobal;
+    }
+
 
     /**
      * @return Config
@@ -119,7 +135,8 @@ class AdminController extends PDOmanager
      */
     public function deletedMemberRegister()
     {
-        $post = $_POST;
+        $supeGolbal = $this->getSuperGlobal()->getPost();
+        $post = $this->getConfig()->sanitize($supeGolbal);
         $user = new Users();
         $user->hydrate($post);
 
