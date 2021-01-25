@@ -3,11 +3,11 @@
 
 namespace Config\Params;
 
-/*
- * Modifer ParametreExemple par Parametre
- */
 class Parameter
 {
+    const TOKEN_GMAIL = 'M8V-tN7-x3H-5Ry';
+    const EMAIL_WEB_MASTER = 'alprod81@gmail.com';
+
     /**
      * @return string[]
      */

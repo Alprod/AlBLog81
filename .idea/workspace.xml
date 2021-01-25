@@ -29,13 +29,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Params/Parameter.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Params/Parameter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Superglobal.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Superglobal.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/CommentsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/CommentsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/admin/postEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/postEdit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/HomeController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +142,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TYPO3AuthorEmailAddress" value="myname@example.org" />
     <property name="TYPO3AuthorName" value="My Name" />
     <property name="TYPO3PathToExtensionDomainModels" value="Classes/Domain/Model/" />
@@ -154,7 +155,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/public/.htaccess&#10;/Users/alain-andja/Desktop/WorkSpace/AlBlog81/vendor/squizlabs/php_codesniffer/src/Standards/Squiz/Tests/CSS/EmptyStyleDefinitionUnitTest.css" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Docs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -330,6 +331,8 @@
       <workItem from="1610130853141" duration="3984000" />
       <workItem from="1610906335231" duration="3103000" />
       <workItem from="1611051138171" duration="12688000" />
+      <workItem from="1611226116191" duration="5291000" />
+      <workItem from="1611559143068" duration="1789000" />
     </task>
     <servers />
   </component>
@@ -370,17 +373,18 @@
         </line-breakpoint>
         <line-breakpoint type="php">
           <url>file://$PROJECT_DIR$/app/Controller/ContactSendMail.php</url>
-          <line>49</line>
+          <line>50</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
-          <line>238</line>
-          <properties>
-            <option name="className" value="\App\Controller\BlogListController" />
-            <option name="methodName" value="copyImages" />
-          </properties>
-          <option name="timeStamp" value="70" />
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/Config/Superglobal.php</url>
+          <line>96</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/HomeController.php</url>
+          <line>49</line>
+          <option name="timeStamp" value="76" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

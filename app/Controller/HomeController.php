@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Model\MembresModel;
 use Config\Config;
+use Config\Superglobal;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -13,6 +14,7 @@ use Exception;
 class HomeController extends Config
 {
     private MembresModel $membreModel;
+    private Superglobal $sessionUser;
 
     /**
      * HomeController constructor.
@@ -20,8 +22,24 @@ class HomeController extends Config
     public function __construct()
     {
         $this->membreModel = new MembresModel();
+        $this->sessionUser = new Superglobal();
     }
 
+    /**
+     * @return MembresModel
+     */
+    public function getMembreModel(): MembresModel
+    {
+        return $this -> membreModel;
+    }
+
+    /**
+     * @return Superglobal
+     */
+    public function getSessionUser(): Superglobal
+    {
+        return $this -> sessionUser;
+    }
 
     /**
      * @return string
@@ -29,6 +47,7 @@ class HomeController extends Config
      */
     public function index(): string
     {
+        $idMember = $this->getSessionUser()->getSession('id_membre');
         $laDateDuJour = $this->dateOfTheDay();
         $heure = new DateTime('now', new DateTimeZone('EUROPE/Paris'));
         $heureDuJour = $heure->format('H:i');
@@ -56,29 +75,29 @@ class HomeController extends Config
     public function calendarChinese($year): string
     {
         switch ($year % 12) :
-            case 0 :
+            case 0:
                 return 'Singe / Monkey / 猴';
-            case 1 :
+            case 1:
                 return 'Coq / Rooster / 公鸡';
-            case 2 :
+            case 2:
                 return 'Chien / Dog / 狗';
-            case 3 :
+            case 3:
                 return 'Sanglier / Boar / 公猪';
-            case 4 :
+            case 4:
                 return 'Rat / 鼠';
-            case 5 :
+            case 5:
                 return 'Vache / Ox / 牛';
-            case 6 :
+            case 6:
                 return 'Tigre / Tiger / 虎';
-            case 7 :
+            case 7:
                 return 'Lapin / Rabit / 兔子';
-            case 8 :
+            case 8:
                 return 'Dragon / 龙';
-            case 9 :
+            case 9:
                 return 'Snake';
-            case 10 :
+            case 10:
                 return 'Cheval / Horse / 马';
-            case 11 :
+            case 11:
                 return 'Agneau / Lamb / 羊肉';
         endswitch;
     }
@@ -93,13 +112,5 @@ class HomeController extends Config
         $dateFormat = strftime("%A %d %B %G", strtotime($date));
 
         return $dateFormat;
-    }
-
-    /**
-     * @return MembresModel
-     */
-    public function getMembreModel(): MembresModel
-    {
-        return $this -> membreModel;
     }
 }

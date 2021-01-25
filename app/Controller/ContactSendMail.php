@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Contacts;
 use App\Model\ContactsModel;
 use Config\Config;
+use Config\Params\Parameter;
 use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -62,9 +63,6 @@ class ContactSendMail extends Config
         $contact->hydrate($data);
         $this->getContactModel()->insertMailSendByUser($contact);
 
-
-        $myMail = Config::EMAIL_WEB_MASTER;
-        $mySecret = Config::CSRF_TOKEN_GMAIL;
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = SMTP::DEBUG_OFF;
@@ -72,16 +70,17 @@ class ContactSendMail extends Config
         $mail->Port = 587;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->SMTPAuth = true;
-        $mail->Username = $myMail;
-        $mail->Password = $mySecret;
+        $mail->Username = Parameter::EMAIL_WEB_MASTER;
+        $mail->Password = Parameter::TOKEN_GMAIL;
         $mail->setFrom($contact->getEmail(), $contact->getNameContact());
-        $mail->addAddress($myMail);
+        $mail->addAddress(Parameter::EMAIL_WEB_MASTER);
         $mail->Subject = $contact->getSujet();
 
         $name = $contact->getNameContact();
         $content = $contact->getMessage();
+        $sujet = $contact->getSujet();
         $mail->isHTML(true);
-        $mail->Body = $this->renderMessage($name, $content);
+        $mail->Body = $this->renderMessage($name, $sujet, $content);
 
         if (!$mail->send()) {
             return $this->render("layout.php", "front/contact.php", array(
@@ -111,8 +110,6 @@ class ContactSendMail extends Config
         $content = $data["message"];
         $mailEmail = $data["email"];
         $mailSujet = $data["sujet"];
-        $rgexe10 = "/^[\w\W0-9]{10,}$/i";
-
 
         if (empty($name)) {
             throw new Exception('Veuillez indique un nom ou un Pseudo');
@@ -133,24 +130,19 @@ class ContactSendMail extends Config
 
     /**
      * @param $name
+     * @param $sujet
      * @param $content
      * @return string
      */
-    public function renderMessage($name, $content)
+    public function renderMessage($name, $sujet, $content)
     {
         $message = '<html lang="fr">
                    <body>
                      <h2>Message de '.$name.'</h2>
-                     <table>
-                        <tr>
-                          <th>Message</th>
-                        </tr>
-                        <tr>
-                            <td>
-                              '.$content.'
-                            </td>
-                        </tr>
-                     </table>
+                     <div>
+                        <p><b> Titre du sujet: </b>'.$sujet.'</p>
+                        <p>'.$content.'</p>
+                     </div>
                    </body>
                </html>';
 
