@@ -74,6 +74,11 @@ class Superglobal
         return $this->checkGlobal($this->_server, $key, $default);
     }
 
+    public function setPost($key, $post)
+    {
+        return  $this -> setCheckGlobal($this->_post, $key, $post);
+    }
+
 
 
     // other accessors
@@ -87,9 +92,9 @@ class Superglobal
     }
 
 
-    public function setPost($key, $post, $default = null)
+    private function setCheckGlobal(&$global, $key, $value)
     {
-        $setPost = $this -> checkGlobal($this->_post, $key, $default);
-        return $setPost = $post;
+        return $global[$key] = $value;
     }
+
 }

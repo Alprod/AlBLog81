@@ -238,12 +238,11 @@ class BlogListController
      */
     public function copyImages()
     {
-        $postTitle = $this->getSuperGlobal()->post('postTitle');
+        $postTitle = $this->getSuperGlobal()->getPost('postTitle');
         $titleSpace = trim($postTitle);
         $title = str_replace(" ", "_", $titleSpace);
         if (!empty($_FILES['images']['name'])) {
             $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['images']['name'];
-            $imges = $this->getSuperGlobal()->setPost('images', $nom);
             $_POST['images'] = $nom;
             $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
             move_uploaded_file($_FILES['images']['tmp_name'], $pathPhoto);

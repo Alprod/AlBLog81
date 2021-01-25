@@ -12,9 +12,6 @@ class Config
     const USERS_ADMIN = 2;
     const USERS = 3;
 
-    const CSRF_TOKEN_GMAIL = 'M8V-tN7-x3H-5Ry';
-    const EMAIL_WEB_MASTER = 'alprod81@gmail.com';
-
     /**
      * @var array $parameters
      */

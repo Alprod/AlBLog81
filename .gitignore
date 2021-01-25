@@ -8,7 +8,7 @@ composer.lock
 /node_modules
 
 .htaccess
-.idea/
+.idea
 .vscode
 
 #phpUnit
