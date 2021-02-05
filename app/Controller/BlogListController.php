@@ -192,9 +192,9 @@ class BlogListController
         $supeGolbal = $this->getSuperGlobal()->getPost();
         $post = $this->getConfig()->sanitize($supeGolbal);
         $newPost = new Posts();
-        $this->copyImages();
-        $post['images'] = $_POST['images'];
         $newPost->hydrate($post);
+        $newPost = $this->copyImages($newPost);
+
         $newPost->getPostUserId();
         $this->getPostModel()->editPost($newPost);
 
@@ -212,9 +212,8 @@ class BlogListController
         $post = $this->getConfig()->sanitize($supeGolbal);
         if (!empty($post)) {
             $newPost = new Posts();
-            $this->copyImages();
-            $post['images'] = $_POST['images'];
             $newPost->hydrate($post);
+            $newPost = $this->copyImages($newPost);
             $this->getPostModel()->updatePost($newPost);
 
             return $this->getConfig()->redirect('/blogs');
@@ -235,17 +234,20 @@ class BlogListController
 
     /**
      * Copy image in directory
+     * @param $post
+     * @return mixed
      */
-    public function copyImages()
+    public function copyImages($post)
     {
         $postTitle = $this->getSuperGlobal()->getPost('postTitle');
         $titleSpace = trim($postTitle);
         $title = str_replace(" ", "_", $titleSpace);
         if (!empty($_FILES['images']['name'])) {
             $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['images']['name'];
-            $_POST['images'] = $nom;
+            $post->setImages($nom);
             $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
             move_uploaded_file($_FILES['images']['tmp_name'], $pathPhoto);
         }
+        return $post;
     }
 }

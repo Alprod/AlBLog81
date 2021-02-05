@@ -8,6 +8,8 @@ namespace Config\Params;
  */
 class ParameterExemple
 {
+    const TOKEN_GMAIL = 'your_code_mail';
+    const EMAIL_WEB_MASTER = 'your_address_mail';
     /**
      * @return string[]
      */

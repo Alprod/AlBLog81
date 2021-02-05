@@ -8,6 +8,7 @@ use App\Model\CommentsModel;
 use App\Model\MembresModel;
 use App\Model\PostsModel;
 use Config\Config;
+use Config\Superglobal;
 use Exception;
 use Date;
 
@@ -200,12 +201,14 @@ class MembreController extends Users
     public function login(): bool
     {
         try {
-            $data = $this->getConfig()->sanitize($_POST);
+            $superGlobal = new Superglobal();
+            $data = $this->getConfig()->sanitize($superGlobal->getPost());
             $this->verifLogin($data);
 
             $user = $this->getMembreModel()->loginOfConnexion($data['email']);
             $this->getConfig()->createSession($user->getIdUsers());
             $_SESSION['membre'] = $user;
+            $_SESSION['membre']->getIdUsers();
             $_SESSION['pseudo_membre'] = $user->getPseudo();
             $_SESSION['email_membre'] = $user->getEmail();
             return $this->getConfig()->redirect("/");

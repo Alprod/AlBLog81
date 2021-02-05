@@ -10,7 +10,6 @@ $config->initSessionId();
 
 $routes = new Routes();
 $routes->routesIndex();
-
 /**
  * @param $name
  * @return string

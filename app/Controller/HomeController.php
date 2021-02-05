@@ -47,7 +47,7 @@ class HomeController extends Config
      */
     public function index(): string
     {
-        $idMember = $this->getSessionUser()->getSession('id_membre');
+        //$idMember = $this->getSessionUser()->getSession('id_membre');
         $laDateDuJour = $this->dateOfTheDay();
         $heure = new DateTime('now', new DateTimeZone('EUROPE/Paris'));
         $heureDuJour = $heure->format('H:i');
