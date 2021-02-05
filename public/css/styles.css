@@ -84,10 +84,6 @@ h6 {
   margin-top: 50%;
 }
 
-.footIcons {
-  margin-top: 4rem;
-}
-
 /* Background image */
 body {
   background: #121213 url(./../images/jonatan-pie-h8nxGssjQXs-unsplash.jpg) no-repeat fixed center;
@@ -192,6 +188,17 @@ body {
 .viewPostCard {
   width: 18rem;
 }
+
+/* Réseau sociaux */
+.footIcons a {
+  text-decoration: none;
+  color: #89898a;
+}
+
+.footIcons {
+  margin-top: 2.5rem;
+}
+
 
 @media (max-width: 876px) {
   .viewPostCard,

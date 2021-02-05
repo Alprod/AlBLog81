@@ -31,7 +31,6 @@ class Superglobal
         $this->_get = $_GET;
         $this->_session = $_SESSION;
         $this->_server = $_SERVER;
-        // and so on
     }
 
     /**
@@ -74,14 +73,27 @@ class Superglobal
         return $this->checkGlobal($this->_server, $key, $default);
     }
 
-    public function setPost($key, $post)
+
+    public function setPost($key, $value)
     {
-        return  $this -> setCheckGlobal($this->_post, $key, $post);
+        return  $this -> setCheckGlobal('post', $key, $value);
+    }
+
+
+    public function setSession($key, $value)
+    {
+        return $this->setCheckGlobal('session', $key, $value);
+    }
+
+
+    private function setCheckGlobal($global, $key, $value)
+    {
+        $var = '_'.$global;
+        return $this->$var[$key] = $value;
     }
 
 
 
-    // other accessors
 
     private function checkGlobal($global, $key = null, $default = null)
     {
@@ -92,9 +104,5 @@ class Superglobal
     }
 
 
-    private function setCheckGlobal(&$global, $key, $value)
-    {
-        return $global[$key] = $value;
-    }
 
 }

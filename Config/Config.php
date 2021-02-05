@@ -5,6 +5,7 @@ namespace Config;
 
 use App\Entity\Users;
 use Config\Params\Parameter;
+use Config\Superglobal;
 
 class Config
 {

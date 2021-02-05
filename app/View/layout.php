@@ -118,10 +118,10 @@
                     </div>
                     <div class="col-md-4 justify-content-center">
                         <div class="footIcons">
-                            <i class="bi bi-github icons"></i>
-                            <i class="bi bi-facebook icons"></i>
-                            <i class="bi bi-linkedin icons"></i>
-                            <i class="bi bi-instagram icons"></i>
+                            <a href="https://github.com/Alprod"> <i class="bi bi-github icons"> </i></a>
+                            <a href="https://facebook.com/alprod81"><i class="bi bi-facebook icons"></i></a>
+                            <a href="https://linkedin.com/alaingermain81"><i class="bi bi-linkedin icons"></i></a>
+                            <a href=""><i class="bi bi-instagram icons"></i></a>
                         </div>
                     </div>
                     <div class="col-md-4"></div>
