@@ -219,4 +219,27 @@ class PostsModel extends PDOmanager
         $req->execute();
         $req->closeCursor();
     }
+
+    public function displayPostsHomePage()
+    {
+        $req = 'SELECT  u.pseudo,
+                        p.idPosts, 
+                        p.postTitle,
+                        p.images,
+                        p.dateCreateAt,
+                        p.postUserId
+                        FROM Posts AS p
+                        JOIN Users AS u
+                        WHERE p.postUserId = u.idUsers
+                        ORDER BY p.dateCreateAt DESC LIMIT 0,4';
+        $resultat = $this->getBdd()->prepare($req);
+        $resultat->execute();
+        $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
+        $data = $resultat->fetchAll();
+
+        if (!$data) {
+            return false;
+        }
+        return $data;
+    }
 }

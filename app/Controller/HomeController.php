@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Users;
 use App\Model\MembresModel;
+use App\Model\PostsModel;
 use Config\Config;
 use Config\Superglobal;
 use DateTime;
@@ -14,6 +15,7 @@ use Exception;
 class HomeController extends Config
 {
     private MembresModel $membreModel;
+    private PostsModel $postModel;
     private Superglobal $sessionUser;
 
     /**
@@ -22,6 +24,7 @@ class HomeController extends Config
     public function __construct()
     {
         $this->membreModel = new MembresModel();
+        $this->postModel = new PostsModel();
         $this->sessionUser = new Superglobal();
     }
 
@@ -42,26 +45,35 @@ class HomeController extends Config
     }
 
     /**
+     * @return PostsModel
+     */
+    public function getPostModel(): PostsModel
+    {
+        return $this -> postModel;
+    }
+
+    /**
      * @return string
      * @throws Exception
      */
     public function index(): string
     {
-        //$idMember = $this->getSessionUser()->getSession('id_membre');
+        $idMember = $this->getSessionUser()->getSession('id_membre');
         $laDateDuJour = $this->dateOfTheDay();
         $heure = new DateTime('now', new DateTimeZone('EUROPE/Paris'));
         $heureDuJour = $heure->format('H:i');
         $calendarChinese = $this->calendarChinese(date('Y'));
-        $idUser = $_SESSION['id_membre'] ?? null;
-        $user = $this->getMembreModel()->find($idUser);
+        $user = $this->getMembreModel()->find($idMember);
+        $lastPosts = $this->getPostModel()->displayPostsHomePage();
 
         $params = array(
-            'titre' => 'Home page',
-            'laDateDuJour' => $laDateDuJour,
-            'heureDuJour' => $heureDuJour,
-            'calendarChinese' => $calendarChinese,
-            'membreUser'=> $user,
-            'success'=> 'Salut '
+            'titre'           =>  'Home page',
+            'laDateDuJour'    =>  $laDateDuJour,
+            'heureDuJour'     =>  $heureDuJour,
+            'calendarChinese' =>  $calendarChinese,
+            'membreUser'      =>  $user,
+            'lastPost'        =>  $lastPosts,
+            'success'         =>  'Salut '
 
         );
 
