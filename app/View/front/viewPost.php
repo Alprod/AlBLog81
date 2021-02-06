@@ -7,7 +7,8 @@
             text-white
             bg-dark
             mb-3
-            bg-black">
+            bg-black"
+     style="max-width: 50rem;">
     <?php if (!empty($post->getImages())) : ?>
     <img
         class="card-img-top"
