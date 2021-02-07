@@ -33,7 +33,7 @@ Lancer le projet en local via le server Apache
 
 ## Fabriqué avec
 
-Les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
+Les programmes/logiciels/ressources que vous avez utilisées pour développer votre projet
 
 -   [bootstrap CDN](http://materializecss.com) - Framework CSS (front-end)
 -   [PHPStorm](https://atom.io/) - IDE.
@@ -41,4 +41,4 @@ Les programmes/logiciels/ressources que vous avez utilisé pour développer votr
 
 ## Auteurs
 
-*   **Germain Alain** _alias_ [@Alprod](https://github.com/Alprod)
+-   **Germain Alain** _alias_ [@Alprod](https://github.com/Alprod)
