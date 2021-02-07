@@ -1,7 +1,10 @@
-<h1 class="text-center mb-4">Contactez-nous</h1>
+<h1 class="text-center mb-4 mt-5">Contactez-nous</h1>
 <div class="row mb-5">
     <div class="col-md-6 mt-4 messageText">
-        <h2>Nous sommes a votre disposition</h2>
+        <div class="resumContact">
+            <h2>Nous sommes a votre écoute</h2>
+            <p>Entrer en contact avec nous, afin de nous faire savoir se dont vous désirez</p>
+        </div>
     </div>
     <div class="col-md-6 formContact">
 

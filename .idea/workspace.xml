@@ -30,10 +30,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/PostsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/PostsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/View/base.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/View/front/viewPost.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/viewPost.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/contact.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,7 +153,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/public/.htaccess&#10;/Users/alain-andja/Desktop/WorkSpace/AlBlog81/vendor/squizlabs/php_codesniffer/src/Standards/Squiz/Tests/CSS/EmptyStyleDefinitionUnitTest.css" />
     <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -168,8 +167,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/Docs" />
+      <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/Config/Params" />
       <recent name="$PROJECT_DIR$/Config" />
       <recent name="$PROJECT_DIR$/Tests" />
@@ -205,8 +204,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="PHPUnit.RouterTest.testRouter" />
         <item itemvalue="PHPUnit.RouterTest.testRouterByIdsWithSlug" />
+        <item itemvalue="PHPUnit.RouterTest.testRouter" />
         <item itemvalue="PHPUnit.RouterTest.testMatchThrowExecptionMethod" />
         <item itemvalue="PHPUnit.RouterTest.testMatch" />
         <item itemvalue="PHPUnit.RouterTest" />
@@ -399,6 +398,11 @@
           <line>90</line>
           <option name="timeStamp" value="87" />
         </line-breakpoint>
+        <line-breakpoint type="php">
+          <url>file://$PROJECT_DIR$/app/Controller/HomeController.php</url>
+          <line>60</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Controller/BlogListController.php</url>
           <line>189</line>
@@ -407,15 +411,6 @@
             <option name="methodName" value="addPost" />
           </properties>
           <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php-line-method">
-          <url>file://$PROJECT_DIR$/app/Controller/HomeController.php</url>
-          <line>58</line>
-          <properties>
-            <option name="className" value="\App\Controller\HomeController" />
-            <option name="methodName" value="index" />
-          </properties>
-          <option name="timeStamp" value="92" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
