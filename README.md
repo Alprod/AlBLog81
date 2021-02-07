@@ -27,7 +27,6 @@ Installer les dépendences composer ``composer install``
 
 Attention pour les comptes Gmail il faut désactiver la double authentification.
 
-
 ## Démarrage
 
 Lancer le projet en local via le server Apache
@@ -36,9 +35,9 @@ Lancer le projet en local via le server Apache
 
 Les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
 
-*   [bootstrap CDN](http://materializecss.com)  Framework CSS (front-end)
-*   [PHPStorm](https://atom.io/)  IDE.
-*   [Codacy](https://app.codacy.com/gh/Alprod/AlBLog81/dashboard?branch=master)  Analyseur de code accés direct au projet analiser.
+*   [bootstrap CDN](http://materializecss.com) - Framework CSS (front-end)
+*   [PHPStorm](https://atom.io/) - IDE.
+*   [Codacy](https://app.codacy.com/gh/Alprod/AlBLog81/dashboard?branch=master) - Analyseur de code accés direct au projet analiser.
 
 ## Auteurs
 
