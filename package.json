@@ -1,5 +1,16 @@
 {
   "dependencies": {
-    "bootstrap-icons": "^1.2.1"
+    "bootstrap-icons": "^1.2.1",
+    "remark-lint": "^8.0.0"
+  },
+  "scripts": {
+    "lint-md": "remark ."
+  },
+  "devDependencies": {
+    "remark-cli": "^9.0.0",
+    "remark-preset-lint-recommended": "^5.0.0"
+  },
+  "remarkConfig": {
+    "plugins": ["remark-preset-lint-recommended"]
   }
 }

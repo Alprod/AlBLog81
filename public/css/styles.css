@@ -155,6 +155,10 @@ body {
   background: linear-gradient(to left, #46484a, #232526);
 }
 
+.resumContact {
+  padding-top: 40px;
+}
+
 .Subcribe,
 .tox-editor-container {
   background: #141e30;
