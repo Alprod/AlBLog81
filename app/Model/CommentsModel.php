@@ -31,7 +31,7 @@ class CommentsModel extends PDOmanager
 
 
     /**
-     * @param $userComment
+     * @param  $userComment
      * @return array
      */
     public function findCommentsByUserId($userComment)
@@ -53,7 +53,7 @@ class CommentsModel extends PDOmanager
     }
 
     /**
-     * @param $idComment
+     * @param  $idComment
      * @return mixed
      */
     public function findCommentsById($idComment)
@@ -73,7 +73,8 @@ class CommentsModel extends PDOmanager
 
 
     /**
-     * @param Comments $comment
+     * @param  Comments $comment
+     * @return bool
      */
     public function updateSignal(Comments $comment)
     {
@@ -116,7 +117,7 @@ class CommentsModel extends PDOmanager
     }
 
     /**
-     * @param Comments $idReport
+     * @param  Comments $idReport
      * @return bool
      */
     public function updateCommentReport(Comments $idReport)

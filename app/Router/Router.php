@@ -17,7 +17,7 @@ class Router
 
 
     /**
-     *Add new route
+     * Add new route
      *
      * @param Route $route
      *
@@ -38,7 +38,6 @@ class Router
      * Insert all routes into a table
      *
      * @return Route[]|array
-     *
      */
     public function getRouterCollection():array
     {
@@ -76,8 +75,8 @@ class Router
     /**
      * Check the method as well as the path of the route
      *
-     * @param string $path
-     * @param string $method
+     * @param  string $path
+     * @param  string $method
      * @return Route|false
      */
     public function match(string $method, string $path)
@@ -92,7 +91,8 @@ class Router
 
     /**
      * Find name route
-     * @param string $name
+     *
+     * @param  string $name
      * @return Route|null
      */
     public function find(string $name)

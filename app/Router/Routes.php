@@ -10,6 +10,11 @@ use App\Controller\HomeController;
 use App\Controller\MembreController;
 use Config\Config;
 
+/**
+ * Class Routes
+ *
+ * @package App\Router
+ */
 class Routes
 {
     /**
@@ -43,7 +48,6 @@ class Routes
      */
     public function routesIndex()
     {
-
         $config = new Config();
 
         $this->routes = [
@@ -78,7 +82,7 @@ class Routes
             new Route('POST', 'updateReport', '/updateReport', [AdminController::class, 'approuvedReport']),
         ];
 
-        foreach ($this -> routes as $route) {
+        foreach ($this->routes as $route) {
             $this->router->add($route);
         }
 
@@ -92,12 +96,11 @@ class Routes
     }
 
     /**
-     * @param $name
+     * @param  $name
      * @return Route|null
      */
     public function findNameRoute($name)
     {
         return $this->router->find($name);
     }
-
 }

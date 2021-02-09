@@ -22,7 +22,7 @@ class ContactsModel extends PDOmanager
     }
 
     /**
-     * @param Contacts $contact
+     * @param  Contacts $contact
      * @return bool
      */
     public function insertMailSendByUser(Contacts $contact)

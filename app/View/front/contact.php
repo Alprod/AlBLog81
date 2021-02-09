@@ -14,7 +14,7 @@
                     alert-dismissible
                     fade
                     show" role="alert">
-            <p class="text-dark m-auto"><?= $success.', Merci '.$name.'.'?></p>
+            <p class="text-dark m-auto"><?php echo $success.', Merci '.$name.'.'?></p>
             <button type="button"
                     class="close"
                     data-dismiss="alert"
@@ -28,7 +28,7 @@
                     alert-dismissible
                     fade
                     show" role="alert">
-            <p class="text-dark m-auto"><?= $error ?></p>
+            <p class="text-dark m-auto"><?php echo $error ?></p>
             <button type="button"
                     class="close"
                     data-dismiss="alert"
@@ -38,13 +38,13 @@
         </div>
         <?php endif; ?>
 
-        <form action="<?= url('sendMail') ?>" method="post">
+        <form action="<?php echo url('sendMail') ?>" method="post">
             <div class="col-md-12 mt-3">
                 <label for="inputName">Nom/Pseudo</label>
                 <input type="text"
                        name="nameContact"
                        id="inputName"
-                       value="<?= $_SESSION['pseudo_membre'] ?? '' ?>"
+                       value="<?php echo $_SESSION['pseudo_membre'] ?? '' ?>"
                        class="inputName
                               text-white
                               rounded-lg
@@ -58,7 +58,7 @@
                 <input type="email"
                        name="email"
                        id="inputEmail"
-                       value="<?= $_SESSION['email_membre'] ?? '' ?>"
+                       value="<?php echo $_SESSION['email_membre'] ?? '' ?>"
                        class="inputEmail
                               text-white
                               rounded-lg

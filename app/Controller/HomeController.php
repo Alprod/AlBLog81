@@ -33,7 +33,7 @@ class HomeController extends Config
      */
     public function getMembreModel(): MembresModel
     {
-        return $this -> membreModel;
+        return $this->membreModel;
     }
 
     /**
@@ -41,7 +41,7 @@ class HomeController extends Config
      */
     public function getSessionUser(): Superglobal
     {
-        return $this -> sessionUser;
+        return $this->sessionUser;
     }
 
     /**
@@ -49,7 +49,7 @@ class HomeController extends Config
      */
     public function getPostModel(): PostsModel
     {
-        return $this -> postModel;
+        return $this->postModel;
     }
 
     /**
@@ -81,7 +81,7 @@ class HomeController extends Config
     }
 
     /**
-     * @param $year
+     * @param  $year
      * @return string|null
      */
     public function calendarChinese($year): string

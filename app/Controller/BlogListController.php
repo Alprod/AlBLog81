@@ -14,7 +14,6 @@ use Exception;
 
 class BlogListController
 {
-
     private CommentsModel $commentModel;
     private Config $config;
     private PostsModel $postModel;
@@ -39,7 +38,7 @@ class BlogListController
      */
     public function getSuperGlobal(): Superglobal
     {
-        return $this -> superGlobal;
+        return $this->superGlobal;
     }
 
     /**
@@ -55,7 +54,7 @@ class BlogListController
      */
     public function getMembreModel(): MembresModel
     {
-        return $this -> membreModel;
+        return $this->membreModel;
     }
 
     /**
@@ -63,7 +62,7 @@ class BlogListController
      */
     public function getCommentModel(): CommentsModel
     {
-        return $this -> commentModel;
+        return $this->commentModel;
     }
 
 
@@ -84,15 +83,19 @@ class BlogListController
         $listPost = $this->getPostModel()->findAllPosts();
         $conf = $this->getConfig();
 
-        return $conf->render('layout.php', 'front/posts.php', [
+        return $conf->render(
+            'layout.php',
+            'front/posts.php',
+            [
             'titre' => 'Mes articles',
             'listPost' => $listPost
-        ]);
+            ]
+        );
     }
 
     /**
-     * @param string $slug
-     * @param string $id
+     * @param  string $slug
+     * @param  string $id
      * @return bool|void
      */
     public function blogPost(string $slug, string $id): bool
@@ -106,14 +109,18 @@ class BlogListController
             $this->addCommentToBlogPost($id, $slug, $sessionId);
         }
 
-        return $this->getConfig()->render('layout.php', 'front/viewPost.php', [
+        return $this->getConfig()->render(
+            'layout.php',
+            'front/viewPost.php',
+            [
             'titre' => 'l\'article '.$slug,
             'slug' => $slug,
             'id' => $id,
             'post' => $viewPost,
             'comments' => $commentByPost,
             'changer'=> 'Modifier'
-        ]);
+            ]
+        );
     }
 
     /**
@@ -163,13 +170,17 @@ class BlogListController
      */
     public function form()
     {
-        return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
+        return $this->getConfig()->render(
+            "layout.php",
+            "admin/postEdit.php",
+            [
             'titre'=> 'Nouvel Article',
-        ]);
+            ]
+        );
     }
 
     /**
-     * @param $id
+     * @param  $id
      * @return bool
      */
     public function postFormById($id)
@@ -177,11 +188,15 @@ class BlogListController
         $postByIds = $this->getPostModel()->findPostByIds($id);
         $postImage = $postByIds->getImages();
 
-        return $this->getConfig()->render("layout.php", "admin/postEdit.php", [
+        return $this->getConfig()->render(
+            "layout.php",
+            "admin/postEdit.php",
+            [
             'titre' => 'Modifier l\'article',
             'blog_actuel' => $postByIds,
             'blog_image' => $postImage
-        ]);
+            ]
+        );
     }
 
     /**
@@ -204,6 +219,7 @@ class BlogListController
 
     /**
      * Update post by blogger
+     *
      * @throws Exception
      */
     public function updatePostById()
@@ -234,7 +250,8 @@ class BlogListController
 
     /**
      * Copy image in directory
-     * @param $post
+     *
+     * @param  $post
      * @return mixed
      */
     public function copyImages($post)

@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-8 m-auto">
-        <h1 class="display-2 mt-5 mb-5"><?= $titre ?></h1>
+        <h1 class="display-2 mt-5 mb-5"><?php echo $titre ?></h1>
 
         <?php if (isset($error)) : ?>
             <div class="col-md-12">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <?= $error ?>
+                    <?php echo $error ?>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
             </div>
         <?php endif; ?>
 
-        <form method="post" action="<?= url('loginVerif')?>">
+        <form method="post" action="<?php echo url('loginVerif')?>">
             <div class="form-group">
                 <label for="emailCo">Email address</label>
                 <input type="email" name="email" class="form-control Subcribe text-white border border-dark" id="emailCo" aria-describedby="emailHelp">

@@ -1,4 +1,6 @@
-<?php /** @noinspection NullPointerExceptionInspection */
+<?php /**
+       * @noinspection NullPointerExceptionInspection 
+       */
 
 
 namespace App\Model;
@@ -39,7 +41,7 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $idPost
+     * @param  $idPost
      * @return mixed
      */
     public function findPostByIds($idPost)
@@ -57,7 +59,7 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $idPostUser
+     * @param  $idPostUser
      * @return array
      */
     public function findPostsByIdUser($idPostUser): array
@@ -76,7 +78,7 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param $idCommentsPosts
+     * @param  $idCommentsPosts
      * @return array
      */
     public function findCommentsByPostAndIds($idCommentsPosts): array
@@ -106,7 +108,7 @@ class PostsModel extends PDOmanager
 
 
     /**
-     * @param $idComments
+     * @param  $idComments
      * @return array
      */
     public function findCommentById($idComments): array
@@ -128,6 +130,7 @@ class PostsModel extends PDOmanager
     /**
      * Attention ne pas oublier de changer user_commentId
      * par l'id session de l'utilisateur.
+     *
      * @param $commentId
      * @param $postId
      * @param $title
@@ -136,7 +139,8 @@ class PostsModel extends PDOmanager
     public function addCommentToPost($commentId, $postId, $title, $comment)
     {
         $bdd = $this->getBdd();
-        $req = $bdd->prepare('INSERT INTO Comments (
+        $req = $bdd->prepare(
+            'INSERT INTO Comments (
                                                         commentTitle,
                                                         commentContent,
                                                         commentCreateAt,
@@ -147,7 +151,8 @@ class PostsModel extends PDOmanager
                                                         :contenu,
                                                         NOW(),
                                                         :idPost,
-                                                        :idComments)');
+                                                        :idComments)'
+        );
         $req->bindParam(':title', $title);
         $req->bindParam(':contenu', $comment);
         $req->bindParam(':idPost', $postId);
@@ -162,7 +167,8 @@ class PostsModel extends PDOmanager
     public function editPost(Posts $post)
     {
         $bdd = $this->getBdd();
-        $req = $bdd->prepare('INSERT INTO Posts (
+        $req = $bdd->prepare(
+            'INSERT INTO Posts (
                                                                 postTitle,
                                                                 postContent,
                                                                 images,
@@ -174,7 +180,8 @@ class PostsModel extends PDOmanager
                                                                  :images,
                                                                  :link,
                                                                  NOW(),
-                                                                 :idUser)');
+                                                                 :idUser)'
+        );
         $req->bindValue(':title', $post->getPostTitle());
         $req->bindValue(':content', $post->getPostContent());
         $req->bindValue(':images', $post->getImages());
@@ -185,13 +192,12 @@ class PostsModel extends PDOmanager
     }
 
     /**
-     * @param Posts $post
+     * @param  Posts $post
      * @return bool
      * @throws Exception
      */
     public function updatePost(Posts $post): bool
     {
-
         $bdd = $this->getBdd();
         $req = 'UPDATE Posts SET 
                                  postTitle = :title,
