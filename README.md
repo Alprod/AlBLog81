@@ -23,6 +23,10 @@ Installer les dépendences composer ``composer install``
 
 [PHPunit](https://phpunit.de) Executez la commande ``composer require PHPunit``
 
+Vous aurez besoin d'edité vos propres mots de passe bdd et PHPmailer
+
+``cp Config/Params/Parameter.dist Config/Params/Parameter.php``
+
 [PHPMailer](https://github.com/PHPMailer/PHPMailer) Executez la commande ``composer require phpmailer/phpmailer`` suivez les configurations [ici](https://github.com/PHPMailer/PHPMailer)
 
 Attention pour les comptes Gmail il faut désactiver la double authentification.
@@ -35,7 +39,7 @@ Lancer le projet en local via le server Apache
 
 Les programmes/logiciels/ressources que vous avez utilisées pour développer votre projet
 
--   [bootstrap CDN](http://materializecss.com) - Framework CSS (front-end)
+-   [Bootstrap CDN](https://getbootstrap.com) - Framework CSS (front-end)
 -   [PHPStorm](https://atom.io/) - IDE.
 -   [Codacy](https://app.codacy.com/gh/Alprod/AlBLog81/dashboard?branch=master) - Analyseur de code accés direct au projet analiser.
 

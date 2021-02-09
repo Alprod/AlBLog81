@@ -28,7 +28,22 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="" />
+    <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/Params/ParameterExemple.php" beforeDir="false" afterPath="$PROJECT_DIR$/Config/Params/Parameter.dist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/CU_créer_article.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_01_CU_créer_article.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/CU_rediger_un_commentaire.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_02_CU_rediger_un_commentaire.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/DS_ajout_commentaire.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_05_DS_ajout_commentaire.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/DS_créa_article.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_04_DS_créa_article.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/Diagramme Blog-Digramme-context.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_03_Blog-Digramme-context.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/Diagramme de package.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_07_Diagramme_de_package.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/Diagramme_de_class.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/P5_alain_germain/P5_06_Diagramme_de_class.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/P5_alain_germain/Uml Pdf/Soutenance.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/_httpd-vhost.conf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/_httpd-vhost.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docs/_httpd.conf" beforeDir="false" afterPath="$PROJECT_DIR$/Docs/_httpd.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +64,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="refactoringProperties" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -190,11 +205,11 @@
       <recent name="$PROJECT_DIR$/Tests" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Docs/P5_alain_germain" />
       <recent name="$PROJECT_DIR$/Docs" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/app/View/admin" />
       <recent name="$PROJECT_DIR$/app/View/front" />
-      <recent name="$PROJECT_DIR$/" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.RouterTest.testRouter">
