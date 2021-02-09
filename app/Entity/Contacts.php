@@ -6,6 +6,11 @@ namespace App\Entity;
 use DateTime;
 use Exception;
 
+/**
+ * Class Contacts
+ *
+ * @package App\Entity
+ */
 class Contacts extends Entity
 {
     private $idContacts;
@@ -20,7 +25,7 @@ class Contacts extends Entity
      */
     public function getIdContacts()
     {
-        return $this -> idContacts;
+        return $this->idContacts;
     }
 
     /**
@@ -28,7 +33,7 @@ class Contacts extends Entity
      */
     public function setIdContacts($idContacts): void
     {
-        $this -> idContacts = $idContacts;
+        $this->idContacts = $idContacts;
     }
 
     /**
@@ -36,7 +41,7 @@ class Contacts extends Entity
      */
     public function getNameContact()
     {
-        return $this -> nameContact;
+        return $this->nameContact;
     }
 
     /**
@@ -44,7 +49,7 @@ class Contacts extends Entity
      */
     public function setNameContact($nameContact): void
     {
-        $this -> nameContact = $nameContact;
+        $this->nameContact = $nameContact;
     }
 
     /**
@@ -52,7 +57,7 @@ class Contacts extends Entity
      */
     public function getEmail()
     {
-        return $this -> email;
+        return $this->email;
     }
 
     /**
@@ -60,7 +65,7 @@ class Contacts extends Entity
      */
     public function setEmail($email): void
     {
-        $this -> email = $email;
+        $this->email = $email;
     }
 
     /**
@@ -68,7 +73,7 @@ class Contacts extends Entity
      */
     public function getSujet()
     {
-        return $this -> sujet;
+        return $this->sujet;
     }
 
     /**
@@ -76,7 +81,7 @@ class Contacts extends Entity
      */
     public function setSujet($sujet): void
     {
-        $this -> sujet = $sujet;
+        $this->sujet = $sujet;
     }
 
 
@@ -86,7 +91,7 @@ class Contacts extends Entity
      */
     public function getMessage()
     {
-        return $this -> message;
+        return $this->message;
     }
 
     /**
@@ -94,7 +99,7 @@ class Contacts extends Entity
      */
     public function setMessage($message): void
     {
-        $this -> message = $message;
+        $this->message = $message;
     }
 
     /**
@@ -103,7 +108,7 @@ class Contacts extends Entity
      */
     public function getCreatedMailDate()
     {
-        $date = new DateTime($this -> createdMailDate);
+        $date = new DateTime($this->createdMailDate);
         $dateFormat = $date->format('d/m/Y à H:i');
         return $dateFormat;
     }
@@ -113,6 +118,6 @@ class Contacts extends Entity
      */
     public function setCreatedMailDate($createdMailDate): void
     {
-        $this -> createdMailDate = $createdMailDate;
+        $this->createdMailDate = $createdMailDate;
     }
 }

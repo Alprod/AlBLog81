@@ -35,14 +35,17 @@
         <img class="mr-3 resumeImage" src="./images/Salut-35_IMG_0001.jpg" alt="Generic placeholder image">
         <div class="media-body">
             <h5 class="mt-0">Qui je suis ?</h5>
-            <p>JJe me présent je m’appelle Alain Germain et je suis développeur web. Je pourrais faire toute une nomenclature de ce que je suis.
-                Mais je vais rester à l'essentiel, de par mon blog que vous visitez actuellement vous voyez de quoi je suis capable,
+            <p>JJe me présent je m’appelle Alain Germain et je suis développeur web.
+                Je pourrais faire toute une nomenclature de ce que je suis.
+                Mais je vais rester à l'essentiel, de par mon blog que vous visitez actuellement vous
+                voyez de quoi je suis capable,
                 et que ce que vous voyez vous plaisent, mais revenons à l'essentiel.<br/>
                 Fortement orienté développement et innovation,
                 je peux intervenir dans le développement de vos projets.
                 Amélioration ou correction des codes, travail sur l'UX-design, ma contribution peut être multiple.<br/>
                 Une soif de connaissances, à partir des technicités acquit ces derniers mois.<br/>
-                Je m'engage à m'investir totalement et à continuer à apprendre pour évoluer et de contribuer au quotidien
+                Je m'engage à m'investir totalement et à continuer à apprendre pour évoluer
+                et de contribuer au quotidien
                 avec votre équipe sur vos projets. Trop de gens traversent la vie en attendant
                 que les choses arrivent au lieu de faire en sorte qu’elles se produisent.<br/>
                 Retrouver tous les détails techniques me concernant sûr <a href="https://www.alain-germain.fr" target="_blank">alain-germain.fr</a>

@@ -25,7 +25,7 @@ class ContactSendMail extends Config
      */
     public function getContactModel(): ContactsModel
     {
-        return $this -> contactModel;
+        return $this->contactModel;
     }
 
 
@@ -35,10 +35,13 @@ class ContactSendMail extends Config
      */
     public function contact()
     {
-
-        return $this->render("layout.php", "front/contact.php", array(
+        return $this->render(
+            "layout.php",
+            "front/contact.php",
+            array(
             "titre" => "Contact"
-        ));
+            )
+        );
     }
 
     /**
@@ -50,12 +53,16 @@ class ContactSendMail extends Config
         try {
             $this->validate($_POST);
         } catch (Exception $e) {
-            return $this->render("layout.php", "front/contact.php", array(
+            return $this->render(
+                "layout.php",
+                "front/contact.php",
+                array(
                 'titre' => 'Erreur d\'Envoi',
                 'success' => false,
                 'error' => $e->getMessage(),
                 'name' => null
-            ));
+                )
+            );
         }
 
         $data = $this->sanitize($_POST);
@@ -83,29 +90,36 @@ class ContactSendMail extends Config
         $mail->Body = $this->renderMessage($name, $sujet, $content);
 
         if (!$mail->send()) {
-            return $this->render("layout.php", "front/contact.php", array(
+            return $this->render(
+                "layout.php",
+                "front/contact.php",
+                array(
                 'titre' => 'Erreur Mail',
                 'success' => false,
                 'error' => $mail->ErrorInfo,
                 'name' => null
-            ));
+                )
+            );
         }
-        return $this->render("layout.php", "front/contact.php", array(
+        return $this->render(
+            "layout.php",
+            "front/contact.php",
+            array(
             'titre' => 'Envoi Mail',
             'success' => 'Message envoyé',
             'error' => [],
             'name' => $data['nameContact']
-        ));
+            )
+        );
     }
 
 
     /**
-     * @param $data
+     * @param  $data
      * @throws Exception
      */
     public function validate($data)
     {
-
         $name = $data['nameContact'];
         $content = $data["message"];
         $mailEmail = $data["email"];
@@ -129,9 +143,9 @@ class ContactSendMail extends Config
     }
 
     /**
-     * @param $name
-     * @param $sujet
-     * @param $content
+     * @param  $name
+     * @param  $sujet
+     * @param  $content
      * @return string
      */
     public function renderMessage($name, $sujet, $content)

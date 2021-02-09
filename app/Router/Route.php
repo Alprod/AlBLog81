@@ -69,7 +69,7 @@ class Route
      */
     public function getPath(): string
     {
-        return $this -> path;
+        return $this->path;
     }
 
 
@@ -128,10 +128,12 @@ class Route
 
             $args = array_map(fn (ReflectionParameter $params) => $params->getName(), $reflection->getParameters());
 
-            $argsValue = array_map(static function (string $name) use ($parameters) {
-
-                return $parameters[$name];
-            }, $args);
+            $argsValue = array_map(
+                static function (string $name) use ($parameters) {
+                    return $parameters[$name];
+                },
+                $args
+            );
         }
 
         if (is_array($callable)) {

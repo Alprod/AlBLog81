@@ -36,7 +36,7 @@ class MembreController extends Users
      */
     public function getConfig(): Config
     {
-        return $this -> config;
+        return $this->config;
     }
 
     /**
@@ -44,7 +44,7 @@ class MembreController extends Users
      */
     public function getMembreModel(): MembresModel
     {
-        return $this -> membreModel;
+        return $this->membreModel;
     }
 
     public function getPostModel()
@@ -57,7 +57,7 @@ class MembreController extends Users
      */
     public function getCommentModel(): CommentsModel
     {
-        return $this -> commentModel;
+        return $this->commentModel;
     }
 
     /**
@@ -74,9 +74,13 @@ class MembreController extends Users
      */
     public function membresSubscribe(): bool
     {
-        return $this->getConfig()->render("layout.php", "membres/subscribe.php", array(
+        return $this->getConfig()->render(
+            "layout.php",
+            "membres/subscribe.php",
+            array(
             'titre' => 'Inscription',
-        ));
+            )
+        );
     }
 
     /**
@@ -84,9 +88,13 @@ class MembreController extends Users
      */
     public function membresConnexion(): bool
     {
-        return $this->getConfig()->render("layout.php", "membres/login.php", [
+        return $this->getConfig()->render(
+            "layout.php",
+            "membres/login.php",
+            [
             'titre'=> 'Connexion'
-        ]);
+            ]
+        );
     }
 
 
@@ -95,7 +103,6 @@ class MembreController extends Users
      */
     public function updateRegister()
     {
-
         $user = $this->getMembreModel()->find($_SESSION['id_membre']);
 
         $params = [
@@ -164,14 +171,18 @@ class MembreController extends Users
             $date = date($userProfil->getCreatedAt());
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
-            return $this->getConfig()->render('layout.php', 'membres/membreProfil.php', [
+            return $this->getConfig()->render(
+                'layout.php',
+                'membres/membreProfil.php',
+                [
                 'titre' => 'Profil',
                 'profil'=>$userProfil,
                 'comments'=>$commentUserId,
                 'posts'=>$postUserId,
                 'dateInscription' => $dateFomate,
                 'success'=>'Information modifier'
-            ]);
+                ]
+            );
         } catch (Exception $e) {
             $params = [
                 'titre'=> 'Inscription',
@@ -213,10 +224,14 @@ class MembreController extends Users
             $_SESSION['email_membre'] = $user->getEmail();
             return $this->getConfig()->redirect("/");
         } catch (Exception $e) {
-            return $this->getConfig()->render("layout.php", "membres/login.php", [
+            return $this->getConfig()->render(
+                "layout.php",
+                "membres/login.php",
+                [
                 'error'=> $e->getMessage(),
                 'titre'=> 'Connexion',
-            ]);
+                ]
+            );
         }
     }
 
@@ -230,7 +245,7 @@ class MembreController extends Users
     }
 
     /**
-     * @param $data
+     * @param  $data
      * @throws Exception
      */
     public function validation($data)
@@ -315,7 +330,6 @@ class MembreController extends Users
 
     public function verifLogin($data)
     {
-
         $email = $data['email'];
         $pwd = $data['password'];
 
@@ -350,13 +364,17 @@ class MembreController extends Users
         $postUserId = $this->getPostModel()->findPostsByIdUser($idUser);
 
 
-        return $this->getConfig()->render("layout.php", "membres/membreProfil.php", [
+        return $this->getConfig()->render(
+            "layout.php",
+            "membres/membreProfil.php",
+            [
             'titre' => 'Profil',
             'profil' => $userProfil,
             'comments' => $commentUserId,
             'posts' => $postUserId,
             'dateInscription' => $dateFomate
-        ]);
+            ]
+        );
     }
 
     public function mdpUpdate()
@@ -371,13 +389,17 @@ class MembreController extends Users
             $date = date($profil->getCreatedAt());
             $dateFomate = strftime("%d %B %G", strtotime($date));
 
-            return $this->getConfig()->render("layout.php", "membres/membreProfil.php", [
+            return $this->getConfig()->render(
+                "layout.php",
+                "membres/membreProfil.php",
+                [
                 'titre' => 'Profil',
                 'errorMdp'=> $e->getMessage(),
                 'profil'=> $profil,
                 'comments' => $commentUserId,
                 'dateInscription' => $dateFomate
-            ]);
+                ]
+            );
         }
         $idUser = $_SESSION['id_membre'];
         $mdpConfirm = $data['mdpComfirm'];

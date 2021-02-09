@@ -2,6 +2,11 @@
 
 namespace App\Entity;
 
+/**
+ * Class Entity
+ *
+ * @package App\Entity
+ */
 abstract class Entity
 {
     /**

@@ -17,7 +17,7 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" media="screen" type="text/css" href="/css/styles.css">
-    <title>AlBLog | <?= $titre ?? "404" ?></title>
+    <title>AlBLog | <?php echo $titre ?? "404" ?></title>
 </head>
 
 <body>
@@ -36,32 +36,32 @@
                             nav-masthead
                             justify-content-center">
                     <a class="nav-link active"
-                       href="<?= url('home'); ?>">Home
+                       href="<?php echo url('home'); ?>">Home
                     </a>
                     <a class="nav-link"
-                       href="<?= url('blogs'); ?>">Articles
+                       href="<?php echo url('blogs'); ?>">Articles
                     </a>
                     <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
                     <a class="nav-link"
-                       href="<?= url('editPost'); ?>">Nouveau post
+                       href="<?php echo url('editPost'); ?>">Nouveau post
                     </a>
                     <?php endif; ?>
                     <a class="nav-link"
-                       href="<?= url('contact'); ?>">Contact
+                       href="<?php echo url('contact'); ?>">Contact
                     </a>
                     <?php if (!isset($_SESSION['id_membre'])) : ?>
                     <a class="nav-link"
-                       href="<?= url('register'); ?>">Inscription
+                       href="<?php echo url('register'); ?>">Inscription
                     </a>
                     <a class="nav-link connexion"
-                       href="<?= url('login'); ?>">Connexion
+                       href="<?php echo url('login'); ?>">Connexion
                     </a>
                     <?php else : ?>
                     <a class="nav-link"
-                       href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?>
+                       href="<?php echo url('profil'); ?>"><?php echo $_SESSION['membre']->getPseudo() ?>
                     </a>
                     <a class="nav-link connexion"
-                       href="<?= url('logout'); ?>">Déconnexion
+                       href="<?php echo url('logout'); ?>">Déconnexion
                     </a>
                     <?php endif; ?>
                 </nav>
@@ -72,46 +72,45 @@
             <?php
             if (isset($content)) {
                 echo $content;
-
             }
             ?>
         </main>
         <footer class="mastfoot mt-auto bg-black">
             <div class="inner mb-4">
-                <p class="mt-2">&copy; Copyright | Alain Germain, <a href="/">Alblog</a> | <?= date('Y') ?>.</p>
+                <p class="mt-2">&copy; Copyright | Alain Germain, <a href="/">Alblog</a> | <?php echo date('Y') ?>.</p>
                 <?php if (isset($_SESSION['membre']) && $_SESSION['membre']->isSuperAdmin()) : ?>
-                    <a class="btn btn-outline-warning" href="<?= url('dashboard'); ?>">Dashboard</a>
+                    <a class="btn btn-outline-warning" href="<?php echo url('dashboard'); ?>">Dashboard</a>
                 <?php endif; ?>
                 <div class="row no-gutters">
                     <div class="col-md-4">
                         <ul class="nav mx-auto flex-column w-50 footNavUl">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= url('home'); ?>">Home</a>
+                                <a class="nav-link" href="<?php echo url('home'); ?>">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= url('blogs'); ?>">Articles</a>
+                                <a class="nav-link" href="<?php echo url('blogs'); ?>">Articles</a>
                             </li>
                             <?php if (isset($_SESSION['membre']) && ($_SESSION['membre']->isAdmin() || $_SESSION['membre']->isSuperAdmin())) : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= url('editPost'); ?>">Nouveau post</a>
+                                <a class="nav-link" href="<?php echo url('editPost'); ?>">Nouveau post</a>
                             </li>
                             <?php endif; ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= url('contact'); ?>">Contact</a>
+                                <a class="nav-link" href="<?php echo url('contact'); ?>">Contact</a>
                             </li>
                             <?php if (!isset($_SESSION['id_membre'])) : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= url('register'); ?>">Inscription</a>
+                                <a class="nav-link" href="<?php echo url('register'); ?>">Inscription</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link connexion" href="<?= url('login'); ?>">Connexion</a>
+                                <a class="nav-link connexion" href="<?php echo url('login'); ?>">Connexion</a>
                             </li>
                             <?php else : ?>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?= url('profil'); ?>"><?= $_SESSION['membre']->getPseudo() ?></a>
+                                <a class="nav-link" href="<?php echo url('profil'); ?>"><?php echo $_SESSION['membre']->getPseudo() ?></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link connexion" href="<?= url('logout'); ?>">Déconnexion</a>
+                                <a class="nav-link connexion" href="<?php echo url('logout'); ?>">Déconnexion</a>
                             </li>
                             <?php endif; ?>
                         </ul>

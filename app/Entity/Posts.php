@@ -32,22 +32,24 @@ class Posts extends Entity
 
     /**
      * Get idUsers from Users
+     *
      * @return mixed
      */
     public function getUserId()
     {
-        return $this -> userId;
+        return $this->userId;
     }
 
 
 
     /**
      * Get idPosts
+     *
      * @return mixed
      */
     public function getIdPosts()
     {
-        return $this -> idPosts;
+        return $this->idPosts;
     }
 
     /**
@@ -56,107 +58,118 @@ class Posts extends Entity
      */
     public function setIdPosts($idPosts): void
     {
-        $this -> idPosts = $idPosts;
+        $this->idPosts = $idPosts;
     }
 
     /**
      * Get postTitle
+     *
      * @return mixed
      */
     public function getPostTitle()
     {
-        return $this -> postTitle;
+        return $this->postTitle;
     }
 
     /**
      * Set postTitle
+     *
      * @param mixed $postTitle
      */
     public function setPostTitle($postTitle): void
     {
-        $this -> postTitle = $postTitle;
+        $this->postTitle = $postTitle;
     }
 
     /**
      * Get postContent
+     *
      * @return mixed
      */
     public function getPostContent()
     {
-        return $this -> postContent;
+        return $this->postContent;
     }
 
     /**
      * Set postContent
+     *
      * @param mixed $postContent
      */
     public function setPostContent($postContent): void
     {
-        $this -> postContent = $postContent;
+        $this->postContent = $postContent;
     }
 
     /**
      * Get images
+     *
      * @return mixed
      */
     public function getImages()
     {
-        return $this -> images;
+        return $this->images;
     }
 
     /**
      * Set images
+     *
      * @param mixed $images
      */
     public function setImages($images): void
     {
-        $this -> images = $images;
+        $this->images = $images;
     }
 
     /**
      * Get link
+     *
      * @return mixed
      */
     public function getLink()
     {
-        return $this -> link;
+        return $this->link;
     }
 
     /**
      * Set link
+     *
      * @param mixed $link
      */
     public function setLink($link): void
     {
-        $this -> link = $link;
+        $this->link = $link;
     }
 
     /**
      * Get postUserId
+     *
      * @return mixed
      */
     public function getPostUserId()
     {
-        return $this -> postUserId;
+        return $this->postUserId;
     }
 
     /**
      * Set postUserId
+     *
      * @param mixed $postUserId
      */
     public function setPostUserId($postUserId): void
     {
-        $this -> postUserId = $postUserId;
+        $this->postUserId = $postUserId;
     }
 
     /**
      * Get DateCreateAt
+     *
      * @return mixed
      * @throws Exception
      */
     public function getDateCreateAt()
     {
-        $date = new DateTime($this -> dateCreateAt);
+        $date = new DateTime($this->dateCreateAt);
         $dateFormat = $date->format('d/m/Y');
         return $dateFormat;
     }
@@ -164,12 +177,11 @@ class Posts extends Entity
 
     /**
      * Set DateCreateAt
+     *
      * @param mixed $dateCreateAt
      */
     public function setDateCreateAt($dateCreateAt): void
     {
-        $this -> dateCreateAt = $dateCreateAt;
+        $this->dateCreateAt = $dateCreateAt;
     }
-
-
 }

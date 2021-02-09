@@ -49,12 +49,12 @@ class AdminController extends PDOmanager
      */
     public function __construct()
     {
-        $this -> config = new Config();
-        $this -> postModel = new PostsModel();
-        $this -> membreModel = new MembresModel();
-        $this -> commentModel = new CommentsModel();
-        $this -> contactsModel = new ContactsModel();
-        $this -> superGlobal = new Superglobal();
+        $this ->config = new Config();
+        $this ->postModel = new PostsModel();
+        $this ->membreModel = new MembresModel();
+        $this ->commentModel = new CommentsModel();
+        $this ->contactsModel = new ContactsModel();
+        $this ->superGlobal = new Superglobal();
     }
 
     /**
@@ -62,7 +62,7 @@ class AdminController extends PDOmanager
      */
     public function getSuperGlobal(): Superglobal
     {
-        return $this -> superGlobal;
+        return $this->superGlobal;
     }
 
 
@@ -87,7 +87,7 @@ class AdminController extends PDOmanager
      */
     public function getContactsModel()
     {
-        return $this -> contactsModel;
+        return $this->contactsModel;
     }
 
 
@@ -119,14 +119,18 @@ class AdminController extends PDOmanager
         $report = $this->getCommentModel()->findCommentsReport();
         $contactMail = $this->getContactsModel()->findAllMailContact();
 
-        return $this->getConfig()->render("layout.php", "admin/dashboard.php", [
+        return $this->getConfig()->render(
+            "layout.php",
+            "admin/dashboard.php",
+            [
             'titre' => 'Dashbarod',
             'users' => $users,
             'posts' => $posts,
             'comments' => $comments,
             'reports' => $report,
             'mailContact' => $contactMail
-        ]);
+            ]
+        );
     }
 
 
@@ -178,7 +182,7 @@ class AdminController extends PDOmanager
     }
 
     /**
-     * Update a member (Blogger|Memeber) to super admin
+     * Update a member (Blogger|Members) to super admin
      */
     public function updateMemberRegisterToSuperAdmin()
     {

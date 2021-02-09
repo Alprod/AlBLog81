@@ -27,7 +27,7 @@ class MembresModel extends PDOmanager
     }
 
     /**
-     * @param $idMember
+     * @param  $idMember
      * @return mixed
      */
     public function find($idMember)
@@ -47,9 +47,8 @@ class MembresModel extends PDOmanager
 
 
     /**
-     * @param $pseudo
+     * @param  $pseudo
      * @return false|mixed
-     *
      */
     public function existPseudo($pseudo)
     {
@@ -67,7 +66,7 @@ class MembresModel extends PDOmanager
     }
 
     /**
-     * @param $email
+     * @param  $email
      * @return false|mixed
      */
     public function loginOfConnexion($email)
@@ -97,6 +96,7 @@ class MembresModel extends PDOmanager
 
     /**
      * Update Password
+     *
      * @param $idUsers
      * @param $mdp
      */
@@ -111,8 +111,8 @@ class MembresModel extends PDOmanager
     }
 
     /**
-     * @param $mdp
-     * @param $data
+     * @param  $mdp
+     * @param  $data
      * @return bool
      */
     public function register($mdp, Users $data): bool
