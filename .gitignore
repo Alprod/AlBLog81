@@ -18,3 +18,4 @@ phpunit_xml.dist
 package-lock.json
 package.json
 
+Config/Params/Parameter.php

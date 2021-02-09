@@ -3,10 +3,7 @@
 
 namespace Config\Params;
 
-/*
- * Modifer ParametreExemple par Parametre
- */
-class ParameterExemple
+class Parameter
 {
     const TOKEN_GMAIL = 'your_code_mail';
     const EMAIL_WEB_MASTER = 'your_address_mail';
