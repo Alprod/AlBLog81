@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-10 m-auto">
-        <h1 class="display-2 mt-5 mb-5"><?php echo $titre?></h1>
+        <h1 class="display-2 mt-5 mb-5"><?= $titre?></h1>
         <form
             enctype="multipart/form-data"
             method="post"
-            action="<?php echo (!empty($blog_actuel)) ? url('updatePost') : url('addPost')?>">
+            action="<?= (!empty($blog_actuel)) ? url('updatePost') : url('addPost')?>">
             <input
                 type="hidden"
                 name="idPosts"
-                value="<?php echo (!empty($blog_actuel)) ? $blog_actuel->getIdPosts() : ''?>">
+                value="<?= (!empty($blog_actuel)) ? $blog_actuel->getIdPosts() : ''?>">
 
             <div class="form-group">
                 <label for="postTitle">Titre de l'article</label>
@@ -20,7 +20,7 @@
                                text-white
                                border
                                border-dark"
-                        value="<?php echo (!empty($blog_actuel)) ? $blog_actuel->getPostTitle() : ''?>"
+                        value="<?= (!empty($blog_actuel)) ? $blog_actuel->getPostTitle() : ''?>"
                         id="postTitle"
                         aria-describedby="emailHelp">
             </div>
@@ -34,21 +34,21 @@
                                text-white
                                border
                                border-dark"
-                        id="postContent"><?php echo (!empty($blog_actuel)) ? $blog_actuel->getPostContent() : ''?>
+                        id="postContent"><?= (!empty($blog_actuel)) ? $blog_actuel->getPostContent() : ''?>
                 </textarea>
             </div>
             <div class="form-group">
                 <?php if (!empty($blog_image)) : ?>
                     <img
-                        src="./images/<?php echo $blog_image?>"
+                        src="./images/<?= $blog_image?>"
                         class="w-25 h-25 m-3 rounded-lg"
-                        alt="<?php echo $blog_actuel->getPostTitle()?>">
+                        alt="<?= $blog_actuel->getPostTitle()?>">
                 <?php endif; ?>
                 <label for="imagePost">Votre photo/images actuel.</label>
                 <input
                         type="file"
                         name="images"
-                        value="<?php echo (!empty($blog_actuel)) ? $blog_actuel->getImages() : ''?>"
+                        value="<?= (!empty($blog_actuel)) ? $blog_actuel->getImages() : ''?>"
                         class="form-control-file
                                Subcribe
                                border
@@ -60,7 +60,7 @@
                 <input
                         type="text"
                         name="link"
-                        value="<?php echo (!empty($blog_actuel)) ? $blog_actuel->getLink() : ''?>"
+                        value="<?= (!empty($blog_actuel)) ? $blog_actuel->getLink() : ''?>"
                         class="form-control
                                Subcribe
                                text-white

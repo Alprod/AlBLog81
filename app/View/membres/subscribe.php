@@ -1,10 +1,10 @@
-<h1 class="display-2 mt-5 mb-2 subcribTitle"><?php echo $titre ?></h1>
-<form action="<?php echo (empty($user)) ? url('addRegister') : url('updateMemberRegister')?>" method="post">
+<h1 class="display-2 mt-5 mb-2 subcribTitle"><?= $titre ?></h1>
+<form action="<?= (empty($user)) ? url('addRegister') : url('updateMemberRegister')?>" method="post">
     <div class="row mb-5">
         <?php if (isset($error)) : ?>
         <div class="col-md-12">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <?php echo $error ?>
+                <?= $error ?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -17,12 +17,12 @@
             <legend>Identité</legend>
             <div class="row">
             <div class="col-md-6 mt-3">
-                <input hidden type="text" name="idUsers" value="<?php echo (!empty($user)) ?  $user->getidUsers() : ''?>">
+                <input hidden type="text" name="idUsers" value="<?= (!empty($user)) ?  $user->getidUsers() : ''?>">
                 <label for="firstname">Nom</label>
                 <input type="text"
                        name="firstname"
                        id="firstname"
-                       value="<?php echo (!empty($user)) ?  $user->getFirstname() : ($_POST['firstname'] ?? '')?>"
+                       value="<?= (!empty($user)) ?  $user->getFirstname() : ($_POST['firstname'] ?? '')?>"
                        class="Subcribe
                               firstname
                               text-white
@@ -36,7 +36,7 @@
                 <input type="text"
                        name="lastname"
                        id="lastname"
-                       value="<?php echo (!empty($user)) ?  $user->getLastname() : ''?>"
+                       value="<?= (!empty($user)) ?  $user->getLastname() : ''?>"
                        class="Subcribe
                               lastname
                               text-white
@@ -50,7 +50,7 @@
                 <input type="text"
                        name="pseudo"
                        id="pseudo"
-                       value="<?php echo (!empty($user)) ?  $user->getPseudo() : ''?>"
+                       value="<?= (!empty($user)) ?  $user->getPseudo() : ''?>"
                        class="Subcribe
                               pseudo
                               text-white
@@ -65,7 +65,7 @@
                 <input type="text"
                        name="email"
                        id="email"
-                       value="<?php echo (!empty($user)) ?  $user->getEmail() : ''?>"
+                       value="<?= (!empty($user)) ?  $user->getEmail() : ''?>"
                        class="Subcribe
                               email
                               text-white
@@ -85,7 +85,7 @@
                 <input type="password"
                        name="mdp"
                        id="Subcribemdp"
-                       value="<?php echo $_POST['mdp'] ?? '' ?>"
+                       value="<?= $_POST['mdp'] ?? '' ?>"
                        class="Subcribe
                               mdp
                               text-white
@@ -98,7 +98,7 @@
                 <input type="password"
                        name="mdp2"
                        id="Subcribemdp2"
-                       value="<?php echo $_POST['mdp2'] ?? '' ?>"
+                       value="<?= $_POST['mdp2'] ?? '' ?>"
                        class="Subcribe
                               mdp2
                               text-white
@@ -117,7 +117,7 @@
                         <input type="text"
                                name="addressNumber"
                                id="addressNumber"
-                               value="<?php echo (!empty($user)) ?  $user->getAddressNumber() : ''?>"
+                               value="<?= (!empty($user)) ?  $user->getAddressNumber() : ''?>"
                                class="Subcribe
                                       voie
                                       text-white
@@ -131,7 +131,7 @@
                         <input type="text"
                                name="addressName"
                                id="addressName"
-                               value="<?php echo (!empty($user)) ?  $user->getAddressName() : '' ?>"
+                               value="<?= (!empty($user)) ?  $user->getAddressName() : '' ?>"
                                class="Subcribe
                                       adresse
                                       text-white
@@ -144,7 +144,7 @@
                         <input type="number"
                                name="zipcode"
                                id="zipcode"
-                               value="<?php echo (!empty($user)) ? $user->getZipCode() : '' ?>"
+                               value="<?= (!empty($user)) ? $user->getZipCode() : '' ?>"
                                class="Subcribe
                                       zipcode
                                       text-white
@@ -158,7 +158,7 @@
                         <input type="text"
                                name="city"
                                id="city"
-                               value="<?php echo (!empty($user)) ? $user->getCity() : '' ?>"
+                               value="<?= (!empty($user)) ? $user->getCity() : '' ?>"
                                class="Subcribe
                                       city
                                       text-white
@@ -172,7 +172,7 @@
                         <input type="text"
                                name="departement"
                                id="state"
-                               value="<?php echo (!empty($user)) ? $user->getDepartement() :'' ?>"
+                               value="<?= (!empty($user)) ? $user->getDepartement() :'' ?>"
                                class="Subcribe
                                       state
                                       text-white
@@ -186,7 +186,7 @@
                         <input type="text"
                                name="country"
                                id="country"
-                               value="<?php echo (!empty($user)) ? $user->getCountry() :'' ?>"
+                               value="<?= (!empty($user)) ? $user->getCountry() :'' ?>"
                                class="Subcribe
                                       country
                                       text-white
