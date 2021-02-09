@@ -1,5 +1,5 @@
 <div class="mt-5"></div>
-<h3><?php echo $slug ?></h3>
+<h3><?= $slug ?></h3>
 
 <div class="card
             postView
@@ -12,27 +12,27 @@
     <?php if (!empty($post->getImages())) : ?>
     <img
         class="card-img-top"
-        src="./../images/<?php echo $post->getImages() ?>"
-        alt="<?php echo $post->getPostTitle() ?>">
+        src="./../images/<?= $post->getImages() ?>"
+        alt="<?= $post->getPostTitle() ?>">
     <?php endif; ?>
     <div class="card-body">
 
-        <h5 class="card-title"><?php echo $post->getPostTitle() ?></h5>
-        <p class="card-text"><?php echo html_entity_decode($post->getPostContent())  ?></p>
+        <h5 class="card-title"><?= $post->getPostTitle() ?></h5>
+        <p class="card-text"><?= html_entity_decode($post->getPostContent())  ?></p>
 
         <?php if (!empty($post->getLink())) : ?>
         <p>Visitez le site
             <a
-                href="https://<?php echo $post->getLink(); ?>"
+                href="https://<?= $post->getLink(); ?>"
                 class="font-italic"
-                target="_blank"><?php echo htmlspecialchars($post->getLink()) ?>
+                target="_blank"><?= htmlspecialchars($post->getLink()) ?>
             </a>
         </p>
         <?php endif; ?>
 
-        <p class="text-muted">Auteur de l'article : <?php echo $post->getUserId()->getPseudo() ?></p>
-        <p class="text-muted">Créer le : <?php echo $post->getDateCreateAt() ?></p>
-        <a href="<?php echo url('blogs')?>"
+        <p class="text-muted">Auteur de l'article : <?= $post->getUserId()->getPseudo() ?></p>
+        <p class="text-muted">Créer le : <?= $post->getDateCreateAt() ?></p>
+        <a href="<?= url('blogs')?>"
            class="btn
                   btn-outline-light
                   btn-sm
@@ -50,18 +50,18 @@
         </button>
             <?php if ($post->getPostUserId() == $_SESSION['membre']->getIdUsers()) : ?>
                 <a
-                    href="<?php echo '/posts/' . $post -> getIdPosts() ?>"
+                    href="<?= '/posts/' . $post -> getIdPosts() ?>"
                     value="Modifier l'article"
                     class="btn
                            btn-outline-info
                            btn-sm
-                           mb-2"><?php echo $changer ?>
+                           mb-2"><?= $changer ?>
                 </a>
                 <div class="d-flex justify-content-end">
-                    <form method="post" action="<?php echo url('deletePost')?>">
+                    <form method="post" action="<?= url('deletePost')?>">
                         <input type="hidden"
                                name="idPost"
-                               value="<?php echo $post -> getIdPosts() ?>">
+                               value="<?= $post -> getIdPosts() ?>">
                         <button type="submit"
                                 class="btn
                                        btn-outline-danger
@@ -83,7 +83,7 @@
                                 type="text"
                                 name="commentName"
                                 id="inputCommentName"
-                                value="<?php echo $_SESSION['pseudo_membre'] ?? '' ?>"
+                                value="<?= $_SESSION['pseudo_membre'] ?? '' ?>"
                                 class="inputCommentName
                                        text-white
                                        rounded-lg
@@ -144,35 +144,35 @@
                              alt="...">
                         <div class="media-body">
                             <h5 class="mt-0">
-                                <?php echo htmlspecialchars(html_entity_decode($comment->getCommentTitle())); ?>
+                                <?= htmlspecialchars(html_entity_decode($comment->getCommentTitle())); ?>
                             </h5>
                             <?php if ($comment->getSignal() == 0) :  ?>
-                                <p><?php echo html_entity_decode($comment->getCommentContent()); ?></p>
+                                <p><?= html_entity_decode($comment->getCommentContent()); ?></p>
                             <?php else : ?>
                                 <p class="font-italic pt-3">Le Commentaire de cet article a été signaler.<br/>
                                                             Ce commentaire est par conséquent en cours de modération.
                                 </p>
                             <?php endif; ?>
 
-                            <p class="font-italic">Posté par <?php echo $comment->getUserId()->getPseudo(); ?></p>
-                            <p class="text-muted">Créer le : <?php echo $comment->getCommentCreateAt(); ?></p>
+                            <p class="font-italic">Posté par <?= $comment->getUserId()->getPseudo(); ?></p>
+                            <p class="text-muted">Créer le : <?= $comment->getCommentCreateAt(); ?></p>
                             <?php if (!isset($_SESSION['id_membre'])) : ?>
                             <p class="font-italic text-muted">
                                 Si vous trouvez se texte inapproprié. Veuillez soit vous
                                 <a href="/register">inscrire</a> ou vous <a href="/login">connectez</a>
                             </p>
                             <?php else : ?>
-                            <form action="<?php echo url('updateSignal')?>" method="post" class="row">
+                            <form action="<?= url('updateSignal')?>" method="post" class="row">
                                 <div class="col col-md-8 m-auto">
                                     <input type="hidden"
                                            name="signal"
-                                           value="<?php echo $comment->getSignal() ?>">
+                                           value="<?= $comment->getSignal() ?>">
                                     <input type="hidden"
                                            name="idComments"
-                                           value="<?php echo $comment->getIdComments() ?>">
+                                           value="<?= $comment->getIdComments() ?>">
                                     <input type="hidden"
                                            name="userId"
-                                           value="<?php echo $comment->getUserId()->getIdUsers() ?>">
+                                           value="<?= $comment->getUserId()->getIdUsers() ?>">
                                     <p class="font-italic text-muted">
                                         Si vous constatez que le commentaire vous semble inapproprié,
                                         veuillez le signaler et nous ferons le nécessaire
