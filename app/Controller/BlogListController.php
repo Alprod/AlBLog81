@@ -247,6 +247,14 @@ class BlogListController
         return $this->getConfig()->redirect('/blogs');
     }
 
+    public static function cleanName(string $name)
+    {
+        $deleteSpaceStartEnd = trim($name);
+        $deleteSpaceInString = str_replace(" ", "_", $deleteSpaceStartEnd);
+
+        return $deleteSpaceInString;
+    }
+
 
     /**
      * Copy image in directory
@@ -257,17 +265,27 @@ class BlogListController
     public function copyImages($post)
     {
         $userId = (int) $_SESSION['id_membre'];
-        $fileName = (string) $_FILES['images']['name'];
+
+        $fileBaseName = (string) $_FILES['images']['name'];
+        $fileError = $_FILES['images']['error'];
         $tmpName = (string) $_FILES['images']['tmp_name'];
 
         $postTitle = $this->getSuperGlobal()->getPost('postTitle');
-        $titleSpace = trim($postTitle);
-        $title = str_replace(" ", "_", $titleSpace);
-        if (!empty($fileName)) {
-            $nom = $title.'-'.$userId.'_'.$fileName;
-            $post->setImages($nom);
-            $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
-            move_uploaded_file($tmpName, $pathPhoto);
+        $title = self::cleanName($postTitle);
+
+        if (!empty($fileBaseName) && $fileError === 0) {
+            $infoFile = pathinfo($fileBaseName);
+            $extention_upload = $infoFile['extension'];
+            $extensionAuth = ['jpg', 'jpeg', 'gif', 'png'];
+            $fileName = $infoFile['filename'];
+            $newName = substr_replace($fileName, $title, 0);
+
+            if (in_array($extention_upload, $extensionAuth)) {
+                $nom = 'user-id_'.$userId.'_'.$newName.'.'.$extention_upload;
+                $post->setImages($nom);
+                $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
+                move_uploaded_file($tmpName, $pathPhoto);
+            }
         }
         return $post;
     }
