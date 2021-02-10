@@ -256,14 +256,18 @@ class BlogListController
      */
     public function copyImages($post)
     {
+        $userId = (int) $_SESSION['id_membre'];
+        $fileName = (string) $_FILES['images']['name'];
+        $tmpName = (string) $_FILES['images']['tmp_name'];
+
         $postTitle = $this->getSuperGlobal()->getPost('postTitle');
         $titleSpace = trim($postTitle);
         $title = str_replace(" ", "_", $titleSpace);
-        if (!empty($_FILES['images']['name'])) {
-            $nom = $title.'-'.$_SESSION['id_membre'].'_'.$_FILES['images']['name'];
+        if (!empty($fileName)) {
+            $nom = $title.'-'.$userId.'_'.$fileName;
             $post->setImages($nom);
             $pathPhoto = __DIR__ . '/../../public/images/' . $nom;
-            move_uploaded_file($_FILES['images']['tmp_name'], $pathPhoto);
+            move_uploaded_file($tmpName, $pathPhoto);
         }
         return $post;
     }
