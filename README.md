@@ -21,8 +21,6 @@ Configurer votre apache afin de créer un virtualHost pour mon projet qui lui se
 
 Installer les dépendences composer ``composer install``
 
-[PHPunit](https://phpunit.de) Executez la commande ``composer require PHPunit``
-
 Vous aurez besoin d'edité vos propres mots de passe bdd et PHPmailer
 
 ``cp Config/Params/Parameter.dist Config/Params/Parameter.php``
