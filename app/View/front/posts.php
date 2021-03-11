@@ -10,7 +10,7 @@
         <div class="col-md-4 mt-4">
             <div class="card bg-black mx-auto viewPostCard">
                 <?php if (!empty($post->getImages())) : ?>
-                <img src="./images/<?= $post->getImages() ?>" class="card-img-top" alt="...">
+                <img src="./images/<?= $post->getImages() ?>" class="card-img-top" style="height: 12rem;" alt="<?= $post->getPostTitle() ?>">
                 <?php endif; ?>
                 <div class="card-body">
                     <h5 class="card-title"><?= htmlspecialchars(html_entity_decode($post->getPostTitle())) ?></h5>

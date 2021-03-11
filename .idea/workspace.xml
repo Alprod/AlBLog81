@@ -30,28 +30,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4786ba8b-4b01-45b6-981f-309f62878c42" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Controller/BlogListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/BlogListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Bonjour_!!!-28_Photo le 22-12-2020 à 16.33.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Bonjour_!!!-35_2012513_0.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Bonjour_!!!-35_Photo le 22-12-2020 à 16.33.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Bonjour_a_vous_!!!-35_Photo le 22-12-2020 à 16.33.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Bonne_Annee-28_Bonne_Année-28_19485000.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Bulle_d'aire-28_wu_2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/JeudiAM-28_856d729a10658ae5f31e3d0762e6dac1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Jour_de_plus-28_Wu-Tang-Final-Fantasy.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Mon_Blog-35_Photo le 22-12-2020 à 16.33 (original).jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Mon_nouveau_post-35_Capture d’écran 2020-12-16 à 19.30.12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Nouvelle_article-28_18828545.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Teste_Post-28_0b71bc770a37b62428236b44f9c1f215.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Teste_Post-28_Wu-Tang.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Teste_Post-28_nfl.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/Teste_Post-28_strangerThings.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/demain_mis_jour-28_88d1c125b2e31baad04c23148d5a2fb8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/greg-rakozy-oMpAz-DN-9I-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/jijij-35_bootstrap-logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/ll-28_jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/ssksk-35_css.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/yyyyyy-35_bootstrap-logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Controller/ContactSendMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/admin/postEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/admin/postEdit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/View/front/posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/View/front/posts.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +74,11 @@
   <component name="PhpServers">
     <servers>
       <server host="www.alblog81.fr" id="54cd220a-cb39-4a6a-975c-e49a04a373dd" name="www.alblog81.fr" />
+      <server host="localhost" id="7c429e4a-e538-41cb-8858-5f72632e5b72" name="localhost" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/public" remote-root="/Users/alaiananja/Desktop/Perso" />
+        </path_mappings>
+      </server>
     </servers>
   </component>
   <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
@@ -376,7 +362,11 @@
       <workItem from="1612352278073" duration="683000" />
       <workItem from="1612564773624" duration="3548000" />
       <workItem from="1612838022660" duration="6475000" />
-      <workItem from="1612914266662" duration="9149000" />
+      <workItem from="1612914266662" duration="12115000" />
+      <workItem from="1613384038281" duration="306000" />
+      <workItem from="1613385506901" duration="3413000" />
+      <workItem from="1613443340261" duration="3000" />
+      <workItem from="1613837003540" duration="1983000" />
     </task>
     <servers />
   </component>

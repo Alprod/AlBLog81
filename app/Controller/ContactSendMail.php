@@ -81,7 +81,7 @@ class ContactSendMail extends Config
         $mail->Password = Parameter::TOKEN_GMAIL;
         $mail->setFrom($contact->getEmail(), $contact->getNameContact());
         $mail->addAddress(Parameter::EMAIL_WEB_MASTER);
-        $mail->Subject = $contact->getSujet();
+        $mail->Subject = html_entity_decode($contact->getSujet());
 
         $name = $contact->getNameContact();
         $content = $contact->getMessage();
@@ -118,7 +118,7 @@ class ContactSendMail extends Config
      * @param  $data
      * @throws Exception
      */
-    public function validate($data)
+    public function validate($data): void
     {
         $name = $data['nameContact'];
         $content = $data["message"];
