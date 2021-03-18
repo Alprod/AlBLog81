@@ -54,6 +54,14 @@
                                border
                                border-dark"
                         id="imagePost">
+                <?php if (isset($messageError)) : ?>
+                    <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                        <?= $messageError ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="form-group">
                 <label for="link">Ajouter un Lien référence</label>
