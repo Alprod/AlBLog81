@@ -1,5 +1,5 @@
 <?php /**
-       * @noinspection NullPointerExceptionInspection 
+       * @noinspection NullPointerExceptionInspection
        */
 
 
@@ -8,6 +8,7 @@ namespace App\Model;
 use App\Entity\Posts;
 use Config\PDOmanager;
 use Exception;
+use App\Entity\Comments;
 
 class PostsModel extends PDOmanager
 {
@@ -31,7 +32,7 @@ class PostsModel extends PDOmanager
                            ORDER BY p.dateCreateAt DESC LIMIT 0,15';
         $resultat = $this->getBdd()->prepare($req);
         $resultat->execute();
-        $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
+        $resultat->setFetchMode(self::FETCH_CLASS, Posts::class);
         $data = $resultat->fetchAll();
 
         if (!$data) {
@@ -53,7 +54,7 @@ class PostsModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindValue(":id_post", $idPost);
         $result->execute();
-        $result->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
+        $result->setFetchMode(self::FETCH_CLASS, Posts::class);
         $posts= $result->fetch();
         return $posts;
     }
@@ -70,7 +71,7 @@ class PostsModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":id_user", $idPostUser);
         $result->execute();
-        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Posts');
+        $result->setFetchMode(self::FETCH_CLASS, Posts::class);
         $posts= $result->fetchAll();
         $result->closeCursor();
 
@@ -101,7 +102,7 @@ class PostsModel extends PDOmanager
         $result = $this->getBdd()->prepare($req);
         $result->bindParam(":idPosts", $idCommentsPosts);
         $result->execute();
-        $result->setFetchMode(self::FETCH_CLASS, 'App\Entity\Comments');
+        $result->setFetchMode(self::FETCH_CLASS, Comments::class);
         $commentPost = $result->fetchAll();
         return $commentPost;
     }
@@ -141,17 +142,17 @@ class PostsModel extends PDOmanager
         $bdd = $this->getBdd();
         $req = $bdd->prepare(
             'INSERT INTO Comments (
-                                                        commentTitle,
-                                                        commentContent,
-                                                        commentCreateAt,
-                                                        postCommentId,
-                                                        userCommentId)
-                                                VALUES (
-                                                        :title,
-                                                        :contenu,
-                                                        NOW(),
-                                                        :idPost,
-                                                        :idComments)'
+                                        commentTitle,
+                                        commentContent,
+                                        commentCreateAt,
+                                        postCommentId,
+                                        userCommentId)
+                                VALUES (
+                                        :title,
+                                        :contenu,
+                                        NOW(),
+                                        :idPost,
+                                        :idComments)'
         );
         $req->bindParam(':title', $title);
         $req->bindParam(':contenu', $comment);
@@ -164,23 +165,23 @@ class PostsModel extends PDOmanager
     /**
      * @param Posts $post
      */
-    public function editPost(Posts $post)
+    public function editPost(Posts $post) : void
     {
         $bdd = $this->getBdd();
         $req = $bdd->prepare(
             'INSERT INTO Posts (
-                                                                postTitle,
-                                                                postContent,
-                                                                images,
-                                                                link,
-                                                                dateCreateAt,
-                                                                postUserId)
-                                                         VALUES (:title,
-                                                                 :content,
-                                                                 :images,
-                                                                 :link,
-                                                                 NOW(),
-                                                                 :idUser)'
+                                        postTitle,
+                                        postContent,
+                                        images,
+                                        link,
+                                        dateCreateAt,
+                                        postUserId)
+                                 VALUES (:title,
+                                         :content,
+                                         :images,
+                                         :link,
+                                         NOW(),
+                                         :idUser)'
         );
         $req->bindValue(':title', $post->getPostTitle());
         $req->bindValue(':content', $post->getPostContent());
@@ -217,7 +218,7 @@ class PostsModel extends PDOmanager
     /**
      * @param $idDeletePosts
      */
-    public function deletePost($idDeletePosts)
+    public function deletePost($idDeletePosts) : void
     {
         $bdd = $this->getBdd();
         $req = $bdd->prepare('DELETE FROM Posts WHERE idPosts = :id');
@@ -240,7 +241,7 @@ class PostsModel extends PDOmanager
                         ORDER BY p.dateCreateAt DESC LIMIT 0,4';
         $resultat = $this->getBdd()->prepare($req);
         $resultat->execute();
-        $resultat->setFetchMode(self::FETCH_CLASS, "App\Entity\Posts");
+        $resultat->setFetchMode(self::FETCH_CLASS, Posts::class);
         $data = $resultat->fetchAll();
 
         if (!$data) {

@@ -333,10 +333,7 @@ class Users extends Entity
      */
     public function isAdmin(): bool
     {
-        if ($this->roles == Config::USERS_ADMIN) {
-            return true;
-        }
-        return false;
+        return $this->roles == Config::USERS_ADMIN;
     }
 
 
@@ -347,9 +344,6 @@ class Users extends Entity
      */
     public function isSuperAdmin(): bool
     {
-        if ($this->roles == Config::SUPER_USERS_ADMIN) {
-            return true;
-        }
-        return false;
+        return $this->roles == Config::SUPER_USERS_ADMIN;
     }
 }

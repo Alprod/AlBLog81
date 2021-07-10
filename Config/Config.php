@@ -9,9 +9,9 @@ use Config\Superglobal;
 
 class Config
 {
-    const SUPER_USERS_ADMIN = 1;
-    const USERS_ADMIN = 2;
-    const USERS = 3;
+    public const SUPER_USERS_ADMIN = 1;
+    public const USERS_ADMIN = 2;
+    public const USERS = 3;
 
     /**
      * @var array $parameters
@@ -48,7 +48,7 @@ class Config
      * @param $adress
      *
      */
-    public function redirect($adress)
+    public function redirect($adress) : void
     {
         header('Location:'.$adress);
         exit();
@@ -102,7 +102,7 @@ class Config
     }
 
 
-    public function createSession($membre)
+    public function createSession($membre) : void
     {
         $_SESSION['id_membre'] = $membre;
         setcookie("timeUsers", $membre, time()+3600*24, "/", "www.alblog81.fr", false, false);
@@ -124,7 +124,7 @@ class Config
     /**
      * Nettoyage de la session.
      */
-    public function cleanSessionPhp()
+    public function cleanSessionPhp() : void
     {
         session_unset();
         session_destroy();

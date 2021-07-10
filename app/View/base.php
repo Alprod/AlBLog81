@@ -8,27 +8,45 @@
         <p>Aujourd'hui nous sommes le <?= $laDateDuJour ?> et il est <?= $heureDuJour ?> à Paris</p>
         <p>Au calendrier chinois c'est l'année</p>
         <h5><?= $calendarChinese ?></h5>
-        <p>J'espère que <?= (!empty($_SESSION['id_membre'])) ? 'tu vas' : 'vous allez' ?> prendre plaisir à visiter mon blog</p>
+        <p>
+            J'espère que <?= (!empty($_SESSION['id_membre'])) ? 'tu vas' : 'vous allez' ?> prendre plaisir à visiter mon blog
+        </p>
     </div>
+    <?php
+    if (isset($lastPost)) :
+        ?>
     <h2 class="text-left mt-5">Retrouver les <?= count($lastPost) ?> derniers articles publiés</h2>
     <div class="fiveLastPost pt-4 pb-4">
         <div class="card-group justify-content-around bg-transparent">
             <?php foreach ($lastPost as $post) : ?>
                 <div class="card text-dark text-left mx-auto my-3 bg-transparent" style="max-width: 15rem;">
                     <?php if (!empty($post->getImages())) : ?>
-                    <img class="card-img-top" src="./images/<?= $post->getImages() ?>" alt="<?= $post->getPostTitle() ?>">
+                    <img class="card-img-top"
+                         src="./images/<?= $post->getImages() ?>" alt="<?= $post->getPostTitle() ?>">
                     <?php endif; ?>
                     <div class="card-body text-white bg-dark">
                         <h5 class="card-title"><?= $post->getPostTitle() ?></h5>
-                        <p class="card-text"><small class="text-muted">Ecrit Par : <?= $post->getUserId()->getPseudo() ?></small></p>
+                        <p class="card-text">
+                            <small class="text-muted">Ecrit Par : <?= $post->getUserId()->getPseudo() ?></small>
+                        </p>
                         <div class="d-inline-flex align-self-end">
-                            <a href="<?= $post->getPostTitle().'/'.$post->getIdPosts() ?>" class="btn btn-outline-light btn-sm">Lire</a>
+                            <a href="<?= $post->getPostTitle().'/'.$post->getIdPosts() ?>"
+                               class="btn btn-outline-light btn-sm">Lire</a>
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php
+            endforeach;
+            ?>
         </div>
     </div>
+        <?php
+    else :
+        ?>
+    <p>Ici retrouvez nos tout derrnier articles publié</p>
+        <?php
+    endif;
+    ?>
 </div>
 <div class="resumer bg-black p-4 m-5 rounded">
     <div class="media">
@@ -48,7 +66,8 @@
                 et de contribuer au quotidien
                 avec votre équipe sur vos projets. Trop de gens traversent la vie en attendant
                 que les choses arrivent au lieu de faire en sorte qu’elles se produisent.<br/>
-                Retrouver tous les détails techniques me concernant sûr <a href="https://www.alain-germain.fr" target="_blank">alain-germain.fr</a>
+                Retrouver tous les détails techniques me concernant sûr
+                <a href="https://www.alain-germain.fr" target="_blank">alain-germain.fr</a>
             </p>
         </div>
     </div>

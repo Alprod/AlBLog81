@@ -98,11 +98,8 @@ class Superglobal
     private function checkGlobal($global, $key = null, $default = null)
     {
         if ($key) {
-            return isset($global[$key]) ? $global[$key] : ($default ?: null);
+            return $global[ $key ] ?? ($default ?: null);
         }
         return $global;
     }
-
-
-
 }

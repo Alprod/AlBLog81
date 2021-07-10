@@ -26,9 +26,9 @@ class PDOmanager extends PDO
     }
 
     /**
-     * @return mixed
+     * @return PDO
      */
-    public function getBdd()
+    public function getBdd() : PDO
     {
         return $this->bdd;
     }
@@ -71,7 +71,7 @@ class PDOmanager extends PDO
         return $bdd;
     }
 
-    public function bindArrayValue($req, $array, $typeArray = false)
+    public function bindArrayValue($req, $array, $typeArray = false) : void
     {
         foreach ($array as $key => $val) {
             if ($typeArray) {

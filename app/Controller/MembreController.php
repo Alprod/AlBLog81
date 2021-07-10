@@ -101,7 +101,7 @@ class MembreController extends Users
     /**
      * @return bool
      */
-    public function updateRegister()
+    public function updateRegister() : bool
     {
         $user = $this->getMembreModel()->find($_SESSION['id_membre']);
 
@@ -147,7 +147,7 @@ class MembreController extends Users
     /**
      * @return bool
      */
-    public function updateMemberRegister()
+    public function updateMemberRegister() : ?bool
     {
         try {
             $data = $this->getConfig()->sanitize($_POST);
